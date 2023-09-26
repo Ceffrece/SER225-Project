@@ -13,7 +13,18 @@ import java.util.ArrayList;
 public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
-    protected float walkSpeed = 0;
+    //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
+
+    protected float walkSpeed = 2.3f;
+    protected int attackSpeed = 1;
+    protected int attackRange = 1;
+    protected int playerHealth = 5;
+    protected int attackDamage = 1;
+
+    protected int dash = 0;
+    protected int playerArmor = 0;
+    protected int critChance = 0;
+
     protected int interactionRange = 5;
     protected Direction currentWalkingXDirection;
     protected Direction currentWalkingYDirection;

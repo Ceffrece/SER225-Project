@@ -15,10 +15,89 @@ import java.util.HashMap;
 public class Cat extends Player {
 
     public Cat(float x, float y) {
-        super(new SpriteSheet(ImageLoader.load("Player.png"), 24, 24), x, y, "STAND_RIGHT");
-        walkSpeed = 2.3f;
+      super(new SpriteSheet(ImageLoader.load("Player.png"), 24, 24), x, y, "STAND_RIGHT");
+       //player speed, attack speed, attack damage, attack range, player health
+       float walkSpeed;
+       int  attackSpeed;
+       int  attackDamage;
+       int  attackRange;
+       int  playerHealth;
+       int dash;
     }
 
+    //----setters and getters for player varaibles----
+    //walk speed setter
+     public void setWalkSpeed(Float walkSpeed) {
+        this.walkSpeed = walkSpeed;
+      }
+      //walk speed getter 
+      public Float getWalkSpeed() {
+        return walkSpeed;
+      }
+      
+      //attack speed setter
+      public void setAttackSpeed(int attackSpeed) {
+        this.attackSpeed = attackSpeed;
+      }
+      //attack speed getter
+      public int setAttackSpeed() {
+        return attackSpeed;
+      }
+
+      //attack Damage setter
+      public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+      }
+       //attack Damage getter
+       public int setAttackDamage() {
+        return attackDamage;
+      }
+
+
+      //attack  Range setter
+      public void setAttackRange(int attackRange) {
+        this.attackRange = attackRange;
+      }
+       //attack Range getter
+       public int setAttackRange() {
+        return attackRange;
+      }
+
+      //player Health setter
+      public void setPlayerHealth(int playerHealth) {
+        this.playerHealth = playerHealth;
+      }
+       //playerRange getter
+       public int setPlayerHealth() {
+        return playerHealth;
+      }
+      //--------unloackable--------
+      // dash setter
+      public void setDash(int dash) {
+        this.dash = dash;
+      }
+       //dash getter
+       public int setDash() {
+        return dash;
+      }
+
+      // playerArmor setter
+      public void setPlayerArmor(int playerArmor) {
+        this.playerArmor = playerArmor;
+      }
+       //playerArmor getter
+       public int setPlayerArmor() {
+        return playerArmor;
+      }
+
+      // CritChance setter
+      public void setCritChance(int critChance) {
+        this.critChance = critChance;
+      }
+       //CritChance getter
+       public int setCritChance() {
+        return critChance;
+      }
     public void update() {
         super.update();
     }
