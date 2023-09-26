@@ -15,15 +15,14 @@ import java.util.HashMap;
 public class Cat extends Player {
 
     public Cat(float x, float y) {
-        super(new SpriteSheet(ImageLoader.load("Cat.png"), 24, 24), x, y, "STAND_RIGHT");
-        //player speed, attack speed, attack damage, attack range, player health
-        float walkSpeed;
-        int  attackSpeed;
-        int  attackDamage;
-        int  attackRange;
-        int  playerHealth;
-        int dash;
-       
+      super(new SpriteSheet(ImageLoader.load("Player.png"), 24, 24), x, y, "STAND_RIGHT");
+       //player speed, attack speed, attack damage, attack range, player health
+       float walkSpeed;
+       int  attackSpeed;
+       int  attackDamage;
+       int  attackRange;
+       int  playerHealth;
+       int dash;
     }
 
     //----setters and getters for player varaibles----
