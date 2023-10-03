@@ -276,4 +276,81 @@ public abstract class Player extends GameObject {
             moveX(speed);
         }
     }
-}
+
+   //----setters and getters for player varaibles----
+    //walk speed setter
+    public void setWalkSpeed(Float walkSpeed) {
+        this.walkSpeed = walkSpeed;
+      }
+      //walk speed getter 
+      public Float getWalkSpeed() {
+        return walkSpeed;
+      }
+      
+      public void addWalkSpeed(Float x){
+            walkSpeed += x;
+      }
+      //attack speed setter
+      public void setAttackSpeed(int attackSpeed) {
+        this.attackSpeed = attackSpeed;
+      }
+      //attack speed getter
+      public int getAttackSpeed() {
+        return attackSpeed;
+      }
+
+      //attack Damage setter
+      public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+      }
+       //attack Damage getter
+       public int getAttackDamage() {
+        return attackDamage;
+      }
+
+
+      //attack  Range setter
+      public void setAttackRange(int attackRange) {
+        this.attackRange = attackRange;
+      }
+       //attack Range getter
+       public int getAttackRange() {
+        return attackRange;
+      }
+
+      //player Health setter
+      public void setPlayerHealth(int playerHealth) {
+        this.playerHealth = playerHealth;
+      }
+       //playerRange getter
+       public int getPlayerHealth() {
+        return playerHealth;
+      }
+      //--------unloackable--------
+      // dash setter
+      public void setDash(int dash) {
+        this.dash = dash;
+      }
+       //dash getter
+       public int getDash() {
+        return dash;
+      }
+
+      // playerArmor setter
+      public void setPlayerArmor(int playerArmor) {
+        this.playerArmor = playerArmor;
+      }
+       //playerArmor getter
+       public int getPlayerArmor() {
+        return playerArmor;
+      }
+
+      // CritChance setter
+      public void setCritChance(int critChance) {
+        this.critChance = critChance;
+      }
+       //CritChance getter
+       public int getCritChance() {
+        return critChance;
+      }
+    }

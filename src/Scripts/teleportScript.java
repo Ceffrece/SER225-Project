@@ -6,14 +6,16 @@ import Level.ScriptState;
 public class teleportScript extends Script {
         private float x, y;
 
-        public teleportScript() {
+        public teleportScript(float x, float y) {
+                this.x = x * 47.3f;
+                this.y = y * 47.3f;
+                
         }
          
         @Override
         protected void setup() {
                 lockPlayer();
-                x = (10+1) * 16;
-                y = (10+1) * 16;
+                
                 player.setLocation(x,y);
         }
 
