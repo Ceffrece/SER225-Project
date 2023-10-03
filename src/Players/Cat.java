@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Cat extends Player {
 
     public Cat(float x, float y) {
-      super(new SpriteSheet(ImageLoader.load("PlayerSprite.png"), 19, 19), x, y, "STAND_RIGHT");
+      super(new SpriteSheet(ImageLoader.load("Player.png"), 16, 16), x, y, "STAND_RIGHT");
        //player speed, attack speed, attack damage, attack range, player health
        float walkSpeed;
        int  attackSpeed;
@@ -39,14 +39,14 @@ public class Cat extends Player {
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
             put("STAND_RIGHT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(3, 0))
+                    new FrameBuilder(spriteSheet.getSprite(1, 0))
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
 
             put("STAND_LEFT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(3, 0))
+                    new FrameBuilder(spriteSheet.getSprite(1, 0))
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 12, 12, 7)
@@ -58,7 +58,7 @@ public class Cat extends Player {
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 1), 10)
+                    new FrameBuilder(spriteSheet.getSprite(1, 4), 10)
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build(),
@@ -70,7 +70,7 @@ public class Cat extends Player {
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 12, 12, 7)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 1), 10)
+                    new FrameBuilder(spriteSheet.getSprite(1, 4), 10)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 12, 12, 7)
