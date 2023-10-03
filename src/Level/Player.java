@@ -6,20 +6,25 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import SpriteFont.SpriteFont;
 import Utils.Direction;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
+    private SpriteFont healthBar;
 
     protected float walkSpeed = 2.3f;
     protected int attackSpeed = 1;
     protected int attackRange = 1;
-    protected int playerHealth = 5;
+    public static int playerHealth = 5;
     protected int attackDamage = 1;
+    protected int maxHealth = 5;
+    protected int invincibilityTimer = 0;
 
     protected int dash = 0;
     protected int playerArmor = 0;
@@ -52,18 +57,22 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
 
+    protected boolean isInvincible = false;
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+
     }
 
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
-
+        if(invincibilityTimer > 0){
+            invincibilityTimer -= 1;
+        }
         // if player is currently playing through level (has not won or lost)
         // update player's state and current actions, which includes things like determining how much it should move each frame and if its walking or jumping
         do {
@@ -76,7 +85,6 @@ public abstract class Player extends GameObject {
             lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
             lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
         }
-
         handlePlayerAnimation();
 
         updateLockedKeys();
@@ -193,13 +201,38 @@ public abstract class Player extends GameObject {
     }
 
     @Override
-    public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) { }
+    public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) { 
+        if(hasCollided){
+            if(entityCollidedWith.getIdentity() == "enemy" ){
+                if(invincibilityTimer == 0){
+                    hurtPlayer(entityCollidedWith);
+                    System.out.println("player hit; hp: " + playerHealth);
+                    invincibilityTimer = 180;
+                }
+            }
+        }
+    }
 
     @Override
-    public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) { }
+    public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) { 
+        if(hasCollided){
+            if(entityCollidedWith.getIdentity() == "enemy" ){
+                if(invincibilityTimer == 0){
+                    hurtPlayer(entityCollidedWith);
+                    System.out.println("player hit; hp: " + playerHealth);
+                    invincibilityTimer = 180;
+                }
+            }
+        }
+    }
 
     // other entities can call this method to hurt the player
     public void hurtPlayer(MapEntity mapEntity) {
+        if(playerHealth > 0){
+            playerHealth -= 1;
+        }else{
+            playerHealth = 0;
+        }
 
     }
 
@@ -275,5 +308,8 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+    }
+    public static int getHealth(){
+        return playerHealth;
     }
 }
