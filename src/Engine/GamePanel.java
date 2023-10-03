@@ -49,6 +49,7 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
 
+		//Initializes healthbar, doesn't draw it
 		healthBar = new SpriteFont("Health: " + Player.getHealth(), 20, 20, "COMIC SANS", 30, Color.red);
 		healthBar.setOutlineColor(Color.black);
 		healthBar.setOutlineThickness(2.0f);
@@ -119,6 +120,7 @@ public class GamePanel extends JPanel {
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
+		//draws the healthbar and updates it accordingly after the game start button is clicked
 		if(MenuScreen.getGameStarted()){
 		healthBar.draw(graphicsHandler);
 		healthBar.setText("Health: " + Player.getHealth());

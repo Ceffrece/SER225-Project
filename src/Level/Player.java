@@ -309,6 +309,8 @@ public abstract class Player extends GameObject {
             moveX(speed);
         }
     }
+
+    //Returns the player health so it can display in GamePanel.java
     public static int getHealth(){
         return playerHealth;
     }
