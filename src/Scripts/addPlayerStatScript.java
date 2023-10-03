@@ -16,17 +16,27 @@ public class addPlayerStatScript extends Script {
         }
         public void addStat(String stat, int x){
                 switch (stat) {
-                        case "attackSpeed":  player.setAttackSpeed(x);
+                        case "attackSpeed":  player.addAttackSpeed(x);
                                 break;
-                        case "attackRange":  player.setAttackRange(x);
+                        case "attackRange":  player.addAttackRange(x);
                                 break;
-                        case "attackDamage":  player.setAttackDamage(x);
+                        case "attackDamage":  player.addAttackDamage(x);
                                 break;
                         case "walkSpeed":
                                 float y = x; 
                                 player.addWalkSpeed(y);
                                 break;
-                        case "playerHealth":  player.setAttackDamage(x);
+                        case "playerHealth":  player.addAttackDamage(x);
+                                break;
+                        case "maxHealth":  player.addAttackDamage(x);
+                                break;
+                        case "invincibilityTimer":  player.addIncibilityTimer(x);
+                                break;
+                        case "dash":  player.addDash(x);
+                                break;
+                        case "playerArmor":  player.addPlayerArmor(x);
+                                break;
+                        case "critChance":  player.addCritChance(x);
                                 break;
 
                 default: stat = "Invalid";

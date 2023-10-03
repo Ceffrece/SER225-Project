@@ -6,7 +6,10 @@ import Utils.Colors;
 
 import javax.swing.*;
 import java.awt.*;
+import Level.Player;
+import Players.Cat;
 
+import Screens.MenuScreen;
 /*
  * This is where the game loop process and render back buffer is setup
  */
@@ -23,11 +26,12 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
 	private Thread gameLoopProcess;
-
+	private SpriteFont healthBar;
 	private Key showFPSKey = Key.G;
 	private SpriteFont fpsDisplayLabel;
 	private boolean showFPS = false;
 	private int currentFPS;
+	private boolean gameStart;
 
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
@@ -47,6 +51,12 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
 
+		//Initializes healthbar, doesn't draw it
+		healthBar = new SpriteFont("Health: " + Player.playerHealth, 20, 20, "COMIC SANS", 30, Color.red);
+		healthBar.setOutlineColor(Color.black);
+		healthBar.setOutlineThickness(2.0f);
+		
+
 		currentFPS = Config.TARGET_FPS;
 
 		// this game loop code will run in a separate thread from the rest of the program
@@ -65,6 +75,7 @@ public class GamePanel extends JPanel {
 	// this starts the timer (the game loop is started here
 	public void startGame() {
 		gameLoopProcess.start();
+		gameStart = true;
 	}
 
 	public ScreenManager getScreenManager() {
@@ -110,7 +121,12 @@ public class GamePanel extends JPanel {
 
 	public void draw() {
 		screenManager.draw(graphicsHandler);
-
+		
+		//draws the healthbar and updates it accordingly after the game start button is clicked
+		if(MenuScreen.getGameStarted()){
+		healthBar.draw(graphicsHandler);
+		healthBar.setText("Health: " + Player.playerHealth);
+		}
 		// if game is paused, draw pause gfx over Screen gfx
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
