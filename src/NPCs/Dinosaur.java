@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Dinosaur extends NPC {
 
     public Dinosaur(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("the_broc.png"), 20, 20), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("toastEnemy.png"), 14, 14), "STAND_LEFT");
         super.setIdentity("enemy");
     }
 
@@ -37,23 +37,23 @@ public class Dinosaur extends NPC {
            });
 
             put("WALK_LEFT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                             .withScale(3)
                             .withBounds(4, 5, 5, 10)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                             .withScale(3)
                             .withBounds(4, 5, 5, 10)
                             .build()
             });
 
             put("WALK_RIGHT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(4, 5, 5, 10)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(4, 5, 5, 10)
