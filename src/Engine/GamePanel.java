@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
 	private boolean showFPS = false;
 	private int currentFPS;
 	private boolean gameStart;
+	private final Key skillTreeKey = Key.T;
+	private boolean skillTreeActivated = false;
 
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
@@ -89,8 +91,12 @@ public class GamePanel extends JPanel {
 	public void update() {
 		updatePauseState();
 		updateShowFPSState();
+		updateSkillTreeState();
 
 		if (!isGamePaused) {
+			screenManager.update();
+		}
+		if(!skillTreeActivated){
 			screenManager.update();
 		}
 	}
@@ -103,6 +109,17 @@ public class GamePanel extends JPanel {
 
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
+		}
+	}
+
+	private void updateSkillTreeState() {
+		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
+			skillTreeActivated = !skillTreeActivated;
+			keyLocker.lockKey(skillTreeKey);
+		}
+
+		if (Keyboard.isKeyUp(skillTreeKey)) {
+			keyLocker.unlockKey(skillTreeKey);
 		}
 	}
 
@@ -131,6 +148,11 @@ public class GamePanel extends JPanel {
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+		}
+
+		if(skillTreeActivated){
+			pauseLabel.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
 		}
 
 		if (showFPS) {
