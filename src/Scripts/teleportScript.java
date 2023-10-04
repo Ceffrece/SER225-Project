@@ -7,8 +7,8 @@ public class teleportScript extends Script {
         private float x, y;
 
         public teleportScript(float x, float y) {
-                this.x = x * 47.3f;
-                this.y = y * 47.3f;
+                this.x = x * 48f;
+                this.y = y * 48f;
                 
         }
          
