@@ -1,5 +1,7 @@
 package SkillTrees;
 
+import Level.Player;
+
 public class DairySkillTree {
     private SkillTreeNode root;
 
@@ -39,5 +41,58 @@ public class DairySkillTree {
 
         skill5.setLeftSkill(ultimateDairySkill);
         skill6.setLeftSkill(ultimateDairySkill);
+    }
+
+    public void unlockNode(SkillTreeNode node, Player player){
+        if(player.getPlayerXPLevel() == 1){ //Dummy level number for now
+            if(node == centerSkill) {
+                player.addAttackRange(1);
+                centerSkill.setUnlockedStatus(true);
+            }
+            if(centerSkill.getUnlockedStatus()){
+                if(node == skill1) {
+                    player.addAttackRange(1);
+                    skill1.setUnlockedStatus(true);
+                }
+            }
+            if(skill1.getUnlockedStatus()){
+                if(node == skill2) {
+                    player.addAttackRange(1);
+                    skill2.setUnlockedStatus(true);
+                }
+            }
+            if(skill2.getUnlockedStatus()){
+                if(node == skill3) {
+                    player.addAttackRange(1);
+                    skill3.setUnlockedStatus(true);
+                }
+            }
+            if(skill3.getUnlockedStatus()){
+                if(node == skill4) {
+                    player.addAttackRange(1);
+                    skill4.setUnlockedStatus(true);
+                }
+            }
+            if(skill4.getUnlockedStatus()){
+                if(node == skill5) {
+                    player.addAttackRange(1);
+                    skill5.setUnlockedStatus(true);
+                }
+            }
+            if(skill5.getUnlockedStatus()){
+                if(node == skill6) {
+                    player.addAttackRange(1);
+                    skill6.setUnlockedStatus(true);
+                }
+            }
+            if(skill6.getUnlockedStatus()){
+                if(node == ultimateDairySkill){
+                    //ulock ultimate dairy skill here
+                }
+            }
+        }
+        else{
+            //ERROR MESSAGE HERE
+        }
     }
 }

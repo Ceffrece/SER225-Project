@@ -1,5 +1,7 @@
 package SkillTrees;
 
+import Level.Player;
+
 public class ProteinSkillTree {
     
     private SkillTreeNode root;
@@ -45,5 +47,57 @@ public class ProteinSkillTree {
 
         rightSkill3.setRightSkill(ultimateProteinSkill);
         leftSkill3.setLeftSkill(ultimateProteinSkill);
+    }
+
+    public void unlockNode(SkillTreeNode node, Player player){
+        if(player.getPlayerXPLevel() == 1){
+            if(node == centerSkill){
+                player.addAttackDamage(1);
+                player.addCritChance(1);
+                centerSkill.setUnlockedStatus(true);
+            }
+            if(centerSkill.getUnlockedStatus()){
+                if(node == leftSkill1){
+                    player.addCritChance(2);
+                    leftSkill1.setUnlockedStatus(true);
+                }
+                if(node == rightSkill1){
+                    player.addAttackDamage(1);
+                    rightSkill1.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill1.getUnlockedStatus()){
+                if(node == leftSkill2){
+                    player.addCritChance(2);
+                    leftSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill2.getUnlockedStatus()){
+                if(node == leftSkill3){
+                    player.addCritChance(2);
+                    leftSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill1.getUnlockedStatus()){
+                if(node == rightSkill2){
+                    player.addAttackDamage(1);;
+                    rightSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill2.getUnlockedStatus()){
+                if(node == rightSkill3){
+                    player.addAttackDamage(1);
+                    rightSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill3.getUnlockedStatus() && leftSkill3.getUnlockedStatus()){
+                if(node == ultimateProteinSkill){
+                    //unlock ultimate skill
+                }
+            }
+        }
+        else{
+            //print out error
+        }
     }
 }

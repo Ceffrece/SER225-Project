@@ -51,4 +51,8 @@ public class SkillTreeNode {
     public boolean getUnlockedStatus(){
         return this.isUnlocked;
     }
+
+    public void setUnlockedStatus(Boolean status){
+        this.isUnlocked = status;
+    }
 }
