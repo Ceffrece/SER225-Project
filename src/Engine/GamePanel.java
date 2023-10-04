@@ -93,12 +93,18 @@ public class GamePanel extends JPanel {
 		updateShowFPSState();
 		updateSkillTreeState();
 
-		if (!isGamePaused) {
+		if(isGamePaused || skillTreeActivated){
+
+		}
+		else{
+			screenManager.update();
+		}
+		/*if (!isGamePaused) {
 			screenManager.update();
 		}
 		if(!skillTreeActivated){
 			screenManager.update();
-		}
+		}*/
 	}
 
 	private void updatePauseState() {
