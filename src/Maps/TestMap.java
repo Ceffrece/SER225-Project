@@ -71,7 +71,9 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
-        getMapTile(11, 17).setInteractScript(new addPlayerStatScript("walkSpeed", 1));
+        getMapTile(11, 17).setInteractScript(new teleportScript(10 ,25));
+
+        getMapTile(14, 17).setInteractScript(new teleportScript(14 ,2));
     }
 }
 
