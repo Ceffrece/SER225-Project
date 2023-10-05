@@ -391,6 +391,18 @@ public abstract class Player extends GameObject {
         return this.playerXPPoints;
       }
 
+      //player MaxHealth setters and getters
+      public void setPlayerMaxHealth(int x){
+        this.maxHealth = x;
+      }
+      public void addPlayerMaxHealth(int x){
+        this.maxHealth += x;
+      }
+      public int getMaxHealth(){
+        return this.maxHealth;
+      }
+
+
 
       //--------unloackable--------
       // dash setter
