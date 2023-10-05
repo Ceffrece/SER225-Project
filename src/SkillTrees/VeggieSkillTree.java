@@ -68,7 +68,7 @@ public class VeggieSkillTree {
                     leftSkill1.setUnlockedStatus(true);
                 }
                 if(node == rightSkill1){
-                    player.addPlayerHealth(10);
+                    player.addPlayerMaxHealth(1);
                     rightSkill1.setUnlockedStatus(true);
                 }
             }
@@ -98,13 +98,13 @@ public class VeggieSkillTree {
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
-                    player.addPlayerHealth(10);
+                    player.addPlayerMaxHealth(1);
                     rightSkill2.setUnlockedStatus(true);
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
-                    player.addPlayerHealth(10);
+                    player.addPlayerMaxHealth(1);
                     rightSkill3.setUnlockedStatus(true);
                 }
             }
