@@ -35,6 +35,7 @@ public class GamePanel extends JPanel {
 	private SpriteFont fpsDisplayLabel;
 	private boolean showFPS = false;
 	private int currentFPS;
+
 	//Creates arrays to store the sprites for the empty heart and full heart
 	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
 		new Sprite(ImageLoader.load("HeartFull.png"), 59, 9),
@@ -48,6 +49,9 @@ public class GamePanel extends JPanel {
 		new Sprite(ImageLoader.load("HeartEmpty.png"), 117, 9),
 	 	new Sprite(ImageLoader.load("HeartEmpty.png"), 146, 9),
 };
+	private boolean gameStart;
+	private final Key skillTreeKey = Key.T;
+	private boolean skillTreeActivated = false;
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
@@ -108,10 +112,20 @@ public class GamePanel extends JPanel {
 	public void update() {
 		updatePauseState();
 		updateShowFPSState();
+		updateSkillTreeState();
 
-		if (!isGamePaused) {
+		if(isGamePaused || skillTreeActivated){
+
+		}
+		else{
 			screenManager.update();
 		}
+		/*if (!isGamePaused) {
+			screenManager.update();
+		}
+		if(!skillTreeActivated){
+			screenManager.update();
+		}*/
 	}
 
 	private void updatePauseState() {
@@ -122,6 +136,17 @@ public class GamePanel extends JPanel {
 
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
+		}
+	}
+
+	private void updateSkillTreeState() {
+		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
+			skillTreeActivated = !skillTreeActivated;
+			keyLocker.lockKey(skillTreeKey);
+		}
+
+		if (Keyboard.isKeyUp(skillTreeKey)) {
+			keyLocker.unlockKey(skillTreeKey);
 		}
 	}
 
@@ -154,6 +179,11 @@ public class GamePanel extends JPanel {
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+		}
+
+		if(skillTreeActivated){
+			pauseLabel.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
 		}
 
 		if (showFPS) {

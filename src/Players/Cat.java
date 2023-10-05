@@ -23,6 +23,8 @@ public class Cat extends Player {
        int  attackRange;
        int  playerHealth;
        int dash;
+       int experienceLevel;
+       int experiencePoints;
     }
     
 
