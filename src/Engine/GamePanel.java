@@ -36,13 +36,14 @@ public class GamePanel extends JPanel {
 	private boolean showFPS = false;
 	private int currentFPS;
 
-	//Creates arrays to store the sprites for the empty heart and full heart
+	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
 	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
 		new Sprite(ImageLoader.load("HeartFull.png"), 59, 9),
 		new Sprite(ImageLoader.load("HeartFull.png"), 88, 9),
 		new Sprite(ImageLoader.load("HeartFull.png"), 117, 9),
 	 	new Sprite(ImageLoader.load("HeartFull.png"), 146, 9),
 };
+	//Initializes array of emptyheart sprites, can be modified by replacing # of sprites in setup
 	private Sprite[] emptyHearts = {new Sprite(ImageLoader.load("HeartEmpty.png"), 30, 9),
 		new Sprite(ImageLoader.load("HeartEmpty.png"), 59, 9),
 		new Sprite(ImageLoader.load("HeartEmpty.png"), 88, 9),
@@ -168,6 +169,7 @@ public class GamePanel extends JPanel {
 		
 		//draws the healthbar and updates it accordingly after the game start button is clicked
 		if(MenuScreen.getGameStarted()){
+		//checks the health each frame and updates it accordingly when health changes
 		for(int i = 0; i <= Player.playerHealth-1; i++){
 			fullHearts[i].draw(graphicsHandler);
 		}
