@@ -58,6 +58,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key FIRE_KEY = Key.F;
 
     protected boolean isInvincible = false;
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
@@ -107,6 +108,23 @@ public abstract class Player extends GameObject {
             case INTERACTING:
                 playerInteracting();
                 break;
+            case FIRING:
+                playerFiring();
+                break;
+        }
+    }
+
+    protected void playerFiring(){
+       // if interact is not locked and interact is down, lock key 
+        if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
+            keyLocker.lockKey(INTERACT_KEY);
+        }
+        //
+        if (Keyboard.isKeyDown(FIRE_KEY)) {
+            moveAmountX -= walkSpeed;
+            facingDirection = Direction.LEFT;
+            currentWalkingXDirection = Direction.LEFT;
+            lastWalkingXDirection = Direction.LEFT;
         }
     }
 
