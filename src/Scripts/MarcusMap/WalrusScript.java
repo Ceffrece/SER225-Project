@@ -14,10 +14,10 @@ public class WalrusScript extends Script<NPC> {
 
         // changes what walrus says when talking to him the first time (flag is not set) vs talking to him afterwards (flag is set)
         if (!isFlagSet("hasTalkedToWalrus")) {
-            addTextToTextboxQueue( "Isn't this map pretty cool?");
-            addTextToTextboxQueue( "It took me two hours in the library!");
-            addTextToTextboxQueue( "Every map tile is present, as well as a functional\nnpc...");
-            addTextToTextboxQueue( "Wait a second... I'm the functional npc! Wow!\nTechnology is amazing!");
+            addTextToTextboxQueue( "Coding tilesets in is so tedious.");
+            addTextToTextboxQueue( "What kind of idiot would painstakingly code in\n63 separate custom tiles?");
+            addTextToTextboxQueue( "Oh wait...");
+            addTextToTextboxQueue( "Could it be related to who this map is named after?");
         }
         else {
             addTextToTextboxQueue( "You shouldn't be here.");

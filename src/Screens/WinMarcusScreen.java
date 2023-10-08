@@ -19,7 +19,7 @@ public class WinMarcusScreen extends Screen {
 
     @Override
     public void initialize() {
-        winMessage = new SpriteFont("Marcus blesses you :)", 250, 239, "Comic Sans", 30, Color.white);
+        winMessage = new SpriteFont("Marcus is really tired", 250, 239, "Comic Sans", 30, Color.white);
         instructions = new SpriteFont("Press Space to play again or Escape to go back to the main menu", 110, 279,"Comic Sans", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.ESC);
