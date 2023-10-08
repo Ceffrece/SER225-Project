@@ -583,6 +583,46 @@ public class Floor1Tileset extends Tileset {
 
         mapTiles.add(blackTile);
 
+        // sandy ground sign (sign1)
+        Frame sign1Frame = new FrameBuilder(getSubImage(0,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder sign1Tile = new MapTileBuilder(sign1Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(sign1Tile);
+
+        // wood ground sign (sign2)
+        Frame sign2Frame = new FrameBuilder(getSubImage(1,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder sign2Tile = new MapTileBuilder(sign2Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(sign2Tile);
+
+        // horizontal wall sign (sign3)
+        Frame sign3Frame = new FrameBuilder(getSubImage(2,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder sign3Tile = new MapTileBuilder(sign3Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(sign3Tile);
+
+        // perpendicular wall sign (sign4)
+        Frame sign4Frame = new FrameBuilder(getSubImage(3,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder sign4Tile = new MapTileBuilder(sign4Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(sign4Tile);
+
         return mapTiles;
     }
 }
