@@ -42,11 +42,6 @@ public class Enemies extends MapEntity
         this.id = id;
     }
 
-    public int getID()
-    {
-        return id;
-    }
-
     public void facePlayer(Player player)
     {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
