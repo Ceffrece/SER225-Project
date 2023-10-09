@@ -1,10 +1,14 @@
 package Engine;
-
+import Engine.ImageLoader;
 import GameObject.Rectangle;
+import GameObject.Sprite;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
 import javax.swing.*;
+
+import Builders.FrameBuilder;
+
 import java.awt.*;
 import Level.Player;
 import Players.Cat;
@@ -31,13 +35,34 @@ public class GamePanel extends JPanel {
 	private SpriteFont fpsDisplayLabel;
 	private boolean showFPS = false;
 	private int currentFPS;
-	private boolean gameStart;
 
+	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
+	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
+		new Sprite(ImageLoader.load("HeartFull.png"), 59, 9),
+		new Sprite(ImageLoader.load("HeartFull.png"), 88, 9),
+		new Sprite(ImageLoader.load("HeartFull.png"), 117, 9),
+	 	new Sprite(ImageLoader.load("HeartFull.png"), 146, 9),
+};
+	//Initializes array of emptyheart sprites, can be modified by replacing # of sprites in setup
+	private Sprite[] emptyHearts = {new Sprite(ImageLoader.load("HeartEmpty.png"), 30, 9),
+		new Sprite(ImageLoader.load("HeartEmpty.png"), 59, 9),
+		new Sprite(ImageLoader.load("HeartEmpty.png"), 88, 9),
+		new Sprite(ImageLoader.load("HeartEmpty.png"), 117, 9),
+	 	new Sprite(ImageLoader.load("HeartEmpty.png"), 146, 9),
+};
+	private boolean gameStart;
+	private final Key skillTreeKey = Key.T;
+	private boolean skillTreeActivated = false;
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
 		this.setDoubleBuffered(true);
-
+		for(int i = 0; i <= fullHearts.length-1; i++){
+			fullHearts[i].setScale(3);
+		}
+		for(int i = 0; i <= emptyHearts.length-1; i++){
+			emptyHearts[i].setScale(3);
+		}
 		// attaches Keyboard class's keyListener to this JPanel
 		this.addKeyListener(Keyboard.getKeyListener());
 
@@ -75,7 +100,6 @@ public class GamePanel extends JPanel {
 	// this starts the timer (the game loop is started here
 	public void startGame() {
 		gameLoopProcess.start();
-		gameStart = true;
 	}
 
 	public ScreenManager getScreenManager() {
@@ -89,10 +113,20 @@ public class GamePanel extends JPanel {
 	public void update() {
 		updatePauseState();
 		updateShowFPSState();
+		updateSkillTreeState();
 
-		if (!isGamePaused) {
+		if(isGamePaused || skillTreeActivated){
+
+		}
+		else{
 			screenManager.update();
 		}
+		/*if (!isGamePaused) {
+			screenManager.update();
+		}
+		if(!skillTreeActivated){
+			screenManager.update();
+		}*/
 	}
 
 	private void updatePauseState() {
@@ -103,6 +137,17 @@ public class GamePanel extends JPanel {
 
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
+		}
+	}
+
+	private void updateSkillTreeState() {
+		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
+			skillTreeActivated = !skillTreeActivated;
+			keyLocker.lockKey(skillTreeKey);
+		}
+
+		if (Keyboard.isKeyUp(skillTreeKey)) {
+			keyLocker.unlockKey(skillTreeKey);
 		}
 	}
 
@@ -124,13 +169,23 @@ public class GamePanel extends JPanel {
 		
 		//draws the healthbar and updates it accordingly after the game start button is clicked
 		if(MenuScreen.getGameStarted()){
-		healthBar.draw(graphicsHandler);
-		healthBar.setText("Health: " + Player.playerHealth);
+		//checks the health each frame and updates it accordingly when health changes
+		for(int i = 0; i <= Player.playerHealth-1; i++){
+			fullHearts[i].draw(graphicsHandler);
+		}
+		for(int i = Player.playerHealth; i < 5 ; i++){
+			emptyHearts[i].draw(graphicsHandler);
+		}
 		}
 		// if game is paused, draw pause gfx over Screen gfx
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+		}
+
+		if(skillTreeActivated){
+			pauseLabel.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
 		}
 
 		if (showFPS) {

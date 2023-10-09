@@ -1,5 +1,7 @@
 package SkillTrees;
 
+import Level.Player;
+
 public class FruitSkillTree {
     
     private SkillTreeNode root;
@@ -59,5 +61,78 @@ public class FruitSkillTree {
         rightSkill5.setRightSkill(ultimateFruitSkill);
     }
 
-    
+    public void unlockNode(SkillTreeNode node, Player player){
+        if(player.getPlayerXPLevel() == 1){
+            if(node == centerSkill){
+                player.addWalkSpeed(1f);
+                centerSkill.setUnlockedStatus(true);
+            }
+            if(centerSkill.getUnlockedStatus()){
+                if(node == leftSkill1){
+                    player.addDash(1);
+                    leftSkill1.setUnlockedStatus(true);
+                }
+                if(node == rightSkill1){
+                    player.addDash(1);
+                    rightSkill1.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill1.getUnlockedStatus()){
+                if(node == leftSkill2){
+                    player.addDash(1);
+                    leftSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill2.getUnlockedStatus()){
+                if(node == leftSkill3){
+                    player.addDash(1);
+                    leftSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill3.getUnlockedStatus()){
+                if(node == leftSkill4){
+                    player.addDash(1);
+                    leftSkill4.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill4.getUnlockedStatus()){
+                if(node == leftSkill5){
+                    player.addDash(1);
+                    leftSkill5.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill1.getUnlockedStatus()){
+                if(node == rightSkill2){
+                    player.addWalkSpeed(1f);
+                    rightSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill2.getUnlockedStatus()){
+                if(node == rightSkill3){
+                    player.addWalkSpeed(1f);
+                    rightSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill3.getUnlockedStatus()){
+                if(node == rightSkill4){
+                    player.addWalkSpeed(1f);
+                    rightSkill4.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill4.getUnlockedStatus()){
+                if(node == rightSkill5){
+                    player.addWalkSpeed(1f);
+                    rightSkill5.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill5.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
+                if(node == ultimateFruitSkill){
+                    //unlock fruit skill here
+                }
+            }
+        }
+        else{
+            //print out error
+        }
+    } 
 }

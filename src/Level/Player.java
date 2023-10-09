@@ -25,6 +25,8 @@ public abstract class Player extends GameObject {
     protected int attackDamage = 1;
     protected int maxHealth = 5;
     protected int invincibilityTimer = 0;
+    protected int playerXPLevel = 0;
+    protected int playerXPPoints = 0;
 
     protected int dash = 0;
     protected int playerArmor = 0;
@@ -372,6 +374,36 @@ public abstract class Player extends GameObject {
       public void addPlayerHealth(int x) {
         playerHealth += x;
       }
+
+      //player XP setters
+      public void addPlayerXPLevel(int x){
+        this.playerXPLevel += x;
+      }
+      public void addPlayerXPPoints(int x){
+        this.playerXPPoints += x;
+      }
+
+      //player XP getters
+      public int getPlayerXPLevel(){
+        return this.playerXPLevel;
+      }
+      public int getPlayerXPPoints(int x){
+        return this.playerXPPoints;
+      }
+
+      //player MaxHealth setters and getters
+      public void setPlayerMaxHealth(int x){
+        this.maxHealth = x;
+      }
+      public void addPlayerMaxHealth(int x){
+        this.maxHealth += x;
+      }
+      public int getMaxHealth(){
+        return this.maxHealth;
+      }
+
+
+
       //--------unloackable--------
       // dash setter
       public void setDash(int dash) {

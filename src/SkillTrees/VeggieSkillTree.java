@@ -1,5 +1,7 @@
 package SkillTrees;
 
+import Level.Player;
+
 public class VeggieSkillTree {
     private SkillTreeNode root;
 
@@ -52,5 +54,68 @@ public class VeggieSkillTree {
 
         rightSkill3.setRightSkill(ultimateVeggieSkill);
         leftSkill5.setLeftSkill(ultimateVeggieSkill);
+    }
+
+    public void unlockNode(SkillTreeNode node, Player player){
+        if(player.getPlayerXPLevel() == 1){
+            if(node == centerSkill){
+                player.addPlayerHealth(10);
+                centerSkill.setUnlockedStatus(true);
+            }
+            if(centerSkill.getUnlockedStatus()){
+                if(node == leftSkill1){
+                    player.addPlayerArmor(1);
+                    leftSkill1.setUnlockedStatus(true);
+                }
+                if(node == rightSkill1){
+                    player.addPlayerMaxHealth(1);
+                    rightSkill1.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill1.getUnlockedStatus()){
+                if(node == leftSkill2){
+                    player.addPlayerArmor(1);
+                    leftSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill2.getUnlockedStatus()){
+                if(node == leftSkill3){
+                    player.addPlayerArmor(1);
+                    leftSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill3.getUnlockedStatus()){
+                if(node == leftSkill4){
+                    player.addPlayerArmor(1);
+                    leftSkill4.setUnlockedStatus(true);
+                }
+            }
+            if(leftSkill4.getUnlockedStatus()){
+                if(node == leftSkill5){
+                    player.addPlayerArmor(1);
+                    leftSkill5.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill1.getUnlockedStatus()){
+                if(node == rightSkill2){
+                    player.addPlayerMaxHealth(1);
+                    rightSkill2.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill2.getUnlockedStatus()){
+                if(node == rightSkill3){
+                    player.addPlayerMaxHealth(1);
+                    rightSkill3.setUnlockedStatus(true);
+                }
+            }
+            if(rightSkill3.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
+                if(node == ultimateVeggieSkill){
+                    //unlock ultimate skill
+                }
+            }
+        }
+        else{
+            //print error message
+        }
     }
 }

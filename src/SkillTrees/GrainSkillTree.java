@@ -1,5 +1,7 @@
 package SkillTrees;
 
+import Level.Player;
+
 public class GrainSkillTree {
     
     private SkillTreeNode root;
@@ -30,5 +32,46 @@ public class GrainSkillTree {
         skill2.setRightSkill(skill4);
         skill3.setLeftSkill(ultimateGrainSkill);
         skill4.setRightSkill(ultimateGrainSkill);
+    }
+
+    public void unlockNode(SkillTreeNode node, Player player){
+        if(player.getPlayerXPLevel() == 1){
+            if(node == centerSkill){
+                player.addAttackSpeed(1);
+                centerSkill.setUnlockedStatus(true);
+            }
+            if(centerSkill.getUnlockedStatus()){
+                if(node == skill1){
+                    player.addAttackSpeed(1);
+                    skill1.setUnlockedStatus(true);
+                }
+            }
+            if(skill1.getUnlockedStatus()){
+                if(node == skill2){
+                    player.addAttackSpeed(1);
+                    skill2.setUnlockedStatus(true);
+                }
+            }
+            if(skill2.getUnlockedStatus()){
+                if(node == skill3){
+                    player.addAttackSpeed(1);
+                    skill3.setUnlockedStatus(true);
+                }
+            }
+            if(skill3.getUnlockedStatus()){
+                if(node == skill4){
+                    player.addAttackSpeed(1);
+                    skill4.setUnlockedStatus(true);
+                }
+            }
+            if(skill4.getUnlockedStatus()){
+                if(node == ultimateGrainSkill){
+                    //unlock ultimate
+                }
+            }
+        }
+        else{
+            //print out error
+        }
     }
 }
