@@ -25,6 +25,7 @@ public class Cat extends Player {
        int dash;
        int experienceLevel;
        int experiencePoints;
+       int projectileId;
     }
     
 
