@@ -2,6 +2,7 @@ package Level;
 
 import java.util.HashMap;
 
+import Engine.GraphicsHandler;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Direction;
