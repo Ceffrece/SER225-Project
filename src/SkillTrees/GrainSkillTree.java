@@ -52,33 +52,33 @@ public class GrainSkillTree {
         return this.currentNode;
     }
 
-    public void unlockNode(SkillTreeNode node, Player player){
-        if(player.getPlayerXPLevel() == 1){
+    public void unlockNode(SkillTreeNode node){
+        if(Player.playerXPLevel >= 1){
             if(node == centerSkill){
-                player.addAttackSpeed(1);
+                Player.addAttackSpeed(1);
                 centerSkill.setUnlockedStatus(true);
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == skill1){
-                    player.addAttackSpeed(1);
+                    Player.addAttackSpeed(1);
                     skill1.setUnlockedStatus(true);
                 }
             }
             if(skill1.getUnlockedStatus()){
                 if(node == skill2){
-                    player.addAttackSpeed(1);
+                    Player.addAttackSpeed(1);
                     skill2.setUnlockedStatus(true);
                 }
             }
             if(skill2.getUnlockedStatus()){
                 if(node == skill3){
-                    player.addAttackSpeed(1);
+                    Player.addAttackSpeed(1);
                     skill3.setUnlockedStatus(true);
                 }
             }
             if(skill3.getUnlockedStatus()){
                 if(node == skill4){
-                    player.addAttackSpeed(1);
+                    Player.addAttackSpeed(1);
                     skill4.setUnlockedStatus(true);
                 }
             }

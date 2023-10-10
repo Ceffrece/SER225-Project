@@ -77,6 +77,7 @@ public class GamePanel extends JPanel {
 	private boolean gameStart;
 	private final Key skillTreeKey = Key.T;
 	private boolean skillTreeActivated = false;
+	private final Key levelKey = Key.L;
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
@@ -139,11 +140,18 @@ public class GamePanel extends JPanel {
 	public void setCurrentFPS(int currentFPS) {
 		this.currentFPS = currentFPS;
 	}
-
+	int levelCount = 0;
 	public void update() {
 		updatePauseState();
 		updateShowFPSState();
 		updateSkillTreeState();
+
+		levelCount++;
+		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
+			Player.playerXPLevel += 1;
+			levelCount = 0;
+			System.out.println("Level is " + Player.playerXPLevel);
+		}
 
 		if(isGamePaused || skillTreeActivated){
 
@@ -353,6 +361,10 @@ public class GamePanel extends JPanel {
 					grainTimer = 0;
 					grainSelection = grainSelection.getParent();
 				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
+					grain.unlockNode(grainSelection);
+					System.out.println("Unlocking Node" + dairySelection.getName());
+				}
 			}
 		catch(NullPointerException e){
 			System.out.println("Can't Go Any Further!!!");
@@ -365,11 +377,113 @@ public class GamePanel extends JPanel {
 	}
 	int fruitTimer = 0;
 	private void displayFruitTree(){
-		treeSelecterF.draw(graphicsHandler);
+		try{
+			//Center Skill
+			if(fruitSelection.getId() == 6){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			//Left Branch
+			int lXloc = 50;
+			int lYloc = 50;
+			for(int i = 1; i < 6; i++){
+				if(fruit.array[i].getId() == fruitSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(fruit.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				lYloc += 100;
+			}
+			//Right Branch
+			int rXloc = screenManager.getScreenWidth()-100;
+			int rYloc = 50;
+			for(int i = 6; i < 11; i++){
+				if(fruit.array[i].getId() == fruitSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(fruit.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				rYloc += 100;
+			}
+			//Ultimate Skill
+			if(fruitSelection.getId() == 12){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else if(fruitSelection.getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			//Navigation
+			//Center to branch
+			fruitTimer++;
+			if(fruitSelection.getId() == 6){
+				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getLeftSkill();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getRightSkill();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+					fruit.unlockNode(fruitSelection);
+					fruitTimer = 0;
+				}
+			}
+			//Left branch
+			if(fruitSelection.getId() < 6){
+				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getLeftSkill();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getParent();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+					fruit.unlockNode(fruitSelection);
+					fruitTimer = 0;
+				}
+			}
+			//Right Branch
+			if(fruitSelection.getId() > 6){
+				if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getRightSkill();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+					fruitSelection = fruitSelection.getParent();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+					fruit.unlockNode(fruitSelection);
+					fruitTimer = 0;
+				}
+			}
+		}
+		catch(NullPointerException e){
+			System.out.println("Cannot Go Any Further!!!");
+			fruit.resetCurrentNode();
+			fruitSelection = fruit.getCurrentNode();
+		}
+		//Escape key
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
 		}
 	}
+
 	int dairyTimer = 0;
 	private void displayDairyTree(){
 		try{
