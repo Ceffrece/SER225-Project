@@ -82,6 +82,8 @@ public class GamePanel extends JPanel {
 	public GamePanel() {
 		super();
 		this.setDoubleBuffered(true);
+
+		//sets the scales for the hearts
 		for(int i = 0; i <= fullHearts.length-1; i++){
 			fullHearts[i].setScale(3);
 		}
