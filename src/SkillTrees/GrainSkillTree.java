@@ -44,8 +44,8 @@ public class GrainSkillTree {
         currentNode = centerSkill;
     }
 
-    public void setCurrentNode(SkillTreeNode node){
-        this.currentNode = node;
+    public void resetCurrentNode(){
+        this.currentNode = centerSkill;
     }
 
     public SkillTreeNode getCurrentNode(){

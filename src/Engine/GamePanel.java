@@ -322,7 +322,40 @@ public class GamePanel extends JPanel {
 	}
 	int grainTimer = 0;
 	private void displayGrainTree(){
-		treeSelecterG.draw(graphicsHandler);
+		try{
+			int xLoc = 50;
+			int count = 0;
+			int yLoc = 50;
+			for(SkillTreeNode skill : grain.array){
+				if(skill.getId() == grainSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				xLoc+= 200;
+				count++;
+				if(count > 3){
+					count = 0;
+					yLoc += 200;
+					xLoc = 50;
+				}
+			}
+			grainTimer++;
+				if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
+					grainTimer = 0;
+					grainSelection = grainSelection.getRightSkill();
+				}
+				else if(Keyboard.isKeyDown(Key.LEFT) && grainTimer > 20){
+					grainTimer = 0;
+					grainSelection = grainSelection.getParent();
+				}
+			}
+		catch(NullPointerException e){
+			System.out.println("Can't Go Any Further!!!");
+			grain.resetCurrentNode();
+			grainSelection = grain.getCurrentNode();
+		}
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
 		}
@@ -336,32 +369,39 @@ public class GamePanel extends JPanel {
 	}
 	int dairyTimer = 0;
 	private void displayDairyTree(){
-		int xLoc = 50;
-		int count = 0;
-		int yLoc = 50;
-		for(SkillTreeNode skill : dairy.array1){
-			if(skill.getId() == dairySelection.getId()){
-				graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
+		try{
+			int xLoc = 50;
+			int count = 0;
+			int yLoc = 50;
+			for(SkillTreeNode skill : dairy.array1){
+				if(skill.getId() == dairySelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				xLoc += 200;
+				count++;
+				if(count > 3){
+					count = 0; 
+					yLoc+= 200;
+					xLoc = 50;
+				}
 			}
-			else{
-				graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
+			dairyTimer++;
+			if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){
+				dairyTimer = 0;
+				dairySelection = dairySelection.getRightSkill();
 			}
-			xLoc += 200;
-			count++;
-			if(count > 3){
-				count = 0; 
-				yLoc+= 200;
-				xLoc = 50;
+			else if(Keyboard.isKeyDown(Key.LEFT) && dairyTimer > 20){
+				dairyTimer = 0;
+				dairySelection = dairySelection.getParent();
 			}
 		}
-		dairyTimer++;
-		if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){
-			dairyTimer = 0;
-			dairySelection = dairySelection.getRightSkill();
-		}
-		else if(Keyboard.isKeyDown(Key.LEFT) && dairyTimer > 20){
-			dairyTimer = 0;
-			dairySelection = dairySelection.getParent();
+		catch(NullPointerException e){
+			System.out.println("Can't Go Any Further!!!");
+			dairy.resetCurrentNode();
+			dairySelection = dairy.getCurrentNode();
 		}
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
