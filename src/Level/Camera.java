@@ -26,6 +26,7 @@ public class Camera extends Rectangle {
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
+    private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -65,11 +66,13 @@ public class Camera extends Rectangle {
     public void updateMapEntities(Player player) {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
-
+        activeProjectiles = loadActiveProjectiles();
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
         }
-
+        for (Projectile projectile : activeProjectiles) {
+            projectile.update(player);
+        }
         for (NPC npc : activeNPCs) {
             npc.update(player);
         }
@@ -131,7 +134,25 @@ public class Camera extends Rectangle {
         }
         return activeNPCs;
     }
+    // determine which projectiles are active (exist and are within range of the camera)
+    private ArrayList<Projectile> loadActiveProjectiles() {
+        ArrayList<Projectile> activeProjectiles = new ArrayList<>();
+        for (int i = map.getProjectiles().size() - 1; i >= 0; i--) {
+            Projectile projectile = map.getProjectiles().get(i);
 
+            if (isMapEntityActive(projectile)) {
+                activeProjectiles.add(projectile);
+                if (projectile.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    projectile.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (projectile.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                projectile.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (projectile.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getProjectiles().remove(i);
+            }
+        }
+    return activeProjectiles;
+}
     // determine which trigger map tiles are active (exist and are within range of the camera)
     private ArrayList<Trigger> loadActiveTriggers() {
         ArrayList<Trigger> activeTriggers = new ArrayList<>();
@@ -172,6 +193,7 @@ public class Camera extends Rectangle {
     public void draw(Player player, GraphicsHandler graphicsHandler) {
         drawMapTilesBottomLayer(graphicsHandler);
         drawMapEntities(player, graphicsHandler);
+        
         drawMapTilesTopLayer(graphicsHandler);
     }
 
@@ -232,7 +254,11 @@ public class Camera extends Rectangle {
                 }
             }
         }
-
+        for (Projectile projectile : activeProjectiles) {
+            if (containsDraw(projectile)) {
+                projectile.draw(graphicsHandler);
+            }
+        }
         // player is drawn to screen
         player.draw(graphicsHandler);
 
@@ -278,6 +304,9 @@ public class Camera extends Rectangle {
 
     public ArrayList<Trigger> getActiveTriggers() {
         return activeTriggers;
+    }
+    public ArrayList<Projectile> getActiveProjectiles() {
+        return activeProjectiles;
     }
 
     // gets end bound X position of the camera (start position is always 0)

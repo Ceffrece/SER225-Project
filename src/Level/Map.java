@@ -58,6 +58,9 @@ public abstract class Map {
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
 
+    public ArrayList<Projectile> projectiles;
+
+
     protected Script activeInteractScript;
 
     // if set to false, camera will not move as player moves
@@ -107,6 +110,11 @@ public abstract class Map {
         for (Trigger trigger: this.triggers) {
             trigger.setMap(this);
         }
+        this.projectiles = loadProjectiles();
+        for (Projectile projectile: this.projectiles) {
+            projectile.setMap(this);
+        }
+
 
         this.loadScripts();
 
@@ -229,6 +237,12 @@ public abstract class Map {
             return null;
         }
     }
+    public void addProjectile(Projectile projectile) {
+        projectile.setMap(this);
+        this.projectiles.add(projectile);
+
+        
+    }
 
     // set specific map tile from tile map to a new map tile
     public void setMapTile(int x, int y, MapTile tile) {
@@ -286,7 +300,9 @@ public abstract class Map {
     protected ArrayList<Trigger> loadTriggers() {
         return new ArrayList<>();
     }
-
+    protected ArrayList<Projectile> loadProjectiles() {
+        return new ArrayList<>();
+    }
     public Camera getCamera() {
         return camera;
     }
@@ -297,6 +313,9 @@ public abstract class Map {
 
     public ArrayList<NPC> getNPCs() {
         return npcs;
+    }
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
@@ -336,6 +355,9 @@ public abstract class Map {
         return camera.getActiveTriggers();
     }
 
+    public ArrayList<Projectile> getActiveProjectiles() {
+        return camera.getActiveProjectiles();
+    }
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
         enhancedMapTile.setMap(this);

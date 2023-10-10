@@ -121,8 +121,5 @@ public class Enemies extends MapEntity
         super.draw(graphicsHandler);
     }
 
-    public int getID()
-    {
-        return id;
-    }
+    
 }

@@ -6,9 +6,13 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import Level.Projectiles.riceBallProjectile;
+import NPCs.Walrus;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
+import Utils.Point;
 
+import Level.Map;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -131,6 +135,28 @@ public abstract class Player extends GameObject {
             playerState = PlayerState.STANDING;
         }
         
+        //test print
+        //make a new riceball Projectile
+        int ProjectileX;
+            float movementSpeed;
+            if (facingDirection == Direction.RIGHT) {
+                ProjectileX = Math.round(this.getX()) + this.getWidth();
+                movementSpeed = 1.5f;
+            } else {
+                ProjectileX = Math.round(this.getX() - 21);
+                movementSpeed = -1.5f;
+            }
+
+            // define where fireball will spawn on the map (y location) relative to dinosaur enemy's location
+            int ProjectileY = Math.round(this.getY()) + 4;
+            System.out.println("FIRE AT "+ new Point(ProjectileX, ProjectileY));
+
+
+            riceBallProjectile projectile = new riceBallProjectile(this.getLocation(),movementSpeed,this);
+            map.addProjectile(projectile);
+
+
+
         
     
     }

@@ -18,7 +18,7 @@ public class CerealKiller extends Enemies
 
 public CerealKiller(int id, Point location)
     {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load(imageFileName:"Cat.png"), spriteWidth:14, spriteHeight:14), startingAnimation:"STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cat.png"), 14, 14), "STAND_LEFT");
     }
 
     @Override
