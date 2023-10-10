@@ -1,6 +1,8 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+import GameObject.Frame;
+import GameObject.Item;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -17,6 +19,8 @@ import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
+
+import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
@@ -50,6 +54,14 @@ public class TestMap extends Map {
         npcs.add(dinosaur);
 
         return npcs;
+    }
+
+     public ArrayList<Item> loadItems(){
+        ArrayList<Item> items = new ArrayList<>();
+        Frame swordFrame = new Frame(ImageLoader.load("sword.png"));
+        Item sword = new Item(20f,20f,swordFrame,0);
+        items.add(sword);
+        return items;
     }
 
     @Override

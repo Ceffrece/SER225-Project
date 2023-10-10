@@ -14,6 +14,12 @@ import Level.Player;
 import Players.Cat;
 
 import Screens.MenuScreen;
+import SkillTrees.DairySkillTree;
+import SkillTrees.FruitSkillTree;
+import SkillTrees.GrainSkillTree;
+import SkillTrees.ProteinSkillTree;
+import SkillTrees.SkillTreeNode;
+import SkillTrees.VeggieSkillTree;
 /*
  * This is where the game loop process and render back buffer is setup
  */
@@ -35,6 +41,24 @@ public class GamePanel extends JPanel {
 	private SpriteFont fpsDisplayLabel;
 	private boolean showFPS = false;
 	private int currentFPS;
+
+	private SpriteFont treeSelecterV;
+	private SpriteFont treeSelecterP;
+	private SpriteFont treeSelecterG;
+	private SpriteFont treeSelecterF;
+	private SpriteFont treeSelecterD;
+
+	private DairySkillTree dairy = new DairySkillTree();
+	private GrainSkillTree grain = new GrainSkillTree();
+	private VeggieSkillTree veggie = new VeggieSkillTree();
+	private FruitSkillTree fruit = new FruitSkillTree();
+	private ProteinSkillTree protein = new ProteinSkillTree();
+	SkillTreeNode dairySelection = dairy.getCurrentNode();
+	SkillTreeNode fruitSelection = fruit.getCurrentNode();
+	SkillTreeNode grainSelection = grain.getCurrentNode();
+	SkillTreeNode veggieSelection = veggie.getCurrentNode();
+	SkillTreeNode proteinSelection = protein.getCurrentNode();
+
 
 	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
 	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
@@ -73,6 +97,12 @@ public class GamePanel extends JPanel {
 		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Comic Sans", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);
 		pauseLabel.setOutlineThickness(2.0f);
+
+		treeSelecterV = new SpriteFont("Vegetable Tree", 100,100,"Comic Sans", 25, Color. WHITE);
+		treeSelecterP = new SpriteFont("Protein Tree", 200,200,"Comic Sans", 25, Color. WHITE);
+		treeSelecterG = new SpriteFont("Grain Tree", 300,300,"Comic Sans", 25, Color. WHITE);
+		treeSelecterF = new SpriteFont("Fruit Tree",400,400,"Comic Sans", 25, Color. WHITE);
+		treeSelecterD = new SpriteFont("Dairy Tree", 500,500,"Comic Sans", 25, Color. WHITE);
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
 
@@ -121,12 +151,6 @@ public class GamePanel extends JPanel {
 		else{
 			screenManager.update();
 		}
-		/*if (!isGamePaused) {
-			screenManager.update();
-		}
-		if(!skillTreeActivated){
-			screenManager.update();
-		}*/
 	}
 
 	private void updatePauseState() {
@@ -186,6 +210,7 @@ public class GamePanel extends JPanel {
 		if(skillTreeActivated){
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
+			displaySkillTree();
 		}
 
 		if (showFPS) {
@@ -200,5 +225,146 @@ public class GamePanel extends JPanel {
 		// when called, it will setup the graphics handler and then call this class's draw method
 		graphicsHandler.setGraphics((Graphics2D) g);
 		draw();
+	}
+
+	int currentTree = 0;
+	int timer = 0;
+	boolean select = false;
+
+	private void displaySkillTree(){
+		if(select){
+			switch(currentTree){
+				case 0 : displayVeggieTree();
+				break;
+				case 1 : displayProteinTree();
+				break;
+				case 2 : displayGrainTree();
+				break;
+				case 3 : displayFruitTree();
+				break;
+				case 4 : displayDairyTree();
+			}
+		}
+		else{
+			treeSelecterV.draw(graphicsHandler);
+			treeSelecterP.draw(graphicsHandler);
+			treeSelecterG.draw(graphicsHandler);
+			treeSelecterF.draw(graphicsHandler);
+			treeSelecterD.draw(graphicsHandler);
+			
+			switch(currentTree){
+				case 0 : treeSelecterV.setColor(Color.RED);
+						treeSelecterP.setColor(Color.WHITE);
+						treeSelecterG.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 1 : treeSelecterP.setColor(Color.RED);
+						treeSelecterV.setColor(Color.WHITE);
+						treeSelecterG.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 2 : treeSelecterG.setColor(Color.RED);
+						treeSelecterV.setColor(Color.WHITE);
+						treeSelecterP.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 3 : treeSelecterF.setColor(Color.RED);
+						treeSelecterV.setColor(Color.WHITE);
+						treeSelecterP.setColor(Color.WHITE);
+						treeSelecterG.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 4 : treeSelecterD.setColor(Color.RED);
+						treeSelecterV.setColor(Color.WHITE);
+						treeSelecterP.setColor(Color.WHITE);
+						treeSelecterG.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+					break;
+			}
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.DOWN) && timer > 10){
+				currentTree++;
+				if(currentTree > 4){
+					currentTree = 0;
+				}
+				timer = 0;
+			}
+			else if(skillTreeActivated && Keyboard.isKeyDown(Key.UP) && timer > 10){
+				currentTree--;
+				if(currentTree < 0){
+					currentTree = 4;
+				}
+				timer = 0;
+			}
+			timer++;
+
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.ENTER) && timer > 10){
+				select = true;
+			}
+		}
+		
+	}
+	int veggieTimer = 0;
+	private void displayVeggieTree() {
+		if(Keyboard.isKeyDown(Key.ESC)){
+			select = false;
+		}
+		treeSelecterV.draw(graphicsHandler);
+	}
+	int proteinTimer = 0;
+	private void displayProteinTree(){
+		treeSelecterP.draw(graphicsHandler);
+		if(Keyboard.isKeyDown(Key.ESC)){
+			select = false;
+		}
+	}
+	int grainTimer = 0;
+	private void displayGrainTree(){
+		treeSelecterG.draw(graphicsHandler);
+		if(Keyboard.isKeyDown(Key.ESC)){
+			select = false;
+		}
+	}
+	int fruitTimer = 0;
+	private void displayFruitTree(){
+		treeSelecterF.draw(graphicsHandler);
+		if(Keyboard.isKeyDown(Key.ESC)){
+			select = false;
+		}
+	}
+	int dairyTimer = 0;
+	private void displayDairyTree(){
+		int xLoc = 50;
+		int count = 0;
+		int yLoc = 50;
+		for(SkillTreeNode skill : dairy.array1){
+			if(skill.getId() == dairySelection.getId()){
+				graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			xLoc += 200;
+			count++;
+			if(count > 3){
+				count = 0; 
+				yLoc+= 200;
+				xLoc = 50;
+			}
+		}
+		dairyTimer++;
+		if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){
+			dairyTimer = 0;
+			dairySelection = dairySelection.getRightSkill();
+		}
+		else if(Keyboard.isKeyDown(Key.LEFT) && dairyTimer > 20){
+			dairyTimer = 0;
+			dairySelection = dairySelection.getParent();
+		}
+		if(Keyboard.isKeyDown(Key.ESC)){
+			select = false;
+		}
 	}
 }

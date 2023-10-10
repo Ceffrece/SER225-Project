@@ -3,6 +3,7 @@ package Level;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import GameObject.GameObject;
+import GameObject.Item;
 import GameObject.Rectangle;
 
 import java.awt.*;
@@ -25,6 +26,7 @@ public class Camera extends Rectangle {
     // current map entities that are to be included in this frame's update/draw cycle
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
+    private ArrayList<Item> activeItems = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
@@ -65,6 +67,7 @@ public class Camera extends Rectangle {
     public void updateMapEntities(Player player) {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
+        activeItems = loadActiveItems();
 
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
@@ -73,6 +76,8 @@ public class Camera extends Rectangle {
         for (NPC npc : activeNPCs) {
             npc.update(player);
         }
+
+
     }
 
     // updates any currently running script
@@ -130,6 +135,16 @@ public class Camera extends Rectangle {
             }
         }
         return activeNPCs;
+    }
+
+    private ArrayList<Item> loadActiveItems() {
+        ArrayList<Item> activeItems = new ArrayList<>();
+        for(int i = map.getItems().size() -1; i>=0;i--) {
+            Item item = map.getItems().get(i);
+
+            activeItems.add(item);
+        }
+        return activeItems;
     }
 
     // determine which trigger map tiles are active (exist and are within range of the camera)

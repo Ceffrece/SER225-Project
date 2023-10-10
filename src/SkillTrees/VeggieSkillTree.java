@@ -3,7 +3,8 @@ package SkillTrees;
 import Level.Player;
 
 public class VeggieSkillTree {
-    private SkillTreeNode root;
+
+    SkillTree veggie = new SkillTree();
 
     private SkillTreeNode centerSkill;
 
@@ -19,42 +20,57 @@ public class VeggieSkillTree {
 
     private SkillTreeNode ultimateVeggieSkill;
 
+    public static SkillTreeNode[] array = new SkillTreeNode[10];
+
+    private SkillTreeNode currentNode;
+
     public VeggieSkillTree(){
-        root = null;
-        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+10hp");
+        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+10hp",6);
 
-        leftSkill1 = new SkillTreeNode("Cao Lo's Cabbage Chestplate", null, null, "+1 Armor");
-        leftSkill2 = new SkillTreeNode("Li Jing's Lettuce Helmet", null, null, "+1 Armor");
-        leftSkill3 = new SkillTreeNode("Phobos' Pepper Pants", null, null, "+1 Armor");
-        leftSkill4 = new SkillTreeNode("Bulub Chabtop's Broccoli Boots", null, null, "+1 Armor");
-        leftSkill5 = new SkillTreeNode("Godly Green Bean Gloves", null, null, "+1 Armor");
+        leftSkill1 = new SkillTreeNode("Cao Lo's Cabbage Chestplate", null, null, "+1 Armor",5);
+        leftSkill2 = new SkillTreeNode("Li Jing's Lettuce Helmet", null, null, "+1 Armor",4);
+        leftSkill3 = new SkillTreeNode("Phobos' Pepper Pants", null, null, "+1 Armor",3);
+        leftSkill4 = new SkillTreeNode("Bulub Chabtop's Broccoli Boots", null, null, "+1 Armor",2);
+        leftSkill5 = new SkillTreeNode("Godly Green Bean Gloves", null, null, "+1 Armor",1);
 
-        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+10hp");
-        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+10hp");
-        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+10hp");
+        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+10hp",7);
+        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+10hp",8);
+        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+10hp",9);
 
-        ultimateVeggieSkill = new SkillTreeNode("Olympian Ambrosia", null, null, "Immortality for 10 secs");
+        ultimateVeggieSkill = new SkillTreeNode("Olympian Ambrosia", null, null, "Immortality for 10 secs",10);
 
-        TreeLinker();
+        array[0] = centerSkill;
+        array[1] = leftSkill1;
+        array[2] = leftSkill2;
+        array[3] = leftSkill3;
+        array[4] = leftSkill4;
+        array[5] = leftSkill5;
+        array[6] = rightSkill1;
+        array[7] = rightSkill2;
+        array[8] = rightSkill3;
+        array[9] = ultimateVeggieSkill;
+
+        veggie.insertInTree(centerSkill);
+        veggie.insertInTree(leftSkill1);
+        veggie.insertInTree(leftSkill2);
+        veggie.insertInTree(leftSkill3);
+        veggie.insertInTree(leftSkill4);
+        veggie.insertInTree(leftSkill5);
+        veggie.insertInTree(rightSkill1);
+        veggie.insertInTree(rightSkill2);
+        veggie.insertInTree(rightSkill3);
+        veggie.insertInTree(ultimateVeggieSkill);
+
+        currentNode = centerSkill;
     }
 
-    private void TreeLinker(){
-        this.root = centerSkill;
-
-        root.setLeftSkill(leftSkill1);
-        root.setRightSkill(rightSkill1);
-
-        leftSkill1.setLeftSkill(leftSkill2);
-        leftSkill2.setLeftSkill(leftSkill3);
-        leftSkill3.setLeftSkill(leftSkill4);
-        leftSkill4.setLeftSkill(leftSkill5);
-
-        rightSkill1.setRightSkill(rightSkill2);
-        rightSkill2.setRightSkill(rightSkill3);
-
-        rightSkill3.setRightSkill(ultimateVeggieSkill);
-        leftSkill5.setLeftSkill(ultimateVeggieSkill);
+    public void setCurrentNode(SkillTreeNode node){
+        this.currentNode = node;
     }
+    public SkillTreeNode getCurrentNode(){
+        return this.currentNode;
+    }
+
 
     public void unlockNode(SkillTreeNode node, Player player){
         if(player.getPlayerXPLevel() == 1){

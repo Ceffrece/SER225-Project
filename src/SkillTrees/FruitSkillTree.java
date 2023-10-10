@@ -3,62 +3,79 @@ package SkillTrees;
 import Level.Player;
 
 public class FruitSkillTree {
-    
-    private SkillTreeNode root;
+    SkillTree fruit = new SkillTree();
+
     private SkillTreeNode centerSkill;
+
     private SkillTreeNode leftSkill1;
     private SkillTreeNode leftSkill2;
     private SkillTreeNode leftSkill3;
     private SkillTreeNode leftSkill4;
     private SkillTreeNode leftSkill5;
+
     private SkillTreeNode rightSkill1;
     private SkillTreeNode rightSkill2;
     private SkillTreeNode rightSkill3;
     private SkillTreeNode rightSkill4;
     private SkillTreeNode rightSkill5;
+
     private SkillTreeNode ultimateFruitSkill;
 
+    private SkillTreeNode currentNode;
 
+    public static SkillTreeNode[] array = new SkillTreeNode[12];
 
     //Constructor
     public FruitSkillTree() {
-        root = null;
-        centerSkill = new SkillTreeNode("Fruit Basket", null, null, "+1spd");
+        centerSkill = new SkillTreeNode("Fruit Basket", null, null, "+1spd",6);
 
-        leftSkill1 = new SkillTreeNode("Organge Slice", null, null, "Unlocks Dash : +1 Dash");
-        leftSkill2 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash");
-        leftSkill3 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash");
-        leftSkill4 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash");
-        leftSkill5 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash");
+        leftSkill1 = new SkillTreeNode("Organge Slice", null, null, "Unlocks Dash : +1 Dash",5);
+        leftSkill2 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",4);
+        leftSkill3 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",3);
+        leftSkill4 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",2);
+        leftSkill5 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",1);
 
-        rightSkill1 = new SkillTreeNode("The Horn of Plenty", null, null, "+1spd");
-        rightSkill2 = new SkillTreeNode("Momotaro's Peach", null, null, "+1spd");
-        rightSkill3 = new SkillTreeNode("Maui's Coconut", null, null, "+1spd");
-        rightSkill4 = new SkillTreeNode("Ulu's Breadfruit", null, null, "+1spd");
-        rightSkill5 = new SkillTreeNode("Pomegranate of the Underworld", null, null, "+1spd");
+        rightSkill1 = new SkillTreeNode("The Horn of Plenty", null, null, "+1spd",7);
+        rightSkill2 = new SkillTreeNode("Momotaro's Peach", null, null, "+1spd",8);
+        rightSkill3 = new SkillTreeNode("Maui's Coconut", null, null, "+1spd",9);
+        rightSkill4 = new SkillTreeNode("Ulu's Breadfruit", null, null, "+1spd",10);
+        rightSkill5 = new SkillTreeNode("Pomegranate of the Underworld", null, null, "+1spd",11);
 
-        ultimateFruitSkill = new SkillTreeNode("Idunn Apple", null, null, "+20spd for 5 secs");
+        ultimateFruitSkill = new SkillTreeNode("Idunn Apple", null, null, "+20spd for 5 secs",12);
 
-        TreeLinker();
+        array[0] = centerSkill;
+        array[1] = leftSkill1;
+        array[2] = leftSkill2;
+        array[3] = leftSkill3;
+        array[4] = leftSkill4;
+        array[5] = leftSkill5;
+        array[6] = rightSkill1;
+        array[7] = rightSkill2;
+        array[8] = rightSkill3;
+        array[9] = rightSkill4;
+        array[10] = rightSkill5;
+        array[11] = ultimateFruitSkill;
 
+        fruit.insertInTree(centerSkill);
+        fruit.insertInTree(leftSkill1);
+        fruit.insertInTree(leftSkill2);
+        fruit.insertInTree(leftSkill3);
+        fruit.insertInTree(leftSkill4);
+        fruit.insertInTree(leftSkill5);
+        fruit.insertInTree(rightSkill1);
+        fruit.insertInTree(rightSkill2);
+        fruit.insertInTree(rightSkill3);
+        fruit.insertInTree(rightSkill4);
+        fruit.insertInTree(rightSkill5);
+        fruit.insertInTree(ultimateFruitSkill);
+        currentNode = centerSkill;
     }
 
-    private void TreeLinker(){
-        this.root = centerSkill;
-        root.setLeftSkill(leftSkill1);
-        root.setRightSkill(rightSkill1);
-        leftSkill1.setLeftSkill(leftSkill2);
-        leftSkill2.setLeftSkill(leftSkill3);
-        leftSkill3.setLeftSkill(leftSkill4);
-        leftSkill4.setLeftSkill(leftSkill5);
-        
-        rightSkill1.setRightSkill(rightSkill2);
-        rightSkill2.setRightSkill(rightSkill3);
-        rightSkill3.setRightSkill(rightSkill4);
-        rightSkill4.setRightSkill(rightSkill5);
-        
-        leftSkill5.setLeftSkill(ultimateFruitSkill);
-        rightSkill5.setRightSkill(ultimateFruitSkill);
+    public void setCurrentNode(SkillTreeNode node){
+        this.currentNode = node;
+    }
+    public SkillTreeNode getCurrentNode(){
+        return this.currentNode;
     }
 
     public void unlockNode(SkillTreeNode node, Player player){
