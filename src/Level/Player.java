@@ -6,9 +6,13 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import Level.Projectiles.riceBallProjectile;
+import NPCs.Walrus;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
+import Utils.Point;
 
+import Level.Map;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -58,7 +62,11 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key FIRE_KEY = Key.F;
 
+    //define id for projectile type 
+    protected int projectileId;
+    
     protected boolean isInvincible = false;
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
@@ -83,7 +91,7 @@ public abstract class Player extends GameObject {
         } while (previousPlayerState != playerState);
 
         // move player with respect to map collisions based on how much player needs to move this frame
-        if (playerState != PlayerState.INTERACTING) {
+        if (playerState != PlayerState.INTERACTING||playerState != PlayerState.FIRING) {
             lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
             lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
         }
@@ -107,7 +115,50 @@ public abstract class Player extends GameObject {
             case INTERACTING:
                 playerInteracting();
                 break;
+            case FIRING:
+                playerFiring();
+                break;
         }
+    }
+
+    protected void playerFiring(){
+
+        if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
+            keyLocker.lockKey(INTERACT_KEY);
+            map.entityInteract(this);
+        }
+        // if a walk key is pressed, player enters WALKING state
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+            playerState = PlayerState.WALKING;
+        }
+        else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
+            playerState = PlayerState.STANDING;
+        }
+        
+        //test print
+        //make a new riceball Projectile
+        int ProjectileX;
+            float movementSpeed;
+            if (facingDirection == Direction.RIGHT) {
+                ProjectileX = Math.round(this.getX()) + this.getWidth();
+                movementSpeed = 1.5f;
+            } else {
+                ProjectileX = Math.round(this.getX() - 21);
+                movementSpeed = -1.5f;
+            }
+
+            // define where fireball will spawn on the map (y location) relative to dinosaur enemy's location
+            int ProjectileY = Math.round(this.getY()) + 4;
+            System.out.println("FIRE AT "+ new Point(ProjectileX, ProjectileY));
+
+
+            riceBallProjectile projectile = new riceBallProjectile(this.getLocation(),movementSpeed,this);
+            map.addProjectile(projectile);
+
+
+
+        
+    
     }
 
     // player STANDING state logic
@@ -116,11 +167,18 @@ public abstract class Player extends GameObject {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
         }
+        // if Fireing Key is not locked and Fire Key is down, lock key 
+        if (!keyLocker.isKeyLocked(FIRE_KEY) && Keyboard.isKeyDown(FIRE_KEY)) {
+            keyLocker.lockKey(FIRE_KEY);
+            playerState = PlayerState.FIRING;
+        }
 
         // if a walk key is pressed, player enters WALKING state
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             playerState = PlayerState.WALKING;
         }
+
+        
     }
 
     // player WALKING state logic
@@ -129,6 +187,13 @@ public abstract class Player extends GameObject {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
         }
+        
+        if (!keyLocker.isKeyLocked(FIRE_KEY) && Keyboard.isKeyDown(FIRE_KEY)) {
+            keyLocker.lockKey(FIRE_KEY);
+            playerState = PlayerState.FIRING;
+        }
+        
+        
 
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
@@ -151,11 +216,13 @@ public abstract class Player extends GameObject {
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
             moveAmountY -= walkSpeed;
+            facingDirection = Direction.UP;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             moveAmountY += walkSpeed;
+            facingDirection = Direction.DOWN;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
         }
@@ -171,7 +238,7 @@ public abstract class Player extends GameObject {
             lastWalkingXDirection = Direction.NONE;
         }
 
-        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
+        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)&& Keyboard.isKeyUp(FIRE_KEY)) {
             playerState = PlayerState.STANDING;
         }
     }
@@ -183,20 +250,36 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(INTERACT_KEY) && playerState != PlayerState.INTERACTING) {
             keyLocker.unlockKey(INTERACT_KEY);
         }
+        if (Keyboard.isKeyUp(FIRE_KEY) && playerState != PlayerState.FIRING) {
+            keyLocker.unlockKey(FIRE_KEY);
+        }
     }
 
     // anything extra the player should do based on interactions can be handled here
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
             // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
+            :facingDirection == Direction.LEFT ? "STAND_LEFT"
+            :facingDirection == Direction.UP ? "STAND_UP"
+            : "STAND_DOWN";
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
+            :facingDirection == Direction.LEFT ? "WALK_LEFT"
+            :facingDirection == Direction.UP ? "WALK_UP"
+            : "WALK_DOWN";
+    
+            
         }
         else if (playerState == PlayerState.INTERACTING) {
             // sets animation to STAND when player is interacting
+            // player can be told to stand or walk during Script by using the "stand" and "walk" methods
+            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+        }
+        else if (playerState == PlayerState.FIRING) {
+            // sets animation to STAND when player is Fireing
             // player can be told to stand or walk during Script by using the "stand" and "walk" methods
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
         }
@@ -280,6 +363,12 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
         }
+        else if (direction == Direction.UP) {
+            this.currentAnimationName = "STAND_UP";
+        }
+        else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "STAND_DOWN";
+        }
     }
 
     public void walk(Direction direction, float speed) {
@@ -290,16 +379,30 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
         }
+        else if (direction == Direction.UP) {
+            this.currentAnimationName = "WALK_UP";
+        }
+        else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "WALK_DOWN";
+        }
         else {
             if (this.currentAnimationName.contains("RIGHT")) {
                 this.currentAnimationName = "WALK_RIGHT";
             }
-            else {
+            else if (this.currentAnimationName.contains("LEFT")) {
                 this.currentAnimationName = "WALK_LEFT";
             }
+            else if (this.currentAnimationName.contains("UP")) {
+                this.currentAnimationName = "WALK_UP";
+            }
+            else {
+                this.currentAnimationName = "WALK_DOWN";
+            }
+            
         }
         if (direction == Direction.UP) {
             moveY(-speed);
+
         }
         else if (direction == Direction.DOWN) {
             moveY(speed);

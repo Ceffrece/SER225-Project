@@ -25,6 +25,7 @@ public class Cat extends Player {
        int dash;
        int experienceLevel;
        int experiencePoints;
+       int projectileId;
     }
     
 
@@ -41,20 +42,31 @@ public class Cat extends Player {
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
             put("STAND_RIGHT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(1, 0))
+                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
 
             put("STAND_LEFT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(1, 0))
+                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
-
+            put("STAND_UP", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(2, 2))
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
+        put("STAND_DOWN", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(3, 1))
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
             put("WALK_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 9)
                             .withScale(3)
@@ -105,6 +117,50 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build(),    
             });
+            put("WALK_UP", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(3, 1), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(3, 2), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(3, 3), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(3, 4), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(3, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+        });
+        put("WALK_DOWN", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(2, 1), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(2, 2), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(2, 3), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(2, 4), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(2, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+        });
         }};
     }
 }

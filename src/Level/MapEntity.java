@@ -108,7 +108,15 @@ public class MapEntity extends GameObject {
     public String getIdentity(){
         return identity;
     }
-
+    public void initialize() {
+        this.x = startPositionX;
+        this.y = startPositionY;
+        this.amountMovedX = 0;
+        this.amountMovedY = 0;
+        this.previousX = startPositionX;
+        this.previousY = startPositionY;
+        updateCurrentFrame();
+    }
     //used to set entity to an enemy
     public void setIdentity(String newIdentity){
         this.identity = newIdentity;

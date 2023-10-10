@@ -2,5 +2,5 @@ package Level;
 
 // This enum represents different states the Player can be in
 public enum PlayerState {
-    STANDING, WALKING, INTERACTING
+    STANDING, WALKING, INTERACTING, FIRING
 }
