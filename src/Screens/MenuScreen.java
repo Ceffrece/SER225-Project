@@ -103,6 +103,7 @@ public class MenuScreen extends Screen {
                 screenCoordinator.setGameState(GameState.CREDITS);
             } else if (menuItemSelected == 2) {
                 screenCoordinator.setGameState(GameState.MARCUS);
+                gameStarted = true;
             }
         }
     }
