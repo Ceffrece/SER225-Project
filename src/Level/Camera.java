@@ -3,6 +3,7 @@ package Level;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import GameObject.GameObject;
+import GameObject.Item;
 import GameObject.Rectangle;
 
 import java.awt.*;
@@ -27,6 +28,7 @@ public class Camera extends Rectangle {
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
     private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
+    private ArrayList<Item> activeItem = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;

@@ -6,6 +6,7 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import NPCs.Walrus;
 import SpriteFont.SpriteFont;
@@ -31,6 +32,8 @@ public abstract class Player extends GameObject {
     protected int invincibilityTimer = 0;
     protected int playerXPLevel = 0;
     protected int playerXPPoints = 0;
+
+    protected String currentProjectile;
 
     protected int dash = 0;
     protected int playerArmor = 0;
@@ -137,22 +140,12 @@ public abstract class Player extends GameObject {
         
         //test print
         //make a new riceball Projectile
-        int ProjectileX;
-            float movementSpeed;
-            if (facingDirection == Direction.RIGHT) {
-                ProjectileX = Math.round(this.getX()) + this.getWidth();
-                movementSpeed = 1.5f;
-            } else {
-                ProjectileX = Math.round(this.getX() - 21);
-                movementSpeed = -1.5f;
-            }
-
+        
             // define where fireball will spawn on the map (y location) relative to dinosaur enemy's location
             int ProjectileY = Math.round(this.getY()) + 4;
-            System.out.println("FIRE AT "+ new Point(ProjectileX, ProjectileY));
 
-
-            riceBallProjectile projectile = new riceBallProjectile(this.getLocation(),movementSpeed,this);
+            currentProjectile = "peaProjectile";
+            peaProjectile projectile = new peaProjectile(this.getLocation(),2, this);
             map.addProjectile(projectile);
 
 
@@ -465,7 +458,14 @@ public abstract class Player extends GameObject {
             attackRange += x;
       }
 
-
+    //currentProjectile setter
+      public void setCurentProjectile(String currentProjectile) {
+        this.currentProjectile = currentProjectile;
+      }
+       //attack Range getter
+       public String getCurentProjectile() {
+        return currentProjectile;
+      }
       //player Health setter
       public void setPlayerHealth(int playerHealth) {
         this.playerHealth = playerHealth;
