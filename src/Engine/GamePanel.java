@@ -330,6 +330,9 @@ public class GamePanel extends JPanel {
 				if(skill.getId() == grainSelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
 				}
+				else if(skill.getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
 				else{
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
 				}
@@ -376,6 +379,9 @@ public class GamePanel extends JPanel {
 			for(SkillTreeNode skill : dairy.array1){
 				if(skill.getId() == dairySelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(skill.getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.GREEN, 2);
 				}
 				else{
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
