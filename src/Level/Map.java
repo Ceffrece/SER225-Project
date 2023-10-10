@@ -5,7 +5,7 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import Engine.ScreenManager;
 import GameObject.Frame;
-import GameObject.Item;
+import Level.Item;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
@@ -60,9 +60,9 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
-    protected ArrayList<Item> items;
 
     public ArrayList<Projectile> projectiles;
+    public ArrayList<Item> items;
 
 
     protected Script activeInteractScript;
@@ -118,8 +118,6 @@ public abstract class Map {
         for (Projectile projectile: this.projectiles) {
             projectile.setMap(this);
         }
-
-
         this.items = loadItems();
         for(Item item: this.items){
             item.setMap(this);
@@ -249,8 +247,10 @@ public abstract class Map {
     public void addProjectile(Projectile projectile) {
         projectile.setMap(this);
         this.projectiles.add(projectile);
-
-        
+    }
+    public void addItem(Item item) {
+        item.setMap(this);
+        this.items.add(item);
     }
 
     // set specific map tile from tile map to a new map tile
@@ -306,14 +306,13 @@ public abstract class Map {
         return new ArrayList<>();
     }
 
-    protected ArrayList<Item> loadItems(){
-        return new ArrayList<>();
-    }
-
     protected ArrayList<Trigger> loadTriggers() {
         return new ArrayList<>();
     }
     protected ArrayList<Projectile> loadProjectiles() {
+        return new ArrayList<>();
+    }
+    protected ArrayList<Item> loadItems() {
         return new ArrayList<>();
     }
     public Camera getCamera() {
@@ -329,6 +328,9 @@ public abstract class Map {
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
+    }
+    public ArrayList<Item> getItems() {
+        return items;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
@@ -370,6 +372,9 @@ public abstract class Map {
 
     public ArrayList<Projectile> getActiveProjectiles() {
         return camera.getActiveProjectiles();
+    }
+    public ArrayList<Item> getActiveItems() {
+        return camera.getActiveItems();
     }
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {

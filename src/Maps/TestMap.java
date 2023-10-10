@@ -2,7 +2,8 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import GameObject.Frame;
-import GameObject.Item;
+import GameObject.SpriteSheet;
+import Level.Item;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -59,13 +60,13 @@ public class TestMap extends Map {
 
         return npcs;
     }
-   
-
-     public ArrayList<Item> loadItems(){
+    public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
-        Frame swordFrame = new Frame(ImageLoader.load("sword.png"));
-        Item sword = new Item(20f,20f,swordFrame,0);
+
+        Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT");
+        //sword.setInteractScript(new swordScript()); For pickupability
         items.add(sword);
+
         return items;
     }
 
