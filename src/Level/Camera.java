@@ -23,6 +23,7 @@ public class Camera extends Rectangle {
     private int leftoverSpaceX, leftoverSpaceY;
 
     // current map entities that are to be included in this frame's update/draw cycle
+    private ArrayList<Enemies> activeEnemies = new ArrayList<>();
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
@@ -67,6 +68,11 @@ public class Camera extends Rectangle {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
         activeProjectiles = loadActiveProjectiles();
+        
+        for (Enemies enemy : activeEnemies) {
+            enemy.update(player);
+        }
+
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
         }
@@ -93,6 +99,26 @@ public class Camera extends Rectangle {
                 trigger.getTriggerScript().update();
             }
         }
+    }
+
+    // determine which enemies are active (exist and are within range of the camera)
+    private ArrayList<Enemies> loadActiveEnemies() {
+        ArrayList<Enemies> activeEnemies = new ArrayList<>();
+        for (int i = map.getEnemies().size() - 1; i >= 0; i--) {
+            Enemies enemy = map.getEnemies().get(i);
+
+            if (isMapEntityActive(enemy)) {
+                activeEnemies.add(enemy);
+                if (enemy.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    enemy.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (enemy.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                enemy.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (enemy.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getEnemies().remove(i);
+            }
+        }
+        return activeEnemies;
     }
 
     // determine which enhanced map tiles are active (exist and are within range of the camera)
@@ -259,6 +285,13 @@ public class Camera extends Rectangle {
                 projectile.draw(graphicsHandler);
             }
         }
+
+        for (Enemies enemy : activeEnemies) {
+            if (containsDraw(enemy)) {
+                enemy.draw(graphicsHandler);
+            }
+        }
+
         // player is drawn to screen
         player.draw(graphicsHandler);
 
@@ -292,6 +325,10 @@ public class Camera extends Rectangle {
     public boolean containsDraw(GameObject gameObject) {
         return getX1() - tileWidth < gameObject.getX() + gameObject.getWidth() && getEndBoundX() + tileWidth > gameObject.getX() &&
                 getY1() - tileHeight <  gameObject.getY() + gameObject.getHeight() && getEndBoundY() + tileHeight >  gameObject.getY();
+    }
+
+    public ArrayList<Enemies> getActiveEnemies() {
+        return activeEnemies;
     }
 
     public ArrayList<EnhancedMapTile> getActiveEnhancedMapTiles() {
