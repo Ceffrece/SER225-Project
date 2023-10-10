@@ -55,27 +55,14 @@ public class Projectile extends MapEntity{
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
             }
+            public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+                // if projectile collides with anything solid on the x axis, it is removed
+                if (hasCollided) {
+                    this.mapEntityStatus = MapEntityStatus.REMOVED;
+                }
+            }
             public void update(Player player) {
                 super.update();
-                // if (intersects(player)|| identity == "enemy") {
-                //     touchedPlayer(player);
-                // }
-                // if (player.facingDirection == Direction.RIGHT) {
-                //     speed = 1.5f;
-                //     moveXHandleCollision(speed);
-                // } else if (player.facingDirection == Direction.LEFT) {
-                //     speed = -1.5f;
-                //     moveXHandleCollision(speed);
-                // }
-                // else if (player.facingDirection == Direction.UP) {
-                //     speed = -1.5f;
-                //     moveYHandleCollision(speed);
-
-                // }
-                // else if (player.facingDirection == Direction.DOWN) {
-                //     speed = -1.5f;
-                //     moveYHandleCollision(speed);
-
                 // }
                 // if timer is up, set map entity status to REMOVED
                 // the camera class will see this next frame and remove it permanently from the map

@@ -216,11 +216,13 @@ public abstract class Player extends GameObject {
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
             moveAmountY -= walkSpeed;
+            facingDirection = Direction.UP;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             moveAmountY += walkSpeed;
+            facingDirection = Direction.DOWN;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
         }
@@ -257,11 +259,19 @@ public abstract class Player extends GameObject {
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
             // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
+            :facingDirection == Direction.LEFT ? "STAND_LEFT"
+            :facingDirection == Direction.UP ? "STAND_UP"
+            : "STAND_DOWN";
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
+            :facingDirection == Direction.LEFT ? "WALK_LEFT"
+            :facingDirection == Direction.UP ? "WALK_UP"
+            : "WALK_DOWN";
+    
+            
         }
         else if (playerState == PlayerState.INTERACTING) {
             // sets animation to STAND when player is interacting
@@ -353,6 +363,12 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
         }
+        else if (direction == Direction.UP) {
+            this.currentAnimationName = "STAND_UP";
+        }
+        else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "STAND_DOWN";
+        }
     }
 
     public void walk(Direction direction, float speed) {
@@ -363,13 +379,26 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
         }
+        else if (direction == Direction.UP) {
+            this.currentAnimationName = "WALK_UP";
+        }
+        else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "WALK_DOWN";
+        }
         else {
             if (this.currentAnimationName.contains("RIGHT")) {
                 this.currentAnimationName = "WALK_RIGHT";
             }
-            else {
+            else if (this.currentAnimationName.contains("LEFT")) {
                 this.currentAnimationName = "WALK_LEFT";
             }
+            else if (this.currentAnimationName.contains("UP")) {
+                this.currentAnimationName = "WALK_UP";
+            }
+            else {
+                this.currentAnimationName = "WALK_DOWN";
+            }
+            
         }
         if (direction == Direction.UP) {
             moveY(-speed);

@@ -35,7 +35,7 @@ public class riceBallProjectile extends Projectile {
     
                         }
                          else if (player.getFacingDirection() == Direction.DOWN) {
-                            speedY = -1.5f;
+                            speedY =  1.5f;
     
                         }
                     
