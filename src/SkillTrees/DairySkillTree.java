@@ -3,7 +3,7 @@ package SkillTrees;
 import Level.Player;
 
 public class DairySkillTree {
-    private SkillTreeNode root;
+    SkillTree dairy = new SkillTree();
 
     private SkillTreeNode centerSkill;
 
@@ -16,31 +16,45 @@ public class DairySkillTree {
 
     private SkillTreeNode ultimateDairySkill;
 
+    public SkillTreeNode currentNode;
+    public static SkillTreeNode[] array1 = new SkillTreeNode[8];
+
     public DairySkillTree(){
-        centerSkill = new SkillTreeNode("Mars' Milk Jug", null, null, "+1AtkRange");
-        skill1 = new SkillTreeNode("Larvan's Lactose", null, null, "+1AtkRange");
-        skill2 = new SkillTreeNode("Tyr's Yogurt", null, null, "+1AtkRange");
-        skill3 = new SkillTreeNode("Bia's Butter", null, null, "+1AtkRange");
-        skill4 = new SkillTreeNode("Satis' Soy", null, null, "+1AtkRange");
-        skill5 = new SkillTreeNode("Chiyou's Cheese", null, null, "+1AtkRange");
-        skill6 = new SkillTreeNode("Perseus' Parmesean", null, null, "+1AtkRange");
+        centerSkill = new SkillTreeNode("Mars' Milk Jug", null, null, "+1AtkRange",1);
+        skill1 = new SkillTreeNode("Larvan's Lactose", null, null, "+1AtkRange",2);
+        skill2 = new SkillTreeNode("Tyr's Yogurt", null, null, "+1AtkRange",3);
+        skill3 = new SkillTreeNode("Bia's Butter", null, null, "+1AtkRange",4);
+        skill4 = new SkillTreeNode("Satis' Soy", null, null, "+1AtkRange",5);
+        skill5 = new SkillTreeNode("Chiyou's Cheese", null, null, "+1AtkRange",6);
+        skill6 = new SkillTreeNode("Perseus' Parmesean", null, null, "+1AtkRange",7);
 
-        ultimateDairySkill = new SkillTreeNode("Di Quing's Dairy Gifting", skill2, null, "Instant Kill to all enemies within a radius of the player");
+        ultimateDairySkill = new SkillTreeNode("Di Quing's Dairy Gifting", skill2, null, "Instant Kill to all enemies within a radius of the player",8);
 
-        TreeLinker();
+        array1[0] = centerSkill;
+        array1[1] = skill1;
+        array1[2] = skill2;
+        array1[3] = skill3;
+        array1[4] = skill4;
+        array1[5] = skill5;
+        array1[6] = skill6;
+        array1[7] = ultimateDairySkill;
+
+        dairy.insertInTree(centerSkill);
+        dairy.insertInTree(skill1);
+        dairy.insertInTree(skill2);
+        dairy.insertInTree(skill3);
+        dairy.insertInTree(skill4);
+        dairy.insertInTree(skill5);
+        dairy.insertInTree(skill6);
+        dairy.insertInTree(ultimateDairySkill);
+        currentNode = centerSkill;
     }
 
-    private void TreeLinker(){
-        this.root = centerSkill;
-        root.setLeftSkill(skill1);
-        root.setRightSkill(skill2);
-        skill1.setLeftSkill(skill3);
-        skill2.setRightSkill(skill4);
-        skill3.setLeftSkill(skill5);
-        skill4.setLeftSkill(skill6);
-
-        skill5.setLeftSkill(ultimateDairySkill);
-        skill6.setLeftSkill(ultimateDairySkill);
+    public void resetCurrentNode(){
+        this.currentNode = centerSkill;
+    }
+    public SkillTreeNode getCurrentNode(){
+        return this.currentNode;
     }
 
     public void unlockNode(SkillTreeNode node, Player player){

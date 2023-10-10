@@ -4,8 +4,10 @@ public class SkillTreeNode {
     private String name;
     private SkillTreeNode rightSkill;
     private SkillTreeNode leftSkill;
+    private SkillTreeNode parent;
     private String effect;
     private boolean isUnlocked;
+    private int id;
 
     //constructor
     public SkillTreeNode() {
@@ -14,13 +16,17 @@ public class SkillTreeNode {
         this.leftSkill = null;
         this.effect = null;
         this.isUnlocked = false;
+        this.id = 0;
+        this.parent = null;
     }
-    public SkillTreeNode(String name, SkillTreeNode rightSkill, SkillTreeNode leftSkill, String effect){
+    public SkillTreeNode(String name, SkillTreeNode rightSkill, SkillTreeNode leftSkill, String effect, int id){
         this.name = name;
         this.rightSkill = rightSkill;
         this.leftSkill = leftSkill;
         this.effect = effect;
         this.isUnlocked = false;
+        this.id = id;
+        this.parent = null;
     }
 
     //Getters and Setters
@@ -54,5 +60,16 @@ public class SkillTreeNode {
 
     public void setUnlockedStatus(Boolean status){
         this.isUnlocked = status;
+    }
+    
+    public int getId(){
+        return this.id;
+    }
+
+    public void setParent(SkillTreeNode parent){
+        this.parent = parent;
+    }
+    public SkillTreeNode getParent(){
+        return this.parent;
     }
 }

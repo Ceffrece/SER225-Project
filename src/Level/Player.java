@@ -23,21 +23,21 @@ public abstract class Player extends GameObject {
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
 
-    protected float walkSpeed = 2.3f;
-    protected int attackSpeed = 1;
-    protected int attackRange = 1;
+    public static float walkSpeed = 2.3f;
+    public static int attackSpeed = 1;
+    public static int attackRange = 1;
     public static int playerHealth = 5;
-    protected int attackDamage = 1;
-    protected int maxHealth = 5;
-    protected int invincibilityTimer = 0;
-    protected int playerXPLevel = 0;
-    protected int playerXPPoints = 0;
+    public static int attackDamage = 1;
+    public static int maxHealth = 5;
+    public static int invincibilityTimer = 0;
+    public static int playerXPLevel = 0;
+    public static int playerXPPoints = 0;
 
     protected String currentProjectile;
 
-    protected int dash = 0;
-    protected int playerArmor = 0;
-    protected int critChance = 0;
+    public static int dash = 0;
+    public static int playerArmor = 0;
+    public static int critChance = 0;
 
     protected int interactionRange = 5;
     protected Direction currentWalkingXDirection;
@@ -410,32 +410,32 @@ public abstract class Player extends GameObject {
 
    //----setters and getters and helper functions :D for player varaibles----
     //walk speed setter
-    public void setWalkSpeed(Float walkSpeed) {
-        this.walkSpeed = walkSpeed;
+    public static void setWalkSpeed(Float walkSpeeed) {
+        walkSpeed = walkSpeeed;
       }
       //walk speed getter 
       public Float getWalkSpeed() {
         return walkSpeed;
       }
 
-      public void addWalkSpeed(Float x){
+      public static void addWalkSpeed(Float x){
             walkSpeed += x;
       }
       //attack speed setter
-      public void setAttackSpeed(int attackSpeed) {
-        this.attackSpeed = attackSpeed;
+      public static void setAttackSpeed(int spd) {
+        attackSpeed = spd;
       }
       //attack speed getter
       public int getAttackSpeed() {
         return attackSpeed;
       }
-      public void addAttackSpeed(int x) {
+      public static void addAttackSpeed(int x) {
         attackSpeed += x ;
       }
 
       //attack Damage setter
-      public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
+      public void setAttackDamage(int dmg) {
+        attackDamage = dmg;
       }
        //attack Damage getter
        public int getAttackDamage() {
@@ -447,8 +447,8 @@ public abstract class Player extends GameObject {
 
 
       //attack  Range setter
-      public void setAttackRange(int attackRange) {
-        this.attackRange = attackRange;
+      public void setAttackRange(int range) {
+        attackRange = range;
       }
        //attack Range getter
        public int getAttackRange() {
@@ -467,8 +467,8 @@ public abstract class Player extends GameObject {
         return currentProjectile;
       }
       //player Health setter
-      public void setPlayerHealth(int playerHealth) {
-        this.playerHealth = playerHealth;
+      public void setPlayerHealth(int hlth) {
+        playerHealth = hlth;
       }
        //playerRange getter
        public int getPlayerHealth() {
@@ -480,49 +480,49 @@ public abstract class Player extends GameObject {
 
       //player XP setters
       public void addPlayerXPLevel(int x){
-        this.playerXPLevel += x;
+        playerXPLevel += x;
       }
       public void addPlayerXPPoints(int x){
-        this.playerXPPoints += x;
+        playerXPPoints += x;
       }
 
       //player XP getters
       public int getPlayerXPLevel(){
-        return this.playerXPLevel;
+        return playerXPLevel;
       }
       public int getPlayerXPPoints(int x){
-        return this.playerXPPoints;
+        return playerXPPoints;
       }
 
       //player MaxHealth setters and getters
       public void setPlayerMaxHealth(int x){
-        this.maxHealth = x;
+        maxHealth = x;
       }
       public void addPlayerMaxHealth(int x){
-        this.maxHealth += x;
+        maxHealth += x;
       }
       public int getMaxHealth(){
-        return this.maxHealth;
+        return maxHealth;
       }
 
 
 
       //--------unloackable--------
       // dash setter
-      public void setDash(int dash) {
-        this.dash = dash;
+      public void setDash(int dashSet) {
+        dash = dashSet;
       }
        //dash getter
        public int getDash() {
         return dash;
       }
-      public void addDash(int x) {
+      public static void addDash(int x) {
         dash += x;
       }
 
       // playerArmor setter
-      public void setPlayerArmor(int playerArmor) {
-        this.playerArmor = playerArmor;
+      public void setPlayerArmor(int playerArmorSet) {
+        playerArmor = playerArmorSet;
       }
        //playerArmor getter
        public int getPlayerArmor() {
@@ -533,8 +533,8 @@ public abstract class Player extends GameObject {
       }
 
       // CritChance setter
-      public void setCritChance(int critChance) {
-        this.critChance = critChance;
+      public void setCritChance(int critChanceSet) {
+        critChance = critChanceSet;
       }
        //CritChance getter
        public int getCritChance() {
@@ -544,8 +544,8 @@ public abstract class Player extends GameObject {
         critChance += x;
       }
       // CritChance setter
-      public void setInvincibilityTimer(int invincibilityTimer) {
-        this.invincibilityTimer = invincibilityTimer;
+      public void setInvincibilityTimer(int invincibilityTimerSet) {
+        invincibilityTimer = invincibilityTimerSet;
       }
        //CritChance getter
        public int getInvincibilityTimer() {
