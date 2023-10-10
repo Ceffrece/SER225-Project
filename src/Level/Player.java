@@ -144,8 +144,9 @@ public abstract class Player extends GameObject {
             // define where fireball will spawn on the map (y location) relative to dinosaur enemy's location
             int ProjectileY = Math.round(this.getY()) + 4;
 
-            currentProjectile = "peaProjectile";
-            peaProjectile projectile = new peaProjectile(this.getLocation(),2, this);
+            
+            setCurentProjectile("peaProjectile");
+            Projectile projectile = new Projectile(this.getLocation(),this.currentProjectile, this);
             map.addProjectile(projectile);
 
 
