@@ -6,7 +6,9 @@ import GameObject.Item;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
+import Level.Projectile;
 import Level.Trigger;
+import Level.Projectiles.riceBallProjectile;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Scripts.SimpleTextScript;
@@ -52,9 +54,12 @@ public class TestMap extends Map {
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
+        
+        // riceBallProjectile projectile = new Projectile(player.getLocation());
 
         return npcs;
     }
+   
 
      public ArrayList<Item> loadItems(){
         ArrayList<Item> items = new ArrayList<>();
