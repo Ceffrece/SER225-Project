@@ -15,29 +15,48 @@ public class riceBallProjectile extends Projectile {
         private int existenceFrames = 300;
         private int hasDirection = 0;
         public riceBallProjectile(Point location, float speed,Player player) {
-                super(location.x, location.y, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, speed);
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, speed);
                 super.setIdentity(identity);
-
-                
                 initialize();
                 
         }
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
-                        if (player.getFacingDirection() == Direction.RIGHT) {
-                                speedX = 1.5f;
+                        if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                speedY =  3.5f;
+                                speedX = -3.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                speedY =  3.5f;
+                                speedX = 3.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                speedY =  -3.5f;
+                                speedX = -3.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                speedY =  -3.5f;
+                                speedX = 3.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.RIGHT) {
+                                speedX = 3.5f;
                         } 
                         else if (player.getFacingDirection() == Direction.LEFT) {
-                                speedX = -1.5f; 
+                                speedX = -3.5f; 
                         }
                         else if (player.getFacingDirection() == Direction.UP) {
-                                speedY = -1.5f;
+                                speedY = -3.5f;
     
                         }
                          else if (player.getFacingDirection() == Direction.DOWN) {
-                            speedY =  1.5f;
+                            speedY =  3.5f;
     
                         }
+                       
                     
 
                 }

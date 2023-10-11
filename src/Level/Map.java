@@ -2,7 +2,10 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import Engine.ScreenManager;
+import GameObject.Frame;
+import Level.Item;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
@@ -61,6 +64,7 @@ public abstract class Map {
     protected ArrayList<Trigger> triggers;
 
     public ArrayList<Projectile> projectiles;
+    public ArrayList<Item> items;
 
 
     protected Script activeInteractScript;
@@ -120,7 +124,10 @@ public abstract class Map {
         for (Projectile projectile: this.projectiles) {
             projectile.setMap(this);
         }
-
+        this.items = loadItems();
+        for(Item item: this.items){
+            item.setMap(this);
+        }
 
         this.loadScripts();
 
@@ -246,8 +253,10 @@ public abstract class Map {
     public void addProjectile(Projectile projectile) {
         projectile.setMap(this);
         this.projectiles.add(projectile);
-
-        
+    }
+    public void addItem(Item item) {
+        item.setMap(this);
+        this.items.add(item);
     }
 
     // set specific map tile from tile map to a new map tile
@@ -317,6 +326,9 @@ public abstract class Map {
     protected ArrayList<Projectile> loadProjectiles() {
         return new ArrayList<>();
     }
+    protected ArrayList<Item> loadItems() {
+        return new ArrayList<>();
+    }
     public Camera getCamera() {
         return camera;
     }
@@ -334,6 +346,9 @@ public abstract class Map {
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
+    }
+    public ArrayList<Item> getItems() {
+        return items;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
@@ -393,6 +408,9 @@ public abstract class Map {
     public ArrayList<Projectile> getActiveProjectiles() {
         return camera.getActiveProjectiles();
     }
+    public ArrayList<Item> getActiveItems() {
+        return camera.getActiveItems();
+    }
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
         enhancedMapTile.setMap(this);
@@ -440,6 +458,7 @@ public abstract class Map {
         // gets active surrounding enemies
         surroundingMapEntities.addAll(getActiveEnemies());
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
+        surroundingMapEntities.addAll(getActiveItems());
         return surroundingMapEntities;
     }
 
@@ -453,7 +472,7 @@ public abstract class Map {
         }
         MapEntity interactedEntity = null;
         if (playerTouchingMapEntities.size() == 1) {
-            if (isInteractedEntityValid(playerTouchingMapEntities.get(0), player)) {
+            if (playerTouchingMapEntities.get(0).isUncollidable() || isInteractedEntityValid(playerTouchingMapEntities.get(0), player)) {
                 interactedEntity = playerTouchingMapEntities.get(0);
             }
         }
@@ -461,7 +480,7 @@ public abstract class Map {
             MapEntity currentLargestAreaOverlappedEntity = null;
             float currentLargestAreaOverlapped = 0;
             for (MapEntity mapEntity : playerTouchingMapEntities) {
-                if (isInteractedEntityValid(mapEntity, player)) {
+                if (mapEntity.isUncollidable() || isInteractedEntityValid(mapEntity, player)) {
                     float areaOverlapped = mapEntity.getAreaOverlapped(player.getInteractionRange());
                     if (areaOverlapped > currentLargestAreaOverlapped) {
                         currentLargestAreaOverlappedEntity = mapEntity;

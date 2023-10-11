@@ -1,21 +1,26 @@
 package Level;
 
 import GameObject.SpriteSheet;
+import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import GameObject.Frame;
 import Utils.Direction;
 
+import java.awt.Point;
 import java.util.HashMap;
 
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 
 public class Projectile extends MapEntity{
 
         private float speed;
+        private String curentProjectile;
+        private int projectileChosen = 0;
         private int existenceFrames = 300;
-        public Projectile(float x, float y, SpriteSheet spriteSheet, String startingAnimation, String identity, float speed) {
-                super(x, y, spriteSheet, startingAnimation);
+        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity, float speed) {
+                super(location.x, location.y, spriteSheet, startingAnimation);
                 super.setIdentity(identity);
                 initialize();
             }
@@ -36,6 +41,12 @@ public class Projectile extends MapEntity{
                 super(x, y);
             }
              
+            public Projectile(Utils.Point location, String currentProjectile, Player player) {
+                super(location.x, location.y);
+                super.setIdentity(identity);
+                setCurentProjectile(currentProjectile);
+            }
+
             public void setSpeed(float speed){
                 this.speed = speed;
             }
@@ -61,15 +72,30 @@ public class Projectile extends MapEntity{
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
             }
+            public void currentProjectile(String currentProjectile,Player player){
+                if (projectileChosen ==0){ 
+                    switch(currentProjectile){
+                        case "peaProjectile":
+                             peaProjectile projectile = new peaProjectile(player.getLocation(),1.5f, player);
+                             map.addProjectile(projectile);
+                             break;
+                        case "riceBallProjectile":
+                             riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(),1.5f, player);
+                             map.addProjectile(projectile2);
+                             break;
+                        default:
+                            break;
+                    }
+                projectileChosen++;
+            }
+        }
             public void update(Player player) {
+                currentProjectile(curentProjectile, player);
                 super.update();
-                // }
-                // if timer is up, set map entity status to REMOVED
-                // the camera class will see this next frame and remove it permanently from the map
+
                 if (existenceFrames == 0) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 } else {
-                    // move Projectile forward
                     
                     super.update();
                 }
@@ -94,6 +120,12 @@ public class Projectile extends MapEntity{
                                 .build()
                 });
             }};
+        }
+        public void setCurentProjectile(String curentProjectile){
+            this.curentProjectile = curentProjectile;
+        }
+        public String getCurentProjectile(){
+            return curentProjectile;
         }
         @Override
         public void draw(GraphicsHandler graphicsHandler) {

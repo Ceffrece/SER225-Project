@@ -1,6 +1,9 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+import GameObject.Frame;
+import GameObject.SpriteSheet;
+import Level.Item;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -16,9 +19,12 @@ import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
+import Scripts.TestMap.SwordScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
+
+import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
@@ -55,7 +61,15 @@ public class TestMap extends Map {
 
         return npcs;
     }
-   
+    public ArrayList<Item> loadItems() {
+        ArrayList<Item> items = new ArrayList<>();
+
+        Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT");
+        //sword.setInteractScript(new SwordScript());
+        items.add(sword);
+
+        return items;
+    }
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
