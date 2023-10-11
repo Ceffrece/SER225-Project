@@ -1,9 +1,7 @@
 package Scripts.TestMap;
 
 import Level.Item;
-import Level.MapEntity;
 import Level.MapEntityStatus;
-import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
 

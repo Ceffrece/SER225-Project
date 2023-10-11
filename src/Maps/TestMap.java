@@ -65,7 +65,7 @@ public class TestMap extends Map {
         ArrayList<Item> items = new ArrayList<>();
 
         Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT");
-        //sword.setInteractScript(new SwordScript());
+        sword.setInteractScript(new SwordScript());
         items.add(sword);
 
         return items;

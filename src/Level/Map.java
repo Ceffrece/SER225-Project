@@ -356,6 +356,14 @@ public abstract class Map {
         return null;
     }
 
+    /*public Item getItemById(int id) {
+        for(Item item : items){
+            if(item.getId() == id) {
+                return item;
+            }
+        }
+    }*/
+
     // returns all active enhanced map tiles (enhanced map tiles that are a part of the current update cycle) -- this changes every frame by the Camera class
     public ArrayList<EnhancedMapTile> getActiveEnhancedMapTiles() {
         return camera.getActiveEnhancedMapTiles();
