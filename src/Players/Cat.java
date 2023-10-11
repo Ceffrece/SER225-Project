@@ -56,13 +56,13 @@ public class Cat extends Player {
                             .build()
             });
             put("STAND_UP", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(2, 2))
+                new FrameBuilder(spriteSheet.getSprite(3, 5))
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()
         });
         put("STAND_DOWN", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(3, 1))
+                new FrameBuilder(spriteSheet.getSprite(2, 5))
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()

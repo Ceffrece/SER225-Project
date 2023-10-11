@@ -28,9 +28,10 @@ public class FruitSkillTree {
     //Constructor
     public FruitSkillTree() {
         centerSkill = new SkillTreeNode("Fruit Basket", null, null, "+1spd",6);
-
+        //
         leftSkill1 = new SkillTreeNode("Organge Slice", null, null, "Unlocks Dash : +1 Dash",5);
         leftSkill2 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",4);
+        //use temp for diff bullets^
         leftSkill3 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",3);
         leftSkill4 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",2);
         leftSkill5 = new SkillTreeNode("Orange Slice", null, null, "+1 Dash",1);
