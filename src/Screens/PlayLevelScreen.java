@@ -71,6 +71,12 @@ public class PlayLevelScreen extends Screen {
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
+        for (Item item : map.getItems()) {
+            if (item.getInteractScript() != null) {
+                item.getInteractScript().setMap(map);
+                item.getInteractScript().setPlayer(player);
+            }
+        }
 
         winScreen = new WinScreen(this);
     }

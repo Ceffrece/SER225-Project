@@ -21,7 +21,7 @@ public class SwordScript extends Script<Item>{
     public ScriptState execute() {
         start();
         entity.setMapEntityStatus(MapEntityStatus.REMOVED);
-        System.out.println(map);
+        //System.out.println(map);
         end();
         return ScriptState.COMPLETED;
     }
