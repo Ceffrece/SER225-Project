@@ -15,6 +15,7 @@ public class Enemy extends MapEntity
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
         super(x, y, spriteSheet, startingAnimation);
+        isUncollidable = false;
         this.id = id;
     }
 
