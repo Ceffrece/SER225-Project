@@ -12,6 +12,7 @@ public class Item extends MapEntity{
 
     public Item(Point location, SpriteSheet ss, String startingAnimation){
         super(location.x,location.y,ss,startingAnimation);
+        isUncollidable = true;
         initialize();
     }
     public void update(Player player) {
@@ -30,7 +31,7 @@ public class Item extends MapEntity{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(1, 1, 5, 5)
+                                .withBounds(0, 0, 50, 50)
                                 .build()
                 });
             }};

@@ -19,6 +19,7 @@ import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
+import Scripts.TestMap.SwordScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class TestMap extends Map {
         ArrayList<Item> items = new ArrayList<>();
 
         Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT");
-        //sword.setInteractScript(new swordScript()); For pickupability
+        //sword.setInteractScript(new SwordScript());
         items.add(sword);
 
         return items;
