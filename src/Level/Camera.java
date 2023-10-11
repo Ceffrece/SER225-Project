@@ -100,27 +100,7 @@ public class Camera extends Rectangle {
             }
         }
     }
-
-    // determine which enemies are active (exist and are within range of the camera)
-    private ArrayList<Enemies> loadActiveEnemies() {
-        ArrayList<Enemies> activeEnemies = new ArrayList<>();
-        for (int i = map.getEnemies().size() - 1; i >= 0; i--) {
-            Enemies enemy = map.getEnemies().get(i);
-
-            if (isMapEntityActive(enemy)) {
-                activeEnemies.add(enemy);
-                if (enemy.mapEntityStatus == MapEntityStatus.INACTIVE) {
-                    enemy.setMapEntityStatus(MapEntityStatus.ACTIVE);
-                }
-            } else if (enemy.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
-                enemy.setMapEntityStatus(MapEntityStatus.INACTIVE);
-            } else if (enemy.getMapEntityStatus() == MapEntityStatus.REMOVED) {
-                map.getEnemies().remove(i);
-            }
-        }
-        return activeEnemies;
-    }
-
+    
     // determine which enhanced map tiles are active (exist and are within range of the camera)
     private ArrayList<EnhancedMapTile> loadActiveEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
