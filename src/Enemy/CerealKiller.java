@@ -1,4 +1,4 @@
-package Enemies;
+package Enemy;
 
 import java.util.HashMap;
 
@@ -8,17 +8,17 @@ import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
-import Level.Enemies;
+import Level.Enemy;
 import Utils.Point;
 
 // This class is for the Cereal Killer Enemy
-public class CerealKiller extends Enemies
+public class CerealKiller extends Enemy
 {
-    private static String imageFileName;
-
-public CerealKiller(int id, Point location)
+    
+    public CerealKiller(int id, Point location) 
     {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cat.png"), 14, 14), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("cat.png"), 14, 14), "STAND_LEFT");
+        super.setIdentity("enemy");
     }
 
     @Override

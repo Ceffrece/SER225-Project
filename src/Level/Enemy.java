@@ -8,39 +8,41 @@ import GameObject.SpriteSheet;
 import Utils.Direction;
 
 // This class is a base class for all Enemies in the game - all enemies should extend from it
-public class Enemies extends MapEntity
+public class Enemy extends MapEntity
 {
     protected int id = 0;
 
-    public Enemies(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
+    public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
         super(x, y, spriteSheet, startingAnimation);
         this.id = id;
     }
 
-    public Enemies(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
+    public Enemy(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
     {
         super(x, y, animations, startingAnimation);
         this.id = id;
     }
 
-    public Enemies(int id, float x, float y, Frame[] frames)
+    public Enemy(int id, float x, float y, Frame[] frames)
     {
         super(x, y, frames);
         this.id = id;
     }
 
-    public Enemies(int id, float x, float y, Frame frame)
+    public Enemy(int id, float x, float y, Frame frame)
     {
         super(x, y, frame);
         this.id = id;
     }
 
-    public Enemies(int id, float x, float y)
+    public Enemy(int id, float x, float y)
     {
         super(x, y);
         this.id = id;
     }
+
+    public int getId() { return id; }
 
     public void facePlayer(Player player)
     {
@@ -116,5 +118,7 @@ public class Enemies extends MapEntity
         super.draw(graphicsHandler);
     }
 
-    
+    public int getID(){
+        return id;
+    }
 }
