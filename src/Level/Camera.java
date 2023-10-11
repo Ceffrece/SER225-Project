@@ -24,11 +24,13 @@ public class Camera extends Rectangle {
     private int leftoverSpaceX, leftoverSpaceY;
 
     // current map entities that are to be included in this frame's update/draw cycle
+    
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
     private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
     private ArrayList<Item> activeItems = new ArrayList<>();
+    private ArrayList<Enemy> activeEnemies = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -68,6 +70,7 @@ public class Camera extends Rectangle {
     public void updateMapEntities(Player player) {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
+        activeEnemies = loadActiveEnemies();
         activeProjectiles = loadActiveProjectiles();
         activeItems = loadActiveItems();
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
@@ -83,6 +86,10 @@ public class Camera extends Rectangle {
             item.update(player);
         }
 
+        for (Enemy enemy : activeEnemies) {
+            enemy.update(player);
+        }
+        
     }
 
     // updates any currently running script
@@ -101,7 +108,7 @@ public class Camera extends Rectangle {
             }
         }
     }
-
+    
     // determine which enhanced map tiles are active (exist and are within range of the camera)
     private ArrayList<EnhancedMapTile> loadActiveEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
@@ -140,6 +147,25 @@ public class Camera extends Rectangle {
             }
         }
         return activeNPCs;
+    }
+    // determine which enemies are active (exist and are within range of the camera)
+    private ArrayList<Enemy> loadActiveEnemies() {
+        ArrayList<Enemy> activeEnemies = new ArrayList<>();
+        for (int i = map.getEnemies().size() - 1; i >= 0; i--) {
+            Enemy enemy = map.getEnemies().get(i);
+
+            if (isMapEntityActive(enemy)) {
+                activeEnemies.add(enemy);
+                if (enemy.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    enemy.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (enemy.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                enemy.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (enemy.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getEnemies().remove(i);
+            }
+        }
+        return activeEnemies;
     }
     // determine which projectiles are active (exist and are within range of the camera)
     private ArrayList<Projectile> loadActiveProjectiles() {
@@ -266,7 +292,7 @@ public class Camera extends Rectangle {
     // draws active map entities to the screen
     public void drawMapEntities(Player player, GraphicsHandler graphicsHandler) {
         ArrayList<NPC> drawNpcsAfterPlayer = new ArrayList<>();
-
+        
         // goes through each active npc and determines if it should be drawn at this time based on their location relative to the player
         // if drawn here, npc will later be "overlapped" by player
         // if drawn later, npc will "cover" player
@@ -277,6 +303,21 @@ public class Camera extends Rectangle {
                 }
                 else {
                     drawNpcsAfterPlayer.add(npc);
+                }
+            }
+        }
+        ArrayList<Enemy> drawEnemiesAfterPlayer = new ArrayList<>();
+        
+        // goes through each active enemy and determines if it should be drawn at this time based on their location relative to the player
+        // if drawn here, enemy will later be "overlapped" by player
+        // if drawn later, enemy will "cover" player
+        for (Enemy enemy : activeEnemies) {
+            if (containsDraw(enemy)) {
+                if (enemy.getBounds().getY() < player.getBounds().getY1()  + (player.getBounds().getHeight() / 2f)) {
+                    enemy.draw(graphicsHandler);
+                }
+                else {
+                    drawEnemiesAfterPlayer.add(enemy);
                 }
             }
         }
@@ -296,6 +337,11 @@ public class Camera extends Rectangle {
         // npcs determined to be drawn after player from the above step are drawn here
         for (NPC npc : drawNpcsAfterPlayer) {
             npc.draw(graphicsHandler);
+        }
+
+        // enemies determined to be drawn after player from the above step are drawn here
+        for (Enemy enemy : drawEnemiesAfterPlayer) {
+            enemy.draw(graphicsHandler);
         }
 
         // Uncomment this to see triggers drawn on screen
@@ -325,12 +371,18 @@ public class Camera extends Rectangle {
                 getY1() - tileHeight <  gameObject.getY() + gameObject.getHeight() && getEndBoundY() + tileHeight >  gameObject.getY();
     }
 
+    
+
     public ArrayList<EnhancedMapTile> getActiveEnhancedMapTiles() {
         return activeEnhancedMapTiles;
     }
 
     public ArrayList<NPC> getActiveNPCs() {
         return activeNPCs;
+    }
+
+    public ArrayList<Enemy> getActiveEnemies() {
+        return activeEnemies;
     }
 
     public ArrayList<Trigger> getActiveTriggers() {

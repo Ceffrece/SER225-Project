@@ -57,8 +57,10 @@ public abstract class Map {
     protected String mapFileName;
 
     // lists to hold map entities that are a part of the map
+    
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
+    protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
 
     public ArrayList<Projectile> projectiles;
@@ -99,7 +101,6 @@ public abstract class Map {
         animatedMapTiles = new ArrayList<>();
 
         loadMapFile();
-
         this.enhancedMapTiles = loadEnhancedMapTiles();
         for (EnhancedMapTile enhancedMapTile: this.enhancedMapTiles) {
             enhancedMapTile.setMap(this);
@@ -108,6 +109,11 @@ public abstract class Map {
         this.npcs = loadNPCs();
         for (NPC npc: this.npcs) {
             npc.setMap(this);
+        }
+
+        this.enemies = loadEnemies();
+        for (Enemy enemy: this.enemies) {
+            enemy.setMap(this);
         }
 
         this.triggers = loadTriggers();
@@ -296,6 +302,9 @@ public abstract class Map {
     // list of enemies defined to be a part of the map, should be overridden in a subclass
     protected void loadScripts() { }
 
+    // list of enemies defined to be a part of the map, should be overridden in a subclass
+
+
     // list of enhanced map tiles defined to be a part of the map, should be overridden in a subclass
     protected ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         return new ArrayList<>();
@@ -303,6 +312,11 @@ public abstract class Map {
 
     // list of npcs defined to be a part of the map, should be overridden in a subclass
     protected ArrayList<NPC> loadNPCs() {
+        return new ArrayList<>();
+    }
+
+    // list of enemies defined to be a part of the map, should be overridden in a subclass
+    protected ArrayList<Enemy> loadEnemies() {
         return new ArrayList<>();
     }
 
@@ -318,6 +332,7 @@ public abstract class Map {
     public Camera getCamera() {
         return camera;
     }
+    
 
     public ArrayList<EnhancedMapTile> getEnhancedMapTiles() {
         return enhancedMapTiles;
@@ -325,6 +340,9 @@ public abstract class Map {
 
     public ArrayList<NPC> getNPCs() {
         return npcs;
+    }
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
@@ -337,6 +355,9 @@ public abstract class Map {
     public ArrayList<MapTile> getAnimatedMapTiles() {
         return animatedMapTiles;
     }
+
+    // returns all active enemies (enemies that are a part of the current update cycle) -- this changes every frame by the Camera class
+   
 
     public Script getActiveInteractScript() {
         return activeInteractScript;
@@ -355,7 +376,6 @@ public abstract class Map {
         }
         return null;
     }
-
     /*public Item getItemById(int id) {
         for(Item item : items){
             if(item.getId() == id) {
@@ -363,6 +383,14 @@ public abstract class Map {
             }
         }
     }*/
+    public Enemy getEnemyById(int id) {
+        for (Enemy enemy : enemies) {
+            if (enemy.getId() == id) {
+                return enemy;
+            }
+        }
+        return null;
+    }
 
     // returns all active enhanced map tiles (enhanced map tiles that are a part of the current update cycle) -- this changes every frame by the Camera class
     public ArrayList<EnhancedMapTile> getActiveEnhancedMapTiles() {
@@ -372,6 +400,11 @@ public abstract class Map {
     // returns all active npcs (npcs that are a part of the current update cycle) -- this changes every frame by the Camera class
     public ArrayList<NPC> getActiveNPCs() {
         return camera.getActiveNPCs();
+    }
+
+    // returns all active enemies (enemies that are a part of the current update cycle) -- this changes every frame by the Camera class
+    public ArrayList<Enemy> getActiveEnemies() {
+        return camera.getActiveEnemies();
     }
 
     public ArrayList<Trigger> getActiveTriggers() {
@@ -394,6 +427,12 @@ public abstract class Map {
     public void addNPC(NPC npc) {
         npc.setMap(this);
         this.npcs.add(npc);
+    }
+
+    // add an enemy to the map's list of enemies
+    public void addEnemy(Enemy enemy) {
+        enemy.setMap(this);
+        this.enemies.add(enemy);
     }
 
     // add a trigger to the map's list of triggers
@@ -422,6 +461,8 @@ public abstract class Map {
         }
         // gets active surrounding npcs
         surroundingMapEntities.addAll(getActiveNPCs());
+        // gets active surrounding enemies
+        surroundingMapEntities.addAll(getActiveEnemies());
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
         surroundingMapEntities.addAll(getActiveItems());
         return surroundingMapEntities;
