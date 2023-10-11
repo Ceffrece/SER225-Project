@@ -4,6 +4,7 @@ import EnhancedMapTiles.PushableRock;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Level.Item;
+import Level.Enemy;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -24,6 +25,7 @@ import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
 
+import Enemy.CerealKiller;
 import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
@@ -60,6 +62,15 @@ public class TestMap extends Map {
         // riceBallProjectile projectile = new Projectile(player.getLocation());
 
         return npcs;
+    }
+    public ArrayList<Enemy> loadEnemies() {
+        ArrayList<Enemy> enemies = new ArrayList<>();
+
+        CerealKiller cerealkiller = new CerealKiller(2, getMapTile(11, 2).getLocation());
+        cerealkiller.setExistenceFlag("hasTalkedToCerealKiller");
+        enemies.add(cerealkiller);
+        
+        return enemies;
     }
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
