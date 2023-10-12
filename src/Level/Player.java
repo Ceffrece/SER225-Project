@@ -143,7 +143,7 @@ public abstract class Player extends GameObject {
             int ProjectileY = Math.round(this.getY()) + 4;
 
             
-            setCurentProjectile("peaProjectile");
+            setCurentProjectile("riceBallProjectile");
             Projectile projectile = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             map.addProjectile(projectile);
 

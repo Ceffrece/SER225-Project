@@ -28,7 +28,27 @@ public class peaProjectile extends Projectile {
         }
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
-                        if (player.getFacingDirection() == Direction.RIGHT) {
+                        if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                speedY =  1.5f;
+                                speedX = -1.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                speedY =  1.5f;
+                                speedX = 1.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                speedY =  -1.5f;
+                                speedX = -1.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                speedY =  -1.5f;
+                                speedX = 1.5f; 
+
+                        }
+                        else if (player.getFacingDirection() == Direction.RIGHT) {
                                 speedX = 1.5f;
                         } 
                         else if (player.getFacingDirection() == Direction.LEFT) {

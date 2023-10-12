@@ -22,11 +22,7 @@ public class Dinosaur extends NPC {
         super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("toastEnemy.png"), 14, 14), "STAND_LEFT");
         super.setIdentity("enemy");
     }
-//     public void fireProjectile(){
-//         setCurentProjectile("peaProjectile");
-//         riceBallProjectile projectile = new riceBallProjectile(this.getLocation(),this.currentProjectile, this);
-//         map.addProjectile(projectile);
-//     }
+
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
@@ -69,14 +65,7 @@ public class Dinosaur extends NPC {
             });
         }};
     }
-//     public void update(){
-//         super.update();
-//         fireProjectile();
 
-//     }
-//     public void setCurentProjectile(String currentProjectile) {
-//         this.currentProjectile = currentProjectile;
-//       }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
