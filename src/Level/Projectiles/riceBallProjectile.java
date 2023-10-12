@@ -1,12 +1,13 @@
 package Level.Projectiles;
 
 import Engine.ImageLoader;
-
+import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import Utils.Point;
 import Level.Player;
 import Level.Projectile;
+import NPCs.Dinosaur;
 
 
 public class riceBallProjectile extends Projectile {
@@ -14,11 +15,14 @@ public class riceBallProjectile extends Projectile {
         private float speedY;
         private int existenceFrames = 300;
         private int hasDirection = 0;
-        public riceBallProjectile(Point location, float speed,Player player) {
+        public riceBallProjectile(Point location, float speed,GameObject object) {
                 super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, speed);
                 super.setIdentity(identity);
                 initialize();
                 
+        }
+        public riceBallProjectile(Point location, String currentProjectile, Dinosaur dinosaur) {
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, 1);
         }
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 

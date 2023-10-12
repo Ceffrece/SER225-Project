@@ -7,18 +7,26 @@ import GameObject.Frame;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
+import Level.Projectile;
+import Level.Projectiles.riceBallProjectile;
 import Utils.Point;
+import Level.Map;
 
 import java.util.HashMap;
 
 // This class is for the dinosaur NPC
 public class Dinosaur extends NPC {
-
+        // private String setCurentProjectile;
+        // private String currentProjectile = "peaProjectile";
     public Dinosaur(int id, Point location) {
         super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("toastEnemy.png"), 14, 14), "STAND_LEFT");
         super.setIdentity("enemy");
     }
-
+//     public void fireProjectile(){
+//         setCurentProjectile("peaProjectile");
+//         riceBallProjectile projectile = new riceBallProjectile(this.getLocation(),this.currentProjectile, this);
+//         map.addProjectile(projectile);
+//     }
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
@@ -61,7 +69,14 @@ public class Dinosaur extends NPC {
             });
         }};
     }
+//     public void update(){
+//         super.update();
+//         fireProjectile();
 
+//     }
+//     public void setCurentProjectile(String currentProjectile) {
+//         this.currentProjectile = currentProjectile;
+//       }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);

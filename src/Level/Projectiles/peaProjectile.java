@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import Engine.ImageLoader;
 import GameObject.Frame;
+import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import Utils.Point;
@@ -17,7 +18,7 @@ public class peaProjectile extends Projectile {
         private float speedY;
         private int existenceFrames = 300;
         private int hasDirection = 0;
-        public peaProjectile(Point location, float speed,Player player) {
+        public peaProjectile(Point location, float speed,GameObject object) {
                 super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT", null, speed);
                 super.setIdentity(identity);
 

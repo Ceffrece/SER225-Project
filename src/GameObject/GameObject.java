@@ -34,6 +34,8 @@ public class GameObject extends AnimatedSprite {
 	// the map instance this game object "belongs" to.
 	protected Map map;
 
+	protected String currentProjectile;
+	
 	protected boolean affectedByTriggers = false;
 
 	public GameObject(SpriteSheet spriteSheet, float x, float y, String startingAnimation) {
@@ -322,4 +324,12 @@ public class GameObject extends AnimatedSprite {
 			super.drawBounds(graphicsHandler, color);
 		}
 	}
+
+	public void setCurentProjectile(String currentProjectile ){
+		this.currentProjectile = currentProjectile;
+	}
+	public String getCurentProjectile(){
+		return currentProjectile;
+	}
 }
+

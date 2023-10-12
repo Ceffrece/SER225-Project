@@ -3,11 +3,16 @@ package Level;
 import GameObject.SpriteSheet;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
+import NPCs.Dinosaur;
 import GameObject.Frame;
+import GameObject.GameObject;
+import GameObject.Sprite;
 import Utils.Direction;
 
 import java.awt.Point;
 import java.util.HashMap;
+
+import javax.swing.text.DefaultEditorKit.CutAction;
 
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
@@ -16,7 +21,7 @@ import Engine.ImageLoader;
 public class Projectile extends MapEntity{
 
         private float speed;
-        private String curentProjectile;
+        private String curentProjectile = "riceBallProjectile";
         private int projectileChosen = 0;
         private int existenceFrames = 300;
         public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity, float speed) {
@@ -41,11 +46,12 @@ public class Projectile extends MapEntity{
                 super(x, y);
             }
              
-            public Projectile(Utils.Point location, String currentProjectile, Player player) {
+            public Projectile(Utils.Point location, String currentProjectile,GameObject object) {
                 super(location.x, location.y);
                 super.setIdentity(identity);
-                setCurentProjectile(currentProjectile);
             }
+
+           
 
             public void setSpeed(float speed){
                 this.speed = speed;
@@ -72,25 +78,28 @@ public class Projectile extends MapEntity{
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
             }
-            public void currentProjectile(String currentProjectile,Player player){
-                if (projectileChosen ==0){ 
+            public void currentProjectile(String currentProjectile,GameObject object){
+                if (projectileChosen == 0){ 
                     switch(currentProjectile){
                         case "peaProjectile":
-                             peaProjectile projectile = new peaProjectile(player.getLocation(),1.5f, player);
+                             peaProjectile projectile = new peaProjectile(object.getLocation(),1.5f, object);
                              map.addProjectile(projectile);
+                             projectileChosen+= 1;
                              break;
                         case "riceBallProjectile":
-                             riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(),1.5f, player);
+                             riceBallProjectile projectile2 = new riceBallProjectile(object.getLocation(),1.5f, object);
                              map.addProjectile(projectile2);
+                             projectileChosen+= 1;
                              break;
                         default:
                             break;
                     }
-                projectileChosen++;
+                    System.out.println(projectileChosen);
+                    projectileChosen++;
             }
         }
-            public void update(Player player) {
-                currentProjectile(curentProjectile, player);
+            public void update(GameObject object) {
+                currentProjectile(curentProjectile, object);
                 super.update();
 
                 if (existenceFrames == 0) {

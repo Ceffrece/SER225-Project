@@ -33,7 +33,7 @@ public abstract class Player extends GameObject {
     public static int playerXPLevel = 0;
     public static int playerXPPoints = 0;
 
-    protected String currentProjectile;
+    protected String currentProjectile = "peaProjectile";
 
     public static int dash = 0;
     public static int playerArmor = 0;
@@ -67,9 +67,7 @@ public abstract class Player extends GameObject {
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.F;
 
-    //define id for projectile type 
-    protected int projectileId;
-    
+   
     protected boolean isInvincible = false;
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
@@ -141,12 +139,12 @@ public abstract class Player extends GameObject {
         //test print
         //make a new riceball Projectile
         
-            // define where fireball will spawn on the map (y location) relative to dinosaur enemy's location
+            // define where riceball will spawn on the map (y location) relative to the player's location
             int ProjectileY = Math.round(this.getY()) + 4;
 
             
             setCurentProjectile("peaProjectile");
-            Projectile projectile = new Projectile(this.getLocation(),this.currentProjectile, this);
+            Projectile projectile = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             map.addProjectile(projectile);
 
 
@@ -459,14 +457,7 @@ public abstract class Player extends GameObject {
             attackRange += x;
       }
 
-    //currentProjectile setter
-      public void setCurentProjectile(String currentProjectile) {
-        this.currentProjectile = currentProjectile;
-      }
-       //attack Range getter
-       public String getCurentProjectile() {
-        return currentProjectile;
-      }
+    
       //player Health setter
       public void setPlayerHealth(int hlth) {
         playerHealth = hlth;
