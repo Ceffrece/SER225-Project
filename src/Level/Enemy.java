@@ -11,6 +11,9 @@ import Utils.Direction;
 public class Enemy extends MapEntity
 {
     protected int id = 0;
+    protected int health;
+
+    
 
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
@@ -55,6 +58,25 @@ public class Enemy extends MapEntity
         else if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
         {
             this.currentAnimationName = "STAND_LEFT";
+        }
+    }
+    public void walkTowardPlayer(Player player)
+    {
+        if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
+        {
+            walk(Direction.RIGHT, .5f);
+        }
+        if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
+        {
+            walk(Direction.LEFT, .5f);
+        }
+        if (Math.round(getBoundsY2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsY2()))
+        {
+            walk(Direction.DOWN, .5f);
+        }
+        if (Math.round(getBoundsY1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsY1()))
+        {
+            walk(Direction.UP,.5f);
         }
     }
 
@@ -110,7 +132,9 @@ public class Enemy extends MapEntity
     }
 
     public void update(Player player)
-    {
+    {   
+        facePlayer(player);
+        walkTowardPlayer(player);
         super.update();
     }
 
@@ -122,5 +146,21 @@ public class Enemy extends MapEntity
 
     public int getID(){
         return id;
+    }
+    // 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public void hurtEnemy(int damage) {
+        
+        this.health -= damage;
+        System.out.println("Hit for "+ damage + " left "+ health);
+        if (health <= 0){
+            this.mapEntityStatus = MapEntityStatus.REMOVED;
+        }
     }
 }

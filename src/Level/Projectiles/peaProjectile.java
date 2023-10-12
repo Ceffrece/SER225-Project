@@ -18,11 +18,10 @@ public class peaProjectile extends Projectile {
         private float speedY;
         private int existenceFrames = 300;
         private int hasDirection = 0;
-        public peaProjectile(Point location, float speed,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT", null, speed);
+        public peaProjectile(Point location,GameObject object) {
+                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT", null);
                 super.setIdentity(identity);
-
-                
+                super.setDamage(20);
                 initialize();
                 
         }
@@ -74,13 +73,15 @@ public class peaProjectile extends Projectile {
                 put("DEFAULT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(1, 1, 5, 5)
+                            .withBounds(1, 1, 16, 16)
                             .build()
             });
         }};
 }
         public void update(Player player) {
                 super.update();
+
+                
                 getProjectileDirection(player);
 
                 moveXHandleCollision(speedX);
@@ -92,6 +93,7 @@ public class peaProjectile extends Projectile {
                 }
        
         }
+        
 
 }
 

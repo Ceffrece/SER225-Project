@@ -121,5 +121,8 @@ public class MapEntity extends GameObject {
     public void setIdentity(String newIdentity){
         this.identity = newIdentity;
     }
+
+    public void hurtEnemy(int damage) {
+    }
 }
 

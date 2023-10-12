@@ -58,6 +58,20 @@ public class MapCollisionHandler {
                 return new MapCollisionCheckResult(new Point(adjustedPositionX, gameObject.getY()), entityCollidedWith);
             }
         }
+        for (Enemy enemy : map.getActiveEnemies()) {
+            if (!gameObject.equals(enemy) && !enemy.isUncollidable() && hasCollidedWithMapEntity(gameObject, enemy, direction)) {
+                entityCollidedWith = enemy;
+                float adjustedPositionX = gameObject.getX();
+                if (direction == Direction.RIGHT) {
+                    float boundsDifference = gameObject.getX2() - gameObject.getBoundsX2();
+                    adjustedPositionX = enemy.getBoundsX1() - gameObject.getWidth() + boundsDifference;
+                } else if (direction == Direction.LEFT) {
+                    float boundsDifference = gameObject.getBoundsX1() - gameObject.getX();
+                    adjustedPositionX = (enemy.getBoundsX2() + 1) - boundsDifference;
+                }
+                return new MapCollisionCheckResult(new Point(adjustedPositionX, gameObject.getY()), entityCollidedWith);
+            }
+        }
 
         if (gameObject.isAffectedByTriggers()) {
             for (Trigger trigger : map.getActiveTriggers()) {
@@ -130,6 +144,21 @@ public class MapCollisionHandler {
                 return new MapCollisionCheckResult(new Point(gameObject.getX(), adjustedPositionY), entityCollidedWith);
             }
         }
+        for (Enemy enemy : map.getActiveEnemies()) {
+            if (!gameObject.equals(enemy) && !enemy.isUncollidable() && hasCollidedWithMapEntity(gameObject, enemy, direction)) {
+                entityCollidedWith = enemy;
+                float adjustedPositionY = gameObject.getY();
+                if (direction == Direction.DOWN) {
+                    float boundsDifference = gameObject.getY2() - gameObject.getBoundsY2();
+                    adjustedPositionY = enemy.getBoundsY1() - gameObject.getHeight() + boundsDifference;
+                } else if (direction == Direction.UP) {
+                    float boundsDifference = gameObject.getBoundsY1() - gameObject.getY();
+                    adjustedPositionY = (enemy.getBoundsY2() + 1) - boundsDifference;
+                }
+                return new MapCollisionCheckResult(new Point(gameObject.getX(), adjustedPositionY), entityCollidedWith);
+            }
+        }
+
 
         if (gameObject.isAffectedByTriggers()) {
             for (Trigger trigger : map.getActiveTriggers()) {

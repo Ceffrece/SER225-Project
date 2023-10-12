@@ -15,14 +15,15 @@ public class riceBallProjectile extends Projectile {
         private float speedY;
         private int existenceFrames = 300;
         private int hasDirection = 0;
-        public riceBallProjectile(Point location, float speed,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, speed);
+        public riceBallProjectile(Point location,GameObject object) {
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null);
                 super.setIdentity(identity);
+                super.setDamage(50);
                 initialize();
                 
         }
         public riceBallProjectile(Point location, String currentProjectile, Dinosaur dinosaur) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null, 1);
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null);
         }
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 

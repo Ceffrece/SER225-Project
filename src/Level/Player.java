@@ -75,6 +75,8 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+        setCurentProjectile("peaProjectile");
+
 
     }
 
@@ -135,15 +137,7 @@ public abstract class Player extends GameObject {
         else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
-        
-        //test print
-        //make a new riceball Projectile
-        
-            // define where riceball will spawn on the map (y location) relative to the player's location
-            int ProjectileY = Math.round(this.getY()) + 4;
-
             
-            setCurentProjectile("riceBallProjectile");
             Projectile projectile = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             map.addProjectile(projectile);
 

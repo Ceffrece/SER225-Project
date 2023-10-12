@@ -7,6 +7,8 @@ import GameObject.Frame;
 import Utils.Direction;
 
 import java.awt.Point;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Builders.FrameBuilder;
@@ -14,14 +16,17 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 
 public class Projectile extends MapEntity{
+        
 
         private float speed;
         private String curentProjectile;
         private int projectileChosen = 0;
         private int existenceFrames = 300;
-        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity, float speed) {
+        protected int damage = 10;
+        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
                 super.setIdentity(identity);
+
                 initialize();
             }
         
@@ -54,6 +59,7 @@ public class Projectile extends MapEntity{
                 // Code to check if the projectile is still active
                 return true;
             }
+            
 
             @Override
             public void initialize() {
@@ -62,26 +68,34 @@ public class Projectile extends MapEntity{
             @Override
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided) {
+                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                    
+                }else if (hasCollided){
+                    this.mapEntityStatus = MapEntityStatus.REMOVED;
+                    touchedEnemy(entityCollidedWith);
                 }
             }
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided) {
+                
+                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
+                }else if (hasCollided){
+                    this.mapEntityStatus = MapEntityStatus.REMOVED;
+                    touchedEnemy(entityCollidedWith);
                 }
+                
+                
             }
             public void currentProjectile(String currentProjectile,Player player){
                 if (projectileChosen ==0){ 
                     switch(currentProjectile){
                         case "peaProjectile":
-                             peaProjectile projectile = new peaProjectile(player.getLocation(),1.5f, player);
+                             peaProjectile projectile = new peaProjectile(player.getLocation(), player);
                              map.addProjectile(projectile);
                              break;
                         case "riceBallProjectile":
-                             riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(),1.5f, player);
+                             riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(), player);
                              map.addProjectile(projectile2);
                              break;
                         default:
@@ -96,13 +110,26 @@ public class Projectile extends MapEntity{
 
                 if (existenceFrames == 0) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                } else {
+                } 
+                else {
                     
                     super.update();
                 }
+                
                 existenceFrames--;
+
             }
-        
+
+            public void touchedEnemy(MapEntity enemy){
+                // for (int i = 0; i < map.enemies.size(); i++) {
+                //     if(overlaps(map.enemies.get(i))){
+                //         System.out.println(this.damage);
+                //         map.enemies.get(i).hurtEnemy(this.damage);                        
+                //     }
+                //   }
+                enemy.hurtEnemy(this.damage);
+            }
+            
             // A subclass can override this method to specify what it does when it touches the player
             public void touchedPlayer(Player player) {
                 if (this.identity == "enemy"){
@@ -117,7 +144,7 @@ public class Projectile extends MapEntity{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(1, 1, 5, 5)
+                                .withBounds(1, 1, 16, 16)
                                 .build()
                 });
             }};
@@ -131,6 +158,13 @@ public class Projectile extends MapEntity{
         @Override
         public void draw(GraphicsHandler graphicsHandler) {
             super.draw(graphicsHandler);
+        }
+
+        public int getDamage() {
+            return damage;
+        }
+        public void setDamage(int damage) {
+            this.damage = damage;
         }
         
 }

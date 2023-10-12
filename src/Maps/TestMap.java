@@ -59,14 +59,13 @@ public class TestMap extends Map {
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
         
-        // riceBallProjectile projectile = new Projectile(player.getLocation());
 
         return npcs;
     }
     public ArrayList<Enemy> loadEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<>();
 
-        CerealKiller cerealkiller = new CerealKiller(2, getMapTile(11, 2).getLocation());
+        CerealKiller cerealkiller = new CerealKiller(0, getMapTile(11, 2).getLocation());
         cerealkiller.setExistenceFlag("hasTalkedToCerealKiller");
         enemies.add(cerealkiller);
         
