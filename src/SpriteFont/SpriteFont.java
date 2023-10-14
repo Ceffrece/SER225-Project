@@ -20,6 +20,7 @@ public class SpriteFont {
 		this.x = x;
 		this.y = y;
 		this.color = color;
+		
 	}
 
 	public SpriteFont(String text, float x, float y, Font font, Color color) {

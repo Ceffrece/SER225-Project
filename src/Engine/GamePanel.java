@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
 	private GraphicsHandler graphicsHandler;
 
 	private boolean isGamePaused = false;
+	private boolean isInventoryActivated = false;
+
 	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
@@ -47,6 +49,12 @@ public class GamePanel extends JPanel {
 	private SpriteFont treeSelecterG;
 	private SpriteFont treeSelecterF;
 	private SpriteFont treeSelecterD;
+
+	private SpriteFont currentProjectile;
+	private SpriteFont currentItems;
+	private SpriteFont playerStats;
+
+
 
 	private DairySkillTree dairy = new DairySkillTree();
 	private GrainSkillTree grain = new GrainSkillTree();
@@ -78,6 +86,8 @@ public class GamePanel extends JPanel {
 	private final Key skillTreeKey = Key.T;
 	private boolean skillTreeActivated = false;
 	private final Key levelKey = Key.L;
+	private final Key inventoryKey = Key.I;
+
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
@@ -106,6 +116,12 @@ public class GamePanel extends JPanel {
 		treeSelecterG = new SpriteFont("Grain Tree", 300,300,"Comic Sans", 25, Color. WHITE);
 		treeSelecterF = new SpriteFont("Fruit Tree",400,400,"Comic Sans", 25, Color. WHITE);
 		treeSelecterD = new SpriteFont("Dairy Tree", 500,500,"Comic Sans", 25, Color. WHITE);
+
+		currentProjectile = new SpriteFont("Current Projectiles", 50,50,"Sans Serif", 50, Color. WHITE);
+		currentItems = new SpriteFont("Current Items", 50,150,"Sans Serif", 50, Color. WHITE);
+		playerStats = new SpriteFont("Current Player Stats", 50,250,"Sans Serif", 50, Color. WHITE);
+
+
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
 
@@ -144,10 +160,12 @@ public class GamePanel extends JPanel {
 	}
 	int levelCount = 0;
 	public void update() {
+		
 		updatePauseState();
+		updateShowCurrentHeldProjectile();
 		updateShowFPSState();
 		updateSkillTreeState();
-
+		updateInventoryState();
 		levelCount++;
 		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
 			Player.playerXPLevel += 1;
@@ -155,7 +173,7 @@ public class GamePanel extends JPanel {
 			System.out.println("Level is " + Player.playerXPLevel);
 		}
 
-		if(isGamePaused || skillTreeActivated){
+		if(isGamePaused || skillTreeActivated|| isInventoryActivated){
 
 		}
 		else{
@@ -171,6 +189,16 @@ public class GamePanel extends JPanel {
 
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
+		}
+	}
+	private void updateInventoryState() {
+		if (Keyboard.isKeyDown(inventoryKey) && !keyLocker.isKeyLocked(inventoryKey)) {
+			isInventoryActivated = !isInventoryActivated;
+			keyLocker.lockKey(inventoryKey);
+		}
+
+		if (Keyboard.isKeyUp(inventoryKey)) {
+			keyLocker.unlockKey(inventoryKey);
 		}
 	}
 
@@ -197,7 +225,9 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel.setText("FPS: " + currentFPS);
 	}
-
+	private void updateShowCurrentHeldProjectile() {
+		
+	}
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
@@ -210,11 +240,20 @@ public class GamePanel extends JPanel {
 		for(int i = Player.playerHealth; i < 5 ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
+		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
+		graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+
 		}
+
 		// if game is paused, draw pause gfx over Screen gfx
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+		}
+
+		if (isInventoryActivated) {
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+			displayInventory();
 		}
 
 		if(skillTreeActivated){
@@ -237,10 +276,95 @@ public class GamePanel extends JPanel {
 		draw();
 	}
 
+	int currentInventortOption = 0;
+	boolean inventorySelect = false;
+	int inventoryTimer = 0;
+
+
+	private void displayInventory(){
+
+		if(inventorySelect){
+			switch(currentInventortOption){
+				case 0 : displayCurrentProjectiles();
+				break;
+				case 1 : displayProteinTree();
+				break;
+				case 2 : displayGrainTree();
+				break;
+			}
+		}
+		else{
+			currentProjectile.draw(graphicsHandler);
+			currentItems.draw(graphicsHandler);
+			playerStats.draw(graphicsHandler);
+
+			switch(currentInventortOption){
+				case 0 : currentProjectile.setColor(Color.RED);
+						playerStats.setColor(Color.WHITE);
+						currentItems.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 1 : currentItems.setColor(Color.RED);
+						currentProjectile.setColor(Color.WHITE);
+						playerStats.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+				case 2 : playerStats.setColor(Color.RED);
+						currentProjectile.setColor(Color.WHITE);
+						currentItems.setColor(Color.WHITE);
+						treeSelecterF.setColor(Color.WHITE);
+						treeSelecterD.setColor(Color.WHITE);
+					break;
+			}
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.DOWN) && inventoryTimer > 10){
+				currentInventortOption++;
+				if(currentInventortOption > 2){
+					currentInventortOption = 0;
+				}
+				inventoryTimer = 0;
+
+			}
+			else if(isInventoryActivated && Keyboard.isKeyDown(Key.UP) && inventoryTimer > 10){
+				currentInventortOption--;
+				if(currentInventortOption < 0){
+					currentInventortOption = 2;
+				}
+				inventoryTimer = 0;
+
+			}
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.ENTER) && inventoryTimer > 10){
+				inventorySelect = true;
+			}
+
+			inventoryTimer++;
+
+		}
+
+	}
+	private void displayCurrentProjectiles() {
+		if(Keyboard.isKeyDown(Key.ESC)){
+			inventorySelect = false;
+		}
+		int inventoryX = 100;
+		int inventoryY = 50;
+                for (int i = 0; i < Player.playerCurrentProjectiles.size(); i++) {
+			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(i).getCurentProjectilePNG()), inventoryX, inventoryY, 100, 100);
+			inventoryX+=100; 
+
+
+		}
+
+	}
+
 	int currentTree = 0;
 	int timer = 0;
 	boolean select = false;
 
+
+
+	
 	private void displaySkillTree(){
 		if(select){
 			switch(currentTree){

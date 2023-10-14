@@ -55,6 +55,9 @@ public abstract class Player extends GameObject {
     protected Direction facingDirection;
     protected Direction lastMovementDirection;
 
+    public static ArrayList<Projectile> playerCurrentProjectiles = new ArrayList<>();
+    public static int projectileInHand = 0;
+
     // classes that listen to player events can be added to this list
     protected ArrayList<PlayerListener> listeners = new ArrayList<>();
 
@@ -67,6 +70,9 @@ public abstract class Player extends GameObject {
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.F;
 
+    protected Key CHANGE_PROJECT = Key.SHIFT;
+
+
    
     protected boolean isInvincible = false;
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
@@ -75,7 +81,12 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        setCurentProjectile("peaProjectile");
+        peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
+        riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
+
+        playerCurrentProjectiles.add(peaProjectile);
+        playerCurrentProjectiles.add(riceBallProjectile);
+
 
 
     }
@@ -121,11 +132,14 @@ public abstract class Player extends GameObject {
             case FIRING:
                 playerFiring();
                 break;
+            case CHANGE:
+                playerChange();
+                break;
         }
     }
 
     protected void playerFiring(){
-
+        
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
@@ -134,6 +148,7 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             playerState = PlayerState.WALKING;
         }
+        
         else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
@@ -143,15 +158,42 @@ public abstract class Player extends GameObject {
 
 
 
+
         
     
     }
-
+    protected void playerChange(){
+        if(projectileInHand >= playerCurrentProjectiles.size()-1){
+            projectileInHand = 0;
+        }
+        else{
+            projectileInHand ++;
+        }
+        if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
+            keyLocker.lockKey(INTERACT_KEY);
+            map.entityInteract(this);
+        }
+        // if a walk key is pressed, player enters WALKING state
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+            playerState = PlayerState.WALKING;
+        }
+        
+        else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
+            playerState = PlayerState.STANDING;
+        }
+            
+            
+    }
     // player STANDING state logic
     protected void playerStanding() {
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
+        }
+
+        if (!keyLocker.isKeyLocked(CHANGE_PROJECT) && Keyboard.isKeyDown(CHANGE_PROJECT)) {
+            keyLocker.lockKey(CHANGE_PROJECT);
+            playerState = PlayerState.CHANGE;
         }
         // if Fireing Key is not locked and Fire Key is down, lock key 
         if (!keyLocker.isKeyLocked(FIRE_KEY) && Keyboard.isKeyDown(FIRE_KEY)) {
@@ -163,7 +205,6 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             playerState = PlayerState.WALKING;
         }
-
         
     }
 
@@ -227,6 +268,10 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)&& Keyboard.isKeyUp(FIRE_KEY)) {
             playerState = PlayerState.STANDING;
         }
+        if (!keyLocker.isKeyLocked(CHANGE_PROJECT) && Keyboard.isKeyDown(CHANGE_PROJECT)) {
+            keyLocker.lockKey(CHANGE_PROJECT);
+            playerState = PlayerState.CHANGE;
+        }
     }
 
     // player INTERACTING state logic -- intentionally does nothing so player is locked in place while a script is running
@@ -239,6 +284,10 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(FIRE_KEY) && playerState != PlayerState.FIRING) {
             keyLocker.unlockKey(FIRE_KEY);
         }
+        if (Keyboard.isKeyUp(CHANGE_PROJECT) && playerState != PlayerState.INTERACTING) {
+            keyLocker.unlockKey(CHANGE_PROJECT);
+        }
+        
     }
 
     // anything extra the player should do based on interactions can be handled here
@@ -400,7 +449,10 @@ public abstract class Player extends GameObject {
             moveX(speed);
         }
     }
-
+    public String getCurentProjectile(){
+        
+        return playerCurrentProjectiles.get(projectileInHand).projectileID;
+    }
    //----setters and getters and helper functions :D for player varaibles----
     //walk speed setter
     public static void setWalkSpeed(Float walkSpeeed) {

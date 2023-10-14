@@ -23,6 +23,9 @@ public class Projectile extends MapEntity{
         private int projectileChosen = 0;
         private int existenceFrames = 300;
         protected int damage = 10;
+        public String projectileID;
+        public static String projectilePng;
+
         public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
                 super.setIdentity(identity);
@@ -60,7 +63,7 @@ public class Projectile extends MapEntity{
                 return true;
             }
             
-
+            
             @Override
             public void initialize() {
                 super.initialize();
@@ -159,6 +162,9 @@ public class Projectile extends MapEntity{
         public void draw(GraphicsHandler graphicsHandler) {
             super.draw(graphicsHandler);
         }
+        public String getCurentProjectilePNG(){
+            return projectilePng;
+    }
 
         public int getDamage() {
             return damage;
