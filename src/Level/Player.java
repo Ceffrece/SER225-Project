@@ -6,6 +6,7 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import NPCs.Walrus;
@@ -61,6 +62,9 @@ public abstract class Player extends GameObject {
     // classes that listen to player events can be added to this list
     protected ArrayList<PlayerListener> listeners = new ArrayList<>();
 
+    public static ArrayList<Integer> playerStats = new ArrayList<>();
+
+
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
     protected Key MOVE_LEFT_KEY = Key.LEFT;
@@ -83,9 +87,11 @@ public abstract class Player extends GameObject {
         this.affectedByTriggers = true;
         peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
-
+        bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
+        
         playerCurrentProjectiles.add(peaProjectile);
         playerCurrentProjectiles.add(riceBallProjectile);
+        playerCurrentProjectiles.add(bannanaProjectile);
 
 
 
@@ -112,6 +118,10 @@ public abstract class Player extends GameObject {
         handlePlayerAnimation();
 
         updateLockedKeys();
+        
+       
+
+
 
         // update player's animation
         super.update();
@@ -459,7 +469,7 @@ public abstract class Player extends GameObject {
         walkSpeed = walkSpeeed;
       }
       //walk speed getter 
-      public Float getWalkSpeed() {
+      public static Float getWalkSpeed() {
         return walkSpeed;
       }
 
@@ -471,7 +481,7 @@ public abstract class Player extends GameObject {
         attackSpeed = spd;
       }
       //attack speed getter
-      public int getAttackSpeed() {
+      public static int getAttackSpeed() {
         return attackSpeed;
       }
       public static void addAttackSpeed(int x) {
@@ -483,7 +493,7 @@ public abstract class Player extends GameObject {
         attackDamage = dmg;
       }
        //attack Damage getter
-       public int getAttackDamage() {
+       public static int getAttackDamage() {
         return attackDamage;
       }
       public void addAttackDamage(int x) {
@@ -496,7 +506,7 @@ public abstract class Player extends GameObject {
         attackRange = range;
       }
        //attack Range getter
-       public int getAttackRange() {
+       public static int getAttackRange() {
         return attackRange;
       }
       public void addAttackRange(int x) {
@@ -539,7 +549,7 @@ public abstract class Player extends GameObject {
       public void addPlayerMaxHealth(int x){
         maxHealth += x;
       }
-      public int getMaxHealth(){
+      public static int getMaxHealth(){
         return maxHealth;
       }
 
@@ -551,7 +561,7 @@ public abstract class Player extends GameObject {
         dash = dashSet;
       }
        //dash getter
-       public int getDash() {
+       public static int getDash() {
         return dash;
       }
       public static void addDash(int x) {
@@ -563,7 +573,7 @@ public abstract class Player extends GameObject {
         playerArmor = playerArmorSet;
       }
        //playerArmor getter
-       public int getPlayerArmor() {
+       public static int getPlayerArmor() {
         return playerArmor;
       }
       public void addPlayerArmor(int x) {

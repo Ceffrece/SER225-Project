@@ -10,6 +10,8 @@ import javax.swing.*;
 import Builders.FrameBuilder;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import Level.Player;
 import Players.Cat;
 
@@ -53,6 +55,9 @@ public class GamePanel extends JPanel {
 	private SpriteFont currentProjectile;
 	private SpriteFont currentItems;
 	private SpriteFont playerStats;
+
+	private SpriteFont drawPlayerStat;
+	private SpriteFont drawPlayerStatString;
 
 
 
@@ -162,7 +167,6 @@ public class GamePanel extends JPanel {
 	public void update() {
 		
 		updatePauseState();
-		updateShowCurrentHeldProjectile();
 		updateShowFPSState();
 		updateSkillTreeState();
 		updateInventoryState();
@@ -225,9 +229,7 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel.setText("FPS: " + currentFPS);
 	}
-	private void updateShowCurrentHeldProjectile() {
-		
-	}
+	
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
@@ -287,9 +289,9 @@ public class GamePanel extends JPanel {
 			switch(currentInventortOption){
 				case 0 : displayCurrentProjectiles();
 				break;
-				case 1 : displayProteinTree();
+				case 1 : displayCurrentProjectiles();
 				break;
-				case 2 : displayGrainTree();
+				case 2 : displayCurrentPlayerStats();
 				break;
 			}
 		}
@@ -344,7 +346,7 @@ public class GamePanel extends JPanel {
 
 	}
 	private void displayCurrentProjectiles() {
-		if(Keyboard.isKeyDown(Key.ESC)){
+		if(Keyboard.isKeyDown(Key.I)){
 			inventorySelect = false;
 		}
 		int inventoryX = 100;
@@ -352,6 +354,53 @@ public class GamePanel extends JPanel {
                 for (int i = 0; i < Player.playerCurrentProjectiles.size(); i++) {
 			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(i).getCurentProjectilePNG()), inventoryX, inventoryY, 100, 100);
 			inventoryX+=100; 
+
+
+		}
+
+	}
+	public static ArrayList<String> playerStatsStrings = new ArrayList<>();
+
+	private void displayCurrentPlayerStats() {
+		if(Keyboard.isKeyDown(Key.I)){
+			inventorySelect = false;
+		}
+		Player.playerStats.clear();
+		Player.playerStats.add(Player.getWalkSpeed().intValue());
+		Player.playerStats.add(Player.getAttackSpeed());
+		Player.playerStats.add(Player.getAttackDamage());
+		Player.playerStats.add(Player.getAttackRange());
+		Player.playerStats.add(Player.getDash());
+		Player.playerStats.add(Player.getMaxHealth());
+		Player.playerStats.add(Player.getPlayerArmor());
+		
+		playerStatsStrings.clear();
+		playerStatsStrings.add("Walk Speed");
+		playerStatsStrings.add("Attack Speed");
+		playerStatsStrings.add("Attack Damage");
+		playerStatsStrings.add("Attack Range");
+		playerStatsStrings.add("Dash Amount");
+		playerStatsStrings.add("Max Health");
+		playerStatsStrings.add("Armor Amount");
+
+		int inventoryX = 200;
+		int inventoryY = 0;
+		int inventoryStringX = 0;
+		int inventoryStringY = 0;
+
+
+                for (int i = 0; i < Player.playerStats.size(); i++) {
+			drawPlayerStat = new SpriteFont((Player.playerStats.get(i).toString()), inventoryX, inventoryY,"Comic Sans", 25, Color. WHITE);
+			drawPlayerStatString = new SpriteFont((playerStatsStrings.get(i).toString()+ ":"), inventoryStringX, inventoryStringY,"Comic Sans", 25, Color. WHITE);
+
+			drawPlayerStat.draw(graphicsHandler);
+			drawPlayerStatString.draw(graphicsHandler);
+
+			inventoryY+=50; 
+
+			inventoryStringY+=50; 
+
+
 
 
 		}
