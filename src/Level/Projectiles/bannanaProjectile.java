@@ -17,7 +17,9 @@ import NPCs.Dinosaur;
 public class bannanaProjectile extends Projectile {
         private float speedX;
         private float speedY;
-        private int existenceFrames = 300;
+        private float boomX;
+        private float boomY;
+        private int existenceFrames = 200;
         private int hasDirection = 0;
         private SpriteSheet spriteSheet;
 
@@ -43,30 +45,55 @@ public class bannanaProjectile extends Projectile {
                         if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
                                 speedY =  3.5f;
                                 speedX = -3.5f; 
+
+                                boomY = -3.5f;
+                                boomX = 3.5f;
+
+
                         }
                         else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
                                 speedY =  3.5f;
                                 speedX = 3.5f; 
+
+                                boomY = -3.5f;
+                                boomX = -3.5f;
                         }
                         else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
                                 speedY =  -3.5f;
-                                speedX = -3.5f; 
+                                speedX = -3.5f;
+
+                                boomY = 3.5f;
+                                boomX = 3.5f;
                         }
                         else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
                                 speedY =  -3.5f;
                                 speedX = 3.5f; 
+
+                                boomY = 3.5f;
+                                boomX = -3.5f;
                         }
                         else if (player.getFacingDirection() == Direction.RIGHT) {
                                 speedX = 3.5f;
+
+                                boomX = -3.5f;
+
                         } 
                         else if (player.getFacingDirection() == Direction.LEFT) {
                                 speedX = -3.5f; 
+
+                                boomX = 3.5f;
                         }
                         else if (player.getFacingDirection() == Direction.UP) {
                                 speedY = -3.5f;
+
+                                boomY = 3.5f;
+
                         }
                          else if (player.getFacingDirection() == Direction.DOWN) {
                             speedY =  3.5f;
+
+                            boomY = -3.5f;
+
     
                         }
                        
@@ -78,86 +105,87 @@ public class bannanaProjectile extends Projectile {
             public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
                 return new HashMap<String, Frame[]>() {{
                     put("SPIN", new Frame[]{
-                        new FrameBuilder(spriteSheet.getSprite(0, 0), 9)
+                        new FrameBuilder(spriteSheet.getSprite(0, 0), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(0, 1), 5)
+                    new FrameBuilder(spriteSheet.getSprite(0, 1), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(0, 2), 5)
+                    new FrameBuilder(spriteSheet.getSprite(0, 2), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(0, 3), 9)
+                    new FrameBuilder(spriteSheet.getSprite(0, 3), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(0, 4), 5)
+                    new FrameBuilder(spriteSheet.getSprite(0, 4), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                        new FrameBuilder(spriteSheet.getSprite(1, 0), 9)
+                        new FrameBuilder(spriteSheet.getSprite(0, 5), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 5)
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 2), 5)
+                    new FrameBuilder(spriteSheet.getSprite(1, 1), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 3), 9)
+                    new FrameBuilder(spriteSheet.getSprite(1, 2), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 4), 5)
+                    new FrameBuilder(spriteSheet.getSprite(1, 3), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                            new FrameBuilder(spriteSheet.getSprite(2, 0), 9)
+                    new FrameBuilder(spriteSheet.getSprite(1, 4), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(2, 1), 5)
+                            new FrameBuilder(spriteSheet.getSprite(1, 5), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(2, 2), 5)
+                            new FrameBuilder(spriteSheet.getSprite(2, 0), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(2, 3), 9)
+                    new FrameBuilder(spriteSheet.getSprite(2, 1), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(2, 4), 5)
+                    new FrameBuilder(spriteSheet.getSprite(2, 2), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                            new FrameBuilder(spriteSheet.getSprite(3, 0), 9)
+                    new FrameBuilder(spriteSheet.getSprite(2, 3), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 1), 5)
+                    new FrameBuilder(spriteSheet.getSprite(2, 4), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 2), 5)
+                            new FrameBuilder(spriteSheet.getSprite(2, 5), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 3), 9)
+                            new FrameBuilder(spriteSheet.getSprite(3, 0), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(3, 4), 5)
+                    new FrameBuilder(spriteSheet.getSprite(3, 1), 2)
                             .withScale(3)
                             .withBounds(6, 12, 16, 16)
                             .build()
+
                 });
                 put("DEFAULT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
@@ -176,9 +204,15 @@ public class bannanaProjectile extends Projectile {
 
                 getProjectileDirection(player);
                 loadAnimations(spriteSheet);
-                moveXHandleCollision(speedX);
-                moveYHandleCollision(speedY);
-
+                if (existenceFrames > 100){
+                        moveXHandleCollision(speedX);
+                        moveYHandleCollision(speedY);
+                }else{
+                        moveXHandleCollision(boomX);
+                        moveYHandleCollision(boomY);
+                }
+                
+                existenceFrames--;
 
                 if (intersects(player)|| this.identity == "enemy") {
                     touchedPlayer(player);
