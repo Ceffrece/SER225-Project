@@ -9,6 +9,7 @@ import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import Utils.Point;
+import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
 import NPCs.Dinosaur;
@@ -19,27 +20,34 @@ public class bannanaProjectile extends Projectile {
         private float speedY;
         private float boomX;
         private float boomY;
-        private int existenceFrames = 200;
+        private int existenceFrames = (Player.attackRange)*75;
+        int turn = existenceFrames/2;
         private int hasDirection = 0;
         private SpriteSheet spriteSheet;
+
+        private static int shootTime = 100;
 
         public static String projectileID = "bannanaProjectile";
         public static String projectilePng = "bannanaIcon.png";
 
         public bannanaProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN", null);
+                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",50);
                 super.setIdentity(identity);
+
                 super.projectileID = projectileID;
                 super.projectilePng = projectilePng;
+
+                super.existenceFrames = existenceFrames;
+                int turn = existenceFrames/2;
+
                 spriteSheet = new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16);
                 update();
-                super.setDamage(50);
+                super.setDamage(Player.attackDamage*10);
                 initialize();
                 
         }
-        public bannanaProjectile(Point location, String currentProjectile, Dinosaur dinosaur) {
-                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN", null);
-        }
+        
+        
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
                         if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
@@ -201,20 +209,22 @@ public class bannanaProjectile extends Projectile {
         }
         public void update(Player player) {
                 super.update();
-
+                
                 getProjectileDirection(player);
                 loadAnimations(spriteSheet);
-                if (existenceFrames > 100){
+
+                if (existenceFrames > turn){
                         moveXHandleCollision(speedX);
                         moveYHandleCollision(speedY);
                 }else{
                         moveXHandleCollision(boomX);
                         moveYHandleCollision(boomY);
                 }
-                
+                if (this.existenceFrames <= 0) {
+                        this.mapEntityStatus = MapEntityStatus.REMOVED;
+                } 
                 existenceFrames--;
-
-                if (intersects(player)|| this.identity == "enemy") {
+                if (intersects(player)&&this.identity == "enemy") {
                     touchedPlayer(player);
                 }
        

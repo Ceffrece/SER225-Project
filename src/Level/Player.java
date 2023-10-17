@@ -24,8 +24,11 @@ public abstract class Player extends GameObject {
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
 
+    protected static int cooldown = 500;
+
+
     public static float walkSpeed = 2.3f;
-    public static int attackSpeed = 1;
+    public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int playerHealth = 5;
     public static int attackDamage = 1;
@@ -85,6 +88,7 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+
         peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
@@ -100,6 +104,10 @@ public abstract class Player extends GameObject {
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
+        //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+
+        cooldown += attackSpeed;
+
         if(invincibilityTimer > 0){
             invincibilityTimer -= 1;
         }
@@ -162,15 +170,15 @@ public abstract class Player extends GameObject {
         else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
+            Projectile projectileShooting = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             
-            Projectile projectile = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
-            map.addProjectile(projectile);
+            
 
-
-
-
-        
+            if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
+                map.addProjectile(projectileShooting);
+                cooldown = 0;
     
+            }
     }
     protected void playerChange(){
         if(projectileInHand >= playerCurrentProjectiles.size()-1){

@@ -5,6 +5,7 @@ import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import Utils.Point;
+import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
 import NPCs.Dinosaur;
@@ -13,24 +14,30 @@ import NPCs.Dinosaur;
 public class riceBallProjectile extends Projectile {
         private float speedX;
         private float speedY;
-        private int existenceFrames = 300;
+        private int existenceFrames = (Player.attackRange)*55;
         private int hasDirection = 0;
+
+        private static int shootTime = 100;
+
         public static String projectileID = "riceBallProjectile";
         public static String projectilePng = "riceBallProjectile.png";
 
         public riceBallProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null);
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT",20);
                 super.setIdentity(identity);
+                super.setExistenceFrames(existenceFrames);
+                super.existenceFrames = existenceFrames;
+                
                 super.projectileID = projectileID;
                 super.projectilePng = projectilePng;
 
-                super.setDamage(50);
+
+                super.setDamage(Player.attackDamage*10);
                 initialize();
                 
         }
-        public riceBallProjectile(Point location, String currentProjectile, Dinosaur dinosaur) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT", null);
-        }
+        
+        
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
                         if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
@@ -83,8 +90,10 @@ public class riceBallProjectile extends Projectile {
 
                 moveXHandleCollision(speedX);
                 moveYHandleCollision(speedY);
-
-
+                if (this.existenceFrames <= 0) {
+                        this.mapEntityStatus = MapEntityStatus.REMOVED;
+                } 
+                existenceFrames--;
                 if (intersects(player)|| this.identity == "enemy") {
                     touchedPlayer(player);
                 }

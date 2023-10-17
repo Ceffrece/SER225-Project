@@ -8,6 +8,7 @@ import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import Utils.Point;
+import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
 import Builders.FrameBuilder;
@@ -16,17 +17,30 @@ import Builders.FrameBuilder;
 public class peaProjectile extends Projectile {
         private float speedX;
         private float speedY;
-        private int existenceFrames = 300;
+
+        private int existenceFrames = (Player.attackRange)*50;
+        int turn = existenceFrames/2;
+
         private int hasDirection = 0;
+
+        private static int shootTime = 300;
+
         public static String projectileID = "peaProjectile";
         public static String projectilePng = "peaProjectile.png";
+        
         public peaProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT", null);
+
+                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT",100);
+                
                 super.setIdentity(identity);
+
+                this.shootTime = shootTime;
                 super.projectileID = projectileID;
                 super.projectilePng = projectilePng;
 
-                super.setDamage(20);
+                super.setExistenceFrames(existenceFrames);
+                super.setDamage(Player.attackDamage*15+5);
+
                 initialize();
                 
         }
@@ -96,10 +110,13 @@ public class peaProjectile extends Projectile {
                 moveXHandleCollision(speedX);
                 moveYHandleCollision(speedY);
 
-
+                if (this.existenceFrames <= 0) {
+                        this.mapEntityStatus = MapEntityStatus.REMOVED;
+                    } 
                 if (intersects(player)|| this.identity == "enemy") {
                     touchedPlayer(player);
                 }
+                existenceFrames --;
        
         }
         
