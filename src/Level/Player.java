@@ -64,6 +64,10 @@ public abstract class Player extends GameObject {
 
     public static ArrayList<Integer> playerStats = new ArrayList<>();
 
+    //Things with Items
+    public static Item currentItem = null;
+    public static ArrayList<Item> itemArray = new ArrayList<>();
+
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -533,6 +537,12 @@ public abstract class Player extends GameObject {
       public void addPlayerXPPoints(int x){
         playerXPPoints += x;
       }
+      public void subtractXPLevel(int x){
+        playerXPLevel -= x;
+      }
+      public void subtractXPPoints(int x){
+        playerXPPoints -= x;
+      }
 
       //player XP getters
       public int getPlayerXPLevel(){
@@ -553,7 +563,16 @@ public abstract class Player extends GameObject {
         return maxHealth;
       }
 
-
+      //Items
+      public static void setCurrentItem(Item item) {
+        currentItem = item;
+      }
+      public static Item getCurrentItem() {
+        return currentItem;
+      }
+      public static void addItemToArray(Item item) {
+        itemArray.add(item);
+      }
 
       //--------unloackable--------
       // dash setter

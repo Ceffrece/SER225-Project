@@ -558,7 +558,12 @@ public class GamePanel extends JPanel {
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
 			else{
-				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				if(fruit.array[5].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				}
 			}
 			//Left Branch
 			int lXloc = 50;
@@ -594,7 +599,7 @@ public class GamePanel extends JPanel {
 			if(fruitSelection.getId() == 12){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
-			else if(fruitSelection.getUnlockedStatus()){
+			else if(fruit.array[11].getUnlockedStatus()){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
 			}
 			else{
