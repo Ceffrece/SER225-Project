@@ -23,6 +23,7 @@ public abstract class Player extends GameObject {
     // these should be set in a subclass
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
+    public SpriteSheet spriteSheet;
 
     public static float walkSpeed = 2.3f;
     public static int attackSpeed = 1;
@@ -311,10 +312,17 @@ public abstract class Player extends GameObject {
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
-            :facingDirection == Direction.LEFT ? "WALK_LEFT"
-            :facingDirection == Direction.UP ? "WALK_UP"
-            : "WALK_DOWN";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
+                :facingDirection == Direction.LEFT ? "WALK_LEFT"
+                :facingDirection == Direction.UP ? "WALK_UP"
+                : "WALK_DOWN";
+            }else{
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT_DAMAGED" 
+                :facingDirection == Direction.LEFT ? "WALK_LEFT_DAMAGED"
+                :facingDirection == Direction.UP ? "WALK_UP_DAMAGED"
+                : "WALK_DOWN_DAMAGED";
+            }
     
             
         }
@@ -411,7 +419,12 @@ public abstract class Player extends GameObject {
     public void stand(Direction direction) {
         facingDirection = direction;
         if (direction == Direction.RIGHT) {
-            this.currentAnimationName = "STAND_RIGHT";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = "STAND_RIGHT";
+            }else{
+                this.currentAnimationName = "STAND_RIGHT_DAMAGED";
+                System.out.println("TRYING DAMAGED SPRITE");
+            }
         }
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
@@ -427,7 +440,11 @@ public abstract class Player extends GameObject {
     public void walk(Direction direction, float speed) {
         facingDirection = direction;
         if (direction == Direction.RIGHT) {
-            this.currentAnimationName = "WALK_RIGHT";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = "WALK_RIGHT";
+            }else{
+                this.currentAnimationName = "WALK_RIGHT_DAMAGED";
+            }
         }
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
@@ -604,10 +621,16 @@ public abstract class Player extends GameObject {
         invincibilityTimer = invincibilityTimerSet;
       }
        //CritChance getter
-       public int getInvincibilityTimer() {
+       public static int getInvincibilityTimer() {
         return invincibilityTimer;
       }
       public void addIncibilityTimer(int x) {
          invincibilityTimer += x;
+      }
+      public void setSpriteSheet(SpriteSheet newSprite){
+        this.spriteSheet = newSprite;
+      }
+      public SpriteSheet getSpriteSheet(){
+        return spriteSheet;
       }
     }
