@@ -65,6 +65,10 @@ public abstract class Player extends GameObject {
 
     public static ArrayList<Integer> playerStats = new ArrayList<>();
 
+    //Things with Items
+    public static Item currentItem = null;
+    public static ArrayList<Item> itemArray = new ArrayList<>();
+
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -521,7 +525,7 @@ public abstract class Player extends GameObject {
        public static int getAttackDamage() {
         return attackDamage;
       }
-      public void addAttackDamage(int x) {
+      public static void addAttackDamage(int x) {
         attackDamage += x;
       }
 
@@ -534,7 +538,7 @@ public abstract class Player extends GameObject {
        public static int getAttackRange() {
         return attackRange;
       }
-      public void addAttackRange(int x) {
+      public static void addAttackRange(int x) {
             attackRange += x;
       }
 
@@ -547,7 +551,7 @@ public abstract class Player extends GameObject {
        public int getPlayerHealth() {
         return playerHealth;
       }
-      public void addPlayerHealth(int x) {
+      public static void addPlayerHealth(int x) {
         playerHealth += x;
       }
 
@@ -557,6 +561,12 @@ public abstract class Player extends GameObject {
       }
       public void addPlayerXPPoints(int x){
         playerXPPoints += x;
+      }
+      public void subtractXPLevel(int x){
+        playerXPLevel -= x;
+      }
+      public void subtractXPPoints(int x){
+        playerXPPoints -= x;
       }
 
       //player XP getters
@@ -571,14 +581,23 @@ public abstract class Player extends GameObject {
       public void setPlayerMaxHealth(int x){
         maxHealth = x;
       }
-      public void addPlayerMaxHealth(int x){
+      public static void addPlayerMaxHealth(int x){
         maxHealth += x;
       }
       public static int getMaxHealth(){
         return maxHealth;
       }
 
-
+      //Items
+      public static void setCurrentItem(Item item) {
+        currentItem = item;
+      }
+      public static Item getCurrentItem() {
+        return currentItem;
+      }
+      public static void addItemToArray(Item item) {
+        itemArray.add(item);
+      }
 
       //--------unloackable--------
       // dash setter
@@ -601,7 +620,7 @@ public abstract class Player extends GameObject {
        public static int getPlayerArmor() {
         return playerArmor;
       }
-      public void addPlayerArmor(int x) {
+      public static void addPlayerArmor(int x) {
         playerArmor += x;
       }
 
@@ -613,7 +632,7 @@ public abstract class Player extends GameObject {
        public int getCritChance() {
         return critChance;
       }
-      public void addCritChance(int x) {
+      public static void addCritChance(int x) {
         critChance += x;
       }
       // CritChance setter
