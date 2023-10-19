@@ -71,10 +71,10 @@ public abstract class Player extends GameObject {
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Key MOVE_LEFT_KEY = Key.LEFT;
-    protected Key MOVE_RIGHT_KEY = Key.RIGHT;
-    protected Key MOVE_UP_KEY = Key.UP;
-    protected Key MOVE_DOWN_KEY = Key.DOWN;
+    protected Key MOVE_LEFT_KEY = Key.A;
+    protected Key MOVE_RIGHT_KEY = Key.D;
+    protected Key MOVE_UP_KEY = Key.W;
+    protected Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.F;
 
@@ -361,13 +361,21 @@ public abstract class Player extends GameObject {
     }
 
     // other entities can call this method to hurt the player
-    public void hurtPlayer(MapEntity mapEntity) {
+    public static void hurtPlayer(MapEntity mapEntity) {
         if(playerHealth > 0){
             playerHealth -= 1;
         }else{
             playerHealth = 0;
         }
 
+    }
+
+    public static void hurtPlayer() {
+        if(playerHealth > 0){
+            playerHealth -= 1;
+        }else{
+            playerHealth = 0;
+        }
     }
 
     public PlayerState getPlayerState() {
