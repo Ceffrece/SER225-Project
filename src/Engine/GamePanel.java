@@ -513,7 +513,7 @@ public class GamePanel extends JPanel {
 			}
 			//Left Branch
 			int lXloc = 50;
-			int lYloc = 50;
+			int lYloc = 100;
 			for(int i = 1; i < 4; i++){
 				if(protein.array[i].getId() == proteinSelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -528,7 +528,7 @@ public class GamePanel extends JPanel {
 			}
 			//Right Branch
 			int rXloc = screenManager.getScreenWidth()-100;
-			int rYloc = 50;
+			int rYloc = 100;
 			for(int i = 4; i < 7; i++){
 				if(protein.array[i].getId() == proteinSelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -542,7 +542,7 @@ public class GamePanel extends JPanel {
 				rYloc += 100;
 			}
 			//Ultimate Skill
-			if(proteinSelection.getId() == 7){
+			if(proteinSelection.getId() == 8){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
 			else if(protein.array[6].getUnlockedStatus()){
@@ -554,7 +554,7 @@ public class GamePanel extends JPanel {
 			//Navigation
 			//Center to branch
 			proteinTimer++;
-			if(proteinSelection.getId() == 6){
+			if(proteinSelection.getId() == 4){
 				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
@@ -569,7 +569,7 @@ public class GamePanel extends JPanel {
 				}
 			}
 			//Left branch
-			if(grainSelection.getId() < 6){
+			if(proteinSelection.getId() < 4){
 				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
@@ -584,7 +584,7 @@ public class GamePanel extends JPanel {
 				}
 			}
 			//Right Branch
-			if(proteinSelection.getId() > 6){
+			if(proteinSelection.getId() > 4){
 				if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
