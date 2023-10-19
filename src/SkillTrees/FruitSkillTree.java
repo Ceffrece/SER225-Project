@@ -146,8 +146,11 @@ public class FruitSkillTree {
             }
             if(rightSkill5.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
                 if(node == ultimateFruitSkill){
-                    //unlock fruit skill here
+                    ultimateFruitSkill.setUnlockedStatus(true);
                 }
+            }
+            else{
+                System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }
         else{

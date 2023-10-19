@@ -508,7 +508,7 @@ public abstract class Player extends GameObject {
        public static int getAttackDamage() {
         return attackDamage;
       }
-      public void addAttackDamage(int x) {
+      public static void addAttackDamage(int x) {
         attackDamage += x;
       }
 
@@ -521,7 +521,7 @@ public abstract class Player extends GameObject {
        public static int getAttackRange() {
         return attackRange;
       }
-      public void addAttackRange(int x) {
+      public static void addAttackRange(int x) {
             attackRange += x;
       }
 
@@ -615,7 +615,7 @@ public abstract class Player extends GameObject {
        public int getCritChance() {
         return critChance;
       }
-      public void addCritChance(int x) {
+      public static void addCritChance(int x) {
         critChance += x;
       }
       // CritChance setter
