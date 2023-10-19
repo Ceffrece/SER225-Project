@@ -10,11 +10,13 @@ import NPCs.Walrus;
 import Scripts.SimpleTextScript;
 import Scripts.MarcusMap.WalrusScript;
 import Tilesets.Floor1Tileset;
+import Tilesets.Floor2Tileset;
+import Tilesets.Floor3Tileset;
 
 public class MarcusMap extends Map {
 
     public MarcusMap() {
-        super("marcus_map.txt", new Floor1Tileset());
+        super("marcus_map.txt", new Floor3Tileset());
         this.playerStartPosition = getMapTile(10, 2).getLocation();
     }
 
