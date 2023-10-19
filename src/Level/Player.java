@@ -24,8 +24,9 @@ public abstract class Player extends GameObject {
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
 
-    protected static int cooldown = 500;
-
+    public static int cooldown = 750;
+    public static boolean readyToFire = false;
+    
 
     public static float walkSpeed = 2.3f;
     public static int attackSpeed = 2;
@@ -70,10 +71,10 @@ public abstract class Player extends GameObject {
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Key MOVE_LEFT_KEY = Key.LEFT;
-    protected Key MOVE_RIGHT_KEY = Key.RIGHT;
-    protected Key MOVE_UP_KEY = Key.UP;
-    protected Key MOVE_DOWN_KEY = Key.DOWN;
+    protected Key MOVE_LEFT_KEY = Key.A;
+    protected Key MOVE_RIGHT_KEY = Key.D;
+    protected Key MOVE_UP_KEY = Key.W;
+    protected Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.F;
 
@@ -104,9 +105,22 @@ public abstract class Player extends GameObject {
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
-        //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
-        cooldown += attackSpeed;
+        //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+        if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
+            readyToFire = true;
+        }else{
+            readyToFire = false;
+
+        }
+
+        if(readyToFire){
+
+        }
+        else{
+            cooldown += attackSpeed;
+
+        }
 
         if(invincibilityTimer > 0){
             invincibilityTimer -= 1;
@@ -177,7 +191,8 @@ public abstract class Player extends GameObject {
             if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
                 map.addProjectile(projectileShooting);
                 cooldown = 0;
-    
+            }else{
+                readyToFire = false;
             }
     }
     protected void playerChange(){

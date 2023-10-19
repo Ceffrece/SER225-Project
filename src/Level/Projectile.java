@@ -30,7 +30,7 @@ public class Projectile extends MapEntity{
         public String projectileID;
         public static String projectilePng;
 
-        protected int shootTime;
+        public int shootTime;
 
         public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
                 super(location.x, location.y, spriteSheet, startingAnimation);

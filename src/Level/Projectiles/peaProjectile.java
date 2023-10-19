@@ -30,7 +30,7 @@ public class peaProjectile extends Projectile {
         
         public peaProjectile(Point location,GameObject object) {
 
-                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT",100);
+                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT",150);
                 
                 super.setIdentity(identity);
 

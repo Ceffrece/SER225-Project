@@ -36,6 +36,8 @@ public class GamePanel extends JPanel {
 	private boolean isGamePaused = false;
 	private boolean isInventoryActivated = false;
 
+	private SpriteFont readyToFire;
+
 	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
@@ -112,9 +114,11 @@ public class GamePanel extends JPanel {
 
 		screenManager = new ScreenManager();
 
-		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Comic Sans", 24, Color.white);
+		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Chalkduster", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);
 		pauseLabel.setOutlineThickness(2.0f);
+		
+		readyToFire = new SpriteFont("Ready To Fire", 700,455,"Chalkduster", 8, Color. RED);
 
 		treeSelecterV = new SpriteFont("Vegetable Tree", 100,100,"Comic Sans", 25, Color. WHITE);
 		treeSelecterP = new SpriteFont("Protein Tree", 200,200,"Comic Sans", 25, Color. WHITE);
@@ -229,7 +233,8 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel.setText("FPS: " + currentFPS);
 	}
-	
+	private int reload;
+
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
@@ -244,7 +249,24 @@ public class GamePanel extends JPanel {
 		}
 		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
 		graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+		
+		
+		reload = Player.cooldown;
 
+		// if(reload > Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime){
+		// 	reload = Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime;
+		// }
+		
+		graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
+		graphicsHandler.drawFilledRectangle(700, 455,reload/2,10, new Color(50, 255, 50, 255));
+
+		if(Player.readyToFire){
+			
+
+			readyToFire.draw(graphicsHandler);
+
+		}
+		
 		}
 
 		// if game is paused, draw pause gfx over Screen gfx

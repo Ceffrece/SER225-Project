@@ -23,7 +23,7 @@ public class riceBallProjectile extends Projectile {
         public static String projectilePng = "riceBallProjectile.png";
 
         public riceBallProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT",20);
+                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT",100);
                 super.setIdentity(identity);
                 super.setExistenceFrames(existenceFrames);
                 super.existenceFrames = existenceFrames;

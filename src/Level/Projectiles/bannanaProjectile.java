@@ -31,7 +31,7 @@ public class bannanaProjectile extends Projectile {
         public static String projectilePng = "bannanaIcon.png";
 
         public bannanaProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",50);
+                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",100);
                 super.setIdentity(identity);
 
                 super.projectileID = projectileID;
@@ -56,8 +56,6 @@ public class bannanaProjectile extends Projectile {
 
                                 boomY = -3.5f;
                                 boomX = 3.5f;
-
-
                         }
                         else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
                                 speedY =  3.5f;
