@@ -64,7 +64,7 @@ public class ProteinSkillTree {
     }
 
     public void unlockNode(SkillTreeNode node){
-        if(Player.playerXPLevel == 1){
+        if(Player.playerXPLevel >= 1){
             if(node == centerSkill){
                 Player.addAttackDamage(1);
                 Player.addCritChance(1);

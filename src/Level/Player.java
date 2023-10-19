@@ -534,7 +534,7 @@ public abstract class Player extends GameObject {
        public int getPlayerHealth() {
         return playerHealth;
       }
-      public void addPlayerHealth(int x) {
+      public static void addPlayerHealth(int x) {
         playerHealth += x;
       }
 
@@ -564,7 +564,7 @@ public abstract class Player extends GameObject {
       public void setPlayerMaxHealth(int x){
         maxHealth = x;
       }
-      public void addPlayerMaxHealth(int x){
+      public static void addPlayerMaxHealth(int x){
         maxHealth += x;
       }
       public static int getMaxHealth(){
@@ -603,7 +603,7 @@ public abstract class Player extends GameObject {
        public static int getPlayerArmor() {
         return playerArmor;
       }
-      public void addPlayerArmor(int x) {
+      public static void addPlayerArmor(int x) {
         playerArmor += x;
       }
 
