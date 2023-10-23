@@ -308,11 +308,17 @@ public abstract class Player extends GameObject {
     // anything extra the player should do based on interactions can be handled here
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
-            // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
-            :facingDirection == Direction.LEFT ? "STAND_LEFT"
-            :facingDirection == Direction.UP ? "STAND_UP"
-            : "STAND_DOWN";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
+                :facingDirection == Direction.LEFT ? "STAND_LEFT"
+                :facingDirection == Direction.UP ? "STAND_UP"
+                : "STAND_DOWN";
+            }else{
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT_DAMAGED" 
+                :facingDirection == Direction.LEFT ? "STAND_LEFT_DAMAGED"
+                :facingDirection == Direction.UP ? "STAND_UP_DAMAGED"
+                : "STAND_DOWN_DAMAGED";
+            }
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing

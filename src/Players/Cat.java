@@ -49,7 +49,11 @@ int spriteOffset = 0;
                             .build()
             });
             put("STAND_RIGHT_DAMAGED", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(4, 0))
+                new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()
@@ -62,14 +66,47 @@ int spriteOffset = 0;
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
+
+            put("STAND_LEFT_DAMAGED", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build()
+            });
             put("STAND_UP", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(3, 5))
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()
         });
+        put("STAND_UP_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(7, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 4), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
         put("STAND_DOWN", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(2, 5))
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
+        put("STAND_DOWN_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(6, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 4), 5)
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()
