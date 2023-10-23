@@ -380,13 +380,21 @@ public abstract class Player extends GameObject {
     }
 
     // other entities can call this method to hurt the player
-    public void hurtPlayer(MapEntity mapEntity) {
+    public static void hurtPlayer(MapEntity mapEntity) {
         if(playerHealth > 0){
             playerHealth -= 1;
         }else{
             playerHealth = 0;
         }
 
+    }
+
+    public static void hurtPlayer() {
+        if(playerHealth > 0){
+            playerHealth -= 1;
+        }else{
+            playerHealth = 0;
+        }
     }
 
     public PlayerState getPlayerState() {
