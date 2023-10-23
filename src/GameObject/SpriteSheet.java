@@ -34,6 +34,7 @@ public class SpriteSheet {
 		return image;
 	}
 
+
 	public int getSpriteWidth() {
 		return spriteWidth;
 	}

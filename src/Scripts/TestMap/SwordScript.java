@@ -2,6 +2,7 @@ package Scripts.TestMap;
 
 import Level.Item;
 import Level.MapEntityStatus;
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
 
@@ -21,7 +22,8 @@ public class SwordScript extends Script<Item>{
     public ScriptState execute() {
         start();
         entity.setMapEntityStatus(MapEntityStatus.REMOVED);
-        //System.out.println(map);
+        Player.addItemToArray(entity);
+        Player.setCurrentItem(entity);
         end();
         return ScriptState.COMPLETED;
     }

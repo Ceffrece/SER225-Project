@@ -23,6 +23,7 @@ public abstract class Player extends GameObject {
     // these should be set in a subclass
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
+    public SpriteSheet spriteSheet;
 
     public static float walkSpeed = 2.3f;
     public static int attackSpeed = 1;
@@ -63,6 +64,10 @@ public abstract class Player extends GameObject {
     protected ArrayList<PlayerListener> listeners = new ArrayList<>();
 
     public static ArrayList<Integer> playerStats = new ArrayList<>();
+
+    //Things with Items
+    public static Item currentItem = null;
+    public static ArrayList<Item> itemArray = new ArrayList<>();
 
 
     // define keys
@@ -311,10 +316,17 @@ public abstract class Player extends GameObject {
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
-            :facingDirection == Direction.LEFT ? "WALK_LEFT"
-            :facingDirection == Direction.UP ? "WALK_UP"
-            : "WALK_DOWN";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" 
+                :facingDirection == Direction.LEFT ? "WALK_LEFT"
+                :facingDirection == Direction.UP ? "WALK_UP"
+                : "WALK_DOWN";
+            }else{
+                this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT_DAMAGED" 
+                :facingDirection == Direction.LEFT ? "WALK_LEFT_DAMAGED"
+                :facingDirection == Direction.UP ? "WALK_UP_DAMAGED"
+                : "WALK_DOWN_DAMAGED";
+            }
     
             
         }
@@ -357,13 +369,21 @@ public abstract class Player extends GameObject {
     }
 
     // other entities can call this method to hurt the player
-    public void hurtPlayer(MapEntity mapEntity) {
+    public static void hurtPlayer(MapEntity mapEntity) {
         if(playerHealth > 0){
             playerHealth -= 1;
         }else{
             playerHealth = 0;
         }
 
+    }
+
+    public static void hurtPlayer() {
+        if(playerHealth > 0){
+            playerHealth -= 1;
+        }else{
+            playerHealth = 0;
+        }
     }
 
     public PlayerState getPlayerState() {
@@ -403,7 +423,12 @@ public abstract class Player extends GameObject {
     public void stand(Direction direction) {
         facingDirection = direction;
         if (direction == Direction.RIGHT) {
-            this.currentAnimationName = "STAND_RIGHT";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = "STAND_RIGHT";
+            }else{
+                this.currentAnimationName = "STAND_RIGHT_DAMAGED";
+                System.out.println("TRYING DAMAGED SPRITE");
+            }
         }
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
@@ -419,7 +444,11 @@ public abstract class Player extends GameObject {
     public void walk(Direction direction, float speed) {
         facingDirection = direction;
         if (direction == Direction.RIGHT) {
-            this.currentAnimationName = "WALK_RIGHT";
+            if(invincibilityTimer == 0){
+                this.currentAnimationName = "WALK_RIGHT";
+            }else{
+                this.currentAnimationName = "WALK_RIGHT_DAMAGED";
+            }
         }
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
@@ -496,7 +525,7 @@ public abstract class Player extends GameObject {
        public static int getAttackDamage() {
         return attackDamage;
       }
-      public void addAttackDamage(int x) {
+      public static void addAttackDamage(int x) {
         attackDamage += x;
       }
 
@@ -509,7 +538,7 @@ public abstract class Player extends GameObject {
        public static int getAttackRange() {
         return attackRange;
       }
-      public void addAttackRange(int x) {
+      public static void addAttackRange(int x) {
             attackRange += x;
       }
 
@@ -522,7 +551,7 @@ public abstract class Player extends GameObject {
        public int getPlayerHealth() {
         return playerHealth;
       }
-      public void addPlayerHealth(int x) {
+      public static void addPlayerHealth(int x) {
         playerHealth += x;
       }
 
@@ -532,6 +561,12 @@ public abstract class Player extends GameObject {
       }
       public void addPlayerXPPoints(int x){
         playerXPPoints += x;
+      }
+      public void subtractXPLevel(int x){
+        playerXPLevel -= x;
+      }
+      public void subtractXPPoints(int x){
+        playerXPPoints -= x;
       }
 
       //player XP getters
@@ -546,14 +581,23 @@ public abstract class Player extends GameObject {
       public void setPlayerMaxHealth(int x){
         maxHealth = x;
       }
-      public void addPlayerMaxHealth(int x){
+      public static void addPlayerMaxHealth(int x){
         maxHealth += x;
       }
       public static int getMaxHealth(){
         return maxHealth;
       }
 
-
+      //Items
+      public static void setCurrentItem(Item item) {
+        currentItem = item;
+      }
+      public static Item getCurrentItem() {
+        return currentItem;
+      }
+      public static void addItemToArray(Item item) {
+        itemArray.add(item);
+      }
 
       //--------unloackable--------
       // dash setter
@@ -576,7 +620,7 @@ public abstract class Player extends GameObject {
        public static int getPlayerArmor() {
         return playerArmor;
       }
-      public void addPlayerArmor(int x) {
+      public static void addPlayerArmor(int x) {
         playerArmor += x;
       }
 
@@ -588,7 +632,7 @@ public abstract class Player extends GameObject {
        public int getCritChance() {
         return critChance;
       }
-      public void addCritChance(int x) {
+      public static void addCritChance(int x) {
         critChance += x;
       }
       // CritChance setter
@@ -596,10 +640,16 @@ public abstract class Player extends GameObject {
         invincibilityTimer = invincibilityTimerSet;
       }
        //CritChance getter
-       public int getInvincibilityTimer() {
+       public static int getInvincibilityTimer() {
         return invincibilityTimer;
       }
       public void addIncibilityTimer(int x) {
          invincibilityTimer += x;
+      }
+      public void setSpriteSheet(SpriteSheet newSprite){
+        this.spriteSheet = newSprite;
+      }
+      public SpriteSheet getSpriteSheet(){
+        return spriteSheet;
       }
     }
