@@ -26,6 +26,8 @@ import Tilesets.CommonTileset;
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
+import Enemy.Eggssassin;
+import Enemy.Spineapple;
 import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
@@ -69,6 +71,14 @@ public class TestMap extends Map {
         cerealkiller.setExistenceFlag("hasTalkedToCerealKiller");
         enemies.add(cerealkiller);
         
+        Spineapple spineapple = new Spineapple(0, getMapTile(4, 4).getLocation());
+        spineapple.setExistenceFlag("hasTalkedToSpineapple");
+        enemies.add(spineapple);
+
+        Eggssassin eggssassin = new Eggssassin(0, getMapTile(11, 14).getLocation());
+        eggssassin.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin);
+
         return enemies;
     }
     public ArrayList<Item> loadItems() {
