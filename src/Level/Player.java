@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import NPCs.Walrus;
@@ -93,7 +94,9 @@ public abstract class Player extends GameObject {
         peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
+        fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
         
+        playerCurrentProjectiles.add(fruitFlyProjectile);
         playerCurrentProjectiles.add(peaProjectile);
         playerCurrentProjectiles.add(riceBallProjectile);
         playerCurrentProjectiles.add(bannanaProjectile);
