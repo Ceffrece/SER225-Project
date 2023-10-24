@@ -56,62 +56,66 @@ public class ProteinSkillTree {
         currentNode = centerSkill;
     }
 
-    public void setCurrentNode(SkillTreeNode node){
-        this.currentNode = node;
+    public void resetCurrentNode(){
+        this.currentNode = centerSkill;
     }
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
     }
 
-    public void unlockNode(SkillTreeNode node, Player player){
-        if(player.getPlayerXPLevel() == 1){
+    public void unlockNode(SkillTreeNode node){
+        if(Player.playerXPLevel >= 1){
             if(node == centerSkill){
-                player.addAttackDamage(1);
-                player.addCritChance(1);
+                Player.addAttackDamage(1);
+                Player.addCritChance(1);
                 centerSkill.setUnlockedStatus(true);
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
-                    player.addCritChance(2);
+                    Player.addCritChance(2);
                     leftSkill1.setUnlockedStatus(true);
                 }
                 if(node == rightSkill1){
-                    player.addAttackDamage(1);
+                    Player.addAttackDamage(1);
                     rightSkill1.setUnlockedStatus(true);
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
-                    player.addCritChance(2);
+                    Player.addCritChance(2);
                     leftSkill2.setUnlockedStatus(true);
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
-                    player.addCritChance(2);
+                    Player.addCritChance(2);
                     leftSkill3.setUnlockedStatus(true);
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
-                    player.addAttackDamage(1);;
+                    Player.addAttackDamage(1);;
                     rightSkill2.setUnlockedStatus(true);
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
-                    player.addAttackDamage(1);
+                    Player.addAttackDamage(1);
                     rightSkill3.setUnlockedStatus(true);
                 }
             }
             if(rightSkill3.getUnlockedStatus() && leftSkill3.getUnlockedStatus()){
                 if(node == ultimateProteinSkill){
-                    //unlock ultimate skill
+                    ultimateProteinSkill.setUnlockedStatus(true);
                 }
+            }
+            else{
+                System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }
         else{
-            //print out error
+            System.out.println("Level not high enough");
         }
     }
+
 }

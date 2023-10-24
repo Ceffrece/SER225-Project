@@ -513,14 +513,224 @@ public class GamePanel extends JPanel {
 	}
 	int veggieTimer = 0;
 	private void displayVeggieTree() {
+		try{
+			//Center Skill
+			if(veggieSelection.getId() == 6){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else{
+				if(veggie.array[0].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+			}
+			//Left Branch
+			int lXloc = 50;
+			int lYloc = 100;
+			for(int i = 1; i < 6; i++){
+				if(veggie.array[i].getId() == veggieSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(veggie.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				lYloc += 100;
+			}
+			//Right Branch
+			int rXloc = screenManager.getScreenWidth()-100;
+			int rYloc = 100;
+			for(int i = 6; i < 9; i++){
+				if(veggie.array[i].getId() == veggieSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(veggie.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				rYloc += 100;
+			}
+			//Ultimate Skill
+			if(veggieSelection.getId() == 10){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else if(veggie.array[6].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			//Navigation
+			//Center to branch
+			veggieTimer++;
+			if(veggieSelection.getId() == 6){
+				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getLeftSkill();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getRightSkill();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+					veggie.unlockNode(veggieSelection);
+					veggieTimer = 0;
+				}
+			}
+			//Left branch
+			if(veggieSelection.getId() < 6){
+				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getLeftSkill();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getParent();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+					veggie.unlockNode(veggieSelection);
+					veggieTimer = 0;
+				}
+			}
+			//Right Branch
+			if(veggieSelection.getId() > 6){
+				if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getRightSkill();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+					veggieSelection = veggieSelection.getParent();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+					veggie.unlockNode(veggieSelection);
+					veggieTimer = 0;
+				}
+			}
+		}
+		catch(NullPointerException e){
+			System.out.println("Cannot Go Any Further!!!");
+			veggie.resetCurrentNode();
+			veggieSelection = veggie.getCurrentNode();
+		}
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
 		}
-		treeSelecterV.draw(graphicsHandler);
 	}
 	int proteinTimer = 0;
-	private void displayProteinTree(){
-		treeSelecterP.draw(graphicsHandler);
+	private void displayProteinTree(){  //CHANGE TO PROTEIN
+		try{
+			//Center Skill
+			if(proteinSelection.getId() == 4){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else{
+				if(protein.array[0].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+			}
+			//Left Branch
+			int lXloc = 50;
+			int lYloc = 100;
+			for(int i = 1; i < 4; i++){
+				if(protein.array[i].getId() == proteinSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(protein.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(lXloc, lYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				lYloc += 100;
+			}
+			//Right Branch
+			int rXloc = screenManager.getScreenWidth()-100;
+			int rYloc = 100;
+			for(int i = 4; i < 7; i++){
+				if(protein.array[i].getId() == proteinSelection.getId()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.YELLOW, 2);
+				}
+				else if(protein.array[i].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(rXloc, rYloc, 50, 50, Color.RED, Color.BLACK, 2);
+				}
+				rYloc += 100;
+			}
+			//Ultimate Skill
+			if(proteinSelection.getId() == 8){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else if(protein.array[6].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			//Navigation
+			//Center to branch
+			proteinTimer++;
+			if(proteinSelection.getId() == 4){
+				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getLeftSkill();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getRightSkill();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+					protein.unlockNode(proteinSelection);
+					proteinTimer = 0;
+				}
+			}
+			//Left branch
+			if(proteinSelection.getId() < 4){
+				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getLeftSkill();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getParent();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+					protein.unlockNode(proteinSelection);
+					proteinTimer = 0;
+				}
+			}
+			//Right Branch
+			if(proteinSelection.getId() > 4){
+				if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getRightSkill();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+					proteinSelection = proteinSelection.getParent();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+					protein.unlockNode(proteinSelection);
+					proteinTimer = 0;
+				}
+			}
+		}
+		catch(NullPointerException e){
+			System.out.println("Cannot Go Any Further!!!");
+			protein.resetCurrentNode();
+			proteinSelection = protein.getCurrentNode();
+		}
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
 		}
@@ -528,9 +738,8 @@ public class GamePanel extends JPanel {
 	int grainTimer = 0;
 	private void displayGrainTree(){
 		try{
-			int xLoc = 50;
-			int count = 0;
-			int yLoc = 50;
+			int yLoc = 10;
+			int xLoc = screenManager.getScreenWidth()/2 - 10;
 			for(SkillTreeNode skill : grain.array){
 				if(skill.getId() == grainSelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -541,13 +750,7 @@ public class GamePanel extends JPanel {
 				else{
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
 				}
-				xLoc+= 200;
-				count++;
-				if(count > 3){
-					count = 0;
-					yLoc += 200;
-					xLoc = 50;
-				}
+				yLoc+= 100;
 			}
 			grainTimer++;
 				if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
@@ -580,7 +783,12 @@ public class GamePanel extends JPanel {
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
 			else{
-				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				if(fruit.array[0].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.GREEN, 2);
+				}
+				else{
+					graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.BLACK, 2);
+				}
 			}
 			//Left Branch
 			int lXloc = 50;
@@ -616,7 +824,7 @@ public class GamePanel extends JPanel {
 			if(fruitSelection.getId() == 12){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
-			else if(fruitSelection.getUnlockedStatus()){
+			else if(fruit.array[11].getUnlockedStatus()){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
 			}
 			else{
@@ -684,9 +892,8 @@ public class GamePanel extends JPanel {
 	int dairyTimer = 0;
 	private void displayDairyTree(){
 		try{
-			int xLoc = 50;
-			int count = 0;
-			int yLoc = 50;
+			int xLoc = screenManager.getScreenWidth()/2 - 10;
+			int yLoc = 10;
 			for(SkillTreeNode skill : dairy.array1){
 				if(skill.getId() == dairySelection.getId()){
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -697,13 +904,7 @@ public class GamePanel extends JPanel {
 				else{
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
 				}
-				xLoc += 200;
-				count++;
-				if(count > 3){
-					count = 0; 
-					yLoc+= 200;
-					xLoc = 50;
-				}
+				yLoc += 100;
 			}
 			dairyTimer++;
 			if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){

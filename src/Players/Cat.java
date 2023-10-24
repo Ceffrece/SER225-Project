@@ -13,9 +13,9 @@ import java.util.HashMap;
 // This is the class for the Cat player character
 // basically just sets some values for physics and then defines animations
 public class Cat extends Player {
-
+int spriteOffset = 0;
     public Cat(float x, float y) {
-      super(new SpriteSheet(ImageLoader.load("Player.png"), 16, 16), x, y, "STAND_RIGHT");
+      super(new SpriteSheet(ImageLoader.load("PlayerTestMash.png"), 16, 16), x, y, "STAND_RIGHT");
        //player speed, attack speed, attack damage, attack range, player health
        float walkSpeed;
        int  attackSpeed;
@@ -40,6 +40,7 @@ public class Cat extends Player {
 
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
+
         return new HashMap<String, Frame[]>() {{
             put("STAND_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
@@ -47,9 +48,32 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
+            put("STAND_RIGHT_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+            });
 
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build()
+            });
+
+            put("STAND_LEFT_DAMAGED", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 12, 12, 7)
@@ -61,8 +85,28 @@ public class Cat extends Player {
                         .withBounds(6, 12, 12, 7)
                         .build()
         });
+        put("STAND_UP_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(7, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 4), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
         put("STAND_DOWN", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(2, 5))
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build()
+        });
+        put("STAND_DOWN_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(6, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 4), 5)
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build()
@@ -85,6 +129,28 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 5), 5)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+            });
+            put("WALK_RIGHT_DAMAGED", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(5, 1), 9)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 2), 5)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 3), 5)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 4), 9)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 5), 5)
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build(),
@@ -117,6 +183,33 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build(),    
             });
+            put("WALK_LEFT_DAMAGED", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(5, 1), 9)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 2), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 3), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 4), 9)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(5, 5), 5)
+                            .withScale(3)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),    
+            });
             put("WALK_UP", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(3, 1), 9)
                         .withScale(3)
@@ -139,6 +232,28 @@ public class Cat extends Player {
                         .withBounds(6, 12, 12, 7)
                         .build(),
         });
+        put("WALK_UP_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(7, 1), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 2), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 3), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 4), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(7, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+        });
         put("WALK_DOWN", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(2, 1), 9)
                         .withScale(3)
@@ -157,6 +272,28 @@ public class Cat extends Player {
                         .withBounds(6, 12, 12, 7)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(2, 5), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+        });
+        put("WALK_DOWN_DAMAGED", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(6, 1), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 2), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 3), 5)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 4), 9)
+                        .withScale(3)
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(6, 5), 5)
                         .withScale(3)
                         .withBounds(6, 12, 12, 7)
                         .build(),
