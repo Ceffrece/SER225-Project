@@ -10,6 +10,8 @@ import javax.swing.*;
 import Builders.FrameBuilder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 import Level.Player;
@@ -741,7 +743,7 @@ public class GamePanel extends JPanel {
 				}
 				else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
 					grain.unlockNode(grainSelection);
-					System.out.println("Unlocking Node" + dairySelection.getName());
+					System.out.println("Unlocking Node" + grainSelection.getName());
 				}
 			}
 		catch(NullPointerException e){
@@ -870,6 +872,7 @@ public class GamePanel extends JPanel {
 	int dairyTimer = 0;
 	private void displayDairyTree(){
 		try{
+			//Drawing all of the Skills
 			int xLoc = screenManager.getScreenWidth()/2 - 10;
 			int yLoc = 10;
 			for(SkillTreeNode skill : dairy.array1){
@@ -893,6 +896,56 @@ public class GamePanel extends JPanel {
 				dairyTimer = 0;
 				dairySelection = dairySelection.getParent();
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);
+			SpriteFont title = new SpriteFont(dairySelection.getName(), 15, 25, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(10, 60, 350, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 15, 100, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(dairySelection.getEffect(), 15, 150, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+			//Picture Underneath MUST BE 300x300(px)
+			BufferedImage diQing = ImageLoader.load("SkillTreePics/diqing.png");
+			BufferedImage mars = ImageLoader.load("SkillTreePics/mars.png");
+			BufferedImage laran = ImageLoader.load("SkillTreePics/laran.png");
+			BufferedImage tyr = ImageLoader.load("SkillTreePics/tyr.png");
+			BufferedImage bia = ImageLoader.load("SkillTreePics/bia.png");
+			BufferedImage satis = ImageLoader.load("SkillTreePics/satis.png");
+			BufferedImage chiyou = ImageLoader.load("SkillTreePics/chiyou1.png");
+			BufferedImage perseus = ImageLoader.load("SkillTreePics/perseus.png");
+
+			//Picture Selector
+			switch(dairySelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(mars, 30, 220);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(laran, 30, 220,300,300);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(tyr, 30, 220, 300, 300);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(bia, 30, 220, 300, 300);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(satis, 30, 220, 300, 300);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(chiyou, 30, 220, 300, 300);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(perseus, 30, 220, 300, 300);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(diQing, 30, 220, 300, 300);
+					break;
+			}
+	
 		}
 		catch(NullPointerException e){
 			System.out.println("Can't Go Any Further!!!");
