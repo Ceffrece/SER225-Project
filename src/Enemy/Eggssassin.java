@@ -83,7 +83,7 @@ public class Eggssassin extends Enemy
         }
 
         public void walkTowardPlayer(Player player)
-    {
+        {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
             walk(Direction.RIGHT, 0.75f);
@@ -100,7 +100,7 @@ public class Eggssassin extends Enemy
         {
             walk(Direction.UP,0.75f);
         }
-    }
+        }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler)
