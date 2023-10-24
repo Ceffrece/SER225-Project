@@ -919,6 +919,55 @@ public class GamePanel extends JPanel {
 					fruitTimer = 0;
 				}
 			}
+			//Picture Underneath MUST BE 300x300(px)
+			BufferedImage orange = ImageLoader.load("SkillTreePics/orange.jpg");
+			BufferedImage horn = ImageLoader.load("SkillTreePics/horn.jpg");
+			BufferedImage basket = ImageLoader.load("SkillTreePics/basket.jpg");
+			BufferedImage momotaro = ImageLoader.load("SkillTreePics/momotaro.png");
+			BufferedImage maui = ImageLoader.load("SkillTreePics/maui.png");
+			BufferedImage ulu = ImageLoader.load("SkillTreePics/ulu.png");
+			BufferedImage pomegranate = ImageLoader.load("SkillTreePics/pomegranate.png");
+			BufferedImage idun = ImageLoader.load("SkillTreePics/idun.jpg");
+
+			//Picture Selector
+			switch(dairySelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(orange, 30, 220);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(orange, 30, 220,300,300);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(orange, 30, 220, 300, 300);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(orange, 30, 220, 300, 300);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(orange, 30, 220, 300, 300);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(basket, 30, 220, 300, 300);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(horn, 30, 220, 300, 300);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(momotaro, 30, 220, 300, 300);
+					break;
+				case 9 :
+					graphicsHandler.drawImage(maui, 30, 220, 300, 300);
+					break;
+				case 10 :
+					graphicsHandler.drawImage(ulu, 30, 220, 300, 300);
+					break;
+				case 11 :
+					graphicsHandler.drawImage(pomegranate, 30, 220, 300, 300);
+					break;
+				case 12 :
+					graphicsHandler.drawImage(idun, 30, 220, 300, 300);
+					break;
+			}
 		}
 		catch(NullPointerException e){
 			System.out.println("Cannot Go Any Further!!!");
