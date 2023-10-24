@@ -18,9 +18,9 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 
 public class Projectile extends MapEntity{
-        
-
+        //this will help see what projectile is being fired
         private String curentProjectile;
+        //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
         protected int existenceFrames = (Player.attackRange)*25+50;
@@ -32,6 +32,8 @@ public class Projectile extends MapEntity{
         public static String projectilePng;
 
         public int shootTime;
+
+        private String projectileDescription;
 
         public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
@@ -126,9 +128,6 @@ public class Projectile extends MapEntity{
                 currentProjectile(curentProjectile, player);
                 super.update();
 
-                
-                
-
             }
 
             public void touchedEnemy(MapEntity enemy){
@@ -188,6 +187,12 @@ public class Projectile extends MapEntity{
 
         public int getShootTime() {
             return shootTime;
+        }
+        public void setProjectileDescription(String string) {
+            this.projectileDescription=projectileDescription ;
+        }
+        public String getProjectileDescription() {
+            return projectileDescription;
         }
         
 }

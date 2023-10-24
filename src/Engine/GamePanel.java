@@ -311,7 +311,7 @@ public class GamePanel extends JPanel {
 			switch(currentInventortOption){
 				case 0 : displayCurrentProjectiles();
 				break;
-				case 1 : displayCurrentProjectiles();
+				case 1 : displayCurrentItems();
 				break;
 				case 2 : displayCurrentPlayerStats();
 				break;
@@ -373,14 +373,54 @@ public class GamePanel extends JPanel {
 		}
 		int inventoryX = 100;
 		int inventoryY = 50;
+		int projectileIndex = 0;
+
+		
+		ArrayList<Integer> projectileLoactionX = new ArrayList<Integer>();
+		ArrayList<Integer> projectileLoactionY = new ArrayList<Integer>();
+
+		ArrayList<String> projectileDescription = new ArrayList<String>();
                 for (int i = 0; i < Player.playerCurrentProjectiles.size(); i++) {
 			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(i).getCurentProjectilePNG()), inventoryX, inventoryY, 100, 100);
+			projectileIndex ++;
+
+			// projectileLoactionX.add(inventoryX);
+			// projectileLoactionX.add(inventoryY);
+			// projectileDescription.add(Player.playerCurrentProjectiles.get(i).getProjectileDescription());
+
 			inventoryX+=100; 
-
-
 		}
 
+
+
 	}
+
+	private void displayCurrentItems() {
+		if(Keyboard.isKeyDown(Key.I)){
+			inventorySelect = false;
+		}
+		int inventoryX = 100;
+		int inventoryY = 50;
+		int itemsIndex = 0;
+
+		
+		ArrayList<Integer> itemLoactionX = new ArrayList<Integer>();
+		ArrayList<Integer> itemLoactionY = new ArrayList<Integer>();
+
+		ArrayList<String> projectileDescription = new ArrayList<String>();
+
+                for (int i = 0; i < Player.itemArray.size(); i++) {
+			graphicsHandler.drawImage(ImageLoader.load(Player.itemArray.get(i).getCurentItemPNG()), inventoryX, inventoryY, 100, 100);
+			itemsIndex ++;
+
+			
+			inventoryX+=100; 
+		}
+
+
+
+	}
+	
 	public static ArrayList<String> playerStatsStrings = new ArrayList<>();
 
 	private void displayCurrentPlayerStats() {

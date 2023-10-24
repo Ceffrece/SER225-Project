@@ -20,8 +20,10 @@ public class bannanaProjectile extends Projectile {
         private float speedY;
         private float boomX;
         private float boomY;
+
         private int existenceFrames = (Player.attackRange)*75;
         int turn = existenceFrames/2;
+
         private int hasDirection = 0;
         private SpriteSheet spriteSheet;
 
@@ -29,7 +31,8 @@ public class bannanaProjectile extends Projectile {
 
         public static String projectileID = "bannanaProjectile";
         public static String projectilePng = "bannanaIcon.png";
-
+        
+        
         public bannanaProjectile(Point location,GameObject object) {
                 super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",100);
                 super.setIdentity(identity);
@@ -39,6 +42,7 @@ public class bannanaProjectile extends Projectile {
 
                 super.existenceFrames = existenceFrames;
                 int turn = existenceFrames/2;
+                super.setProjectileDescription("bannna");
 
                 spriteSheet = new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16);
                 update();

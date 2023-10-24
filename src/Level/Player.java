@@ -26,7 +26,7 @@ public abstract class Player extends GameObject {
     private SpriteFont healthBar;
     public SpriteSheet spriteSheet;
 
-    public static int cooldown = 750;
+    public static int cooldown = 0;
     public static boolean readyToFire = false;
     
 
@@ -99,9 +99,9 @@ public abstract class Player extends GameObject {
         peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
-        fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
+        // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
         
-        playerCurrentProjectiles.add(fruitFlyProjectile);
+        // playerCurrentProjectiles.add(fruitFlyProjectile);
         playerCurrentProjectiles.add(peaProjectile);
         playerCurrentProjectiles.add(riceBallProjectile);
         playerCurrentProjectiles.add(bannanaProjectile);

@@ -20,7 +20,7 @@ public class addPlayerStatScript extends Script {
                                 break;
                         case "attackRange":  player.addAttackRange(x);
                                 break;
-                        case "attackDamage":  player.addAttackDamage(x);
+                        case "attackDamage":  Player.addAttackDamage(x);
                                 break;
                         case "walkSpeed":
                                 float y = x; 
