@@ -26,6 +26,8 @@ import Tilesets.CommonTileset;
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
+import Enemy.Eggssassin;
+import Enemy.Spineapple;
 import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
@@ -65,10 +67,54 @@ public class TestMap extends Map {
     public ArrayList<Enemy> loadEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<>();
 
-        CerealKiller cerealkiller = new CerealKiller(0, getMapTile(11, 2).getLocation());
-        cerealkiller.setExistenceFlag("hasTalkedToCerealKiller");
-        enemies.add(cerealkiller);
+        CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(11, 1).getLocation());
+        cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
+        enemies.add(cerealkiller1);
+
+        CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(12, 2).getLocation());
+        cerealkiller2.setExistenceFlag("hasTalkedToCerealKiller");
+        enemies.add(cerealkiller2);
+
+        CerealKiller cerealkiller3 = new CerealKiller(0, getMapTile(13, 3).getLocation());
+        cerealkiller3.setExistenceFlag("hasTalkedToCerealKiller");
+        enemies.add(cerealkiller3);
+
+        CerealKiller cerealkiller4 = new CerealKiller(0, getMapTile(14, 4).getLocation());
+        cerealkiller4.setExistenceFlag("hasTalkedToCerealKiller");
+        enemies.add(cerealkiller4);
         
+        Spineapple spineapple1 = new Spineapple(0, getMapTile(4, 4).getLocation());
+        spineapple1.setExistenceFlag("hasTalkedToSpineapple");
+        enemies.add(spineapple1);
+
+        Spineapple spineapple2 = new Spineapple(0, getMapTile(5, 5).getLocation());
+        spineapple2.setExistenceFlag("hasTalkedToSpineapple");
+        enemies.add(spineapple2);
+
+        Spineapple spineapple3 = new Spineapple(0, getMapTile(6, 6).getLocation());
+        spineapple3.setExistenceFlag("hasTalkedToSpineapple");
+        enemies.add(spineapple3);
+
+        Spineapple spineapple4 = new Spineapple(0, getMapTile(7, 7).getLocation());
+        spineapple4.setExistenceFlag("hasTalkedToSpineapple");
+        enemies.add(spineapple4);
+
+        Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(11, 14).getLocation());
+        eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin1);
+
+        Eggssassin eggssassin2 = new Eggssassin(0, getMapTile(13, 16).getLocation());
+        eggssassin2.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin2);
+
+        Eggssassin eggssassin3 = new Eggssassin(0, getMapTile(20, 5).getLocation());
+        eggssassin3.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin3);
+
+        Eggssassin eggssassin4 = new Eggssassin(0, getMapTile(20, 8).getLocation());
+        eggssassin4.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin4);
+
         return enemies;
     }
     public ArrayList<Item> loadItems() {
