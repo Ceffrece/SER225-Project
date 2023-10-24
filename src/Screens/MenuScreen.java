@@ -18,7 +18,7 @@ public class MenuScreen extends Screen {
     protected SpriteFont playGame;
     protected SpriteFont credits;
     protected SpriteFont marcusMap; // new map for test purposes
-    protected SpriteFont instructions;
+    protected SpriteFont instructions; // Initializes the instructions waow
     protected Map background;
     protected int keyPressTimer;
     protected int pointerLocationX, pointerLocationY;
