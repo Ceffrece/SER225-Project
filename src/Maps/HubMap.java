@@ -14,11 +14,11 @@ public class HubMap extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate ability\n(once unlocked)")); 
+        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate\nability (once unlocked)")); 
 
-        getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting weapon\n(once unlocked)"));
+        getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting\nweapon (once unlocked)"));
 
-        getMapTile(11, 19).setInteractScript(new SimpleTextScript("This is an open area for you to test your weapons/abilities!")); 
+        getMapTile(11, 19).setInteractScript(new SimpleTextScript("This is an open area for you to test your\nweapons/abilities!")); 
 
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
     }

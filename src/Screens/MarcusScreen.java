@@ -5,6 +5,7 @@ import Engine.GraphicsHandler;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.HubMap;
 import Maps.MarcusMap;
 import Players.Cat;
 import Utils.Direction;
@@ -29,7 +30,7 @@ public class MarcusScreen extends Screen {
         flagManager.addFlag("hasTalkedToWalrus", false);
         
         // define/setup map
-        this.map = new MarcusMap();
+        this.map = new HubMap();
         map.setFlagManager(flagManager);
 
         // setup player
