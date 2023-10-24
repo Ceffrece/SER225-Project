@@ -38,6 +38,8 @@ public class GamePanel extends JPanel {
 	private boolean isGamePaused = false;
 	private boolean isInventoryActivated = false;
 
+	private SpriteFont readyToFire;
+
 	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
@@ -114,9 +116,11 @@ public class GamePanel extends JPanel {
 
 		screenManager = new ScreenManager();
 
-		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Comic Sans", 24, Color.white);
+		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Chalkduster", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);
 		pauseLabel.setOutlineThickness(2.0f);
+		
+		readyToFire = new SpriteFont("Ready To Fire", 700,455,"Chalkduster", 8, Color. RED);
 
 		treeSelecterV = new SpriteFont("Vegetable Tree", 100,100,"Comic Sans", 25, Color. WHITE);
 		treeSelecterP = new SpriteFont("Protein Tree", 200,200,"Comic Sans", 25, Color. WHITE);
@@ -231,7 +235,8 @@ public class GamePanel extends JPanel {
 
 		fpsDisplayLabel.setText("FPS: " + currentFPS);
 	}
-	
+	private int reload;
+
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
@@ -246,7 +251,24 @@ public class GamePanel extends JPanel {
 		}
 		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
 		graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+		
+		
+		reload = Player.cooldown;
 
+		// if(reload > Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime){
+		// 	reload = Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime;
+		// }
+		
+		graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
+		graphicsHandler.drawFilledRectangle(700, 455,reload/2,10, new Color(50, 255, 50, 255));
+
+		if(Player.readyToFire){
+			
+
+			readyToFire.draw(graphicsHandler);
+
+		}
+		
 		}
 
 		// if game is paused, draw pause gfx over Screen gfx
@@ -291,7 +313,7 @@ public class GamePanel extends JPanel {
 			switch(currentInventortOption){
 				case 0 : displayCurrentProjectiles();
 				break;
-				case 1 : displayCurrentProjectiles();
+				case 1 : displayCurrentItems();
 				break;
 				case 2 : displayCurrentPlayerStats();
 				break;
@@ -353,14 +375,54 @@ public class GamePanel extends JPanel {
 		}
 		int inventoryX = 100;
 		int inventoryY = 50;
+		int projectileIndex = 0;
+
+		
+		ArrayList<Integer> projectileLoactionX = new ArrayList<Integer>();
+		ArrayList<Integer> projectileLoactionY = new ArrayList<Integer>();
+
+		ArrayList<String> projectileDescription = new ArrayList<String>();
                 for (int i = 0; i < Player.playerCurrentProjectiles.size(); i++) {
 			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(i).getCurentProjectilePNG()), inventoryX, inventoryY, 100, 100);
+			projectileIndex ++;
+
+			// projectileLoactionX.add(inventoryX);
+			// projectileLoactionX.add(inventoryY);
+			// projectileDescription.add(Player.playerCurrentProjectiles.get(i).getProjectileDescription());
+
 			inventoryX+=100; 
-
-
 		}
 
+
+
 	}
+
+	private void displayCurrentItems() {
+		if(Keyboard.isKeyDown(Key.I)){
+			inventorySelect = false;
+		}
+		int inventoryX = 100;
+		int inventoryY = 50;
+		int itemsIndex = 0;
+
+		
+		ArrayList<Integer> itemLoactionX = new ArrayList<Integer>();
+		ArrayList<Integer> itemLoactionY = new ArrayList<Integer>();
+
+		ArrayList<String> projectileDescription = new ArrayList<String>();
+
+                for (int i = 0; i < Player.itemArray.size(); i++) {
+			graphicsHandler.drawImage(ImageLoader.load(Player.itemArray.get(i).getCurentItemPNG()), inventoryX, inventoryY, 100, 100);
+			itemsIndex ++;
+
+			
+			inventoryX+=100; 
+		}
+
+
+
+	}
+	
 	public static ArrayList<String> playerStatsStrings = new ArrayList<>();
 
 	private void displayCurrentPlayerStats() {

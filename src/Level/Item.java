@@ -2,6 +2,8 @@ package Level;
 
 import java.util.HashMap;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import GameObject.Frame;
@@ -10,9 +12,22 @@ import Utils.Point;
 
 public class Item extends MapEntity{
 
-    public Item(Point location, SpriteSheet ss, String startingAnimation){
+    public boolean heldByPlayer = false;
+    public boolean hasImpartedStat = false;
+
+    public int statIncrease;
+    public String stat;
+
+    public String curentItemPNG;
+    
+
+    public Item(Point location, SpriteSheet ss, String startingAnimation, String stat, int statIncrease,String inventoryIcon){
         super(location.x,location.y,ss,startingAnimation);
         isUncollidable = true;
+        setCurentItemPNG(inventoryIcon);
+        this.statIncrease = statIncrease;
+        this.stat = stat;
+
         initialize();
     }
     public void update(Player player) {
@@ -21,6 +36,7 @@ public class Item extends MapEntity{
     public void initialize() {
         super.initialize();
     }
+
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
@@ -36,5 +52,12 @@ public class Item extends MapEntity{
                 });
             }};
         }
+    public String getCurentItemPNG() {
+        return curentItemPNG;
+    }
+    public void setCurentItemPNG(String inventoryIcon) {
+        this.curentItemPNG = inventoryIcon;
+    }
+    
 
 }

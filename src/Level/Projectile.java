@@ -2,6 +2,7 @@ package Level;
 
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import GameObject.Frame;
@@ -17,21 +18,26 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 
 public class Projectile extends MapEntity{
-        
-
-        private float speed;
+        //this will help see what projectile is being fired
         private String curentProjectile;
+        //index for what projectile is going to be shot
         private int projectileChosen = 0;
-        private int existenceFrames = 300;
-        protected int damage = 10;
+
+        protected int existenceFrames = (Player.attackRange)*25+50;
+        int turn = existenceFrames/2;
+
+        protected int damage;
+
         public String projectileID;
         public static String projectilePng;
 
-        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, String identity) {
-                super(location.x, location.y, spriteSheet, startingAnimation);
-                super.setIdentity(identity);
+        public int shootTime;
 
-                initialize();
+        private String projectileDescription;
+
+        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
+                super(location.x, location.y, spriteSheet, startingAnimation);
+                this.shootTime = shootTime;                
             }
         
             public Projectile(float x, float y, HashMap<String, Frame[]> animations, String startingAnimation) {
@@ -53,22 +59,22 @@ public class Projectile extends MapEntity{
             public Projectile(Utils.Point location, String currentProjectile, Player player) {
                 super(location.x, location.y);
                 super.setIdentity(identity);
+
                 setCurentProjectile(currentProjectile);
+                
+
+                
+
             }
 
-            public void setSpeed(float speed){
-                this.speed = speed;
-            }
+            
             public boolean isAlive() {
                 // Code to check if the projectile is still active
                 return true;
             }
             
             
-            @Override
-            public void initialize() {
-                super.initialize();
-            }
+            
             @Override
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
@@ -92,19 +98,25 @@ public class Projectile extends MapEntity{
                 
             }
             public void currentProjectile(String currentProjectile,Player player){
-                if (projectileChosen ==0){ 
+                if (projectileChosen == 0){ 
                     switch(currentProjectile){
                         case "peaProjectile":
                              peaProjectile projectile = new peaProjectile(player.getLocation(), player);
                              map.addProjectile(projectile);
+
                              break;
                         case "riceBallProjectile":
                              riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(), player);
+
                              map.addProjectile(projectile2);
                              break;
                         case "bannanaProjectile":
                              bannanaProjectile projectile3 = new bannanaProjectile(player.getLocation(), player);
                              map.addProjectile(projectile3);
+                             break;
+                        case "fruitFlyProjectile":
+                            fruitFlyProjectile projectile4 = new fruitFlyProjectile(player.getLocation(), player);
+                             map.addProjectile(projectile4);
                              break;
                         default:
                             break;
@@ -116,25 +128,9 @@ public class Projectile extends MapEntity{
                 currentProjectile(curentProjectile, player);
                 super.update();
 
-                if (existenceFrames == 0) {
-                    this.mapEntityStatus = MapEntityStatus.REMOVED;
-                } 
-                else {
-                    
-                    super.update();
-                }
-                
-                existenceFrames--;
-
             }
 
             public void touchedEnemy(MapEntity enemy){
-                // for (int i = 0; i < map.enemies.size(); i++) {
-                //     if(overlaps(map.enemies.get(i))){
-                //         System.out.println(this.damage);
-                //         map.enemies.get(i).hurtEnemy(this.damage);                        
-                //     }
-                //   }
                 enemy.hurtEnemy(this.damage);
             }
             
@@ -170,12 +166,33 @@ public class Projectile extends MapEntity{
         public String getCurentProjectilePNG(){
             return projectilePng;
     }
-
+    
+        
+        
         public int getDamage() {
             return damage;
         }
         public void setDamage(int damage) {
             this.damage = damage;
+        }
+        public void setExistenceFrames(int existenceFrames) {
+            this.existenceFrames = existenceFrames;
+        }
+        public int getExistenceFrames() {
+            return existenceFrames;
+        }
+        public void setShootTime(int shootTime) {
+            this.shootTime = shootTime;
+        }
+
+        public int getShootTime() {
+            return shootTime;
+        }
+        public void setProjectileDescription(String string) {
+            this.projectileDescription=projectileDescription ;
+        }
+        public String getProjectileDescription() {
+            return projectileDescription;
         }
         
 }
