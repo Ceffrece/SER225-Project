@@ -4,6 +4,7 @@ import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.MarcusMap;
+import Maps.HubMap;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class EditorMaps {
             add("TestMap");
             add("TitleScreen");
             add("MarcusMap");
+            add("HubMap");
         }};
     }
 
@@ -24,6 +26,8 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "MarcusMap":
                 return new MarcusMap();
+            case "HubMap":
+                return new HubMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

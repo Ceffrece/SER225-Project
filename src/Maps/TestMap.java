@@ -120,7 +120,7 @@ public class TestMap extends Map {
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
 
-        Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT");
+        Item sword = new Item(getMapTile(5,10).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("sword.png"),50,50),"DEFAULT", "walkSpeed", 5,"sword.png");
         sword.setInteractScript(new SwordScript());
         items.add(sword);
 

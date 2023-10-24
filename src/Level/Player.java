@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
 import NPCs.Walrus;
@@ -25,8 +26,12 @@ public abstract class Player extends GameObject {
     private SpriteFont healthBar;
     public SpriteSheet spriteSheet;
 
+    public static int cooldown = 0;
+    public static boolean readyToFire = false;
+    
+
     public static float walkSpeed = 2.3f;
-    public static int attackSpeed = 1;
+    public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int playerHealth = 5;
     public static int attackDamage = 1;
@@ -90,10 +95,13 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+
         peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
+        // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
         
+        // playerCurrentProjectiles.add(fruitFlyProjectile);
         playerCurrentProjectiles.add(peaProjectile);
         playerCurrentProjectiles.add(riceBallProjectile);
         playerCurrentProjectiles.add(bannanaProjectile);
@@ -105,6 +113,23 @@ public abstract class Player extends GameObject {
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
+
+        //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+        if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
+            readyToFire = true;
+        }else{
+            readyToFire = false;
+
+        }
+
+        if(readyToFire){
+
+        }
+        else{
+            cooldown += attackSpeed;
+
+        }
+
         if(invincibilityTimer > 0){
             invincibilityTimer -= 1;
         }
@@ -167,15 +192,16 @@ public abstract class Player extends GameObject {
         else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
+            Projectile projectileShooting = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             
-            Projectile projectile = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
-            map.addProjectile(projectile);
+            
 
-
-
-
-        
-    
+            if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
+                map.addProjectile(projectileShooting);
+                cooldown = 0;
+            }else{
+                readyToFire = false;
+            }
     }
     protected void playerChange(){
         if(projectileInHand >= playerCurrentProjectiles.size()-1){
