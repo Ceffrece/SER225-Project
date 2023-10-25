@@ -111,6 +111,17 @@ public class GamePanel extends JPanel {
 	BufferedImage bast = ImageLoader.load("SkillTreePics/bast.png");
 	BufferedImage odin = ImageLoader.load("SkillTreePics/odin.png");
 	BufferedImage thor = ImageLoader.load("SkillTreePics/thor.png");
+	//Veggie
+	BufferedImage victoria = ImageLoader.load("SkillTreePics/victoria.png");
+	BufferedImage caolo = ImageLoader.load("SkillTreePics/caolo.png");
+	BufferedImage lijing = ImageLoader.load("SkillTreePics/lijing.png");
+	BufferedImage phobos = ImageLoader.load("SkillTreePics/phobos.png");
+	BufferedImage bulub = ImageLoader.load("SkillTreePics/bulub.png");
+	BufferedImage gloves = ImageLoader.load("SkillTreePics/gloves.png");
+	BufferedImage makhai = ImageLoader.load("SkillTreePics/makhai.png");
+	BufferedImage zeus = ImageLoader.load("SkillTreePics/zeus.png");
+	BufferedImage pallas = ImageLoader.load("SkillTreePics/pallas.png");
+	BufferedImage ambrosia = ImageLoader.load("SkillTreePics/ambrosia.jpg");
 
 	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
 	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
@@ -690,6 +701,52 @@ public class GamePanel extends JPanel {
 					veggieTimer = 0;
 				}
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(150, 125, 500, 300, Color.BLACK);
+			SpriteFont title = new SpriteFont(veggieSelection.getName(), 160, 130, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(150, 165, 500, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 160, 175, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(veggieSelection.getEffect(), 160, 210, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+
+			//Picture Selector
+			switch(veggieSelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(gloves, 400, 200,200,200);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(bulub, 400, 200,200,200);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(phobos, 400, 200, 200, 200);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(lijing, 400, 200, 200, 200);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(caolo, 400, 200, 200, 200);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(victoria, 400, 200, 200, 200);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(makhai, 400, 200, 200, 200);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(zeus, 400, 200, 200, 200);
+					break;
+				case 9 :
+					graphicsHandler.drawImage(pallas, 400, 200, 200, 200);
+					break;
+				case 10 :
+					graphicsHandler.drawImage(ambrosia, 400, 200, 200, 200);
+					break;
+			}
 		}
 		catch(NullPointerException e){
 			System.out.println("Cannot Go Any Further!!!");
@@ -884,14 +941,14 @@ public class GamePanel extends JPanel {
 			}
 			//Drawing box that displays the information
 			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);
-			SpriteFont title = new SpriteFont(dairySelection.getName(), 15, 25, getFont(), Color.WHITE);
+			SpriteFont title = new SpriteFont(grainSelection.getName(), 15, 25, getFont(), Color.WHITE);
 			title.setFontSize(25);
 			title.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(10, 60, 350, 1, Color.WHITE);
 			SpriteFont effect = new SpriteFont("Effect: ", 15, 100, getFont(), Color.WHITE);
 			effect.setFontSize(25);
 			effect.draw(graphicsHandler);
-			SpriteFont descrip1 = new SpriteFont(dairySelection.getEffect(), 15, 150, getFont(), Color.WHITE);
+			SpriteFont descrip1 = new SpriteFont(grainSelection.getEffect(), 15, 150, getFont(), Color.WHITE);
 			descrip1.setFontSize(20);
 			descrip1.draw(graphicsHandler);
 			
