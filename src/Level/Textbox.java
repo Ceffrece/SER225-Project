@@ -18,10 +18,10 @@ public class Textbox {
     protected boolean isActive;
     protected final int x = 22;
     protected final int bottomY = 460;
-    protected final int topY = 22;
+    protected final int topY = 42;
     protected final int fontX = 35;
     protected final int fontBottomY = 472;
-    protected final int fontTopY = 34;
+    protected final int fontTopY = 54;
     protected final int width = 650;
     protected final int height = 100;
 
