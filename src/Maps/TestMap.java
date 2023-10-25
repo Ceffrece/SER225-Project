@@ -17,7 +17,7 @@ import Scripts.SimpleTextScript;
 import Scripts.addPlayerStatScript;
 import Scripts.teleportScript;
 import Scripts.TestMap.DinoScript;
-import Scripts.TestMap.LostBallScript;
+// import Scripts.TestMap.LostBallScript; (now unused, kept within comments just in case)
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Scripts.TestMap.SwordScript;
@@ -127,14 +127,14 @@ public class TestMap extends Map {
         return items;
     }
 
-    @Override
-    public ArrayList<Trigger> loadTriggers() {
-        ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        return triggers;
-    }
+//    @Override
+//    public ArrayList<Trigger> loadTriggers() {
+//        ArrayList<Trigger> triggers = new ArrayList<>();
+//        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
+//        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+//        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+//        return triggers;
+//    }
 
     @Override
     public void loadScripts() {

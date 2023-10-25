@@ -87,7 +87,7 @@ public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
     
@@ -96,7 +96,7 @@ public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                         .withScale(3)
                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
     }};
@@ -130,19 +130,19 @@ public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         put("WALK_RIGHT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
                     .withScale(3)
-                    .withBounds(6, 12, 12, 7)
+                    .withBounds(4, 3, 7, 11)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
                     .withScale(3)
-                    .withBounds(6, 12, 12, 7)
+                    .withBounds(4, 3, 7, 11)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(1, 2), 14)
                     .withScale(3)
-                    .withBounds(6, 12, 12, 7)
+                    .withBounds(4, 3, 7, 11)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(1, 3), 14)
                     .withScale(3)
-                    .withBounds(6, 12, 12, 7)
+                    .withBounds(4, 3, 7, 11)
                     .build()
         });
 
