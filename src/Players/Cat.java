@@ -45,17 +45,17 @@ int spriteOffset = 0;
             put("STAND_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build()
             });
             put("STAND_RIGHT_DAMAGED", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
             });
 
@@ -63,7 +63,7 @@ int spriteOffset = 0;
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build()
             });
 
@@ -71,88 +71,88 @@ int spriteOffset = 0;
                     new FrameBuilder(spriteSheet.getSprite(4, 0), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(4, 1), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build()
             });
             put("STAND_UP", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(3, 5))
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
         put("STAND_UP_DAMAGED", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(7, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(7, 4), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
         put("STAND_DOWN", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(2, 5))
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
         put("STAND_DOWN_DAMAGED", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(6, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(6, 4), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build()
         });
             put("WALK_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 9)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 2), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 3), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 4), 9)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 5), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
             });
             put("WALK_RIGHT_DAMAGED", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(5, 1), 9)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 2), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 3), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 4), 9)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 5), 5)
                             .withScale(3)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
             });
 
@@ -160,142 +160,142 @@ int spriteOffset = 0;
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 9)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 2), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 3), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 4), 9)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 5), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),    
             });
             put("WALK_LEFT_DAMAGED", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(5, 1), 9)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 2), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 3), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 4), 9)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(5, 5), 5)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 12, 12, 7)
+                            .withBounds(4, 3, 7, 11)
                             .build(),    
             });
             put("WALK_UP", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(3, 1), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(3, 2), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(3, 3), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(3, 4), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(3, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
         });
         put("WALK_UP_DAMAGED", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(7, 1), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(7, 2), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(7, 3), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(7, 4), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(7, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
         });
         put("WALK_DOWN", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(2, 1), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(2, 2), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(2, 3), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(2, 4), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(2, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
         });
         put("WALK_DOWN_DAMAGED", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(6, 1), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(6, 2), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(6, 3), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(6, 4), 9)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(6, 5), 5)
                         .withScale(3)
-                        .withBounds(6, 12, 12, 7)
+                        .withBounds(4, 3, 7, 11)
                         .build(),
         });
         }};
