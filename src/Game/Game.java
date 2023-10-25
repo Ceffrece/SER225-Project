@@ -2,7 +2,6 @@ package Game;
 
 import Engine.GameWindow;
 import Engine.ScreenManager;
-import SkillTrees.DairySkillTree;
 
 /*
  * The game starts here
