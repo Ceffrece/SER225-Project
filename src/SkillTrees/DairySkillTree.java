@@ -21,7 +21,7 @@ public class DairySkillTree {
 
     public DairySkillTree(){
         centerSkill = new SkillTreeNode("Mars' Milk Jug", null, null, "+1AtkRange",1);
-        skill1 = new SkillTreeNode("Larvan's Lactose", null, null, "+1AtkRange",2);
+        skill1 = new SkillTreeNode("Laran's Lactose", null, null, "+1AtkRange",2);
         skill2 = new SkillTreeNode("Tyr's Yogurt", null, null, "+1AtkRange",3);
         skill3 = new SkillTreeNode("Bia's Butter", null, null, "+1AtkRange",4);
         skill4 = new SkillTreeNode("Satis' Soy", null, null, "+1AtkRange",5);

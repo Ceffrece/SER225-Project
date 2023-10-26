@@ -10,6 +10,8 @@ import javax.swing.*;
 import Builders.FrameBuilder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 import Level.Player;
@@ -74,6 +76,52 @@ public class GamePanel extends JPanel {
 	SkillTreeNode veggieSelection = veggie.getCurrentNode();
 	SkillTreeNode proteinSelection = protein.getCurrentNode();
 
+	//Pictures for the Skill Tree
+	//Dairy
+	BufferedImage diQing = ImageLoader.load("SkillTreePics/diqing.png");
+	BufferedImage mars = ImageLoader.load("SkillTreePics/mars.png");
+	BufferedImage laran = ImageLoader.load("SkillTreePics/laran.png");
+	BufferedImage tyr = ImageLoader.load("SkillTreePics/tyr.png");
+	BufferedImage bia = ImageLoader.load("SkillTreePics/bia.png");
+	BufferedImage satis = ImageLoader.load("SkillTreePics/satis.png");
+	BufferedImage chiyou = ImageLoader.load("SkillTreePics/chiyou1.png");
+	BufferedImage perseus = ImageLoader.load("SkillTreePics/perseus.png");
+	//Fruit
+	BufferedImage orange = ImageLoader.load("SkillTreePics/orange.jpg");
+	BufferedImage horn = ImageLoader.load("SkillTreePics/horn.jpg");
+	BufferedImage basket = ImageLoader.load("SkillTreePics/basket.jpg");
+	BufferedImage momotaro = ImageLoader.load("SkillTreePics/momotaro.png");
+	BufferedImage maui = ImageLoader.load("SkillTreePics/maui.png");
+	BufferedImage ulu = ImageLoader.load("SkillTreePics/ulu.png");
+	BufferedImage pomegranate = ImageLoader.load("SkillTreePics/pomegranate.png");
+	BufferedImage idun = ImageLoader.load("SkillTreePics/idun.jpg");
+	//Grain
+	BufferedImage flour = ImageLoader.load("SkillTreePics/flour.jpg");
+	BufferedImage ceres = ImageLoader.load("SkillTreePics/ceres.png");
+	BufferedImage radegast = ImageLoader.load("SkillTreePics/radegast.png");
+	BufferedImage freyr = ImageLoader.load("SkillTreePics/freyr.png");
+	BufferedImage demeter = ImageLoader.load("SkillTreePics/demeter.png");
+	BufferedImage gaea = ImageLoader.load("SkillTreePics/gaea.png");
+	//Protein
+	BufferedImage pantheon = ImageLoader.load("SkillTreePics/pantheon.png");
+	BufferedImage ares = ImageLoader.load("SkillTreePics/ares.png");
+	BufferedImage bellona = ImageLoader.load("SkillTreePics/bellona.png");
+	BufferedImage set = ImageLoader.load("SkillTreePics/freyr.png");
+	BufferedImage sobek = ImageLoader.load("SkillTreePics/sobek.png");
+	BufferedImage bast = ImageLoader.load("SkillTreePics/bast.png");
+	BufferedImage odin = ImageLoader.load("SkillTreePics/odin.png");
+	BufferedImage thor = ImageLoader.load("SkillTreePics/thor.png");
+	//Veggie
+	BufferedImage victoria = ImageLoader.load("SkillTreePics/victoria.png");
+	BufferedImage caolo = ImageLoader.load("SkillTreePics/caolo.png");
+	BufferedImage lijing = ImageLoader.load("SkillTreePics/lijing.png");
+	BufferedImage phobos = ImageLoader.load("SkillTreePics/phobos.png");
+	BufferedImage bulub = ImageLoader.load("SkillTreePics/bulub.png");
+	BufferedImage gloves = ImageLoader.load("SkillTreePics/gloves.png");
+	BufferedImage makhai = ImageLoader.load("SkillTreePics/makhai.png");
+	BufferedImage zeus = ImageLoader.load("SkillTreePics/zeus.png");
+	BufferedImage pallas = ImageLoader.load("SkillTreePics/pallas.png");
+	BufferedImage ambrosia = ImageLoader.load("SkillTreePics/ambrosia.jpg");
 
 	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
 	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
@@ -653,6 +701,52 @@ public class GamePanel extends JPanel {
 					veggieTimer = 0;
 				}
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(150, 125, 500, 300, Color.BLACK);
+			SpriteFont title = new SpriteFont(veggieSelection.getName(), 160, 130, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(150, 165, 500, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 160, 175, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(veggieSelection.getEffect(), 160, 210, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+
+			//Picture Selector
+			switch(veggieSelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(gloves, 400, 200,200,200);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(bulub, 400, 200,200,200);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(phobos, 400, 200, 200, 200);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(lijing, 400, 200, 200, 200);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(caolo, 400, 200, 200, 200);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(victoria, 400, 200, 200, 200);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(makhai, 400, 200, 200, 200);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(zeus, 400, 200, 200, 200);
+					break;
+				case 9 :
+					graphicsHandler.drawImage(pallas, 400, 200, 200, 200);
+					break;
+				case 10 :
+					graphicsHandler.drawImage(ambrosia, 400, 200, 200, 200);
+					break;
+			}
 		}
 		catch(NullPointerException e){
 			System.out.println("Cannot Go Any Further!!!");
@@ -765,6 +859,46 @@ public class GamePanel extends JPanel {
 					proteinTimer = 0;
 				}
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(150, 125, 500, 300, Color.BLACK);
+			SpriteFont title = new SpriteFont(proteinSelection.getName(), 160, 130, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(150, 165, 500, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 160, 175, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(proteinSelection.getEffect(), 160, 210, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+
+			//Picture Selector
+			switch(proteinSelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(set, 400, 200,200,200);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(bellona, 400, 200,200,200);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(ares, 400, 200, 200, 200);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(pantheon, 400, 200, 200, 200);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(sobek, 400, 200, 200, 200);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(bast, 400, 200, 200, 200);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(odin, 400, 200, 200, 200);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(thor, 400, 200, 200, 200);
+					break;
+			}
 		}
 		catch(NullPointerException e){
 			System.out.println("Cannot Go Any Further!!!");
@@ -793,19 +927,52 @@ public class GamePanel extends JPanel {
 				yLoc+= 100;
 			}
 			grainTimer++;
-				if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
-					grainTimer = 0;
-					grainSelection = grainSelection.getRightSkill();
-				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && grainTimer > 20){
-					grainTimer = 0;
-					grainSelection = grainSelection.getParent();
-				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
-					grain.unlockNode(grainSelection);
-					System.out.println("Unlocking Node" + dairySelection.getName());
-				}
+			if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
+				grainTimer = 0;
+				grainSelection = grainSelection.getRightSkill();
 			}
+			else if(Keyboard.isKeyDown(Key.LEFT) && grainTimer > 20){
+				grainTimer = 0;
+				grainSelection = grainSelection.getParent();
+			}
+			else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
+				grain.unlockNode(grainSelection);
+				System.out.println("Unlocking Node" + grainSelection.getName());
+			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);
+			SpriteFont title = new SpriteFont(grainSelection.getName(), 15, 25, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(10, 60, 350, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 15, 100, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(grainSelection.getEffect(), 15, 150, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+			
+			switch(grainSelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(flour, 30, 230,300,300);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(ceres, 30, 230,300,300);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(radegast, 30, 230, 300, 300);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(freyr, 30, 230, 300, 300);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(demeter, 30, 230, 300, 300);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(gaea, 30, 230, 300, 300);
+					break;
+			}
+		}
 		catch(NullPointerException e){
 			System.out.println("Can't Go Any Further!!!");
 			grain.resetCurrentNode();
@@ -917,6 +1084,58 @@ public class GamePanel extends JPanel {
 					fruitTimer = 0;
 				}
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(150, 125, 500, 300, Color.BLACK);
+			SpriteFont title = new SpriteFont(fruitSelection.getName(), 160, 130, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(150, 165, 500, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 160, 175, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(fruitSelection.getEffect(), 160, 210, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+
+			//Picture Selector
+			switch(fruitSelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(orange, 400, 200,200,200);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(orange, 400, 200,200,200);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(orange, 400, 200, 200, 200);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(orange, 400, 200, 200, 200);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(orange, 400, 200, 200, 200);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(basket, 400, 200, 200, 200);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(horn, 400, 200, 200, 200);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(momotaro, 400, 200, 200, 200);
+					break;
+				case 9 :
+					graphicsHandler.drawImage(maui, 400, 200, 200, 200);
+					break;
+				case 10 :
+					graphicsHandler.drawImage(ulu, 400, 200, 200, 200);
+					break;
+				case 11 :
+					graphicsHandler.drawImage(pomegranate, 400, 200, 200, 200);
+					break;
+				case 12 :
+					graphicsHandler.drawImage(idun, 400, 200, 200, 200);
+					break;
+			}
 		}
 		catch(NullPointerException e){
 			System.out.println("Cannot Go Any Further!!!");
@@ -932,6 +1151,7 @@ public class GamePanel extends JPanel {
 	int dairyTimer = 0;
 	private void displayDairyTree(){
 		try{
+			//Drawing all of the Skills
 			int xLoc = screenManager.getScreenWidth()/2 - 10;
 			int yLoc = 10;
 			for(SkillTreeNode skill : dairy.array1){
@@ -955,6 +1175,47 @@ public class GamePanel extends JPanel {
 				dairyTimer = 0;
 				dairySelection = dairySelection.getParent();
 			}
+			//Drawing box that displays the information
+			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);
+			SpriteFont title = new SpriteFont(dairySelection.getName(), 15, 25, getFont(), Color.WHITE);
+			title.setFontSize(25);
+			title.draw(graphicsHandler);
+			graphicsHandler.drawFilledRectangle(10, 60, 350, 1, Color.WHITE);
+			SpriteFont effect = new SpriteFont("Effect: ", 15, 100, getFont(), Color.WHITE);
+			effect.setFontSize(25);
+			effect.draw(graphicsHandler);
+			SpriteFont descrip1 = new SpriteFont(dairySelection.getEffect(), 15, 150, getFont(), Color.WHITE);
+			descrip1.setFontSize(20);
+			descrip1.draw(graphicsHandler);
+
+			//Picture Selector
+			switch(dairySelection.getId()){
+				case 1 :
+					graphicsHandler.drawImage(mars, 30, 220);
+					break;
+				case 2 :
+					graphicsHandler.drawImage(laran, 30, 220,300,300);
+					break;
+				case 3 :
+					graphicsHandler.drawImage(tyr, 30, 220, 300, 300);
+					break;
+				case 4 :
+					graphicsHandler.drawImage(bia, 30, 220, 300, 300);
+					break;
+				case 5 :
+					graphicsHandler.drawImage(satis, 30, 220, 300, 300);
+					break;
+				case 6 :
+					graphicsHandler.drawImage(chiyou, 30, 220, 300, 300);
+					break;
+				case 7 :
+					graphicsHandler.drawImage(perseus, 30, 220, 300, 300);
+					break;
+				case 8 :
+					graphicsHandler.drawImage(diQing, 30, 220, 300, 300);
+					break;
+			}
+	
 		}
 		catch(NullPointerException e){
 			System.out.println("Can't Go Any Further!!!");

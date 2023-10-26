@@ -33,7 +33,6 @@ public class SkillTreeNode {
     public String getName(){
         return this.name;
     }
-
     public SkillTreeNode getRightSkill(){
         return this.rightSkill;
     }
