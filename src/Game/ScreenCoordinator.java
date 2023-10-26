@@ -54,6 +54,9 @@ public class ScreenCoordinator extends Screen {
 					case INSTRUCTIONS:
 						currentScreen = new InstructionsScreen(this);
 						break;
+					case SETTINGS:
+						currentScreen = new SettingsScreen(this);
+						break;
 				}
 				currentScreen.initialize();
 			}

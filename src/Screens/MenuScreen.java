@@ -19,6 +19,7 @@ public class MenuScreen extends Screen {
     protected SpriteFont credits;
     protected SpriteFont marcusMap; // new map for test purposes
     protected SpriteFont instructions; // Initializes the instructions waow
+    protected SpriteFont settings; //initializes instructions text wowow!
     protected Map background;
     protected int keyPressTimer;
     protected int pointerLocationX, pointerLocationY;
@@ -47,6 +48,9 @@ public class MenuScreen extends Screen {
         instructions = new SpriteFont("INSTRUCTIONS", 510, 300, "Comic Sans", 20, new Color(49, 207, 240));
         instructions.setOutlineColor(Color.black);
         instructions.setOutlineThickness(3);
+        settings = new SpriteFont("SETTINGS", 540, 350, "Comic Sans", 20, new Color(49, 207, 240));
+        settings.setOutlineColor(Color.black);
+        settings.setOutlineThickness(3);
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
         keyPressTimer = 0;
@@ -71,10 +75,10 @@ public class MenuScreen extends Screen {
         }
 
         // if down is pressed on last menu item or up is pressed on first menu item, "loop" the selection back around to the beginning/end
-        if (currentMenuItemHovered > 3) {
+        if (currentMenuItemHovered > 4) {
             currentMenuItemHovered = 0;
         } else if (currentMenuItemHovered < 0) {
-            currentMenuItemHovered = 3;
+            currentMenuItemHovered = 4;
         }
 
         // sets location for blue square in front of text (pointerLocation) and also sets color of spritefont text based on which menu item is being hovered
@@ -83,6 +87,8 @@ public class MenuScreen extends Screen {
             credits.setColor(new Color(49, 207, 240));
             marcusMap.setColor(new Color(49, 207, 240));
             instructions.setColor(new Color(49, 207, 240));
+            settings.setColor(new Color(49, 207, 240));
+            
             pointerLocationX = 530;
             pointerLocationY = 154;
         } else if (currentMenuItemHovered == 1) {
@@ -90,6 +96,7 @@ public class MenuScreen extends Screen {
             credits.setColor(new Color(255, 215, 0));
             marcusMap.setColor(new Color(49, 207, 240));
             instructions.setColor(new Color(49, 207, 240));
+            settings.setColor(new Color(49, 207, 240));
             pointerLocationX = 515;
             pointerLocationY = 204;
         } else if (currentMenuItemHovered == 2) {
@@ -97,6 +104,7 @@ public class MenuScreen extends Screen {
             credits.setColor(new Color(49, 207, 240));
             marcusMap.setColor(new Color(255, 215, 0));
             instructions.setColor(new Color(49, 207, 240));
+            settings.setColor(new Color(49, 207, 240));
             pointerLocationX = 515;
             pointerLocationY = 254;
         } else if(currentMenuItemHovered == 3){
@@ -104,8 +112,17 @@ public class MenuScreen extends Screen {
             credits.setColor(new Color(49, 207, 240));
             marcusMap.setColor(new Color(49, 207, 240));
             instructions.setColor(new Color(255, 215, 0));
+            settings.setColor(new Color(49, 207, 240));
             pointerLocationX = 480;
             pointerLocationY = 304;
+        } else if(currentMenuItemHovered == 4){
+            playGame.setColor(new Color(49, 207, 240));
+            credits.setColor(new Color(49, 207, 240));
+            marcusMap.setColor(new Color(49, 207, 240));
+            instructions.setColor(new Color(49, 207, 240));
+            settings.setColor(new Color(255, 215, 0));
+            pointerLocationX = 510;
+            pointerLocationY = 354;
         }
 
         // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
@@ -124,6 +141,8 @@ public class MenuScreen extends Screen {
                 gameStarted = true;
             } else if(menuItemSelected == 3){
                 screenCoordinator.setGameState(GameState.INSTRUCTIONS);
+            } else if(menuItemSelected == 4){
+                screenCoordinator.setGameState(GameState.SETTINGS);
             }
         }
     }
@@ -135,6 +154,7 @@ public class MenuScreen extends Screen {
         credits.draw(graphicsHandler);
         marcusMap.draw(graphicsHandler);
         instructions.draw(graphicsHandler);
+        settings.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(49, 207, 240), Color.black, 2);
     }
     
