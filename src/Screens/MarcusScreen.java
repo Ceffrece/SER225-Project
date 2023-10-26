@@ -91,6 +91,10 @@ public class MarcusScreen extends Screen {
         if (map.getFlagManager().isFlagSet("hasTalkedToWalrus")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
+        
+        if (map.idSwitch == 1) {
+            screenCoordinator.setGameState(GameState.LEVEL);
+        }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {

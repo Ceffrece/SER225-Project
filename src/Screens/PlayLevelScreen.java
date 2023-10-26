@@ -5,6 +5,8 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.DungeonRoom;
+import Maps.HubMap;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
@@ -86,6 +88,9 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
+                if(map.getMapInt() != map.getIdSwitch()){
+                    this.map = loadMap(map.getIdSwitch());
+                }
                 player.update();
                 map.update(player);
                 break;
@@ -110,6 +115,21 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
+        }
+
+    }
+
+    public Map loadMap(int mapId){
+        Map newMap;
+        switch (mapId){
+            case 0:
+                newMap = new HubMap();
+                return newMap;
+            case 1:
+                newMap = new DungeonRoom();
+                return newMap;
+            default:
+                return null;
         }
     }
 

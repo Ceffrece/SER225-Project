@@ -4,6 +4,7 @@ import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.MarcusMap;
+import Maps.DungeonRoom;
 import Maps.HubMap;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class EditorMaps {
             add("TitleScreen");
             add("MarcusMap");
             add("HubMap");
+            add("DungeonRoom");
         }};
     }
 
@@ -28,6 +30,8 @@ public class EditorMaps {
                 return new MarcusMap();
             case "HubMap":
                 return new HubMap();
+            case "DungeonRoom":
+                return new DungeonRoom();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

@@ -1,19 +1,21 @@
 package Maps;
 
 import Level.Map;
+import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
 
-public class HubMap extends Map {
+public class DungeonRoom extends Map {
 
-    public HubMap() {
-        super("hub_map.txt", new Floor1Tileset());
+    public DungeonRoom() {
+        super("DungeonMap.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 14).getLocation();
         this.mapInt = 0;
-        this.idSwitch = 0;
+        this.idSwitch = 0;                //TODO Auto-generated constructor stub
+        }
 
-    }
+
 
     @Override
     public void loadScripts() {
