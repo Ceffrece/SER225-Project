@@ -31,6 +31,7 @@ public class Camera extends Rectangle {
     private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
     private ArrayList<Item> activeItems = new ArrayList<>();
     private ArrayList<Enemy> activeEnemies = new ArrayList<>();
+    private ArrayList<Pickup> activePickups = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -73,6 +74,7 @@ public class Camera extends Rectangle {
         activeEnemies = loadActiveEnemies();
         activeProjectiles = loadActiveProjectiles();
         activeItems = loadActiveItems();
+        activePickups = loadActivePickups();
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
         }
@@ -85,7 +87,9 @@ public class Camera extends Rectangle {
         for (Item item : activeItems) {
             item.update(player);
         }
-
+        for(Pickup pickup : activePickups) {
+            pickup.update(player);
+        }
         for (Enemy enemy : activeEnemies) {
             enemy.update(player);
         }
@@ -204,6 +208,25 @@ public class Camera extends Rectangle {
             }
         }
         return activeItems;
+    }
+    //determine what pickups are active
+    private ArrayList<Pickup> loadActivePickups() {
+        ArrayList<Pickup> activePickups = new ArrayList<>();
+        for(int i = map.getPickups().size()-1; i>= 0; i--){
+            Pickup pickup = map.getPickups().get(i);
+
+            if(isMapEntityActive(pickup)) {
+                activePickups.add(pickup);
+                if(pickup.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    pickup.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if(pickup.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                pickup.setMapEntityStatus(MapEntityStatus.ACTIVE);
+            } else if(pickup.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getPickups().remove(i);
+            }
+        }
+        return activePickups;
     }
     // determine which trigger map tiles are active (exist and are within range of the camera)
     private ArrayList<Trigger> loadActiveTriggers() {
@@ -331,6 +354,11 @@ public class Camera extends Rectangle {
                 item.draw(graphicsHandler);
             }
         }
+        for(Pickup pickup : activePickups) {
+            if(containsDraw(pickup)) {
+                pickup.draw(graphicsHandler);
+            }
+        }
         // player is drawn to screen
         player.draw(graphicsHandler);
 
@@ -393,6 +421,9 @@ public class Camera extends Rectangle {
     }
     public ArrayList<Item> getActiveItems() {
         return activeItems;
+    }
+    public ArrayList<Pickup> getActivePickups() {
+        return activePickups;
     }
 
     // gets end bound X position of the camera (start position is always 0)

@@ -65,6 +65,7 @@ public abstract class Map {
 
     public ArrayList<Projectile> projectiles;
     public ArrayList<Item> items;
+    public ArrayList<Pickup> pickups;
 
 
     protected Script activeInteractScript;
@@ -127,6 +128,10 @@ public abstract class Map {
         this.items = loadItems();
         for(Item item: this.items){
             item.setMap(this);
+        }
+        this.pickups = loadPickups();
+        for(Pickup pickup : this.pickups){
+            pickup.setMap(this);
         }
 
         this.loadScripts();
@@ -258,6 +263,10 @@ public abstract class Map {
         item.setMap(this);
         this.items.add(item);
     }
+    public void addPickup(Pickup pickup) {
+        pickup.setMap(this);
+        this.pickups.add(pickup);
+    }
 
     // set specific map tile from tile map to a new map tile
     public void setMapTile(int x, int y, MapTile tile) {
@@ -329,6 +338,9 @@ public abstract class Map {
     protected ArrayList<Item> loadItems() {
         return new ArrayList<>();
     }
+    protected ArrayList<Pickup> loadPickups() {
+        return new ArrayList<>();
+    }
     public Camera getCamera() {
         return camera;
     }
@@ -349,6 +361,9 @@ public abstract class Map {
     }
     public ArrayList<Item> getItems() {
         return items;
+    }
+    public ArrayList<Pickup> getPickups() {
+        return pickups;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
@@ -417,6 +432,9 @@ public abstract class Map {
     public ArrayList<Item> getActiveItems() {
         return camera.getActiveItems();
     }
+    public ArrayList<Pickup> getActivePickups() {
+        return camera.getActivePickups();
+    }
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
         enhancedMapTile.setMap(this);
@@ -465,6 +483,7 @@ public abstract class Map {
         surroundingMapEntities.addAll(getActiveEnemies());
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
         surroundingMapEntities.addAll(getActiveItems());
+        surroundingMapEntities.addAll(getActivePickups());
         return surroundingMapEntities;
     }
 
