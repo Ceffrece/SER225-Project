@@ -14,6 +14,7 @@ import NPCs.Walrus;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
+import Screens.SettingsScreen;
 
 import Level.Map;
 import java.awt.*;
@@ -77,10 +78,10 @@ public abstract class Player extends GameObject {
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Key MOVE_LEFT_KEY = Key.A;
-    protected Key MOVE_RIGHT_KEY = Key.D;
-    protected Key MOVE_UP_KEY = Key.W;
-    protected Key MOVE_DOWN_KEY = Key.S;
+    protected static Key MOVE_LEFT_KEY = Key.A;
+    protected static Key MOVE_RIGHT_KEY = Key.D;
+    protected static Key MOVE_UP_KEY = Key.W;
+    protected static Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.F;
 
@@ -331,6 +332,20 @@ public abstract class Player extends GameObject {
         
     }
 
+
+    public static void updateControls(int controlType){
+        if(controlType == 0){
+            MOVE_LEFT_KEY = Key.A;
+            MOVE_RIGHT_KEY = Key.D;
+            MOVE_UP_KEY = Key.W;
+            MOVE_DOWN_KEY = Key.S;
+        }else if(controlType == 1){
+            MOVE_LEFT_KEY = Key.LEFT;
+            MOVE_RIGHT_KEY = Key.RIGHT;
+            MOVE_UP_KEY = Key.UP;
+            MOVE_DOWN_KEY = Key.DOWN;
+        }
+    }
     // anything extra the player should do based on interactions can be handled here
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {

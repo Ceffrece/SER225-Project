@@ -1,11 +1,5 @@
 package Screens;
 import Engine.*;
-import Engine.Screen;
-import Engine.ScreenManager;
-import Engine.GraphicsHandler;
-import Engine.ImageLoader;
-import Engine.KeyLocker;
-import Engine.Keyboard;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Sprite;
@@ -30,19 +24,19 @@ public class InstructionsScreen extends Screen {
     public void initialize(){
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        keyLocker.lockKey(Key.SPACE);
+        keyLocker.lockKey(Key.ESC);
     }
 
     @Override
     public void update() {
         background.update(null);
 
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
+        if (Keyboard.isKeyUp(Key.ESC)) {
+            keyLocker.unlockKey(Key.ESC);
         }
 
         // if space is pressed, go back to main menu
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+        if (!keyLocker.isKeyLocked(Key.ESC) && Keyboard.isKeyDown(Key.ESC)) {
             screenCoordinator.setGameState(GameState.MENU);
         }
     }

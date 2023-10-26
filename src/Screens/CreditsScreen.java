@@ -29,7 +29,7 @@ public class CreditsScreen extends Screen {
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
         creditsLabel = new SpriteFont("Credits", 15, 7, "Times New Roman", 30, Color.white);
-        createdByLabel = new SpriteFont("Created by Alex Thimineur", 15, 120, "Times New Roman", 25, Color.white);
+        createdByLabel = new SpriteFont("Created by Alex Thimineur and Team Let Us Cook", 15, 120, "Times New Roman", 25, Color.white);
         tilesetLabel = new SpriteFont("Custom tileset Dawnlike by DragonDePlatino and DawnBringer", 15, 200, "Times New Roman", 25, Color.white);
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Times New Roman", 30, Color.white);
         keyLocker.lockKey(Key.SPACE);
