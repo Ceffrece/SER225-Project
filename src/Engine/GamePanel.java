@@ -263,7 +263,11 @@ public class GamePanel extends JPanel {
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
 		}
-
+		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC)){
+			skillTreeActivated = !skillTreeActivated;
+			keyLocker.lockKey(skillTreeKey);
+		}
+		
 		if (Keyboard.isKeyUp(skillTreeKey)) {
 			keyLocker.unlockKey(skillTreeKey);
 		}
@@ -577,14 +581,14 @@ public class GamePanel extends JPanel {
 						treeSelecterF.setColor(Color.WHITE);
 					break;
 			}
-			if(skillTreeActivated && Keyboard.isKeyDown(Key.DOWN) && timer > 10){
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.S) && timer > 10){
 				currentTree++;
 				if(currentTree > 4){
 					currentTree = 0;
 				}
 				timer = 0;
 			}
-			else if(skillTreeActivated && Keyboard.isKeyDown(Key.UP) && timer > 10){
+			else if(skillTreeActivated && Keyboard.isKeyDown(Key.W) && timer > 10){
 				currentTree--;
 				if(currentTree < 0){
 					currentTree = 4;
@@ -593,7 +597,7 @@ public class GamePanel extends JPanel {
 			}
 			timer++;
 
-			if(skillTreeActivated && Keyboard.isKeyDown(Key.ENTER) && timer > 10){
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.SPACE) && timer > 10){
 				select = true;
 			}
 		}
@@ -658,45 +662,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			veggieTimer++;
 			if(veggieSelection.getId() == 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getLeftSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getRightSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
 			}
 			//Left branch
 			if(veggieSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getLeftSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getParent();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
 			}
 			//Right Branch
 			if(veggieSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getRightSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getParent();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
@@ -816,45 +820,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			proteinTimer++;
 			if(proteinSelection.getId() == 4){
-				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
 			}
 			//Left branch
 			if(proteinSelection.getId() < 4){
-				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getParent();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
 			}
 			//Right Branch
 			if(proteinSelection.getId() > 4){
-				if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getParent();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
@@ -927,15 +931,15 @@ public class GamePanel extends JPanel {
 				yLoc+= 100;
 			}
 			grainTimer++;
-			if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
+			if(Keyboard.isKeyDown(Key.S) && grainTimer > 20){
 				grainTimer = 0;
 				grainSelection = grainSelection.getRightSkill();
 			}
-			else if(Keyboard.isKeyDown(Key.LEFT) && grainTimer > 20){
+			else if(Keyboard.isKeyDown(Key.W) && grainTimer > 20){
 				grainTimer = 0;
 				grainSelection = grainSelection.getParent();
 			}
-			else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
+			else if(Keyboard.isKeyDown(Key.SPACE) && grainTimer > 100){
 				grain.unlockNode(grainSelection);
 				System.out.println("Unlocking Node" + grainSelection.getName());
 			}
@@ -1041,45 +1045,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			fruitTimer++;
 			if(fruitSelection.getId() == 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getLeftSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getRightSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
 			}
 			//Left branch
 			if(fruitSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getLeftSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getParent();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
 			}
 			//Right Branch
 			if(fruitSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getRightSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getParent();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
@@ -1167,11 +1171,11 @@ public class GamePanel extends JPanel {
 				yLoc += 100;
 			}
 			dairyTimer++;
-			if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){
+			if(Keyboard.isKeyDown(Key.S) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getRightSkill();
 			}
-			else if(Keyboard.isKeyDown(Key.LEFT) && dairyTimer > 20){
+			else if(Keyboard.isKeyDown(Key.W) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getParent();
 			}
