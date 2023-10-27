@@ -30,6 +30,12 @@ public class Item extends MapEntity{
 
         initialize();
     }
+    //Constructor for Pickup Items
+    public Item(Point location, SpriteSheet ss, String startingAnimation){
+        super(location.x,location.y,ss,startingAnimation);
+
+        initialize();
+    }
     public void update(Player player) {
         super.update();
     }

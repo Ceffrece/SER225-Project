@@ -399,6 +399,10 @@ public abstract class Player extends GameObject {
                     invincibilityTimer = 180;
                 }
             }
+            if(entityCollidedWith.getIdentity() == "xpOrb"){
+                entityCollidedWith.setMapEntityStatus(MapEntityStatus.REMOVED);
+                playerXPLevel += 1;
+            }
         }
     }
 
