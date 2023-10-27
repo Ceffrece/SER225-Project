@@ -25,31 +25,17 @@ public class DungeonRoom1 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
     
-            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(2, 17).getLocation());
-            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller1);
+           
     
             CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(3, 12).getLocation());
             cerealkiller2.setExistenceFlag("hasTalkedToCerealKiller");
             enemies.add(cerealkiller2);
     
-            
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(21, 17).getLocation());
-            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(spineapple1);
-    
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(21, 3).getLocation());
-            spineapple2.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(spineapple2);
-    
-            
             Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(10, 14).getLocation());
             eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
             enemies.add(eggssassin1);
     
-            Eggssassin eggssassin2 = new Eggssassin(0, getMapTile(12, 14).getLocation());
-            eggssassin2.setExistenceFlag("hasTalkedToEggssassin");
-            enemies.add(eggssassin2);
+           
     
             
             return enemies;
