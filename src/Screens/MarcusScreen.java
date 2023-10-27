@@ -5,8 +5,10 @@ import Engine.GraphicsHandler;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.DungeonRoom1;
 import Maps.HubMap;
 import Maps.MarcusMap;
+import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
@@ -78,6 +80,13 @@ public class MarcusScreen extends Screen {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the rpg level going
             case RUNNING:
+            if (map.getMapInt() != map.getIdSwitch()) {
+                this.map = loadMap(map.getIdSwitch());
+                this.map.setFlagManager(flagManager);
+                this.player.setMap(this.map);
+                Point playerStartPosition = map.getPlayerStartPosition();
+                this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+            }
                 player.update();
                 map.update(player);
                 break;
@@ -92,11 +101,34 @@ public class MarcusScreen extends Screen {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
         
-        if (map.idSwitch == 1) {
-            screenCoordinator.setGameState(GameState.LEVEL);
+        
+        // if (map.idSwitch == 0) {
+        //     this.map = loadMap(0);
+        // }
+        // else if (map.idSwitch == 1) {
+        //     this.map = loadMap(1);
+        // }
+        // else if (map.idSwitch == 2) {
+        //     this.map = loadMap(2);
+        // }
+        
+    }
+    public Map loadMap(int mapId){
+        Map newMap;
+        switch (mapId){
+            case 0:
+                newMap = new HubMap();
+                return newMap;
+            case 1:
+                newMap = new DungeonRoom1();
+                return newMap;
+            case 2:
+                newMap = new TestMap();
+                return newMap;
+            default:
+                return null;
         }
     }
-
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
