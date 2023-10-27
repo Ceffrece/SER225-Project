@@ -258,16 +258,23 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	int escTimer = 0;
 	private void updateSkillTreeState() {
+		if(!select){
+			escTimer++;
+		}
+		else{
+			escTimer = 0;
+		}
 		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
 		}
-		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC)){
+		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC) && escTimer > 20){
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
 		}
-		
+
 		if (Keyboard.isKeyUp(skillTreeKey)) {
 			keyLocker.unlockKey(skillTreeKey);
 		}
