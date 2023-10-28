@@ -1,6 +1,7 @@
 package Game;
 
 import Engine.GameWindow;
+import Engine.Music;
 import Engine.ScreenManager;
 
 /*
@@ -19,5 +20,7 @@ public class Game {
         ScreenManager screenManager = gameWindow.getScreenManager();
         screenManager.setCurrentScreen(new ScreenCoordinator());
         gameWindow.startGame();
+
+        Music music = new Music("Resources\\Music\\demigods.wav");
     }
 }
