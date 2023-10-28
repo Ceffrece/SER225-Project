@@ -19,6 +19,7 @@ public class Item extends MapEntity{
     public String stat;
 
     public String curentItemPNG;
+    public String projectileToAdd;
     
 
     public Item(Point location, SpriteSheet ss, String startingAnimation, String stat, int statIncrease,String inventoryIcon){
@@ -31,13 +32,21 @@ public class Item extends MapEntity{
         initialize();
     }
     //Constructor for Pickup Items
-    public Item(Point location, SpriteSheet ss, String startingAnimation){
+    public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd){
         super(location.x,location.y,ss,startingAnimation);
-
+        this.projectileToAdd = projectileToAdd;
+        isUncollidable = true;   
         initialize();
     }
-    public void update(Player player) {
+    public Item(Point location, SpriteSheet ss, String startingAnimation) {
+        super(location.x,location.y,ss,startingAnimation);
+        this.projectileToAdd = projectileToAdd;
+        isUncollidable = true;   
+        initialize();
+}
+public void update(Player player) {
         super.update();
+
     }
     public void initialize() {
         super.initialize();

@@ -296,16 +296,16 @@ public class GamePanel extends JPanel {
 			emptyHearts[i].draw(graphicsHandler);
 		}
 		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
-		graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+		if(!Player.playerCurrentProjectiles.isEmpty()){
+			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+			graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
+
+		}
 		
 		
 		reload = Player.cooldown;
 
-		// if(reload > Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime){
-		// 	reload = Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime;
-		// }
 		
-		graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
 		graphicsHandler.drawFilledRectangle(700, 455,reload/2,10, new Color(50, 255, 50, 255));
 
 		if(Player.readyToFire){
