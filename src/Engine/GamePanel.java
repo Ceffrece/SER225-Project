@@ -413,7 +413,7 @@ public class GamePanel extends JPanel {
 						treeSelecterD.setColor(Color.WHITE);
 					break;
 			}
-			if(isInventoryActivated && Keyboard.isKeyDown(Key.DOWN) && inventoryTimer > 10){
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.S) && inventoryTimer > 10){
 				currentInventortOption++;
 				if(currentInventortOption > 2){
 					currentInventortOption = 0;
@@ -421,7 +421,7 @@ public class GamePanel extends JPanel {
 				inventoryTimer = 0;
 
 			}
-			else if(isInventoryActivated && Keyboard.isKeyDown(Key.UP) && inventoryTimer > 10){
+			else if(isInventoryActivated && Keyboard.isKeyDown(Key.W) && inventoryTimer > 10){
 				currentInventortOption--;
 				if(currentInventortOption < 0){
 					currentInventortOption = 2;
@@ -429,7 +429,7 @@ public class GamePanel extends JPanel {
 				inventoryTimer = 0;
 
 			}
-			if(isInventoryActivated && Keyboard.isKeyDown(Key.ENTER) && inventoryTimer > 10){
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.SPACE) && inventoryTimer > 10){
 				inventorySelect = true;
 			}
 
