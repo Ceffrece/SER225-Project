@@ -532,6 +532,10 @@ public class GamePanel extends JPanel {
 	int timer = 0;
 	boolean select = false;
 
+	public static boolean getSelectStatus() {
+		return this.select == true;
+	}
+
 
 
 	

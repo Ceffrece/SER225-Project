@@ -1,5 +1,6 @@
 package Game;
 
+import Engine.GamePanel;
 import Engine.GameWindow;
 import Engine.Music;
 import Engine.ScreenManager;
@@ -21,6 +22,11 @@ public class Game {
         screenManager.setCurrentScreen(new ScreenCoordinator());
         gameWindow.startGame();
 
-        Music music = new Music("Resources\\Music\\demigods.wav");
+        if(GamePanel.getSelectStatus()){
+            //Play skill tree music here
+        } 
+        else{
+            Music music = new Music("Resources\\Music\\demigods.wav");
+        }
     }
 }
