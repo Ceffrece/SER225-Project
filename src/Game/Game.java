@@ -1,6 +1,5 @@
 package Game;
 
-import Engine.GamePanel;
 import Engine.GameWindow;
 import Engine.Music;
 import Engine.ScreenManager;
@@ -11,6 +10,8 @@ import Engine.ScreenManager;
  * From this point on the ScreenCoordinator class will dictate what the game does
  */
 public class Game {
+    public static Music skillTreeBackground = new Music("Resources\\Music\\danceWithDragons.wav"); 
+    public static Music gameMusic = new Music("Resources\\Music\\demigods.wav");
 
     public static void main(String[] args) {
         new Game();
@@ -22,11 +23,7 @@ public class Game {
         screenManager.setCurrentScreen(new ScreenCoordinator());
         gameWindow.startGame();
 
-        if(GamePanel.getSelectStatus()){
-            //Play skill tree music here
-        } 
-        else{
-            Music music = new Music("Resources\\Music\\demigods.wav");
-        }
+        skillTreeBackground.pause();
+        gameMusic.play();
     }
 }

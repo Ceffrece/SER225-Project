@@ -33,7 +33,6 @@ public class Music {
                 clip.open(audioInputStream);
 
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-                clip.start();
             }
             catch(IOException e){
                 e.printStackTrace();
@@ -98,5 +97,12 @@ public class Music {
         clip.start(); 
           
         status = "play"; 
-    } 
+    }
+    public void pause()  
+    { 
+        this.currentFrame =  
+        this.clip.getMicrosecondPosition(); 
+        clip.stop(); 
+        status = "paused"; 
+    }  
 }   

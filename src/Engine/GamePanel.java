@@ -1,5 +1,6 @@
 package Engine;
 import Engine.ImageLoader;
+import Game.Game;
 import GameObject.Rectangle;
 import GameObject.Sprite;
 import SpriteFont.SpriteFont;
@@ -77,6 +78,8 @@ public class GamePanel extends JPanel {
 	SkillTreeNode proteinSelection = protein.getCurrentNode();
 
 	//Pictures for the Skill Tree
+	//Background
+	BufferedImage skilltreeImg = ImageLoader.load("SkillTreePics/background.jpg");
 	//Dairy
 	BufferedImage diQing = ImageLoader.load("SkillTreePics/diqing.png");
 	BufferedImage mars = ImageLoader.load("SkillTreePics/mars.png");
@@ -269,10 +272,18 @@ public class GamePanel extends JPanel {
 		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
+			Game.gameMusic.pause();
+			Game.skillTreeBackground.play();
 		}
 		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC) && escTimer > 20){
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
+			Game.gameMusic.play();
+			Game.skillTreeBackground.pause();
+		}
+		if(!skillTreeActivated){
+			Game.gameMusic.play();
+			Game.skillTreeBackground.pause();
 		}
 
 		if (Keyboard.isKeyUp(skillTreeKey)) {
@@ -341,7 +352,8 @@ public class GamePanel extends JPanel {
 
 		if(skillTreeActivated){
 			pauseLabel.draw(graphicsHandler);
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
+			//graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
+			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
 			displaySkillTree();
 		}
 
@@ -530,10 +542,10 @@ public class GamePanel extends JPanel {
 
 	int currentTree = 0;
 	int timer = 0;
-	boolean select = false;
+	static boolean select = false;
 
 	public static boolean getSelectStatus() {
-		return this.select == true;
+		return select == true;
 	}
 
 
@@ -554,6 +566,14 @@ public class GamePanel extends JPanel {
 			}
 		}
 		else{
+			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
+			graphicsHandler.drawFilledRectangleWithBorder( 90,90, 190, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 190,190, 170, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 290,290, 150, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 390,390, 150, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 490,490, 150, 50, Color.GRAY, Color.BLACK, 2);
+
+
 			treeSelecterV.draw(graphicsHandler);
 			treeSelecterP.draw(graphicsHandler);
 			treeSelecterG.draw(graphicsHandler);
@@ -561,31 +581,31 @@ public class GamePanel extends JPanel {
 			treeSelecterD.draw(graphicsHandler);
 			
 			switch(currentTree){
-				case 0 : treeSelecterV.setColor(Color.RED);
+				case 0 : treeSelecterV.setColor(Color.YELLOW);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 1 : treeSelecterP.setColor(Color.RED);
+				case 1 : treeSelecterP.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 2 : treeSelecterG.setColor(Color.RED);
+				case 2 : treeSelecterG.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 3 : treeSelecterF.setColor(Color.RED);
+				case 3 : treeSelecterF.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 4 : treeSelecterD.setColor(Color.RED);
+				case 4 : treeSelecterD.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
