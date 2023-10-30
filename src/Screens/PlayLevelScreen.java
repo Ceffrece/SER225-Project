@@ -1,10 +1,13 @@
 package Screens;
 
-import Engine.GraphicsHandler;
 import Engine.Screen;
+import Engine.GraphicsHandler;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.DungeonRoom1;
+import Maps.HubMap;
+import Maps.MarcusMap;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
@@ -16,7 +19,7 @@ public class PlayLevelScreen extends Screen {
     protected Map map;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
-    protected WinScreen winScreen;
+    protected WinMarcusScreen winMarcusScreen;
     protected FlagManager flagManager;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -26,13 +29,10 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
-        flagManager.addFlag("hasTalkedToDinosaur", false);
-        flagManager.addFlag("hasFoundBall", false);
-
+        
         // define/setup map
-        this.map = new TestMap();
+        this.map = new HubMap();
         map.setFlagManager(flagManager);
 
         // setup player
@@ -53,6 +53,12 @@ public class PlayLevelScreen extends Screen {
                 mapTile.getInteractScript().setPlayer(player);
             }
         }
+        for (Item item : map.getItems()) {
+            if (item.getInteractScript() != null) {
+                item.getInteractScript().setMap(map);
+                item.getInteractScript().setPlayer(player);
+            }
+        }
         for (NPC npc : map.getNPCs()) {
             if (npc.getInteractScript() != null) {
                 npc.getInteractScript().setMap(map);
@@ -71,36 +77,64 @@ public class PlayLevelScreen extends Screen {
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
-        for (Item item : map.getItems()) {
-            if (item.getInteractScript() != null) {
-                item.getInteractScript().setMap(map);
-                item.getInteractScript().setPlayer(player);
-            }
-        }
 
-        winScreen = new WinScreen(this);
+        // winMarcusScreen = new WinMarcusScreen(this);
     }
 
     public void update() {
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
-            // if level is "running" update player and map to keep game logic for the platformer level going
+            // if level is "running" update player and map to keep game logic for the rpg level going
             case RUNNING:
+            if (map.getMapInt() != map.getIdSwitch()) {
+                this.map = loadMap(map.getIdSwitch());
+                this.map.setFlagManager(flagManager);
+                this.player.setMap(this.map);
+                Point playerStartPosition = map.getPlayerStartPosition();
+                this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+            }
                 player.update();
                 map.update(player);
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
-                winScreen.update();
+                winMarcusScreen.update();
                 break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        if (map.getFlagManager().isFlagSet("hasTalkedToWalrus")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
+        
+        
+        // if (map.idSwitch == 0) {
+        //     this.map = loadMap(0);
+        // }
+        // else if (map.idSwitch == 1) {
+        //     this.map = loadMap(1);
+        // }
+        // else if (map.idSwitch == 2) {
+        //     this.map = loadMap(2);
+        // }
+        
     }
-
+    public Map loadMap(int mapId){
+        Map newMap;
+        switch (mapId){
+            case 0:
+                newMap = new HubMap();
+                return newMap;
+            case 1:
+                newMap = new DungeonRoom1();
+                return newMap;
+            case 2:
+                newMap = new TestMap();
+                return newMap;
+            default:
+                return null;
+        }
+    }
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
@@ -108,7 +142,7 @@ public class PlayLevelScreen extends Screen {
                 map.draw(player, graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
-                winScreen.draw(graphicsHandler);
+                winMarcusScreen.draw(graphicsHandler);
                 break;
         }
     }

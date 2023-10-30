@@ -34,6 +34,8 @@ public abstract class Map {
     // width and height of the map in terms of the number of tiles width-wise and height-wise
     protected int width;
     protected int height;
+    protected int mapInt;
+    public int idSwitch;
 
     // the tileset this map uses for its map tiles
     protected Tileset tileset;
@@ -576,6 +578,23 @@ public abstract class Map {
         }
 
         return false;
+    }
+
+    public void setIdSwitch(int idSwitch) {
+        // 0 for main map, 1 for cce, 2 for Ice rink
+        this.idSwitch = idSwitch;
+    }
+
+    public int getIdSwitch(){
+        return idSwitch;
+    }
+
+    public void setMapInt(int mapInt) {
+        this.mapInt = mapInt;
+    }
+
+    public int getMapInt() {
+        return mapInt;
     }
 
     public void update(Player player) {
