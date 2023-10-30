@@ -19,16 +19,16 @@ import NPCs.Dinosaur;
 public class carrotProjectile extends Projectile {
         private float speedX;
         private float speedY;
-        private int existenceFrames = (Player.attackRange)*55;
+        private int existenceFrames = (Player.attackRange)*35;
         private int hasDirection = 0;
 
-        private static int shootTime = 100;
+        private static int shootTime = 150;
 
         public static String projectileID = "carrotProjectile";
         public static String projectilePng = "carrotProjectile.png";
 
         public carrotProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("carrotProjectile.png"), 16, 16), "UP",100);
+                super(location, new SpriteSheet(ImageLoader.load("carrotProjectile.png"), 16, 16), "UP",150);
                 super.setIdentity(identity);
                 super.setExistenceFrames(existenceFrames);
                 super.existenceFrames = existenceFrames;
@@ -37,7 +37,7 @@ public class carrotProjectile extends Projectile {
                 super.projectilePng = projectilePng;
 
 
-                super.setDamage(Player.attackDamage*10);
+                super.setDamage(Player.attackDamage*25);
                 initialize();
                 
         }
@@ -46,39 +46,46 @@ public class carrotProjectile extends Projectile {
         public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
                         if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
-                                speedY =  3.5f;
-                                speedX = -3.5f; 
-                                this.currentAnimationName = "RIGHT";
+                                speedY =  4.5f;
+                                speedX = -4.5f; 
+                                this.currentAnimationName= "DIAGONALDOWNLEFT";
                         }
                         else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
-                                speedY =  3.5f;
-                                speedX = 3.5f; 
+                                speedY =  4.5f;
+                                speedX = 4.5f; 
+                                this.currentAnimationName = "DIAGONALDOWNRIGHT";
 
                         }
                         else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
-                                speedY =  -3.5f;
-                                speedX = -3.5f; 
+                                speedY =  -4.5f;
+                                speedX = -4.5f; 
+                                this.currentAnimationName = "DIAGONALUPLEFT";
 
                         }
                         else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
-                                speedY =  -3.5f;
-                                speedX = 3.5f; 
+                                speedY =  -4.5f;
+                                speedX = 4.5f; 
+                                this.currentAnimationName = "DIAGONALUPRIGHT";
+
 
                         }
                         else if (player.getFacingDirection() == Direction.RIGHT) {
-                                speedX = 3.5f;
+                                speedX = 4.5f;
                                 this.currentAnimationName = "RIGHT";
 
                         } 
                         else if (player.getFacingDirection() == Direction.LEFT) {
-                                speedX = -3.5f; 
+                                speedX = -4.5f; 
+                                this.currentAnimationName = "LEFT";
+
                         }
                         else if (player.getFacingDirection() == Direction.UP) {
-                                speedY = -3.5f;
-    
+                                speedY = -4.5f;
+                                this.currentAnimationName = "UP";
+
                         }
                          else if (player.getFacingDirection() == Direction.DOWN) {
-                            speedY =  3.5f;
+                            speedY =  4.5f;
                             this.currentAnimationName = "DOWN";
 
     
@@ -106,17 +113,42 @@ public class carrotProjectile extends Projectile {
                                         .build()
                         });
                         put("LEFT", new Frame[] {
-                                new FrameBuilder(spriteSheet.getSprite(0, 0))
+                                new FrameBuilder(spriteSheet.getSprite(0, 1))
+                                        .withScale(3)
+                                        .withBounds(6, 12, 16, 16)
+                                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
+                                        .build()
+                        });
+                        put("RIGHT", new Frame[] {
+                                new FrameBuilder(spriteSheet.getSprite(0, 1))
                                         .withScale(3)
                                         .withBounds(6, 12, 16, 16)
                                         .build()
                         });
-                        put("RIGHT", new Frame[] {
-                                new FrameBuilder(spriteSheet.getSprite(0, 0))
+                        put("DIAGONALUPRIGHT", new Frame[] {
+                                new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
-                                        // .withImageEffect(ImageEffect. FLIP_H_AND_V)
-                                        .withImageEffect(ImageEffect. FLIP_H_AND_V)
-                                
+                                        .withBounds(6, 12, 16, 16)
+                                        .build()
+                        });
+                        put("DIAGONALUPLEFT", new Frame[] {
+                                new FrameBuilder(spriteSheet.getSprite(0, 2))
+                                        .withScale(3)
+                                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
+                                        .withBounds(6, 12, 16, 16)
+                                        .build()
+                        });
+                        put("DIAGONALDOWNLEFT", new Frame[] {
+                                new FrameBuilder(spriteSheet.getSprite(0, 2))
+                                        .withScale(3)
+                                        .withImageEffect(ImageEffect.FLIP_H_AND_V)                                
+                                        .withBounds(6, 12, 16, 16)
+                                        .build()
+                        });
+                        put("DIAGONALDOWNRIGHT", new Frame[] {
+                                new FrameBuilder(spriteSheet.getSprite(0, 2))
+                                        .withScale(3)
+                                        .withImageEffect(ImageEffect.FLIP_VERTICAL)                                
                                         .withBounds(6, 12, 16, 16)
                                         .build()
                         });
@@ -125,7 +157,7 @@ public class carrotProjectile extends Projectile {
                
         }
         public String getCurentProjectilePNG(){
-                return "carrotProjectile.png";
+                return "carrotIcon.png";
         }
         public void update(Player player) {
                 super.update();
