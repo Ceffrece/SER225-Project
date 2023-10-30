@@ -3,6 +3,7 @@ package Level;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
+import Engine.Music;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
@@ -249,6 +250,8 @@ public abstract class Player extends GameObject {
         // if Fireing Key is not locked and Fire Key is down, lock key 
         if (!keyLocker.isKeyLocked(FIRE_KEY) && Keyboard.isKeyDown(FIRE_KEY)) {
             keyLocker.lockKey(FIRE_KEY);
+            Music blast = new Music("Resources/Music/blast.wav",1);
+
             playerState = PlayerState.FIRING;
         }
 
