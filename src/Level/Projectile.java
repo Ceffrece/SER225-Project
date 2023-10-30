@@ -2,6 +2,7 @@ package Level;
 
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
@@ -117,6 +118,10 @@ public class Projectile extends MapEntity{
                         case "fruitFlyProjectile":
                             fruitFlyProjectile projectile4 = new fruitFlyProjectile(player.getLocation(), player);
                              map.addProjectile(projectile4);
+                             break;
+                        case "carrotProjectile":
+                        carrotProjectile carrotProjectile = new carrotProjectile(player.getLocation(), player);
+                             map.addProjectile(carrotProjectile);
                              break;
                         default:
                             break;

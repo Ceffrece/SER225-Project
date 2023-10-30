@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
@@ -101,6 +102,10 @@ public abstract class Player extends GameObject {
         // riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
         // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
+
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+
+        playerCurrentProjectiles.add(carrotProjectile);
 
         // playerCurrentProjectiles.add(fruitFlyProjectile);
         // playerCurrentProjectiles.add(peaProjectile);
@@ -557,6 +562,10 @@ public abstract class Player extends GameObject {
                 bannanaProjectile bannanaProjectile = new bannanaProjectile(new Point(0, 0), null);
                 playerCurrentProjectiles.add(bannanaProjectile);
                  break;
+                case "carrotProjectile":
+                carrotProjectile carrotProjectile = new carrotProjectile(new Point(maxHealth, invincibilityTimer), null);
+                 playerCurrentProjectiles.add(carrotProjectile);
+                  break;
             // case "fruitFlyProjectile":
             //         fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(new Point(0, 0), null);
             //         playerCurrentProjectiles.add(fruitFlyProjectile);
