@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.riceBallProjectile;
@@ -97,15 +98,19 @@ public abstract class Player extends GameObject {
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
 
-        peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
-        riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
-        bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
+        // peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
+        // riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
+        // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
         // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
-        
+
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+
+        playerCurrentProjectiles.add(carrotProjectile);
+
         // playerCurrentProjectiles.add(fruitFlyProjectile);
-        playerCurrentProjectiles.add(peaProjectile);
-        playerCurrentProjectiles.add(riceBallProjectile);
-        playerCurrentProjectiles.add(bannanaProjectile);
+        // playerCurrentProjectiles.add(peaProjectile);
+        // playerCurrentProjectiles.add(riceBallProjectile);
+        // playerCurrentProjectiles.add(bannanaProjectile);
 
 
 
@@ -116,14 +121,17 @@ public abstract class Player extends GameObject {
         moveAmountY = 0;
 
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
-        if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
-            readyToFire = true;
-        }else{
-            readyToFire = false;
-
+        if(!playerCurrentProjectiles.isEmpty()){
+            if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime ){
+                readyToFire = true;
+            }else{
+                readyToFire = false;
+    
+            }
         }
+        
 
-        if(readyToFire){
+        if(readyToFire ||playerCurrentProjectiles.isEmpty()){
 
         }
         else{
@@ -193,18 +201,19 @@ public abstract class Player extends GameObject {
         else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
+        if(!playerCurrentProjectiles.isEmpty()){
             Projectile projectileShooting = new Projectile(this.getLocation(),this.getCurentProjectile(), this);
             
-            
-
             if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
                 map.addProjectile(projectileShooting);
                 cooldown = 0;
             }else{
                 readyToFire = false;
             }
+        }
     }
     protected void playerChange(){
+        
         if(projectileInHand >= playerCurrentProjectiles.size()-1){
             projectileInHand = 0;
         }
@@ -537,6 +546,32 @@ public abstract class Player extends GameObject {
         }
         else if (direction == Direction.RIGHT) {
             moveX(speed);
+        }
+    }
+    public static void addProjectile(String projectileType){
+        switch(projectileType){
+            case "peaProjectile":
+                peaProjectile peaProjectile = new peaProjectile(new Point(maxHealth, invincibilityTimer), null);
+                playerCurrentProjectiles.add(peaProjectile);
+                 break;
+            case "riceBallProjectile":
+                riceBallProjectile riceBallProjectile = new riceBallProjectile(new Point(0, 0), null);
+                playerCurrentProjectiles.add(riceBallProjectile);
+                 break;
+            case "bannanaProjectile":
+                bannanaProjectile bannanaProjectile = new bannanaProjectile(new Point(0, 0), null);
+                playerCurrentProjectiles.add(bannanaProjectile);
+                 break;
+                case "carrotProjectile":
+                carrotProjectile carrotProjectile = new carrotProjectile(new Point(maxHealth, invincibilityTimer), null);
+                 playerCurrentProjectiles.add(carrotProjectile);
+                  break;
+            // case "fruitFlyProjectile":
+            //         fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(new Point(0, 0), null);
+            //         playerCurrentProjectiles.add(fruitFlyProjectile);
+            //      break;
+            default:
+                break;
         }
     }
     public String getCurentProjectile(){
