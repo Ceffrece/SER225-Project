@@ -1,5 +1,6 @@
 package Enemy;
 
+import java.awt.Color;
 import java.util.HashMap;
 
 import Builders.FrameBuilder;
@@ -31,13 +32,13 @@ public class CerealKiller extends Enemy
                 put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(4, 5, 14, 16)
+                                .withBounds(3, 6, 14, 16)
                                 .build()
                 });
                 put("STAND_RIGHT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(4, 5, 14, 16)
+                                .withBounds(3, 6, 14, 16)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build()
                 });
@@ -45,11 +46,11 @@ public class CerealKiller extends Enemy
                 put("WALK_LEFT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(1, 3, 12, 13)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(1, 3, 12, 13)
                                 .build()
                 });
 
@@ -57,12 +58,12 @@ public class CerealKiller extends Enemy
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(1, 3, 12, 13)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(1, 3, 12, 13)
                                 .build()
                 });
                 }};
@@ -81,9 +82,25 @@ public class CerealKiller extends Enemy
         }
 
     @Override
-    public void draw(GraphicsHandler graphicsHandler)
-    {
-        super.draw(graphicsHandler);
+    public void draw(GraphicsHandler graphicsHandler) {
+        if (map != null) {
+                graphicsHandler.drawImage(
+                                currentFrame.getImage(),
+                                Math.round(getCalibratedXLocation()),
+                                Math.round(getCalibratedYLocation()),
+                                currentFrame.getWidth(),
+                                currentFrame.getHeight(),
+                                currentFrame.getImageEffect());
+
+                // Uncomment this to draw player's bounds to screen -- useful for debugging
+                
+                //if (this instanceof Enemy) {
+                //        drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+                //}
+                
+        } else {
+                super.draw(graphicsHandler);
+        }
     }
 
 }

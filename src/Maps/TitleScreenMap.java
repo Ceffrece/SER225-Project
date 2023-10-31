@@ -5,7 +5,7 @@ import Engine.ImageLoader;
 import GameObject.ImageEffect;
 import GameObject.Sprite;
 import Level.Map;
-import Tilesets.CommonTileset;
+// import Tilesets.CommonTileset; (unused)
 import Tilesets.Floor1Tileset;
 import Utils.Colors;
 import Utils.Point;

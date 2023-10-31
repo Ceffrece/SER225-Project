@@ -117,6 +117,7 @@ public class Enemy extends MapEntity
         if (direction == Direction.UP)
         {
             moveY(-speed);
+            //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
         }
         else if (direction == Direction.DOWN)
         {

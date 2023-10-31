@@ -22,7 +22,7 @@ public class Textbox {
     protected final int fontX = 35;
     protected final int fontBottomY = 472;
     protected final int fontTopY = 54;
-    protected final int width = 650;
+    protected final int width = 675;
     protected final int height = 100;
 
     private Queue<String> textQueue = new LinkedList<String>();
