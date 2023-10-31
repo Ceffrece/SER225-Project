@@ -102,15 +102,7 @@ public class MarcusScreen extends Screen {
         }
         
         
-        // if (map.idSwitch == 0) {
-        //     this.map = loadMap(0);
-        // }
-        // else if (map.idSwitch == 1) {
-        //     this.map = loadMap(1);
-        // }
-        // else if (map.idSwitch == 2) {
-        //     this.map = loadMap(2);
-        // }
+       
         
     }
     public Map loadMap(int mapId){

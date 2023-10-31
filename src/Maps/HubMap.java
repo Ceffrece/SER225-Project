@@ -6,10 +6,15 @@ import Engine.ImageLoader;
 import GameObject.SpriteSheet;
 import Level.Item;
 import Level.Map;
+import Level.NPC;
+import NPCs.Dinosaur;
+import NPCs.Walrus;
 import Tilesets.Floor1Tileset;
 import Scripts.ProjectilePickup;
 import Scripts.SimpleTextScript;
+import Scripts.MarcusMap.WalrusScript;
 import Scripts.TestMap.ChangeMapScript;
+import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.SwordScript;
 
 public class HubMap extends Map {
@@ -20,6 +25,16 @@ public class HubMap extends Map {
         this.mapInt = 0;
         this.idSwitch = 0;
 
+    }
+    public ArrayList<NPC> loadNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+
+        Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
+        walrus.setInteractScript(new WalrusScript());
+        npcs.add(walrus);
+        
+
+        return npcs;
     }
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
