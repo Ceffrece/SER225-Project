@@ -581,7 +581,6 @@ public abstract class Map {
     }
 
     public void setIdSwitch(int idSwitch) {
-        // 0 for main map, 1 for cce, 2 for Ice rink
         this.idSwitch = idSwitch;
     }
 

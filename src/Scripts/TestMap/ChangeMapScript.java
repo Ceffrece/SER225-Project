@@ -14,11 +14,9 @@ import Game.ScreenCoordinator;
 
 public class ChangeMapScript extends Script {
 
-        
-    private int mapID;
-
-        public ChangeMapScript(int mapID) {
-        this.mapID = mapID;
+    private int mapSwitchID;
+        public ChangeMapScript(int mapSwitchID) {
+        this.mapSwitchID = mapSwitchID;
     }
 
 
@@ -34,7 +32,8 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setIdSwitch(mapID);
+        System.out.println(mapSwitchID + ", "+map.getMapInt());
+        map.setIdSwitch(mapSwitchID);
         
         return ScriptState.COMPLETED;
     }

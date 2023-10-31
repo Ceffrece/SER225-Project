@@ -32,7 +32,7 @@ public class GameObject extends AnimatedSprite {
 	protected float previousX, previousY;
 
 	// the map instance this game object "belongs" to.
-	protected Map map;
+	public Map map;
 
 	protected String currentProjectile;
 	

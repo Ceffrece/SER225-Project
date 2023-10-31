@@ -6,6 +6,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.DungeonRoom1;
+import Maps.DungeonRoom2;
 import Maps.HubMap;
 import Maps.MarcusMap;
 import Maps.TestMap;
@@ -25,7 +26,6 @@ public class PlayLevelScreen extends Screen {
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
-
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
@@ -86,15 +86,16 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the rpg level going
             case RUNNING:
-            if (map.getMapInt() != map.getIdSwitch()) {
-                this.map = loadMap(map.getIdSwitch());
-                this.map.setFlagManager(flagManager);
-                this.player.setMap(this.map);
-                Point playerStartPosition = map.getPlayerStartPosition();
-                this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
-            }
                 player.update();
                 map.update(player);
+                if (map.getMapInt() != map.getIdSwitch()) {
+                    this.map = loadMap(map.getIdSwitch());
+                    this.map.setFlagManager(flagManager);
+                    loadMapInfo(this.map);
+                    this.player.setMap(this.map);
+                    Point playerStartPosition = map.getPlayerStartPosition();
+                    this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                }
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -102,21 +103,39 @@ public class PlayLevelScreen extends Screen {
                 break;
         }
 
-        // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasTalkedToWalrus")) {
-            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        
+        
+    }
+    public void loadMapInfo(Map map) {
+        // setup map scripts to have references to the map and player
+        for (MapTile mapTile : map.getMapTiles()) {
+            if (mapTile.getInteractScript() != null) {
+                mapTile.getInteractScript().setMap(map);
+                mapTile.getInteractScript().setPlayer(player);
+            }
         }
+        for (NPC npc : map.getNPCs()) {
+            if (npc.getInteractScript() != null) {
+                npc.getInteractScript().setMap(map);
+                npc.getInteractScript().setPlayer(player);
+            }
+        }
+        for (EnhancedMapTile enhancedMapTile : map.getEnhancedMapTiles()) {
+            if (enhancedMapTile.getInteractScript() != null) {
+                enhancedMapTile.getInteractScript().setMap(map);
+                enhancedMapTile.getInteractScript().setPlayer(player);
+            }
+        }
+
+        for (Trigger trigger : map.getTriggers()) {
+            if (trigger.getTriggerScript() != null) {
+                trigger.getTriggerScript().setMap(map);
+                trigger.getTriggerScript().setPlayer(player);
+            }
+        }
+
         
-        
-        // if (map.idSwitch == 0) {
-        //     this.map = loadMap(0);
-        // }
-        // else if (map.idSwitch == 1) {
-        //     this.map = loadMap(1);
-        // }
-        // else if (map.idSwitch == 2) {
-        //     this.map = loadMap(2);
-        // }
+            
         
     }
     public Map loadMap(int mapId){
@@ -129,7 +148,7 @@ public class PlayLevelScreen extends Screen {
                 newMap = new DungeonRoom1();
                 return newMap;
             case 2:
-                newMap = new TestMap();
+                newMap = new DungeonRoom2();
                 return newMap;
             default:
                 return null;
