@@ -3,6 +3,7 @@ package Level;
 import java.util.HashMap;
 
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Direction;
@@ -161,6 +162,9 @@ public class Enemy extends MapEntity
         this.health -= damage;
         System.out.println("Hit for "+ damage + " left "+ health);
         if (health <= 0){
+            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("xpOrb.png"),7,7),"DEFAULT",1);
+            testXPOrb.setIdentity("xpOrb");
+            map.addPickup(testXPOrb);
             this.mapEntityStatus = MapEntityStatus.REMOVED;
         }
     }

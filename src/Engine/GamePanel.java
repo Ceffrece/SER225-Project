@@ -1,5 +1,6 @@
 package Engine;
 import Engine.ImageLoader;
+import Game.Game;
 import GameObject.Rectangle;
 import GameObject.Sprite;
 import SpriteFont.SpriteFont;
@@ -77,6 +78,8 @@ public class GamePanel extends JPanel {
 	SkillTreeNode proteinSelection = protein.getCurrentNode();
 
 	//Pictures for the Skill Tree
+	//Background
+	BufferedImage skilltreeImg = ImageLoader.load("SkillTreePics/background.jpg");
 	//Dairy
 	BufferedImage diQing = ImageLoader.load("SkillTreePics/diqing.png");
 	BufferedImage mars = ImageLoader.load("SkillTreePics/mars.png");
@@ -258,10 +261,29 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	int escTimer = 0;
 	private void updateSkillTreeState() {
+		if(!select){
+			escTimer++;
+		}
+		else{
+			escTimer = 0;
+		}
 		if (Keyboard.isKeyDown(skillTreeKey) && !keyLocker.isKeyLocked(skillTreeKey)) {
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
+			Game.gameMusic.pause();
+			Game.skillTreeBackground.play();
+		}
+		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC) && escTimer > 20){
+			skillTreeActivated = !skillTreeActivated;
+			keyLocker.lockKey(skillTreeKey);
+			Game.gameMusic.play();
+			Game.skillTreeBackground.pause();
+		}
+		if(!skillTreeActivated){
+			Game.gameMusic.play();
+			Game.skillTreeBackground.pause();
 		}
 
 		if (Keyboard.isKeyUp(skillTreeKey)) {
@@ -296,16 +318,16 @@ public class GamePanel extends JPanel {
 			emptyHearts[i].draw(graphicsHandler);
 		}
 		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
-		graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+		if(!Player.playerCurrentProjectiles.isEmpty()){
+			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
+			graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
+
+		}
 		
 		
 		reload = Player.cooldown;
 
-		// if(reload > Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime){
-		// 	reload = Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime;
-		// }
 		
-		graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
 		graphicsHandler.drawFilledRectangle(700, 455,reload/2,10, new Color(50, 255, 50, 255));
 
 		if(Player.readyToFire){
@@ -330,7 +352,8 @@ public class GamePanel extends JPanel {
 
 		if(skillTreeActivated){
 			pauseLabel.draw(graphicsHandler);
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
+			//graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
+			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
 			displaySkillTree();
 		}
 
@@ -390,7 +413,7 @@ public class GamePanel extends JPanel {
 						treeSelecterD.setColor(Color.WHITE);
 					break;
 			}
-			if(isInventoryActivated && Keyboard.isKeyDown(Key.DOWN) && inventoryTimer > 10){
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.S) && inventoryTimer > 10){
 				currentInventortOption++;
 				if(currentInventortOption > 2){
 					currentInventortOption = 0;
@@ -398,7 +421,7 @@ public class GamePanel extends JPanel {
 				inventoryTimer = 0;
 
 			}
-			else if(isInventoryActivated && Keyboard.isKeyDown(Key.UP) && inventoryTimer > 10){
+			else if(isInventoryActivated && Keyboard.isKeyDown(Key.W) && inventoryTimer > 10){
 				currentInventortOption--;
 				if(currentInventortOption < 0){
 					currentInventortOption = 2;
@@ -406,7 +429,7 @@ public class GamePanel extends JPanel {
 				inventoryTimer = 0;
 
 			}
-			if(isInventoryActivated && Keyboard.isKeyDown(Key.ENTER) && inventoryTimer > 10){
+			if(isInventoryActivated && Keyboard.isKeyDown(Key.SPACE) && inventoryTimer > 10){
 				inventorySelect = true;
 			}
 
@@ -519,7 +542,11 @@ public class GamePanel extends JPanel {
 
 	int currentTree = 0;
 	int timer = 0;
-	boolean select = false;
+	static boolean select = false;
+
+	public static boolean getSelectStatus() {
+		return select == true;
+	}
 
 
 
@@ -539,6 +566,14 @@ public class GamePanel extends JPanel {
 			}
 		}
 		else{
+			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
+			graphicsHandler.drawFilledRectangleWithBorder( 90,90, 190, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 190,190, 170, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 290,290, 150, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 390,390, 150, 50, Color.GRAY, Color.BLACK, 2);
+			graphicsHandler.drawFilledRectangleWithBorder( 490,490, 150, 50, Color.GRAY, Color.BLACK, 2);
+
+
 			treeSelecterV.draw(graphicsHandler);
 			treeSelecterP.draw(graphicsHandler);
 			treeSelecterG.draw(graphicsHandler);
@@ -546,45 +581,45 @@ public class GamePanel extends JPanel {
 			treeSelecterD.draw(graphicsHandler);
 			
 			switch(currentTree){
-				case 0 : treeSelecterV.setColor(Color.RED);
+				case 0 : treeSelecterV.setColor(Color.YELLOW);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 1 : treeSelecterP.setColor(Color.RED);
+				case 1 : treeSelecterP.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 2 : treeSelecterG.setColor(Color.RED);
+				case 2 : treeSelecterG.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 3 : treeSelecterF.setColor(Color.RED);
+				case 3 : treeSelecterF.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterD.setColor(Color.WHITE);
 					break;
-				case 4 : treeSelecterD.setColor(Color.RED);
+				case 4 : treeSelecterD.setColor(Color.YELLOW);
 						treeSelecterV.setColor(Color.WHITE);
 						treeSelecterP.setColor(Color.WHITE);
 						treeSelecterG.setColor(Color.WHITE);
 						treeSelecterF.setColor(Color.WHITE);
 					break;
 			}
-			if(skillTreeActivated && Keyboard.isKeyDown(Key.DOWN) && timer > 10){
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.S) && timer > 10){
 				currentTree++;
 				if(currentTree > 4){
 					currentTree = 0;
 				}
 				timer = 0;
 			}
-			else if(skillTreeActivated && Keyboard.isKeyDown(Key.UP) && timer > 10){
+			else if(skillTreeActivated && Keyboard.isKeyDown(Key.W) && timer > 10){
 				currentTree--;
 				if(currentTree < 0){
 					currentTree = 4;
@@ -593,7 +628,7 @@ public class GamePanel extends JPanel {
 			}
 			timer++;
 
-			if(skillTreeActivated && Keyboard.isKeyDown(Key.ENTER) && timer > 10){
+			if(skillTreeActivated && Keyboard.isKeyDown(Key.SPACE) && timer > 10){
 				select = true;
 			}
 		}
@@ -658,45 +693,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			veggieTimer++;
 			if(veggieSelection.getId() == 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getLeftSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getRightSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
 			}
 			//Left branch
 			if(veggieSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getLeftSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getParent();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
 			}
 			//Right Branch
 			if(veggieSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.RIGHT) && veggieTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getRightSkill();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getParent();
 					veggieTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && veggieTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
@@ -816,45 +851,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			proteinTimer++;
 			if(proteinSelection.getId() == 4){
-				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
 			}
 			//Left branch
 			if(proteinSelection.getId() < 4){
-				if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getParent();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
 			}
 			//Right Branch
 			if(proteinSelection.getId() > 4){
-				if(Keyboard.isKeyDown(Key.RIGHT) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getParent();
 					proteinTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && proteinTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
@@ -927,15 +962,15 @@ public class GamePanel extends JPanel {
 				yLoc+= 100;
 			}
 			grainTimer++;
-			if(Keyboard.isKeyDown(Key.RIGHT) && grainTimer > 20){
+			if(Keyboard.isKeyDown(Key.S) && grainTimer > 20){
 				grainTimer = 0;
 				grainSelection = grainSelection.getRightSkill();
 			}
-			else if(Keyboard.isKeyDown(Key.LEFT) && grainTimer > 20){
+			else if(Keyboard.isKeyDown(Key.W) && grainTimer > 20){
 				grainTimer = 0;
 				grainSelection = grainSelection.getParent();
 			}
-			else if(Keyboard.isKeyDown(Key.ENTER) && grainTimer > 100){
+			else if(Keyboard.isKeyDown(Key.SPACE) && grainTimer > 100){
 				grain.unlockNode(grainSelection);
 				System.out.println("Unlocking Node" + grainSelection.getName());
 			}
@@ -1041,45 +1076,45 @@ public class GamePanel extends JPanel {
 			//Center to branch
 			fruitTimer++;
 			if(fruitSelection.getId() == 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.A) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getLeftSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.D) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getRightSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
 			}
 			//Left branch
 			if(fruitSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getLeftSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getParent();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
 			}
 			//Right Branch
 			if(fruitSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.RIGHT) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getRightSkill();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.LEFT) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.W) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getParent();
 					fruitTimer = 0;
 				}
-				else if(Keyboard.isKeyDown(Key.ENTER) && fruitTimer > 20){
+				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
@@ -1167,11 +1202,11 @@ public class GamePanel extends JPanel {
 				yLoc += 100;
 			}
 			dairyTimer++;
-			if(Keyboard.isKeyDown(Key.RIGHT) && dairyTimer > 20){
+			if(Keyboard.isKeyDown(Key.S) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getRightSkill();
 			}
-			else if(Keyboard.isKeyDown(Key.LEFT) && dairyTimer > 20){
+			else if(Keyboard.isKeyDown(Key.W) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getParent();
 			}

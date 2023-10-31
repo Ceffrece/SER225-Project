@@ -2,12 +2,15 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import GameObject.Frame;
+import GameObject.Sprite;
 import GameObject.SpriteSheet;
 import Level.Item;
 import Level.Enemy;
 import Level.EnhancedMapTile;
 import Level.Map;
+import Level.MapEntityStatus;
 import Level.NPC;
+import Level.Pickup;
 import Level.Projectile;
 import Level.Trigger;
 import Level.Projectiles.riceBallProjectile;
@@ -36,6 +39,8 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.mapInt = 1;
+        this.idSwitch = 1;
     }
 
     @Override
@@ -125,6 +130,21 @@ public class TestMap extends Map {
         items.add(sword);
 
         return items;
+    }
+    public ArrayList<Pickup> loadPickups() {
+        ArrayList<Pickup> pickups = new ArrayList<>();
+            Pickup testXPOrb = new Pickup(getMapTile(10,10).getLocation(), new SpriteSheet(ImageLoader.load("xpOrb.png"),7,7),"DEFAULT",1);
+            testXPOrb.setIdentity("xpOrb");
+            pickups.add(testXPOrb); 
+
+        /*for(Enemy enemy : loadEnemies()) {
+            if(enemy.getMapEntityStatus() == MapEntityStatus.REMOVED){
+                Pickup xpOrb = new Pickup(enemy.getLocation(), new SpriteSheet(ImageLoader.load("xpOrb.png"),5,5),"DEFAULT",1);
+                pickups.add(xpOrb);
+            }
+        }*/
+
+        return pickups;
     }
 
 //    @Override
