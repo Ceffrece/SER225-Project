@@ -103,9 +103,9 @@ public class PlayLevelScreen extends Screen {
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasTalkedToWalrus")) {
+        /*if (map.getFlagManager().isFlagSet("hasTalkedToWalrus")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        }
+        }*/
         
         
         // if (map.idSwitch == 0) {
