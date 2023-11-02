@@ -688,7 +688,7 @@ public abstract class Player extends GameObject {
         itemArray.add(item);
       }
 
-      //--------unloackable--------
+      //--------unlockable--------
       // dash setter
       public void setDash(int dashSet) {
         dash = dashSet;

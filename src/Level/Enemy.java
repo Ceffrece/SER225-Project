@@ -14,7 +14,11 @@ public class Enemy extends MapEntity
     protected int id = 0;
     protected int health;
 
-    
+    protected EnemyState enemyState;
+    protected EnemyState previousEnemyState;
+
+    protected float moveAmountX, moveAmountY;
+    protected float lastAmountMovedX, lastAmountMovedY;
 
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
@@ -137,6 +141,11 @@ public class Enemy extends MapEntity
     {   
         facePlayer(player);
         walkTowardPlayer(player);
+        // move enemy with respect to map collisions based on how much enemy needs to move this frame
+        if (enemyState != EnemyState.INTERACTING||enemyState != EnemyState.FIRING) {
+            lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
+            lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
+        }
         super.update();
     }
 
