@@ -8,7 +8,6 @@ import Utils.Point;
 import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
-import NPCs.Dinosaur;
 
 
 public class riceBallProjectile extends Projectile {

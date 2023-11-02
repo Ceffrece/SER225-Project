@@ -92,7 +92,7 @@ public class peaProjectile extends Projectile {
                 put("DEFAULT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(1, 1, 16, 16)
+                            .withBounds(2, 2, 12, 12)
                             .build()
             });
         }};
