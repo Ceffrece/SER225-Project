@@ -171,7 +171,7 @@ public class Enemy extends MapEntity
         this.health -= damage;
         System.out.println("Hit for "+ damage + " left "+ health);
         if (health <= 0){
-            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("xpOrb.png"),7,7),"DEFAULT",1);
+            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
             testXPOrb.setIdentity("xpOrb");
             map.addPickup(testXPOrb);
             this.mapEntityStatus = MapEntityStatus.REMOVED;

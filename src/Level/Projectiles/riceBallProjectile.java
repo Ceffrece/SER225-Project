@@ -20,10 +20,10 @@ public class riceBallProjectile extends Projectile {
         private static int shootTime = 100;
 
         public static String projectileID = "riceBallProjectile";
-        public static String projectilePng = "riceBallProjectile.png";
+        public static String projectilePng = "Projectiles/riceBallProjectile.png";
 
         public riceBallProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("riceBallProjectile.png"), 16, 16), "DEFAULT",100);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT",100);
                 super.setIdentity(identity);
                 super.setExistenceFrames(existenceFrames);
                 super.existenceFrames = existenceFrames;
@@ -82,7 +82,7 @@ public class riceBallProjectile extends Projectile {
                
         }
         public String getCurentProjectilePNG(){
-                return "riceBallProjectile.png";
+                return "Projectiles/riceBallProjectile.png";
         }
         public void update(Player player) {
                 super.update();

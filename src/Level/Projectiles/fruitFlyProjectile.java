@@ -28,10 +28,10 @@ public class fruitFlyProjectile extends Projectile {
         private static int shootTime = 100;
 
         public static String projectileID = "fruitFlyProjectile";
-        public static String projectilePng = "fruitFlyProjectile.png";
+        public static String projectilePng = "Projectiles/fruitFlyProjectile.png";
 
         public fruitFlyProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("fruitFlyProjectile.png"), 16, 16), "DEFAULT",150);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/fruitFlyProjectile.png"), 16, 16), "DEFAULT",150);
                 super.setIdentity(identity);
 
                 super.projectileID = projectileID;
@@ -40,7 +40,7 @@ public class fruitFlyProjectile extends Projectile {
                 super.existenceFrames = existenceFrames;
                 int turn = existenceFrames/2;
 
-                spriteSheet = new SpriteSheet(ImageLoader.load("fruitFlyProjectile.png"), 16, 16);
+                spriteSheet = new SpriteSheet(ImageLoader.load("Projectiles/fruitFlyProjectile.png"), 16, 16);
                 update();
                 super.setDamage(Player.attackDamage*10);
                 initialize();
@@ -120,7 +120,7 @@ public class fruitFlyProjectile extends Projectile {
             
         }
         public String getCurentProjectilePNG(){
-                return "fruitFlyProjectile.png";
+                return "Projectiles/fruitFlyProjectile.png";
         }
         public void update(Player player) {
                 super.update();

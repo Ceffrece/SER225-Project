@@ -127,18 +127,18 @@ public class GamePanel extends JPanel {
 	BufferedImage ambrosia = ImageLoader.load("SkillTreePics/ambrosia.jpg");
 
 	//Creates arrays to store the sprites for the empty heart and full heart, can be modified by replacing # of sprites in setup
-	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("HeartFull.png"), 30, 9),
-		new Sprite(ImageLoader.load("HeartFull.png"), 59, 9),
-		new Sprite(ImageLoader.load("HeartFull.png"), 88, 9),
-		new Sprite(ImageLoader.load("HeartFull.png"), 117, 9),
-	 	new Sprite(ImageLoader.load("HeartFull.png"), 146, 9),
+	private Sprite[] fullHearts = {new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 30, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 59, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 88, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 117, 9),
+	 	new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 146, 9),
 };
 	//Initializes array of emptyheart sprites, can be modified by replacing # of sprites in setup
-	private Sprite[] emptyHearts = {new Sprite(ImageLoader.load("HeartEmpty.png"), 30, 9),
-		new Sprite(ImageLoader.load("HeartEmpty.png"), 59, 9),
-		new Sprite(ImageLoader.load("HeartEmpty.png"), 88, 9),
-		new Sprite(ImageLoader.load("HeartEmpty.png"), 117, 9),
-	 	new Sprite(ImageLoader.load("HeartEmpty.png"), 146, 9),
+	private Sprite[] emptyHearts = {new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 30, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 59, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 88, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 117, 9),
+	 	new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 146, 9),
 };
 	private boolean gameStart;
 	private final Key skillTreeKey = Key.T;
@@ -317,7 +317,7 @@ public class GamePanel extends JPanel {
 		for(int i = Player.playerHealth; i < 5 ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
-		graphicsHandler.drawImage(ImageLoader.load("itemBox.png"), 700, 475,75,75);
+		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
 			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
 			graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
