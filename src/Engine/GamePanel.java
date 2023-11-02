@@ -132,6 +132,10 @@ public class GamePanel extends JPanel {
 		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 88, 9),
 		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 117, 9),
 	 	new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 146, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 175, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 204, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 233, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartFull.png"), 262, 9),
 };
 	//Initializes array of emptyheart sprites, can be modified by replacing # of sprites in setup
 	private Sprite[] emptyHearts = {new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 30, 9),
@@ -139,6 +143,10 @@ public class GamePanel extends JPanel {
 		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 88, 9),
 		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 117, 9),
 	 	new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 146, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 175, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 204, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 233, 9),
+		new Sprite(ImageLoader.load("GUISprites/HeartEmpty.png"), 262, 9),
 };
 	private boolean gameStart;
 	private final Key skillTreeKey = Key.T;
@@ -314,7 +322,7 @@ public class GamePanel extends JPanel {
 		for(int i = 0; i <= Player.playerHealth-1; i++){
 			fullHearts[i].draw(graphicsHandler);
 		}
-		for(int i = Player.playerHealth; i < 5 ; i++){
+		for(int i = Player.playerHealth; i < Player.getMaxHealth() ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
