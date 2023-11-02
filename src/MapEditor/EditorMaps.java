@@ -5,6 +5,7 @@ import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.MarcusMap;
 import Maps.DungeonRoom1;
+import Maps.DungeonRoom2;
 import Maps.DungeonRoom1;
 import Maps.HubMap;
 
@@ -17,7 +18,8 @@ public class EditorMaps {
             add("TitleScreen");
             add("MarcusMap");
             add("HubMap");
-            add("DungeonRoom");
+            add("DungeonRoom1");
+            add("DungeonRoom2");
         }};
     }
 
@@ -31,8 +33,11 @@ public class EditorMaps {
                 return new MarcusMap();
             case "HubMap":
                 return new HubMap();
-            case "DungeonRoom":
+            case "DungeonRoom1":
                 return new DungeonRoom1();
+            case "DungeonRoom2":
+                return new DungeonRoom2();
+
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

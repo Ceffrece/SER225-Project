@@ -1,5 +1,6 @@
 package Enemy;
 
+import java.awt.Color;
 import java.util.HashMap;
 
 import Builders.FrameBuilder;
@@ -47,11 +48,11 @@ public class Eggssassin extends Enemy
                 put("WALK_LEFT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(3, 5, 17, 17)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(3, 5, 17, 17)
                                 .build()
                 });
 
@@ -59,12 +60,12 @@ public class Eggssassin extends Enemy
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(0, 5, 17, 17)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(0, 5, 17, 17)
                                 .build()
                 });
                 }};
@@ -103,9 +104,25 @@ public class Eggssassin extends Enemy
         }
 
     @Override
-    public void draw(GraphicsHandler graphicsHandler)
-    {
-        super.draw(graphicsHandler);
+    public void draw(GraphicsHandler graphicsHandler) {
+        if (map != null) {
+                graphicsHandler.drawImage(
+                                currentFrame.getImage(),
+                                Math.round(getCalibratedXLocation()),
+                                Math.round(getCalibratedYLocation()),
+                                currentFrame.getWidth(),
+                                currentFrame.getHeight(),
+                                currentFrame.getImageEffect());
+
+                // Uncomment this to draw player's bounds to screen -- useful for debugging
+                
+                //if (this instanceof Enemy) {
+                //        drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+                //}
+                
+        } else {
+                super.draw(graphicsHandler);
+        }
     }
 
 }

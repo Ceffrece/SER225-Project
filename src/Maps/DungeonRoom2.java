@@ -12,22 +12,20 @@ import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
 
-public class DungeonRoom1 extends Map {
+public class DungeonRoom2 extends Map {
 
-    public DungeonRoom1() {
-        super("DungeonMap.txt", new Floor1Tileset());
+    public DungeonRoom2() {
+        super("DungeonMap2.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
-        this.mapInt = 1;
-        this.idSwitch = 1;                //TODO Auto-generated constructor stub
+        this.mapInt = 2;
+        this.idSwitch = 2;                //TODO Auto-generated constructor stub
         }
 
 
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
     
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(8, 8).getLocation());
-            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(spineapple1);
+           
     
             CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(3, 12).getLocation());
             cerealkiller2.setExistenceFlag("hasTalkedToCerealKiller");
