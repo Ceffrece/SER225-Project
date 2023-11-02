@@ -29,11 +29,11 @@ public class bannanaProjectile extends Projectile {
         private static int shootTime = 100;
 
         public static String projectileID = "bannanaProjectile";
-        public static String projectilePng = "bannanaIcon.png";
+        public static String projectilePng = "Projectiles/bannanaIcon.png";
         
         
         public bannanaProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",100);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"), 16, 16), "SPIN",100);
                 super.setIdentity(identity);
 
                 super.projectileID = projectileID;
@@ -43,7 +43,7 @@ public class bannanaProjectile extends Projectile {
                 int turn = existenceFrames/2;
                 super.setProjectileDescription("bannna");
 
-                spriteSheet = new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16);
+                spriteSheet = new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"), 16, 16);
                 update();
                 super.setDamage(Player.attackDamage*10);
                 initialize();
@@ -206,7 +206,7 @@ public class bannanaProjectile extends Projectile {
             
         }
         public String getCurentProjectilePNG(){
-                return "bannanaIcon.png";
+                return "GUISprites/bannanaIcon.png";
         }
         public void update(Player player) {
                 super.update();

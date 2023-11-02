@@ -19,7 +19,7 @@ public class Dinosaur extends NPC {
         // private String setCurentProjectile;
         // private String currentProjectile = "peaProjectile";
     public Dinosaur(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("toastEnemy.png"), 14, 14), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/toastEnemy.png"), 14, 14), "STAND_LEFT");
         super.setIdentity("enemy");
     }
 

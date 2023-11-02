@@ -57,56 +57,68 @@ public class DairySkillTree {
         return this.currentNode;
     }
 
-    public void unlockNode(SkillTreeNode node, Player player){
-        if(player.getPlayerXPLevel() == 1){ //Dummy level number for now
+    public void unlockNode(SkillTreeNode node){
+        if(Player.playerXPLevel >= 1){ //Dummy level number for now
+            boolean unlock = false;
             if(node == centerSkill) {
-                player.addAttackRange(1);
+                Player.addAttackRange(1);
                 centerSkill.setUnlockedStatus(true);
+                unlock = true;
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == skill1) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill1.getUnlockedStatus()){
                 if(node == skill2) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill2.getUnlockedStatus()){
                 if(node == skill3) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill3.getUnlockedStatus()){
                 if(node == skill4) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill4.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill4.getUnlockedStatus()){
                 if(node == skill5) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill5.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill5.getUnlockedStatus()){
                 if(node == skill6) {
-                    player.addAttackRange(1);
+                    Player.addAttackRange(1);
                     skill6.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(skill6.getUnlockedStatus()){
                 if(node == ultimateDairySkill){
-                    //ulock ultimate dairy skill here
+                    ultimateDairySkill.setUnlockedStatus(true);
+                    unlock = true;
                 }
+            }
+            if(!unlock){
+                System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }
         else{
-            //ERROR MESSAGE HERE
+            System.out.println("Level not high enough");
         }
     }
 }

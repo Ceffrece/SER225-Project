@@ -24,10 +24,10 @@ public class carrotProjectile extends Projectile {
         private static int shootTime = 150;
 
         public static String projectileID = "carrotProjectile";
-        public static String projectilePng = "carrotProjectile.png";
+        public static String projectilePng = "Projectiles/carrotProjectile.png";
 
         public carrotProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("carrotProjectile.png"), 16, 16), "UP",150);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/carrotProjectile.png"), 16, 16), "UP",150);
                 super.setIdentity(identity);
                 super.setExistenceFrames(existenceFrames);
                 super.existenceFrames = existenceFrames;
@@ -156,7 +156,7 @@ public class carrotProjectile extends Projectile {
                
         }
         public String getCurentProjectilePNG(){
-                return "carrotIcon.png";
+                return "GUISprites/carrotIcon.png";
         }
         public void update(Player player) {
                 super.update();
