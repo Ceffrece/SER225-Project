@@ -970,9 +970,8 @@ public class GamePanel extends JPanel {
 				grainTimer = 0;
 				grainSelection = grainSelection.getParent();
 			}
-			else if(Keyboard.isKeyDown(Key.SPACE) && grainTimer > 100){
+			else if(Keyboard.isKeyDown(Key.SPACE) && grainTimer > 20){
 				grain.unlockNode(grainSelection);
-				System.out.println("Unlocking Node" + grainSelection.getName());
 			}
 			//Drawing box that displays the information
 			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);
@@ -1202,6 +1201,7 @@ public class GamePanel extends JPanel {
 				yLoc += 100;
 			}
 			dairyTimer++;
+			//Navigation
 			if(Keyboard.isKeyDown(Key.S) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getRightSkill();
@@ -1209,6 +1209,10 @@ public class GamePanel extends JPanel {
 			else if(Keyboard.isKeyDown(Key.W) && dairyTimer > 20){
 				dairyTimer = 0;
 				dairySelection = dairySelection.getParent();
+			}
+			else if(Keyboard.isKeyDown(Key.SPACE) && dairyTimer > 20){
+				dairyTimer = 0;
+				dairy.unlockNode(dairySelection);
 			}
 			//Drawing box that displays the information
 			graphicsHandler.drawFilledRectangle(10, 20, 350, 530, Color.BLACK);

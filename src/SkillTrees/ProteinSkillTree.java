@@ -65,51 +65,60 @@ public class ProteinSkillTree {
 
     public void unlockNode(SkillTreeNode node){
         if(Player.playerXPLevel >= 1){
+            Boolean unlock = false;
             if(node == centerSkill){
                 Player.addAttackDamage(1);
                 Player.addCritChance(1);
                 centerSkill.setUnlockedStatus(true);
+                unlock = true;
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
                     Player.addCritChance(2);
                     leftSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
                 if(node == rightSkill1){
                     Player.addAttackDamage(1);
                     rightSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
                     Player.addCritChance(2);
                     leftSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
                     Player.addCritChance(2);
                     leftSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
                     Player.addAttackDamage(1);;
                     rightSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
                     Player.addAttackDamage(1);
                     rightSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill3.getUnlockedStatus() && leftSkill3.getUnlockedStatus()){
                 if(node == ultimateProteinSkill){
                     ultimateProteinSkill.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
-            else{
+            if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }
