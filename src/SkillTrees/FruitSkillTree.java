@@ -164,6 +164,9 @@ public class FruitSkillTree {
             if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
+            if(unlock){
+                Player.playerXPLevel -= 1;
+            }
         }
         else{
             System.out.println("Level not high enough");
