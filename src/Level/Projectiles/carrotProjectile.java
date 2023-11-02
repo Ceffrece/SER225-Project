@@ -13,7 +13,6 @@ import Utils.Point;
 import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
-import NPCs.Dinosaur;
 
 
 public class carrotProjectile extends Projectile {
@@ -102,54 +101,54 @@ public class carrotProjectile extends Projectile {
                         put("UP", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                                         .withScale(3)
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(4, 1, 8, 14)
                                         .build()
                         });
                         put("DOWN", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                                         .withScale(3)
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(4, 1, 8, 14)
                                         .withImageEffect(ImageEffect. FLIP_H_AND_V)
                                         .build()
                         });
                         put("LEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 1))
                                         .withScale(3)
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(1, 4, 14, 8)
                                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
                                         .build()
                         });
                         put("RIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 1))
                                         .withScale(3)
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(1, 4, 14, 8)
                                         .build()
                         });
                         put("DIAGONALUPRIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(2, 2, 12, 12)
                                         .build()
                         });
                         put("DIAGONALUPLEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(2, 2, 12, 12)
                                         .build()
                         });
                         put("DIAGONALDOWNLEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_H_AND_V)                                
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(2, 2, 12, 12)
                                         .build()
                         });
                         put("DIAGONALDOWNRIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_VERTICAL)                                
-                                        .withBounds(1, 1, 16, 16)
+                                        .withBounds(2, 2, 12, 12)
                                         .build()
                         });
                 }
