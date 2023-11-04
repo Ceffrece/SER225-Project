@@ -12,7 +12,6 @@ import Utils.Point;
 import Level.MapEntityStatus;
 import Level.Player;
 import Level.Projectile;
-import NPCs.Dinosaur;
 
 
 public class bannanaProjectile extends Projectile {
@@ -30,11 +29,11 @@ public class bannanaProjectile extends Projectile {
         private static int shootTime = 100;
 
         public static String projectileID = "bannanaProjectile";
-        public static String projectilePng = "bannanaIcon.png";
+        public static String projectilePng = "Projectiles/bannanaIcon.png";
         
         
         public bannanaProjectile(Point location,GameObject object) {
-                super(location, new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16), "SPIN",100);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"), 16, 16), "SPIN",100);
                 super.setIdentity(identity);
 
                 super.projectileID = projectileID;
@@ -44,7 +43,7 @@ public class bannanaProjectile extends Projectile {
                 int turn = existenceFrames/2;
                 super.setProjectileDescription("bannna");
 
-                spriteSheet = new SpriteSheet(ImageLoader.load("bannanaProjectile.png"), 16, 16);
+                spriteSheet = new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"), 16, 16);
                 update();
                 super.setDamage(Player.attackDamage*10);
                 initialize();
@@ -117,97 +116,97 @@ public class bannanaProjectile extends Projectile {
                     put("SPIN", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 2), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 3), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 4), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 5), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                         new FrameBuilder(spriteSheet.getSprite(1, 0), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 2), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 3), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 4), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                             new FrameBuilder(spriteSheet.getSprite(1, 5), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                             new FrameBuilder(spriteSheet.getSprite(2, 0), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(2, 1), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(2, 2), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(2, 3), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(2, 4), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                             new FrameBuilder(spriteSheet.getSprite(2, 5), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                             new FrameBuilder(spriteSheet.getSprite(3, 0), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(3, 1), 2)
                             .withScale(3)
-                            .withBounds(6, 12, 16, 16)
+                            .withBounds(1, 2, 15, 13)
                             .build()
 
                 });
                 put("DEFAULT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(6, 12, 16, 16)
+                                .withBounds(1, 2, 15, 13)
                                 .build()
                 });
             }};
             
         }
         public String getCurentProjectilePNG(){
-                return "bannanaIcon.png";
+                return "GUISprites/bannanaIcon.png";
         }
         public void update(Player player) {
                 super.update();

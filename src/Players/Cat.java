@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Cat extends Player {
 int spriteOffset = 0;
     public Cat(float x, float y) {
-      super(new SpriteSheet(ImageLoader.load("PlayerTestMash.png"), 16, 16), x, y, "STAND_RIGHT");
+      super(new SpriteSheet(ImageLoader.load("Player/Player.png"), 16, 16), x, y, "STAND_RIGHT");
        //player speed, attack speed, attack damage, attack range, player health
        float walkSpeed;
        int  attackSpeed;

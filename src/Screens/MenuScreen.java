@@ -24,7 +24,7 @@ public class MenuScreen extends Screen {
     protected int keyPressTimer;
     protected int pointerLocationX, pointerLocationY;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Sprite titleScreen = new Sprite(ImageLoader.load("TitleScreen.png"), 0, 0);
+    protected Sprite titleScreen = new Sprite(ImageLoader.load("ImageScreens/TitleScreen.png"), 0, 0);
     public static boolean gameStarted;
     GraphicsHandler graphicsHandler = new GraphicsHandler();
     ScreenManager screenManager = new ScreenManager();

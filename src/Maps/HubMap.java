@@ -48,15 +48,15 @@ public class HubMap extends Map {
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
 
-        Item peaPickup = new Item(getMapTile(20,13).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("peaProjectile.png"),16,16),"DEFAULT","peaProjectile");
+        Item peaPickup = new Item(getMapTile(20,13).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/peaProjectile.png"),16,16),"DEFAULT","peaProjectile");
         peaPickup.setInteractScript(new ProjectilePickup());
         items.add(peaPickup);
 
-        Item riceballPickup = new Item(getMapTile(20,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("riceBallProjectile.png"),16,16),"DEFAULT","riceBallProjectile");
+        Item riceballPickup = new Item(getMapTile(20,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"),16,16),"DEFAULT","riceBallProjectile");
         riceballPickup.setInteractScript(new ProjectilePickup());
         items.add(riceballPickup);
 
-        Item bannaPickup = new Item(getMapTile(22,15).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("bannanaProjectile.png"),16,16),"DEFAULT","bannanaProjectile");
+        Item bannaPickup = new Item(getMapTile(22,15).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"),16,16),"DEFAULT","bannanaProjectile");
         bannaPickup.setInteractScript(new ProjectilePickup());
         items.add(bannaPickup);
 
