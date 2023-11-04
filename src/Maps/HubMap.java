@@ -7,6 +7,7 @@ import GameObject.SpriteSheet;
 import Level.Item;
 import Level.Map;
 import Level.NPC;
+import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Tilesets.Floor1Tileset;
@@ -15,6 +16,8 @@ import Scripts.SimpleTextScript;
 import Scripts.MarcusMap.WalrusScript;
 import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.LostBallScript;
+import Scripts.TestMap.RandomChangeMapScript;
 import Scripts.TestMap.SwordScript;
 
 public class HubMap extends Map {
@@ -36,6 +39,12 @@ public class HubMap extends Map {
 
         return npcs;
     }
+    public ArrayList<Trigger> loadTriggers() {
+                ArrayList<Trigger> triggers = new ArrayList<>();
+                triggers.add(new Trigger(790, 1030, 100, 10, new RandomChangeMapScript(1), "teleport"));
+               
+                return triggers;
+           }
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
 
@@ -65,7 +74,7 @@ public class HubMap extends Map {
 
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
 
-        getMapTile(12,2).setInteractScript(new ChangeMapScript(1));
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

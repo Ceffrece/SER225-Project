@@ -171,8 +171,9 @@ public class Floor1Tileset extends Tileset {
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder doorTile = new MapTileBuilder(doorFrame);
-
+        MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
+                 .withTileType(TileType.NOT_PASSABLE);
+        
         mapTiles.add(doorTile);
 
         // spikes (spikes)

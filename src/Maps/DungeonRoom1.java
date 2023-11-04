@@ -11,6 +11,7 @@ import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
+import Scripts.TestMap.RandomChangeMapScript;
 
 public class DungeonRoom1 extends Map {
 
@@ -52,7 +53,7 @@ public class DungeonRoom1 extends Map {
 
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
 
-        getMapTile(12,2).setInteractScript(new ChangeMapScript(2));
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }
