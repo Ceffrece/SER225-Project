@@ -80,76 +80,88 @@ public class FruitSkillTree {
     }
 
     public void unlockNode(SkillTreeNode node){
-        System.out.println("unlocking");
         if(Player.playerXPLevel >= 1){
+            Boolean unlock = false;
             if(node == centerSkill){
                 Player.addWalkSpeed(10f);
                 centerSkill.setUnlockedStatus(true);
+                unlock = true;
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
                     Player.addDash(1);
                     leftSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
                 if(node == rightSkill1){
                     Player.addDash(1);
                     rightSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
                     Player.addDash(1);
                     leftSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
                     Player.addDash(1);
                     leftSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill3.getUnlockedStatus()){
                 if(node == leftSkill4){
                     Player.addDash(1);
                     leftSkill4.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill4.getUnlockedStatus()){
                 if(node == leftSkill5){
                     Player.addDash(1);
                     leftSkill5.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
                     Player.addWalkSpeed(10f);
                     rightSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
                     Player.addWalkSpeed(10f);
                     rightSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill3.getUnlockedStatus()){
                 if(node == rightSkill4){
                     Player.addWalkSpeed(10f);
                     rightSkill4.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill4.getUnlockedStatus()){
                 if(node == rightSkill5){
                     Player.addWalkSpeed(10f);
                     rightSkill5.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill5.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
                 if(node == ultimateFruitSkill){
                     ultimateFruitSkill.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
-            else{
+            if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }

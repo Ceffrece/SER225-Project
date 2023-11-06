@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Floor1Tileset extends Tileset {
     
     public Floor1Tileset() {
-        super(ImageLoader.load("Floor1Tileset.png"), 16, 16, 3);
+        super(ImageLoader.load("tilesets//Floor1Tileset.png"), 16, 16, 3);
     }
 
     @Override
@@ -171,8 +171,9 @@ public class Floor1Tileset extends Tileset {
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder doorTile = new MapTileBuilder(doorFrame);
-
+        MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
+                 .withTileType(TileType.NOT_PASSABLE);
+        
         mapTiles.add(doorTile);
 
         // spikes (spikes)

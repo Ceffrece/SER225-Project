@@ -22,7 +22,7 @@ public class Eggssassin extends Enemy
       
         public Eggssassin(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Eggssassin.png"), 20, 22), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/Eggssassin.png"), 20, 22), "STAND_LEFT");
                 super.setIdentity("enemy");
                 super.setHealth(100);
                 

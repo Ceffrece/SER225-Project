@@ -18,7 +18,7 @@ public class TitleScreenMap extends Map {
     public TitleScreenMap() {
         super("title_screen_map.txt", new Floor1Tileset());
         Point catLocation = getMapTile(9, 5).getLocation().addX(10);
-        cat = new Sprite(ImageLoader.loadSubImage("Player.png", Colors.MAGENTA, 0, 0, 16, 16));
+        cat = new Sprite(ImageLoader.loadSubImage("Player/Player.png", Colors.MAGENTA, 0, 0, 16, 16));
         cat.setScale(3);
         cat.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
         cat.setLocation(catLocation.x, catLocation.y);

@@ -33,7 +33,7 @@ public abstract class Player extends GameObject {
     public static boolean readyToFire = false;
     
 
-    public static float walkSpeed = 4.3f;
+    public static float walkSpeed = 8.3f;
     public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int playerHealth = 5;

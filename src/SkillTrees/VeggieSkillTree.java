@@ -25,7 +25,7 @@ public class VeggieSkillTree {
     private SkillTreeNode currentNode;
 
     public VeggieSkillTree(){
-        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+10hp",6);
+        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+1hp",6);
 
         leftSkill1 = new SkillTreeNode("Cao Lo's Cabbage Chestplate", null, null, "+1 Armor",5);
         leftSkill2 = new SkillTreeNode("Li Jing's Lettuce Helmet", null, null, "+1 Armor",4);
@@ -33,9 +33,9 @@ public class VeggieSkillTree {
         leftSkill4 = new SkillTreeNode("Bulub Chabtop's Broccoli Boots", null, null, "+1 Armor",2);
         leftSkill5 = new SkillTreeNode("Godly Green Bean Gloves", null, null, "+1 Armor",1);
 
-        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+10hp",7);
-        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+10hp",8);
-        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+10hp",9);
+        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+1hp",7);
+        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+1hp",8);
+        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+1hp",9);
 
         ultimateVeggieSkill = new SkillTreeNode("Olympian Ambrosia", null, null, "Immortality for 10 secs",10);
 
@@ -74,64 +74,78 @@ public class VeggieSkillTree {
 
     public void unlockNode(SkillTreeNode node){
         if(Player.playerXPLevel >= 1){
+            Boolean unlock = false;
             if(node == centerSkill){
-                Player.addPlayerMaxHealth(10);
+                Player.addPlayerMaxHealth(1);
                 centerSkill.setUnlockedStatus(true);
+                unlock = true;
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
                     Player.addPlayerArmor(1);
                     leftSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
                 if(node == rightSkill1){
                     Player.addPlayerMaxHealth(1);
                     rightSkill1.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
                     Player.addPlayerArmor(1);
                     leftSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
                     Player.addPlayerArmor(1);
                     leftSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill3.getUnlockedStatus()){
                 if(node == leftSkill4){
                     Player.addPlayerArmor(1);
                     leftSkill4.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(leftSkill4.getUnlockedStatus()){
                 if(node == leftSkill5){
                     Player.addPlayerArmor(1);
                     leftSkill5.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
                     Player.addPlayerMaxHealth(1);
                     rightSkill2.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
                     Player.addPlayerMaxHealth(1);
                     rightSkill3.setUnlockedStatus(true);
+                    unlock = true;
                 }
             }
             if(rightSkill3.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
                 if(node == ultimateVeggieSkill){
                     ultimateVeggieSkill.setUnlockedStatus(true);
+                    unlock = true;
                 }
+            }
+            if(!unlock){
+                System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
             }
         }
         else{
-            //print error message
+            System.out.println("Level not high enough");
         }
     }
 }
