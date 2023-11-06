@@ -1,6 +1,8 @@
 package Level;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
@@ -17,6 +19,7 @@ public class Enemy extends MapEntity
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
 
+    // values used to handle enemy movement
     protected float moveAmountX, moveAmountY;
     protected float lastAmountMovedX, lastAmountMovedY;
 
@@ -65,8 +68,10 @@ public class Enemy extends MapEntity
             this.currentAnimationName = "STAND_LEFT";
         }
     }
+     
     public void walkTowardPlayer(Player player)
     {
+        // collision shouldn't be done here  
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
             walk(Direction.RIGHT, .5f);
@@ -141,13 +146,11 @@ public class Enemy extends MapEntity
     {   
         facePlayer(player);
         walkTowardPlayer(player);
-        // move enemy with respect to map collisions based on how much enemy needs to move this frame
-        if (enemyState != EnemyState.INTERACTING||enemyState != EnemyState.FIRING) {
-            lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
-            lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
-        }
+
         super.update();
     }
+
+    
 
     @Override
     public void draw(GraphicsHandler graphicsHandler)
@@ -158,7 +161,7 @@ public class Enemy extends MapEntity
     public int getID(){
         return id;
     }
-    // 
+    // ww
     public int getHealth() {
         return health;
     }
