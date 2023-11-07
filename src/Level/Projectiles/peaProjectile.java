@@ -26,11 +26,11 @@ public class peaProjectile extends Projectile {
         private static int shootTime = 300;
 
         public static String projectileID = "peaProjectile";
-        public static String projectilePng = "peaProjectile.png";
+        public static String projectilePng = "Projectiles/peaProjectile.png";
         
         public peaProjectile(Point location,GameObject object) {
 
-                super(location, new SpriteSheet(ImageLoader.load("peaProjectile.png"), 16, 16), "DEFAULT",150);
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/peaProjectile.png"), 16, 16), "DEFAULT",150);
                 
                 super.setIdentity(identity);
 
@@ -92,14 +92,14 @@ public class peaProjectile extends Projectile {
                 put("DEFAULT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(1, 1, 16, 16)
+                            .withBounds(2, 2, 12, 12)
                             .build()
             });
         }};
 }
         
         public String getCurentProjectilePNG(){
-                return "peaProjectile.png";
+                return "Projectiles/peaProjectile.png";
         }
         public void update(Player player) {
                 super.update();

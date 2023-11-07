@@ -9,8 +9,8 @@ import Level.Projectiles.riceBallProjectile;
 import GameObject.Frame;
 import Utils.Direction;
 
+import java.awt.Color;
 import java.awt.Point;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -153,7 +153,7 @@ public class Projectile extends MapEntity{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(1, 1, 16, 16)
+                                .withBounds(5, 4, 7, 7)
                                 .build()
                 });
             }};
@@ -166,8 +166,25 @@ public class Projectile extends MapEntity{
         }
         @Override
         public void draw(GraphicsHandler graphicsHandler) {
-            super.draw(graphicsHandler);
+            if (map != null) {
+                graphicsHandler.drawImage(
+                                currentFrame.getImage(),
+                                Math.round(getCalibratedXLocation()),
+                                Math.round(getCalibratedYLocation()),
+                                currentFrame.getWidth(),
+                                currentFrame.getHeight(),
+                                currentFrame.getImageEffect());
+
+                // Uncomment this to draw player's bounds to screen -- useful for debugging
+                
+                //if (this instanceof Projectile) {
+                //        drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+                //}
+                
+        } else {
+                super.draw(graphicsHandler);
         }
+    }
         public String getCurentProjectilePNG(){
             return projectilePng;
     }

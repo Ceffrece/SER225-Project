@@ -12,7 +12,7 @@ public class InstructionsScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected SpriteFont escapeToLeave;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Sprite instructions = new Sprite(ImageLoader.load("Instructions.png"), 0, 0);
+    protected Sprite instructions = new Sprite(ImageLoader.load("ImageScreens/Instructions.png"), 0, 0);
     GraphicsHandler graphicsHandler = new GraphicsHandler();
     ScreenManager screenManager = new ScreenManager();
     protected Map background;

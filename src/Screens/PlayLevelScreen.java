@@ -7,6 +7,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.DungeonRoom1;
 import Maps.DungeonRoom2;
+import Maps.Floor1Boss;
 import Maps.HubMap;
 import Maps.MarcusMap;
 import Maps.TestMap;
@@ -133,6 +134,12 @@ public class PlayLevelScreen extends Screen {
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
+        for (Item item : map.getItems()) {
+            if (item.getInteractScript() != null) {
+                item.getInteractScript().setMap(map);
+                item.getInteractScript().setPlayer(player);
+            }
+        }
 
         
             
@@ -149,6 +156,12 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 2:
                 newMap = new DungeonRoom2();
+                return newMap;
+            case 100:
+                newMap = new Floor1Boss();
+                return newMap;
+            case 101:
+                newMap = new TestMap();
                 return newMap;
             default:
                 return null;

@@ -25,7 +25,7 @@ public class VeggieSkillTree {
     private SkillTreeNode currentNode;
 
     public VeggieSkillTree(){
-        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+10hp",6);
+        centerSkill = new SkillTreeNode("Victoria's Veggie Garden", null, null, "+1hp",6);
 
         leftSkill1 = new SkillTreeNode("Cao Lo's Cabbage Chestplate", null, null, "+1 Armor",5);
         leftSkill2 = new SkillTreeNode("Li Jing's Lettuce Helmet", null, null, "+1 Armor",4);
@@ -33,9 +33,9 @@ public class VeggieSkillTree {
         leftSkill4 = new SkillTreeNode("Bulub Chabtop's Broccoli Boots", null, null, "+1 Armor",2);
         leftSkill5 = new SkillTreeNode("Godly Green Bean Gloves", null, null, "+1 Armor",1);
 
-        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+10hp",7);
-        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+10hp",8);
-        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+10hp",9);
+        rightSkill1 = new SkillTreeNode("Makhai Mushrooms", null, null, "+1hp",7);
+        rightSkill2 = new SkillTreeNode("Zeus' Zucchini", null, null, "+1hp",8);
+        rightSkill3 = new SkillTreeNode("Pallas' Potatoes", null, null, "+1hp",9);
 
         ultimateVeggieSkill = new SkillTreeNode("Olympian Ambrosia", null, null, "Immortality for 10 secs",10);
 

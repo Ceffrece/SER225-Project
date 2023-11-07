@@ -11,6 +11,7 @@ import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
+import Scripts.TestMap.RandomChangeMapScript;
 
 public class DungeonRoom2 extends Map {
 
@@ -42,15 +43,8 @@ public class DungeonRoom2 extends Map {
         }
     @Override
     public void loadScripts() {
-        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate\nability (once unlocked)")); 
 
-        getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting\nweapon (once unlocked)"));
-
-        getMapTile(11, 19).setInteractScript(new SimpleTextScript("This is an open area for you to test your\nweapons/abilities!")); 
-
-        getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
-
-        getMapTile(12,2).setInteractScript(new ChangeMapScript(2));
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }
