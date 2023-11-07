@@ -298,6 +298,20 @@ int spriteOffset = 0;
                         .withBounds(4, 3, 7, 11)
                         .build(),
         });
+        put("DEATH", new Frame[] {
+                new FrameBuilder(spriteSheet.getSprite(8, 0), 30)
+                        .withScale(3)
+                        .withBounds(4, 3, 7, 11)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(8, 1), 10)
+                        .withScale(3)
+                        .withBounds(4, 3, 7, 11)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(8, 2), 50)
+                        .withScale(3)
+                        .withBounds(4, 3, 7, 11)
+                        .build(),
+        });
         }};
     }
 }
