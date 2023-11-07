@@ -14,7 +14,7 @@ public class Enemy extends MapEntity
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
         super(x, y, spriteSheet, startingAnimation);
-        isUncollidable = false;
+        isUncollidable = true;
         super.setIdentity("enemy");
         this.id = id;
     }
@@ -123,6 +123,11 @@ public class Enemy extends MapEntity
     {   
         facePlayer(player);
         walkTowardPlayer(player);
+        // if this.overlaps player then hurtPlayer
+        if (player.overlaps(this))
+        {
+            Player.hurtPlayer();
+        }
         super.update();
     }
 
