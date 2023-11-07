@@ -90,81 +90,9 @@ public class Enemy extends MapEntity
             walk(Direction.UP,.5f);
         }
     }
-    public void handleEnemyCollison(Player player){
-        if (player.overlaps(this) && player.getPlayerState() == PlayerState.WALKING) {
-            if (player.getCurrentWalkingXDirection() == Direction.LEFT) {
-                if (canMoveLeft(player)) {
-                    moveXHandleCollision(-1);
-                }
-            }
-            else if (player.getCurrentWalkingXDirection() == Direction.RIGHT) {
-                if (canMoveRight(player)) {
-                    moveXHandleCollision(1);
-                }
-            }
-             if (player.getCurrentWalkingYDirection() == Direction.UP) {
-                if (canMoveUp(player)) {
-                    moveYHandleCollision(-1);
-                }
-            }
-            else if (player.getCurrentWalkingYDirection() == Direction.DOWN) {
-                if (canMoveDown(player)) {
-                    moveYHandleCollision(1);
-                }
-            }
-        }
-        if (player.overlaps(this) && player.getPlayerState() == PlayerState.STANDING) {
-             if (player.getLastWalkingXDirection() == Direction.LEFT) {
-                if (canMoveLeft(player)) {
-                    moveXHandleCollision(-1);
-                }
-            }
-            else if (player.getLastWalkingXDirection() == Direction.RIGHT) {
-                if (canMoveRight(player)) {
-                    moveXHandleCollision(1);
-                }
-            }
-             if (player.getLastWalkingYDirection() == Direction.UP) {
-                if (canMoveUp(player)) {
-                    moveYHandleCollision(-1);
-                }
-            }
-            else if (player.getLastWalkingYDirection() == Direction.DOWN) {
-                if (canMoveDown(player)) {
-                    moveYHandleCollision(1);
-                }
-        }
-    }
-
-    }
-    private boolean canMoveLeft(Player player) {
-        return player.getBoundsX1() <= getBoundsX2() + 1 && player.getBoundsX2() > getBoundsX2() && canMoveX(player);
-    }
-
-    private boolean canMoveRight(Player player) {
-        return player.getBoundsX2() + 1 >= getBoundsX1() && player.getBoundsX1() < getBoundsX1() && canMoveX(player);
-    }
-
-    private boolean canMoveX(Player player) {
-        return (player.getBoundsY1() <= getBoundsY2() && player.getBoundsY2() >= getBoundsY2()) ||
-                (player.getBoundsY2() >= getBoundsY1() && player.getBoundsY1() <= getBoundsY1()) ||
-                (player.getBoundsY2() <= getBoundsY2() && player.getBoundsY1() >= getBoundsY1());
-    }
-
-    private boolean canMoveUp(Player player) {
-        return player.getBoundsY1() <= getBoundsY2() + 1 && player.getBoundsY2() > getBoundsY2() && canMoveY(player);
-    }
-
-    private boolean canMoveDown(Player player) {
-        return player.getBoundsY2() + 1 >= getBoundsY1() && player.getBoundsY1() < getBoundsY1() && canMoveY(player);
-    }
-
-    private boolean canMoveY(Player player) {
-        return (player.getBoundsX1() <= getBoundsX2() && player.getBoundsX2() >= getBoundsX2()) ||
-                (player.getBoundsX2() >= getBoundsX1() && player.getBoundsX1() <= getBoundsX1()) ||
-                (player.getBoundsX2() <= getBoundsX2() && player.getBoundsX1() >= getBoundsX1());
-    }
-
+    
+    
+    
     public void stand(Direction direction) 
     {
         if (direction == Direction.RIGHT)
@@ -198,39 +126,31 @@ public class Enemy extends MapEntity
                 this.currentAnimationName = "WALK_LEFT";
             }
         }
-        // if(player.overlaps(this))
-        // {
         
-        //     if (direction == Direction.UP)
-        //     {
-        //         handleCollisionY(-speed);
-        //         //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
-        //     }
-        //     else if (direction == Direction.DOWN)
-        //     {
-        //         handleCollisionY(speed);
-        //     }
-        //     else if (direction == Direction.LEFT)
-        //     {
-        //         handleCollisionX(-speed);
-        //     }
-        //     else if (direction == Direction.RIGHT)
-        //     {
-        //         handleCollisionX(speed);
-        //     }
-        // }
+        if (direction == Direction.UP)
+        {
+            handleCollisionY(-speed);
+            //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
+        }
+        else if (direction == Direction.DOWN)
+        {
+            handleCollisionY(speed);
+        }
+        else if (direction == Direction.LEFT)
+        {
+            handleCollisionX(-speed);
+        }
+        else if (direction == Direction.RIGHT)
+        {
+            handleCollisionX(speed);
+        }
     }
 
     public void update(Player player)
     {   
         facePlayer(player);
         walkTowardPlayer(player);
-        // move enemy with respect to map collisions based on how much enemy needs to move this frame
-        if (enemyState != EnemyState.INTERACTING||enemyState != EnemyState.FIRING) {
-            lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
-            lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
-        }
-        handleEnemyCollison(player);
+        
         super.update();
     }
 

@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import Game.Game;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Sprite;
@@ -134,6 +135,8 @@ public class MenuScreen extends Screen {
             if (menuItemSelected == 0) {
                 screenCoordinator.setGameState(GameState.LEVEL);
                 gameStarted = true;
+                Game.startScreenMusic.pause();
+                Game.gameMusic.play();
             } else if (menuItemSelected == 1) {
                 screenCoordinator.setGameState(GameState.CREDITS);
             } else if (menuItemSelected == 2) {
