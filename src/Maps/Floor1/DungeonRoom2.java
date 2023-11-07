@@ -1,10 +1,12 @@
-package Maps;
+package Maps.Floor1;
 
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
+import EnhancedMapTiles.Spikes;
+import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
 import Level.Tileset;
