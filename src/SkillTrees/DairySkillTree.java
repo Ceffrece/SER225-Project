@@ -61,60 +61,111 @@ public class DairySkillTree {
         if(Player.playerXPLevel >= 1){ //Dummy level number for now
             boolean unlock = false;
             if(node == centerSkill) {
-                Player.addAttackRange(1);
-                centerSkill.setUnlockedStatus(true);
-                unlock = true;
+                if(!centerSkill.getUnlockedStatus()){
+                    Player.addAttackRange(1);
+                    centerSkill.setUnlockedStatus(true);
+                    unlock = true;
+                }
+                else{
+                    System.out.println("Already unlocked this skill!");
+                    return;
+                }
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == skill1) {
-                    Player.addAttackRange(1);
-                    skill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill1.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill1.getUnlockedStatus()){
                 if(node == skill2) {
-                    Player.addAttackRange(1);
-                    skill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill2.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill2.getUnlockedStatus()){
                 if(node == skill3) {
-                    Player.addAttackRange(1);
-                    skill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill3.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill3.getUnlockedStatus()){
                 if(node == skill4) {
-                    Player.addAttackRange(1);
-                    skill4.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill4.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill4.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill4.getUnlockedStatus()){
                 if(node == skill5) {
-                    Player.addAttackRange(1);
-                    skill5.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill5.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill5.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill5.getUnlockedStatus()){
                 if(node == skill6) {
-                    Player.addAttackRange(1);
-                    skill6.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill6.getUnlockedStatus()){
+                        Player.addAttackRange(1);
+                        skill6.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill6.getUnlockedStatus()){
                 if(node == ultimateDairySkill){
-                    ultimateDairySkill.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!ultimateDairySkill.getUnlockedStatus()){
+                        ultimateDairySkill.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
+            }
+            if(unlock){
+                Player.playerXPLevel -= 1;
             }
         }
         else{

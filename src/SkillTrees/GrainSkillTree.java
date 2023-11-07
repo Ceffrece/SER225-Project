@@ -56,46 +56,85 @@ public class GrainSkillTree {
         if(Player.playerXPLevel >= 1){
             Boolean unlock = false;
             if(node == centerSkill){
-                Player.addAttackSpeed(1);
-                centerSkill.setUnlockedStatus(true);
-                unlock = true;
+                if(!centerSkill.getUnlockedStatus()){
+                    Player.addAttackSpeed(1);
+                    centerSkill.setUnlockedStatus(true);
+                    unlock = true;
+                }
+                else{
+                    System.out.println("Already unlocked this skill!");
+                    return;
+                }
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == skill1){
-                    Player.addAttackSpeed(1);
-                    skill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill1.getUnlockedStatus()){
+                        Player.addAttackSpeed(1);
+                        skill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill1.getUnlockedStatus()){
                 if(node == skill2){
-                    Player.addAttackSpeed(1);
-                    skill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill2.getUnlockedStatus()){
+                        Player.addAttackSpeed(1);
+                        skill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill2.getUnlockedStatus()){
                 if(node == skill3){
-                    Player.addAttackSpeed(1);
-                    skill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill3.getUnlockedStatus()){
+                        Player.addAttackSpeed(1);
+                        skill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlcoked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill3.getUnlockedStatus()){
                 if(node == skill4){
-                    Player.addAttackSpeed(1);
-                    skill4.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!skill4.getUnlockedStatus()){
+                        Player.addAttackSpeed(1);
+                        skill4.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(skill4.getUnlockedStatus()){
                 if(node == ultimateGrainSkill){
-                    ultimateGrainSkill.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!ultimateGrainSkill.getUnlockedStatus()){
+                        ultimateGrainSkill.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
+            }
+            if(unlock){
+                Player.playerXPLevel -= 1;
             }
         }
         else{
