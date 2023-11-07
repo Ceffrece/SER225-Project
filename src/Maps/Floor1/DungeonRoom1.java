@@ -1,11 +1,13 @@
-package Maps;
+package Maps.Floor1;
 
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
+import EnhancedMapTiles.Spikes;
 import Level.Enemy;
+import Level.EnhancedMapTile;
 import Level.Map;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
@@ -22,6 +24,21 @@ public class DungeonRoom1 extends Map {
         this.idSwitch = 1;                //TODO Auto-generated constructor stub
         }
 
+    @Override
+    public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
+        ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
+
+        Spikes spikes1 = new Spikes(getMapTile(3, 10).getLocation());
+        Spikes spikes2 = new Spikes(getMapTile(3, 17).getLocation());
+        Spikes spikes3 = new Spikes(getMapTile(21, 10).getLocation());
+        Spikes spikes4 = new Spikes(getMapTile(21, 17).getLocation());
+        enhancedMapTiles.add(spikes1);
+        enhancedMapTiles.add(spikes2);
+        enhancedMapTiles.add(spikes3);
+        enhancedMapTiles.add(spikes4);
+
+        return enhancedMapTiles;
+    }
 
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
@@ -45,14 +62,6 @@ public class DungeonRoom1 extends Map {
         }
     @Override
     public void loadScripts() {
-        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate\nability (once unlocked)")); 
-
-        getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting\nweapon (once unlocked)"));
-
-        getMapTile(11, 19).setInteractScript(new SimpleTextScript("This is an open area for you to test your\nweapons/abilities!")); 
-
-        getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
-
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
