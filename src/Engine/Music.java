@@ -68,6 +68,13 @@ public class Music {
             }
         
     }
+
+    public void play(int key){
+        //start the clip 
+        clip.start(); 
+          
+        status = "play"; 
+    }
     //restarts clip
     public void restart() throws IOException, LineUnavailableException, 
                                             UnsupportedAudioFileException  
