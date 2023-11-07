@@ -17,11 +17,10 @@ public class Enemy extends MapEntity
     public Direction enemyWalkingDirectionX;
     public Direction enemyWalkingDirectionY;
 
-    
-    
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
 
+    // values used to handle enemy movement
     protected float moveAmountX, moveAmountY;
     protected float lastAmountMovedX, lastAmountMovedY;
 
@@ -70,8 +69,10 @@ public class Enemy extends MapEntity
             this.currentAnimationName = "STAND_LEFT";
         }
     }
+     
     public void walkTowardPlayer(Player player)
     {
+        // collision shouldn't be done here  
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
             walk(Direction.RIGHT, .5f);
@@ -230,6 +231,8 @@ public class Enemy extends MapEntity
         super.update();
     }
 
+    
+
     @Override
     public void draw(GraphicsHandler graphicsHandler)
     {
@@ -239,7 +242,7 @@ public class Enemy extends MapEntity
     public int getID(){
         return id;
     }
-    // 
+    // ww
     public int getHealth() {
         return health;
     }
