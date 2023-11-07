@@ -1,6 +1,6 @@
 package Engine;
-import Engine.ImageLoader;
 import Game.Game;
+import Game.GameState;
 import GameObject.Rectangle;
 import GameObject.Sprite;
 import SpriteFont.SpriteFont;
@@ -19,6 +19,7 @@ import Level.Player;
 import Players.Cat;
 
 import Screens.MenuScreen;
+import Screens.PlayLevelScreen;
 import SkillTrees.DairySkillTree;
 import SkillTrees.FruitSkillTree;
 import SkillTrees.GrainSkillTree;
@@ -281,6 +282,7 @@ public class GamePanel extends JPanel {
 			skillTreeActivated = !skillTreeActivated;
 			keyLocker.lockKey(skillTreeKey);
 			Game.gameMusic.pause();
+			Game.bossMusic1.pause();
 			Game.skillTreeBackground.play();
 		}
 		if(skillTreeActivated && Keyboard.isKeyDown(Key.ESC) && escTimer > 20){
@@ -289,10 +291,17 @@ public class GamePanel extends JPanel {
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 		}
-		if(!skillTreeActivated){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight){
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
+			Game.bossMusic1.pause();
 		}
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && PlayLevelScreen.inBossFight){
+			Game.bossMusic1.play();
+			Game.skillTreeBackground.pause();
+			Game.gameMusic.pause();
+		}
+
 
 		if (Keyboard.isKeyUp(skillTreeKey)) {
 			keyLocker.unlockKey(skillTreeKey);

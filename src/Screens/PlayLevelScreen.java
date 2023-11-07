@@ -2,6 +2,7 @@ package Screens;
 
 import Engine.Screen;
 import Engine.GraphicsHandler;
+import Game.Game;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
@@ -23,6 +24,7 @@ public class PlayLevelScreen extends Screen {
     protected PlayLevelScreenState playLevelScreenState;
     protected WinMarcusScreen winMarcusScreen;
     protected FlagManager flagManager;
+    public static boolean inBossFight = false;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -150,18 +152,25 @@ public class PlayLevelScreen extends Screen {
         switch (mapId){
             case 0:
                 newMap = new HubMap();
+                inBossFight = false;
                 return newMap;
             case 1:
                 newMap = new DungeonRoom1();
+                inBossFight = false;
                 return newMap;
             case 2:
                 newMap = new DungeonRoom2();
+                inBossFight = false;
                 return newMap;
             case 100:
                 newMap = new Floor1Boss();
+                Game.gameMusic.pause();
+                Game.bossMusic1.play();
+                inBossFight = true;
                 return newMap;
             case 101:
                 newMap = new TestMap();
+                inBossFight = false;
                 return newMap;
             default:
                 return null;
