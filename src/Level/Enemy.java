@@ -245,7 +245,7 @@ public class Enemy extends MapEntity
     public int getID(){
         return id;
     }
-    // ww
+    // no longer NPC-based from here to the bottom
     public int getHealth() {
         return health;
     }
