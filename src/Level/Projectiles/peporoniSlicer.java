@@ -26,8 +26,8 @@ public class peporoniSlicer extends Projectile {
 
         private static int shootTime = 300;
 
-        public static String projectileID = "peporoniSlicer";
-        public static String projectilePng = "Projectiles/pepPro.png";
+        public static String projectileID = "pepPro";
+        public static String projectilePng = "Projectiles/pepIcon.png";
         
         public peporoniSlicer(Point location,GameObject object) {
 
@@ -40,7 +40,7 @@ public class peporoniSlicer extends Projectile {
                 super.projectilePng = projectilePng;
 
                 super.setExistenceFrames(existenceFrames);
-                super.setDamage(Player.attackDamage*15+5);
+                super.setDamage(Player.attackDamage*5+5);
 
                 initialize();
                 
@@ -91,21 +91,21 @@ public class peporoniSlicer extends Projectile {
         public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
             return new HashMap<String, Frame[]>() {{
                 put("DEFAULT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(0, 0),2)
-                            .withScale(1)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0),5)
+                            .withScale(2)
                             .withBounds(2, 2, 12, 12)
                             .build(),
-                        new FrameBuilder(spriteSheet.getSprite(0, 1),2)
-                            .withScale(1)
+                        new FrameBuilder(spriteSheet.getSprite(0, 1),5)
+                            .withScale(2)
                             .withBounds(2, 2, 12, 12)
                             .build(),
-                        new FrameBuilder(spriteSheet.getSprite(0, 0),2)
-                            .withScale(1)
+                        new FrameBuilder(spriteSheet.getSprite(0, 0),5)
+                            .withScale(2)
                             .withBounds(2, 2, 12, 12)
                             .withImageEffect(ImageEffect.FLIP_H_AND_V)
                             .build(),
-                        new FrameBuilder(spriteSheet.getSprite(0, 1),2)
-                            .withScale(1)
+                        new FrameBuilder(spriteSheet.getSprite(0, 1),5)
+                            .withScale(2)
                             .withBounds(2, 2, 12, 12)
                             .withImageEffect(ImageEffect.FLIP_H_AND_V)
                             .build()
@@ -115,7 +115,7 @@ public class peporoniSlicer extends Projectile {
 }
         
         public String getCurentProjectilePNG(){
-                return "Projectiles/peaProjectile.png";
+                return "Projectiles/pepIcon.png";
         }
         public void update(Player player) {
                 super.update();

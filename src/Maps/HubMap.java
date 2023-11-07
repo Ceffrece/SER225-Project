@@ -60,7 +60,7 @@ public class HubMap extends Map {
         bannaPickup.setInteractScript(new ProjectilePickup());
         items.add(bannaPickup);
 
-        Item pepPickup = new Item(getMapTile(22,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","pepPro");
+        Item pepPickup = new Item(getMapTile(22,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","peporoniSlicer");
         pepPickup.setInteractScript(new ProjectilePickup());
         items.add(pepPickup);
 

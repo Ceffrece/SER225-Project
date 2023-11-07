@@ -109,6 +109,9 @@ public abstract class Player extends GameObject {
 
         playerCurrentProjectiles.add(carrotProjectile);
 
+        peporoniSlicer peporoniSlicer = new peporoniSlicer(getLocation(), null);
+
+        playerCurrentProjectiles.add(peporoniSlicer);
         // playerCurrentProjectiles.add(fruitFlyProjectile);
         // playerCurrentProjectiles.add(peaProjectile);
         // playerCurrentProjectiles.add(riceBallProjectile);
