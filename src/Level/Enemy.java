@@ -123,12 +123,12 @@ public class Enemy extends MapEntity
                     moveXHandleCollision(1);
                 }
             }
-             if (player.getLastWalkingYDirection() == Direction.UP) {
+             if (player.getLastWalkingXDirection() == Direction.UP) {
                 if (canMoveUp(player)) {
                     moveYHandleCollision(-1);
                 }
             }
-            else if (player.getLastWalkingYDirection() == Direction.DOWN) {
+            else if (player.getCurrentWalkingYDirection() == Direction.DOWN) {
                 if (canMoveDown(player)) {
                     moveYHandleCollision(1);
                 }
@@ -197,27 +197,24 @@ public class Enemy extends MapEntity
                 this.currentAnimationName = "WALK_LEFT";
             }
         }
-        // if(player.overlaps(this))
-        // {
         
-        //     if (direction == Direction.UP)
-        //     {
-        //         handleCollisionY(-speed);
-        //         //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
-        //     }
-        //     else if (direction == Direction.DOWN)
-        //     {
-        //         handleCollisionY(speed);
-        //     }
-        //     else if (direction == Direction.LEFT)
-        //     {
-        //         handleCollisionX(-speed);
-        //     }
-        //     else if (direction == Direction.RIGHT)
-        //     {
-        //         handleCollisionX(speed);
-        //     }
-        // }
+        if (direction == Direction.UP)
+        {
+            handleCollisionY(-speed);
+            //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
+        }
+        else if (direction == Direction.DOWN)
+        {
+            handleCollisionY(speed);
+        }
+        else if (direction == Direction.LEFT)
+        {
+            handleCollisionX(-speed);
+        }
+        else if (direction == Direction.RIGHT)
+        {
+            handleCollisionX(speed);
+        }
     }
 
     public void update(Player player)
