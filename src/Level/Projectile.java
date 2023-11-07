@@ -5,6 +5,7 @@ import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
+import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
 import GameObject.Frame;
 import Utils.Direction;
@@ -123,6 +124,10 @@ public class Projectile extends MapEntity{
                         carrotProjectile carrotProjectile = new carrotProjectile(player.getLocation(), player);
                              map.addProjectile(carrotProjectile);
                              break;
+                        case "pepPro":
+                                peporoniSlicer peporoniSlicer = new peporoniSlicer(player.getLocation(), player);
+                                  map.addProjectile(peporoniSlicer);
+                                  break;
                         default:
                             break;
                     }
