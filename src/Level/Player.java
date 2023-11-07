@@ -11,6 +11,7 @@ import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
+import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
 import NPCs.Walrus;
 import SpriteFont.SpriteFont;
@@ -565,10 +566,14 @@ public abstract class Player extends GameObject {
                 bannanaProjectile bannanaProjectile = new bannanaProjectile(new Point(0, 0), null);
                 playerCurrentProjectiles.add(bannanaProjectile);
                  break;
-                case "carrotProjectile":
+            case "carrotProjectile":
                 carrotProjectile carrotProjectile = new carrotProjectile(new Point(maxHealth, invincibilityTimer), null);
                  playerCurrentProjectiles.add(carrotProjectile);
                   break;
+            case "pepPro":
+                  peporoniSlicer peporoniSlicer = new peporoniSlicer(new Point(maxHealth, invincibilityTimer), null);
+                   playerCurrentProjectiles.add(peporoniSlicer);
+                    break;
             // case "fruitFlyProjectile":
             //         fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(new Point(0, 0), null);
             //         playerCurrentProjectiles.add(fruitFlyProjectile);

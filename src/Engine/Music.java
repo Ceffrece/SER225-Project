@@ -1,7 +1,6 @@
 package Engine;
 import java.io.File; 
 import java.io.IOException; 
-import java.util.Scanner; 
   
 import javax.sound.sampled.AudioInputStream; 
 import javax.sound.sampled.AudioSystem; 
@@ -31,8 +30,6 @@ public class Music {
 
                 //open audioinputstream to the clip
                 clip.open(audioInputStream);
-
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
             catch(IOException e){
                 e.printStackTrace();
@@ -94,7 +91,7 @@ public class Music {
     public void play()  
     { 
         //start the clip 
-        clip.start(); 
+        clip.loop(Clip.LOOP_CONTINUOUSLY); 
           
         status = "play"; 
     }

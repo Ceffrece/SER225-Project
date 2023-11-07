@@ -76,72 +76,135 @@ public class VeggieSkillTree {
         if(Player.playerXPLevel >= 1){
             Boolean unlock = false;
             if(node == centerSkill){
-                Player.addPlayerMaxHealth(1);
-                centerSkill.setUnlockedStatus(true);
-                unlock = true;
+                if(!centerSkill.getUnlockedStatus()){
+                    Player.addPlayerMaxHealth(10);
+                    centerSkill.setUnlockedStatus(true);
+                    unlock = true;
+                }
+                else{
+                    System.out.println("Already unlocked this skill!");
+                    return;
+                }
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
-                    Player.addPlayerArmor(1);
-                    leftSkill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill1.getUnlockedStatus()){
+                        Player.addPlayerArmor(1);
+                        leftSkill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }  
                 }
                 if(node == rightSkill1){
-                    Player.addPlayerMaxHealth(1);
-                    rightSkill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill1.getUnlockedStatus()){
+                        Player.addPlayerMaxHealth(1);
+                        rightSkill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
-                    Player.addPlayerArmor(1);
-                    leftSkill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill2.getUnlockedStatus()){
+                        Player.addPlayerArmor(1);
+                        leftSkill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
-                    Player.addPlayerArmor(1);
-                    leftSkill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill3.getUnlockedStatus()){
+                        Player.addPlayerArmor(1);
+                        leftSkill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill3.getUnlockedStatus()){
                 if(node == leftSkill4){
-                    Player.addPlayerArmor(1);
-                    leftSkill4.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill4.getUnlockedStatus()){
+                        Player.addPlayerArmor(1);
+                        leftSkill4.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill4.getUnlockedStatus()){
                 if(node == leftSkill5){
-                    Player.addPlayerArmor(1);
-                    leftSkill5.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill5.getUnlockedStatus()){
+                        Player.addPlayerArmor(1);
+                        leftSkill5.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
-                    Player.addPlayerMaxHealth(1);
-                    rightSkill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill2.getUnlockedStatus()){
+                        Player.addPlayerMaxHealth(1);
+                        rightSkill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
-                    Player.addPlayerMaxHealth(1);
-                    rightSkill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill3.getUnlockedStatus()){
+                        Player.addPlayerMaxHealth(1);
+                        rightSkill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill3.getUnlockedStatus() && leftSkill5.getUnlockedStatus()){
                 if(node == ultimateVeggieSkill){
-                    ultimateVeggieSkill.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!ultimateVeggieSkill.getUnlockedStatus()){
+                        ultimateVeggieSkill.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
+            }
+            if(unlock){
+                Player.playerXPLevel-= 1;
             }
         }
         else{

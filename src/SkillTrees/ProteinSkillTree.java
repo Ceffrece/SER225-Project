@@ -67,59 +67,110 @@ public class ProteinSkillTree {
         if(Player.playerXPLevel >= 1){
             Boolean unlock = false;
             if(node == centerSkill){
-                Player.addAttackDamage(1);
-                Player.addCritChance(1);
-                centerSkill.setUnlockedStatus(true);
-                unlock = true;
+                if(!centerSkill.getUnlockedStatus()){
+                    Player.addAttackDamage(1);
+                    Player.addCritChance(1);
+                    centerSkill.setUnlockedStatus(true);
+                    unlock = true;
+                }
+                else{
+                    System.out.println("Already unlocked this skill!");
+                    return;
+                }
             }
             if(centerSkill.getUnlockedStatus()){
                 if(node == leftSkill1){
-                    Player.addCritChance(2);
-                    leftSkill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill1.getUnlockedStatus()){
+                        Player.addCritChance(2);
+                        leftSkill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
                 if(node == rightSkill1){
-                    Player.addAttackDamage(1);
-                    rightSkill1.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill1.getUnlockedStatus()){
+                        Player.addAttackDamage(1);
+                        rightSkill1.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill1.getUnlockedStatus()){
                 if(node == leftSkill2){
-                    Player.addCritChance(2);
-                    leftSkill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill2.getUnlockedStatus()){
+                        Player.addCritChance(2);
+                        leftSkill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(leftSkill2.getUnlockedStatus()){
                 if(node == leftSkill3){
-                    Player.addCritChance(2);
-                    leftSkill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!leftSkill3.getUnlockedStatus()){
+                        Player.addCritChance(2);
+                        leftSkill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
-                    Player.addAttackDamage(1);;
-                    rightSkill2.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill2.getUnlockedStatus()){
+                        Player.addAttackDamage(1);;
+                        rightSkill2.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
-                    Player.addAttackDamage(1);
-                    rightSkill3.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!rightSkill3.getUnlockedStatus()){
+                        Player.addAttackDamage(1);
+                        rightSkill3.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(rightSkill3.getUnlockedStatus() && leftSkill3.getUnlockedStatus()){
                 if(node == ultimateProteinSkill){
-                    ultimateProteinSkill.setUnlockedStatus(true);
-                    unlock = true;
+                    if(!ultimateProteinSkill.getUnlockedStatus()){
+                        ultimateProteinSkill.setUnlockedStatus(true);
+                        unlock = true;
+                    }
+                    else{
+                        System.out.println("Already unlocked this skill!");
+                        return;
+                    }
                 }
             }
             if(!unlock){
                 System.out.println("Level is high enough, but you haven't met the previous unlock requirements");
+            }
+            if(unlock){
+                Player.playerXPLevel -= 1;
             }
         }
         else{
