@@ -207,6 +207,8 @@ public abstract class Player extends GameObject {
             
             if(cooldown >= playerCurrentProjectiles.get(projectileInHand).shootTime){
                 map.addProjectile(projectileShooting);
+                Music blast = new Music("Resources/Music/blast.wav",1);
+                blast.play(1);
                 cooldown = 0;
             }else{
                 readyToFire = false;
@@ -250,7 +252,6 @@ public abstract class Player extends GameObject {
         // if Fireing Key is not locked and Fire Key is down, lock key 
         if (!keyLocker.isKeyLocked(FIRE_KEY) && Keyboard.isKeyDown(FIRE_KEY)) {
             keyLocker.lockKey(FIRE_KEY);
-            Music blast = new Music("Resources/Music/blast.wav",1);
 
             playerState = PlayerState.FIRING;
         }
