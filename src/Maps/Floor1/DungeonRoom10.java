@@ -19,7 +19,7 @@ public class DungeonRoom10 extends Map {
 
     public DungeonRoom10() {
         super("DungeonMap10.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(4, 17).getLocation();
         this.mapInt = 10;
         this.idSwitch = 10;                //Aka "Real Life Bread"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom10 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(26,6).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

@@ -19,7 +19,7 @@ public class DungeonRoom7 extends Map {
 
     public DungeonRoom7() {
         super("DungeonMap7.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(5, 26).getLocation();
         this.mapInt = 7;
         this.idSwitch = 7;                //Aka "Minecraft Bread"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom7 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(24,5).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

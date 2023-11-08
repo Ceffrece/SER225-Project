@@ -19,7 +19,7 @@ public class DungeonRoom6 extends Map {
 
     public DungeonRoom6() {
         super("DungeonMap6.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(2, 9).getLocation();
         this.mapInt = 6;
         this.idSwitch = 6;                //Aka "Horizontal Stripes are Slimming"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom6 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(33,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

@@ -19,7 +19,7 @@ public class DungeonRoom3 extends Map {
 
     public DungeonRoom3() {
         super("DungeonMap3.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(0, 0).getLocation();
+        this.playerStartPosition = getMapTile(4, 19).getLocation();
         this.mapInt = 3;
         this.idSwitch = 3;                //Aka "Lava Donut"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom3 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(0,0).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(19,4).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

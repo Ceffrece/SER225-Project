@@ -19,7 +19,7 @@ public class DungeonRoom5 extends Map {
 
     public DungeonRoom5() {
         super("DungeonMap5.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(3, 8).getLocation();
         this.mapInt = 5;
         this.idSwitch = 5;                //Aka "C The Sequel"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom5 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(3,16).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

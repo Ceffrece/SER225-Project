@@ -19,7 +19,7 @@ public class DungeonRoom4 extends Map {
 
     public DungeonRoom4() {
         super("DungeonMap4.txt", new Floor1Tileset());
-        //this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(9, 3).getLocation();
         this.mapInt = 4;
         this.idSwitch = 4;                //Aka "Red Canyon Level 5"
         }
@@ -47,7 +47,7 @@ public class DungeonRoom4 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(5,36).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }
