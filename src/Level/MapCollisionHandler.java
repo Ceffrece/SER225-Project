@@ -59,7 +59,7 @@ public class MapCollisionHandler {
             }
         }
         for (Enemy enemy : map.getActiveEnemies()) {
-            if (!gameObject.equals(enemy) && !enemy.isUncollidable() && hasCollidedWithMapEntity(gameObject, enemy, direction)) {
+            if (!gameObject.equals(enemy) && (!enemy.isUncollidable() || !(gameObject instanceof Player)) && hasCollidedWithMapEntity(gameObject, enemy, direction)) {
                 entityCollidedWith = enemy;
                 float adjustedPositionX = gameObject.getX();
                 if (direction == Direction.RIGHT) {
