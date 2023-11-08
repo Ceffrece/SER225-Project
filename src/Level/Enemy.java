@@ -126,7 +126,7 @@ public class Enemy extends MapEntity
         // if this.overlaps player then hurtPlayer
         if (player.overlaps(this))
         {
-            Player.hurtPlayer();
+            Player.hurtPlayer(this);
         }
         super.update();
     }
