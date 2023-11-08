@@ -10,7 +10,7 @@ public class Enemy extends MapEntity
 {
     protected int id = 0;
     protected int health;
-
+    
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
         super(x, y, spriteSheet, startingAnimation);
@@ -123,10 +123,14 @@ public class Enemy extends MapEntity
     {   
         facePlayer(player);
         walkTowardPlayer(player);
-        // if this.overlaps player then hurtPlayer
-        if (player.overlaps(this))
+        if(Player.invincibilityTimer > 0){
+            Player.invincibilityTimer -= 1;
+        }
+        // if this.overlaps player then hurtPlayer, enemies cannot be damaged by projectiles from this method
+        if (player.overlaps(this) && Player.invincibilityTimer == 0)
         {
             Player.hurtPlayer(this);
+            Player.invincibilityTimer = 180;
         }
         super.update();
     }
