@@ -21,7 +21,7 @@ public class DungeonRoom2 extends Map {
         super("DungeonMap2.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 2;
-        this.idSwitch = 2;                //TODO Auto-generated constructor stub
+        this.idSwitch = 2;                //Aka "Can't Walk on Lava"
         }
 
 

@@ -19,9 +19,9 @@ public class DungeonRoom8 extends Map {
 
     public DungeonRoom8() {
         super("DungeonMap8.txt", new Floor1Tileset());
-        this.playerStartPosition = getMapTile(12, 24).getLocation();
+        //this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 8;
-        this.idSwitch = 8;                //TODO Auto-generated constructor stub
+        this.idSwitch = 8;                //Aka "Spikey Wheat Field"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -47,7 +47,7 @@ public class DungeonRoom8 extends Map {
     @Override
     public void loadScripts() {
 
-        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        //getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }
