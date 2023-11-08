@@ -1,4 +1,4 @@
-package Maps;
+package Maps.Floor1;
 
 import java.util.ArrayList;
 

@@ -63,10 +63,7 @@ public class Projectile extends MapEntity{
                 super(location.x, location.y);
                 super.setIdentity(identity);
 
-                setCurentProjectile(currentProjectile);
-                
-
-                
+                setCurentProjectile(currentProjectile);  
 
             }
 

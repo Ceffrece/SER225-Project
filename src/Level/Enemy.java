@@ -1,64 +1,44 @@
 package Level;
-
 import java.util.HashMap;
-
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Direction;
-
 // This class is a base class for all Enemies in the game - all enemies should extend from it
 public class Enemy extends MapEntity
 {
     protected int id = 0;
     protected int health;
 
-    public Direction enemyWalkingDirectionX;
-    public Direction enemyWalkingDirectionY;
-
-    protected EnemyState enemyState;
-    protected EnemyState previousEnemyState;
-
-    // values used to handle enemy movement
-    protected float moveAmountX, moveAmountY;
-    protected float lastAmountMovedX, lastAmountMovedY;
-
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
         super(x, y, spriteSheet, startingAnimation);
-        isUncollidable = false;
-        
+        isUncollidable = true;
         super.setIdentity("enemy");
         this.id = id;
     }
-
     public Enemy(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
     {
         super(x, y, animations, startingAnimation);
         this.id = id;
     }
-
     public Enemy(int id, float x, float y, Frame[] frames)
     {
         super(x, y, frames);
         this.id = id;
     }
-
     public Enemy(int id, float x, float y, Frame frame)
     {
         super(x, y, frame);
         this.id = id;
     }
-
     public Enemy(int id, float x, float y)
     {
         super(x, y);
         this.id = id;
     }
-
     public int getId() { return id; }
-
     public void facePlayer(Player player)
     {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
@@ -70,10 +50,8 @@ public class Enemy extends MapEntity
             this.currentAnimationName = "STAND_LEFT";
         }
     }
-     
     public void walkTowardPlayer(Player player)
     {
-        // collision shouldn't be done here  
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
             walk(Direction.RIGHT, .5f);
@@ -91,9 +69,6 @@ public class Enemy extends MapEntity
             walk(Direction.UP,.5f);
         }
     }
-    
-    
-    
     public void stand(Direction direction) 
     {
         if (direction == Direction.RIGHT)
@@ -105,7 +80,6 @@ public class Enemy extends MapEntity
             this.currentAnimationName = "STAND_LEFT";
         }
     }
-
     public void walk(Direction direction, float speed)
     {
         if (direction == Direction.RIGHT)
@@ -127,50 +101,48 @@ public class Enemy extends MapEntity
                 this.currentAnimationName = "WALK_LEFT";
             }
         }
-        
         if (direction == Direction.UP)
         {
-            handleCollisionY(-speed);
+            moveY(-speed);
             //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
         }
         else if (direction == Direction.DOWN)
         {
-            handleCollisionY(speed);
+            moveY(speed);
         }
         else if (direction == Direction.LEFT)
         {
-            handleCollisionX(-speed);
+            moveX(-speed);
         }
         else if (direction == Direction.RIGHT)
         {
-            handleCollisionX(speed);
+            moveX(speed);
         }
     }
-
     public void update(Player player)
     {   
         facePlayer(player);
         walkTowardPlayer(player);
-        
+        // if this.overlaps player then hurtPlayer
+        if (player.overlaps(this))
+        {
+            Player.hurtPlayer(this);
+        }
         super.update();
     }
-
-    
 
     @Override
     public void draw(GraphicsHandler graphicsHandler)
     {
         super.draw(graphicsHandler);
     }
-
     public int getID(){
         return id;
     }
-    // ww
+    // 
     public int getHealth() {
         return health;
     }
-
     public void setHealth(int health) {
         this.health = health;
     }
@@ -179,25 +151,10 @@ public class Enemy extends MapEntity
         this.health -= damage;
         System.out.println("Hit for "+ damage + " left "+ health);
         if (health <= 0){
-            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
+            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("xpOrb.png"),7,7),"DEFAULT",1);
             testXPOrb.setIdentity("xpOrb");
             map.addPickup(testXPOrb);
             this.mapEntityStatus = MapEntityStatus.REMOVED;
         }
-    }
-    public Direction getEnemyWalkingDirectionX() {
-        return enemyWalkingDirectionX;
-    }
-
-    public void setEnemyWalkingDirectionX(Direction enemyWalkingDirectionX) {
-        this.enemyWalkingDirectionX = enemyWalkingDirectionX;
-    }
-
-    public Direction getEnemyWalkingDirectionY() {
-        return enemyWalkingDirectionY;
-    }
-
-    public void setEnemyWalkingDirectionY(Direction enemyWalkingDirectionY) {
-        this.enemyWalkingDirectionY = enemyWalkingDirectionY;
     }
 }

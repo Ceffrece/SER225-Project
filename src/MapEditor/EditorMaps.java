@@ -3,11 +3,10 @@ package MapEditor;
 import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
+import Maps.Floor1.DungeonRoom1;
+import Maps.Floor1.DungeonRoom2;
+import Maps.Floor1.Floor1Boss;
 import Maps.MarcusMap;
-import Maps.DungeonRoom1;
-import Maps.DungeonRoom2;
-import Maps.Floor1Boss;
-import Maps.DungeonRoom1;
 import Maps.HubMap;
 
 import java.util.ArrayList;

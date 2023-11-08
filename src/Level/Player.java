@@ -194,7 +194,14 @@ public abstract class Player extends GameObject {
             case CHANGE:
                 playerChange();
                 break;
+            case DYING:
+                killPlayer();
+                break;
         }
+    }
+
+    protected void killPlayer(){
+        System.out.println("we did it reddit");
     }
 
     protected void playerFiring(){
@@ -225,7 +232,6 @@ public abstract class Player extends GameObject {
         }
     }
     protected void playerChange(){
-        
         if(projectileInHand >= playerCurrentProjectiles.size()-1){
             projectileInHand = 0;
         }
@@ -409,6 +415,9 @@ public abstract class Player extends GameObject {
             // player can be told to stand or walk during Script by using the "stand" and "walk" methods
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
         }
+        else if(playerState == PlayerState.DYING){
+            this.currentAnimationName = "DYING";
+        }
     }
 
     @Override
@@ -418,6 +427,9 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
+                    if(Player.getPlayerHealth() <= 0){
+                        playerState = PlayerState.DYING;
+                    }
                     invincibilityTimer = 180;
                 }
             }
@@ -435,10 +447,18 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
+                    if(Player.getPlayerHealth() <= 0){
+                        playerState = PlayerState.DYING;
+                    }
                     invincibilityTimer = 180;
                 }
             }
+            if(entityCollidedWith.getIdentity() == "xpOrb"){
+                entityCollidedWith.setMapEntityStatus(MapEntityStatus.REMOVED);
+                playerXPLevel += 1;
+            }
         }
+        
     }
 
     // other entities can call this method to hurt the player
@@ -657,7 +677,7 @@ public abstract class Player extends GameObject {
         playerHealth = hlth;
       }
        //playerRange getter
-       public int getPlayerHealth() {
+       public static int getPlayerHealth() {
         return playerHealth;
       }
       public static void addPlayerHealth(int x) {
@@ -760,5 +780,8 @@ public abstract class Player extends GameObject {
       }
       public SpriteSheet getSpriteSheet(){
         return spriteSheet;
+      }
+      public static void handleDeath(){
+        //code for dyinggg! :3
       }
     }
