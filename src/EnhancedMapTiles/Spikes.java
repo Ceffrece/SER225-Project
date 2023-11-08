@@ -14,7 +14,7 @@ import Utils.Point;
 // Not specifically tied to the spike tile, but named such because that is its most common usage
 public class Spikes extends EnhancedMapTile {
     public Spikes(Point location) {
-        super(location.x, location.y, new SpriteSheet(ImageLoader.load("Transparent.png"), 16, 16), TileType.PASSABLE);
+        super(location.x, location.y, new SpriteSheet(ImageLoader.load("Misc//Transparent.png"), 16, 16), TileType.PASSABLE);
     }
 
     @Override

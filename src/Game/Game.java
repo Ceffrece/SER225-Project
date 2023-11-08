@@ -11,7 +11,9 @@ import Engine.ScreenManager;
  */
 public class Game {
     public static Music skillTreeBackground = new Music("Resources/Music/danceWithDragons.wav"); 
-    public static Music gameMusic = new Music("Resources/Music/demigods.wav");
+    public static Music startScreenMusic = new Music("Resources/Music/demigods.wav");
+    public static Music gameMusic = new Music("Resources/Music/gameMusic-floor1.wav");
+    public static Music bossMusic1 = new Music("Resources/Music/dies-irae.wav");
 
     public static void main(String[] args) {
         new Game();
@@ -23,7 +25,6 @@ public class Game {
         screenManager.setCurrentScreen(new ScreenCoordinator());
         gameWindow.startGame();
 
-        skillTreeBackground.pause();
-        gameMusic.play();
+        startScreenMusic.play();
     }
 }

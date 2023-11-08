@@ -37,6 +37,12 @@ public class ProjectilePickup extends Script<Item>{
                 case "bannanaProjectile":
                     Player.addProjectile("bannanaProjectile");
                     break;
+                case "peporoniSlicer":
+                    Player.addProjectile("peporoniSlicer");
+                    break;
+             default :
+             Player.addProjectile("riceBallProjectile");
+             break;
                     
             }
     

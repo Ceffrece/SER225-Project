@@ -77,7 +77,7 @@ public class VeggieSkillTree {
             Boolean unlock = false;
             if(node == centerSkill){
                 if(!centerSkill.getUnlockedStatus()){
-                    Player.addPlayerMaxHealth(10);
+                    Player.addPlayerMaxHealth(1);
                     centerSkill.setUnlockedStatus(true);
                     unlock = true;
                 }
