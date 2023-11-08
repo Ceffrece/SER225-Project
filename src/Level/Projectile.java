@@ -3,6 +3,7 @@ package Level;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
+import Level.Projectiles.cheeseWheelSpike;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
@@ -128,6 +129,16 @@ public class Projectile extends MapEntity{
                                 peporoniSlicer peporoniSlicer = new peporoniSlicer(player.getLocation(), player);
                                   map.addProjectile(peporoniSlicer);
                                   break;
+                        case "cheese":
+                                  cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(player.getLocation(), player);
+                                    map.addProjectile(cheeseWheelSpike);
+                                    
+                                    cheeseWheelSpike cheeseWheelSpike2 = new cheeseWheelSpike(player.getLocation().subtractY(50), player);
+                                    map.addProjectile(cheeseWheelSpike2);
+
+                                    cheeseWheelSpike cheeseWheelSpike3 = new cheeseWheelSpike(player.getLocation().subtractY(-50), player);
+                                    map.addProjectile(cheeseWheelSpike3);
+                                    break;
                         default:
                             break;
                     }
