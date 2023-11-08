@@ -21,7 +21,7 @@ public class DungeonRoom1 extends Map {
         super("DungeonMap.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 1;
-        this.idSwitch = 1;                //TODO Auto-generated constructor stub
+        this.idSwitch = 1;                //aka "The Former Hub Room"
         }
 
     @Override
