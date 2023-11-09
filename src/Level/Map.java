@@ -67,7 +67,6 @@ public abstract class Map {
     protected ArrayList<Trigger> triggers;
     protected ArrayList<Boss> bosses;
     public ArrayList<Projectile> projectiles;
-    public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
     public ArrayList<Pickup> pickups;
 
@@ -267,10 +266,6 @@ public abstract class Map {
     public void addProjectile(Projectile projectile) {
         projectile.setMap(this);
         this.projectiles.add(projectile);
-    }
-    public void addEnemyProjectile(EnemyProjectile projectile) {
-        projectile.setMap(this);
-        this.enemyprojectiles.add(projectile);
     }
     public void addItem(Item item) {
         item.setMap(this);
