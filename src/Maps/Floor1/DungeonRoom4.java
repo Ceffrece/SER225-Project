@@ -60,7 +60,7 @@ public class DungeonRoom4 extends Map {
     @Override
     public void loadScripts() {
 
-        getMapTile(17,31).setInteractScript(new SimpleTextScript("A naked woman? Nonsense!"));
+        getMapTile(17,31).setInteractScript(new SimpleTextScript("Naked? Nonsense!"));
 
         getMapTile(1,31).setInteractScript(new SimpleTextScript("A kirby reference? That's absurd!"));
 
