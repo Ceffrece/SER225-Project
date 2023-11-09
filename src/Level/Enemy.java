@@ -1,4 +1,5 @@
 package Level;
+import java.util.ArrayList;
 import java.util.HashMap;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
@@ -6,14 +7,30 @@ import Engine.Keyboard;
 import Engine.Music;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
+import Level.Projectiles.bannanaProjectile;
+import Level.Projectiles.carrotProjectile;
+import Level.Projectiles.peaProjectile;
+import Level.Projectiles.peporoniSlicer;
+import Level.Projectiles.riceBallProjectile;
 import Utils.Direction;
+import Utils.Point;
 // This class is a base class for all Enemies in the game - all enemies should extend from it
 public class Enemy extends MapEntity
 {
     protected int id = 0;
-    protected int health;
+    public static int health = 5;;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
+
+    public static int cooldown = 0;
+    public static boolean readyToFire = false;
+    public static int attackSpeed = 2;
+    public static int attackRange = 1;
+    public static int invincibilityTimer = 0;
+    
+    protected String currentProjectile = "peaProjectile";
+    public static ArrayList<Projectile> enemyCurrentProjectiles = new ArrayList<>();
+    public static int projectileInHand = 0;
     
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
@@ -21,6 +38,10 @@ public class Enemy extends MapEntity
         isUncollidable = true;
         super.setIdentity("enemy");
         this.id = id;
+        
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+
+        enemyCurrentProjectiles.add(carrotProjectile);
     }
     public Enemy(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
     {
@@ -123,10 +144,43 @@ public class Enemy extends MapEntity
             moveX(speed);
         }
     }
+    public static void addProjectile(String projectileType){
+        switch(projectileType){
+            case "peaProjectile":
+                peaProjectile peaProjectile = new peaProjectile(new Point(health, invincibilityTimer), null);
+                enemyCurrentProjectiles.add(peaProjectile);
+                 break;
+            case "carrotProjectile":
+                carrotProjectile carrotProjectile = new carrotProjectile(new Point(health, invincibilityTimer), null);
+                 enemyCurrentProjectiles.add(carrotProjectile);
+                  break;
+            default:
+                break;
+        }
+    }
+    
     public void update(Player player)
     {   
         facePlayer(player);
         walkTowardPlayer(player);
+        //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+        if(!enemyCurrentProjectiles.isEmpty()){
+            if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime ){
+                readyToFire = true;
+            }else{
+                readyToFire = false;
+    
+            }
+        }
+        
+
+        if(readyToFire || enemyCurrentProjectiles.isEmpty()){
+
+        }
+        else{
+            cooldown += attackSpeed;
+
+        }
         if(Player.invincibilityTimer > 0){
             Player.invincibilityTimer -= 1;
         }
@@ -140,8 +194,22 @@ public class Enemy extends MapEntity
     }
 
     protected void enemyFiring(){
+        if(!enemyCurrentProjectiles.isEmpty()){
+            EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
+            
+            if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
+                map.addProjectile(projectileShooting);
+                //Music blast = new Music("Resources/Music/blast.wav",1);
+                //blast.play(1);
+                cooldown = 0;
+            }else{
+                readyToFire = false;
+            }
+        }
+    }
+    public String getCurentProjectile(){
         
-        
+        return enemyCurrentProjectiles.get(projectileInHand).projectileID;
     }
 
     @Override
