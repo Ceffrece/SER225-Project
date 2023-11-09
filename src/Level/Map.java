@@ -446,8 +446,8 @@ public abstract class Map {
     public ArrayList<Projectile> getActiveProjectiles() {
         return camera.getActiveProjectiles();
     }
-    public ArrayList<EnemyProjectile> getActiveProjectiles() {
-        return camera.getActiveProjectiles();
+    public ArrayList<EnemyProjectile> getActiveEnemyProjectiles() {
+        return camera.getActiveEnemyProjectiles();
     }
     public ArrayList<Item> getActiveItems() {
         return camera.getActiveItems();
