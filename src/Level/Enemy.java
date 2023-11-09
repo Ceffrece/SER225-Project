@@ -18,11 +18,12 @@ import Utils.Point;
 public class Enemy extends MapEntity
 {
     protected int id = 0;
-    public static int health = 5;;
+    //protected int health = 5;
+    public static int health = 5;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
 
-    public static int cooldown = 320;
+    public static int cooldown = 0;
     public static boolean readyToFire = false;
     public static int attackSpeed = 2;
     public static int attackRange = 1;
@@ -148,6 +149,7 @@ public class Enemy extends MapEntity
     public static void addProjectile(String projectileType){
         switch(projectileType){
             case "peaProjectile":
+            // health should not be static, this makes the enemies share health
                 peaProjectile peaProjectile = new peaProjectile(new Point(health, invincibilityTimer), null);
                 enemyCurrentProjectiles.add(peaProjectile);
                  break;
@@ -174,25 +176,27 @@ public class Enemy extends MapEntity
 
         timer ++;
         if(!enemyCurrentProjectiles.isEmpty()){
+            EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
+            
             if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime ){
                 readyToFire = true;
             }else{
                 readyToFire = false;
     
             }
-        }
-        
+            
+            if (readyToFire && !enemyCurrentProjectiles.isEmpty()){
+            //map.addEnemyProjectile(projectileShooting);
+            }else if(readyToFire || enemyCurrentProjectiles.isEmpty()){
 
-        if(readyToFire || enemyCurrentProjectiles.isEmpty()){
-
+            }
+            else{
+                cooldown += attackSpeed;
+            }
         }
-        else{
-            cooldown += attackSpeed;
-
-        }
-        if(Player.invincibilityTimer > 0){
-            Player.invincibilityTimer -= 1;
-        }
+        //if(Player.invincibilityTimer > 0){
+        //    Player.invincibilityTimer -= 1;
+        //}
         // if this.overlaps player then hurtPlayer, enemies cannot be damaged by projectiles from this method
         if (player.overlaps(this) && Player.invincibilityTimer == 0)
         {
@@ -202,20 +206,20 @@ public class Enemy extends MapEntity
         super.update();
     }
 
-    protected void enemyFiring(){
-        if(!enemyCurrentProjectiles.isEmpty()){
-            EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
+    // protected void enemyFiring(){
+    //     if(!enemyCurrentProjectiles.isEmpty()){
+    //         EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
             
-            if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
-                map.addEnemyProjectile(projectileShooting);
-                //Music blast = new Music("Resources/Music/blast.wav",1);
-                //blast.play(1);
-                cooldown = 0;
-            }else{
-                readyToFire = false;
-            }
-        }
-    }
+    //         if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
+    //             map.addEnemyProjectile(projectileShooting);
+    //             //Music blast = new Music("Resources/Music/blast.wav",1);
+    //             //blast.play(1);
+    //             cooldown = 0;
+    //         }else{
+    //             readyToFire = false;
+    //         }
+    //     }
+    // }
     public String getCurentProjectile(){
         
         return enemyCurrentProjectiles.get(projectileInHand).projectileID;

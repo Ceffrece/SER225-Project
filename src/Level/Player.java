@@ -6,6 +6,8 @@ import Engine.Keyboard;
 import Engine.Music;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import Game.GameState;
+import Game.ScreenCoordinator;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
