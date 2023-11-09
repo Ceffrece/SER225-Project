@@ -178,7 +178,7 @@ public class Enemy extends MapEntity
             }
             
             if (readyToFire && !enemyCurrentProjectiles.isEmpty()){
-            map.addEnemyProjectile(projectileShooting);
+            //map.addEnemyProjectile(projectileShooting);
             }else if(readyToFire || enemyCurrentProjectiles.isEmpty()){
 
             }
@@ -198,20 +198,20 @@ public class Enemy extends MapEntity
         super.update();
     }
 
-    protected void enemyFiring(){
-        if(!enemyCurrentProjectiles.isEmpty()){
-            EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
+    // protected void enemyFiring(){
+    //     if(!enemyCurrentProjectiles.isEmpty()){
+    //         EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
             
-            if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
-                map.addEnemyProjectile(projectileShooting);
-                //Music blast = new Music("Resources/Music/blast.wav",1);
-                //blast.play(1);
-                cooldown = 0;
-            }else{
-                readyToFire = false;
-            }
-        }
-    }
+    //         if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
+    //             map.addEnemyProjectile(projectileShooting);
+    //             //Music blast = new Music("Resources/Music/blast.wav",1);
+    //             //blast.play(1);
+    //             cooldown = 0;
+    //         }else{
+    //             readyToFire = false;
+    //         }
+    //     }
+    // }
     public String getCurentProjectile(){
         
         return enemyCurrentProjectiles.get(projectileInHand).projectileID;
