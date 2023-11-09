@@ -66,7 +66,7 @@ public abstract class Map {
     protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
     public ArrayList<Projectile> projectiles;
-    public ArrayList<EnemyProjectile> enemyprojectiles;
+    public ArrayList<EnemyProjectile> enemyProjectiles;
     public ArrayList<Item> items;
     public ArrayList<Pickup> pickups;
 
@@ -127,6 +127,10 @@ public abstract class Map {
         this.projectiles = loadProjectiles();
         for (Projectile projectile: this.projectiles) {
             projectile.setMap(this);
+        }
+        this.enemyProjectiles = loadEnemyProjectiles();
+        for (EnemyProjectile enemyProjectile: this.enemyProjectiles) {
+            enemyProjectile.setMap(this);
         }
         this.items = loadItems();
         for(Item item: this.items){
@@ -262,9 +266,9 @@ public abstract class Map {
         projectile.setMap(this);
         this.projectiles.add(projectile);
     }
-    public void addEnemyProjectile(EnemyProjectile projectile) {
-        projectile.setMap(this);
-        this.enemyprojectiles.add(projectile);
+    public void addEnemyProjectile(EnemyProjectile enemyProjectile) {
+        enemyProjectile.setMap(this);
+        this.enemyProjectiles.add(enemyProjectile);
     }
     public void addItem(Item item) {
         item.setMap(this);
@@ -342,6 +346,9 @@ public abstract class Map {
     protected ArrayList<Projectile> loadProjectiles() {
         return new ArrayList<>();
     }
+    protected ArrayList<EnemyProjectile> loadEnemyProjectiles() {
+        return new ArrayList<>();
+    }
     protected ArrayList<Item> loadItems() {
         return new ArrayList<>();
     }
@@ -365,6 +372,9 @@ public abstract class Map {
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
+    }
+    public ArrayList<EnemyProjectile> getEnemyProjectiles() {
+        return enemyProjectiles;
     }
     public ArrayList<Item> getItems() {
         return items;
@@ -434,6 +444,9 @@ public abstract class Map {
     }
 
     public ArrayList<Projectile> getActiveProjectiles() {
+        return camera.getActiveProjectiles();
+    }
+    public ArrayList<EnemyProjectile> getActiveProjectiles() {
         return camera.getActiveProjectiles();
     }
     public ArrayList<Item> getActiveItems() {
