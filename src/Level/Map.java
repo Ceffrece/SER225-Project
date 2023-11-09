@@ -65,6 +65,7 @@ public abstract class Map {
     protected ArrayList<Player> players;
     protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
+    protected ArrayList<Boss> bosses;
     public ArrayList<Projectile> projectiles;
     public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
@@ -118,6 +119,11 @@ public abstract class Map {
         this.enemies = loadEnemies();
         for (Enemy enemy: this.enemies) {
             enemy.setMap(this);
+        }
+
+        this.bosses = loadBosses();
+        for (Boss boss: this.bosses) {
+            boss.setMap(this);
         }
 
         this.triggers = loadTriggers();
@@ -341,7 +347,9 @@ public abstract class Map {
     protected ArrayList<Enemy> loadEnemies() {
         return new ArrayList<>();
     }
-
+    protected ArrayList<Boss> loadBosses() {
+        return new ArrayList<>();
+    }
     protected ArrayList<Trigger> loadTriggers() {
         return new ArrayList<>();
     }
@@ -371,6 +379,9 @@ public abstract class Map {
     }
     public ArrayList<Enemy> getEnemies() {
         return enemies;
+    }
+    public ArrayList<Boss> getBosses() {
+        return bosses;
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
@@ -441,6 +452,10 @@ public abstract class Map {
         return camera.getActiveEnemies();
     }
 
+    public ArrayList<Boss> getActiveBosses() {
+        return camera.getActiveBosses();
+    }
+
     public ArrayList<Trigger> getActiveTriggers() {
         return camera.getActiveTriggers();
     }
@@ -475,6 +490,11 @@ public abstract class Map {
         this.enemies.add(enemy);
     }
 
+    // add a boss to the map's list of enemies
+    public void addBoss(Boss boss) {
+        boss.setMap(this);
+        this.bosses.add(boss);
+    }
     // add a trigger to the map's list of triggers
     public void addTrigger(Trigger trigger) {
         trigger.setMap(this);

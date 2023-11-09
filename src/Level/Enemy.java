@@ -45,6 +45,13 @@ public class Enemy extends MapEntity
 
         enemyCurrentProjectiles.add(carrotProjectile);
     }
+    //Constructor for the boss
+    public Enemy(float x, float y, SpriteSheet spriteSheet, String startingAnimation)
+    {
+        super(x, y, spriteSheet, startingAnimation);
+        isUncollidable = true;
+        super.setIdentity("enemy");
+    }
     public Enemy(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
     {
         super(x, y, animations, startingAnimation);
