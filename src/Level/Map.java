@@ -65,11 +65,7 @@ public abstract class Map {
     protected ArrayList<Player> players;
     protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
-<<<<<<< HEAD
     protected ArrayList<Boss> bosses;
-
-=======
->>>>>>> 3eddab0d4445584a141451ec72442b3b30f3afc1
     public ArrayList<Projectile> projectiles;
     public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
