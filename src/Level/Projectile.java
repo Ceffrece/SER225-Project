@@ -26,7 +26,7 @@ public class Projectile extends MapEntity{
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
-        protected int existenceFrames = (Player.attackRange)*25+50;
+        protected int existenceFrames = (Player.attackRange)*25+25;
         int turn = existenceFrames/2;
 
         protected int damage;
@@ -85,6 +85,7 @@ public class Projectile extends MapEntity{
                     touchedEnemy(entityCollidedWith);
                 }
             }
+            @Override
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
                 
@@ -97,6 +98,10 @@ public class Projectile extends MapEntity{
                 
                 
             }
+           
+            int threeProOffsetX;
+            int threeProOffsetY;
+
             public void currentProjectile(String currentProjectile,Player player){
                 if (projectileChosen == 0){ 
                     switch(currentProjectile){
@@ -127,13 +132,46 @@ public class Projectile extends MapEntity{
                                   map.addProjectile(peporoniSlicer);
                                   break;
                         case "cheese":
+                                        if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                           threeProOffsetX = -25;  
+                                           threeProOffsetY = -25;   
+ 
+                                        }
+                                        else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = 25;  
+                                           threeProOffsetY = -25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                            threeProOffsetX = -25;  
+                                            threeProOffsetY = 25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = -25;  
+                                            threeProOffsetY = -25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = 0;  
+                                            threeProOffsetY = 25;
+                                        } 
+                                        else if (player.getFacingDirection() == Direction.LEFT) {
+                                            threeProOffsetX = 0;  
+                                            threeProOffsetY = 25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP) {
+                                            threeProOffsetX = 25;  
+                                            threeProOffsetY = 0;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.DOWN) {
+                                            threeProOffsetX = 25;  
+                                            threeProOffsetY = 0;
+                                        }
                                   cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(player.getLocation(), player);
                                     map.addProjectile(cheeseWheelSpike);
                                     
-                                    cheeseWheelSpike cheeseWheelSpike2 = new cheeseWheelSpike(player.getLocation().subtractY(50), player);
+                                    cheeseWheelSpike cheeseWheelSpike2 = new cheeseWheelSpike(player.getLocation().subtractY(-threeProOffsetY).subtractX(-threeProOffsetX), player);
                                     map.addProjectile(cheeseWheelSpike2);
 
-                                    cheeseWheelSpike cheeseWheelSpike3 = new cheeseWheelSpike(player.getLocation().subtractY(-50), player);
+                                    cheeseWheelSpike cheeseWheelSpike3 = new cheeseWheelSpike(player.getLocation().subtractY(threeProOffsetY).subtractX(threeProOffsetX), player);
                                     map.addProjectile(cheeseWheelSpike3);
                                     break;
                         default:
