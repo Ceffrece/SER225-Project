@@ -58,7 +58,6 @@ public class Boss extends Enemy{
             attack(random.nextInt(1,6));
             attackCounter = 0;
         }
-        if(map.projectiles.contains())
     }
 
     public void initialize(){

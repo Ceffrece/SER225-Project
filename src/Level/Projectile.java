@@ -81,11 +81,13 @@ public class Projectile extends MapEntity{
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
                     if(map.bosses.contains(entityCollidedWith)){
                         touchedEnemy(entityCollidedWith);
+                        System.out.println("COLLIDING NO");
                     }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                     touchedEnemy(entityCollidedWith);
+                    System.out.println("COLLIDING YES");
                 }
             }
             // entityCollidedWith.overlaps(this)
@@ -95,11 +97,13 @@ public class Projectile extends MapEntity{
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
                     if(map.bosses.contains(entityCollidedWith)){
                         touchedEnemy(entityCollidedWith);
+                        System.out.println("COLLIDING NO");
                     }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                     touchedEnemy(entityCollidedWith);
+                    System.out.println("COLLIDING YES");
                 }
             }
             public void currentProjectile(String currentProjectile,Player player){
