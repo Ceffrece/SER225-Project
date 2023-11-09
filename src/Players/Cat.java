@@ -307,7 +307,7 @@ int spriteOffset = 0;
                         .withScale(3)
                         .withBounds(4, 3, 7, 11)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(8, 2), 50)
+                new FrameBuilder(spriteSheet.getSprite(8, 2), 500)
                         .withScale(3)
                         .withBounds(4, 3, 7, 11)
                         .build(),
