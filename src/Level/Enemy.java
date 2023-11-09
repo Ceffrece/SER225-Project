@@ -22,11 +22,12 @@ public class Enemy extends MapEntity
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
 
-    public static int cooldown = 0;
+    public static int cooldown = 320;
     public static boolean readyToFire = false;
     public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int invincibilityTimer = 0;
+    public static int shootingTimer = 0; //320
     
     protected String currentProjectile = "peaProjectile";
     public static ArrayList<Projectile> enemyCurrentProjectiles = new ArrayList<>();
@@ -198,7 +199,7 @@ public class Enemy extends MapEntity
             EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
             
             if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime){
-                map.addProjectile(projectileShooting);
+                map.addEnemyProjectile(projectileShooting);
                 //Music blast = new Music("Resources/Music/blast.wav",1);
                 //blast.play(1);
                 cooldown = 0;
