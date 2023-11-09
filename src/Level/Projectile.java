@@ -143,7 +143,7 @@ public class Projectile extends MapEntity{
             public void touchedEnemy(MapEntity enemy){
                 enemy.hurtEnemy(this.damage);
             }
-            
+
             // A subclass can override this method to specify what it does when it touches the player
             public void touchedPlayer(Player player) {
                 if (this.identity == "enemy"){

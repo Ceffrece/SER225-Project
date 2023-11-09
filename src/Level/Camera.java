@@ -31,6 +31,7 @@ public class Camera extends Rectangle {
     private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
     private ArrayList<Item> activeItems = new ArrayList<>();
     private ArrayList<Enemy> activeEnemies = new ArrayList<>();
+    private ArrayList<Boss> activeBosses = new ArrayList<>();
     private ArrayList<Pickup> activePickups = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
@@ -72,6 +73,7 @@ public class Camera extends Rectangle {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
         activeEnemies = loadActiveEnemies();
+        activeBosses = loadActiveBosses();
         activeProjectiles = loadActiveProjectiles();
         activeItems = loadActiveItems();
         activePickups = loadActivePickups();
@@ -92,6 +94,9 @@ public class Camera extends Rectangle {
         }
         for (Enemy enemy : activeEnemies) {
             enemy.update(player);
+        }
+        for(Boss boss : activeBosses) {
+            boss.update(player);
         }
         
     }
@@ -170,6 +175,25 @@ public class Camera extends Rectangle {
             }
         }
         return activeEnemies;
+    }
+    // determine which bosses are active (exist and are within range of the camera)
+    private ArrayList<Boss> loadActiveBosses() {
+        ArrayList<Boss> activeBosses = new ArrayList<>();
+        for (int i = map.getBosses().size() - 1; i >= 0; i--) {
+            Boss boss = map.getBosses().get(i);
+
+            if (isMapEntityActive(boss)) {
+                activeBosses.add(boss);
+                if (boss.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    boss.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (boss.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                boss.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (boss.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getBosses().remove(i);
+            }
+        }
+        return activeBosses;
     }
     // determine which projectiles are active (exist and are within range of the camera)
     private ArrayList<Projectile> loadActiveProjectiles() {
@@ -344,6 +368,11 @@ public class Camera extends Rectangle {
                 }
             }
         }
+        for(Boss boss : activeBosses) {
+            if(containsDraw(boss)) {
+                boss.draw(graphicsHandler);
+            }
+        }
         for (Projectile projectile : activeProjectiles) {
             if (containsDraw(projectile)) {
                 projectile.draw(graphicsHandler);
@@ -411,6 +440,10 @@ public class Camera extends Rectangle {
 
     public ArrayList<Enemy> getActiveEnemies() {
         return activeEnemies;
+    }
+
+    public ArrayList<Boss> getActiveBosses() {
+        return activeBosses;
     }
 
     public ArrayList<Trigger> getActiveTriggers() {

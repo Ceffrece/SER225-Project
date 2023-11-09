@@ -123,8 +123,8 @@ public class Enemy extends MapEntity
     {   
         facePlayer(player);
         walkTowardPlayer(player);
-        // if this.overlaps player then hurtPlayer
-        if (player.overlaps(this))
+        // if this.overlaps player then hurtPlayer 
+        if (this.overlaps(player))
         {
             Player.hurtPlayer(this);
         }

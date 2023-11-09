@@ -35,7 +35,7 @@ public class Item extends MapEntity{
     public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd){
         super(location.x,location.y,ss,startingAnimation);
         this.projectileToAdd = projectileToAdd;
-        isUncollidable = true;   
+    
         initialize();
     }
     public Item(Point location, SpriteSheet ss, String startingAnimation) {
