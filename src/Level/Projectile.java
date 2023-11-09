@@ -80,7 +80,6 @@ public class Projectile extends MapEntity{
                 // if projectile collides with anything solid on the x axis, it is removed
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
                     if(map.bosses.contains(entityCollidedWith)){
-                        System.out.println("touched BOSS");
                         touchedEnemy(entityCollidedWith);
                     }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
@@ -94,6 +93,9 @@ public class Projectile extends MapEntity{
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                    if(map.bosses.contains(entityCollidedWith)){
+                        touchedEnemy(entityCollidedWith);
+                    }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
