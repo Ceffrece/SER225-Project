@@ -186,10 +186,9 @@ public class Enemy extends MapEntity
                 cooldown += attackSpeed;
             }
         }
-        
-        if(Player.invincibilityTimer > 0){
-            Player.invincibilityTimer -= 1;
-        }
+        //if(Player.invincibilityTimer > 0){
+        //    Player.invincibilityTimer -= 1;
+        //}
         // if this.overlaps player then hurtPlayer, enemies cannot be damaged by projectiles from this method
         if (player.overlaps(this) && Player.invincibilityTimer == 0)
         {
