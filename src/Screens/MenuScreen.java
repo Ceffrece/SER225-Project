@@ -164,4 +164,7 @@ public class MenuScreen extends Screen {
     public static boolean getGameStarted(){
         return gameStarted;
     }
+    public static void setGameStarted(Boolean condition){
+        gameStarted = condition;
+    }
 }

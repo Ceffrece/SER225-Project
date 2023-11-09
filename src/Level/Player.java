@@ -4,6 +4,8 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Music;
+import Game.GameState;
+import Game.ScreenCoordinator;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
@@ -18,6 +20,8 @@ import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
 import Screens.SettingsScreen;
+import Screens.DeathScreen;
+import Screens.*;
 
 import Level.Map;
 import java.awt.*;
@@ -29,7 +33,7 @@ public abstract class Player extends GameObject {
     //playerSpeed, attackSpeed, attackDamage, attackRange, playerHealth
     private SpriteFont healthBar;
     public SpriteSheet spriteSheet;
-
+    protected ScreenCoordinator screenCoordinator;
     public static int cooldown = 0;
     public static boolean readyToFire = false;
     
@@ -43,7 +47,7 @@ public abstract class Player extends GameObject {
     public static int invincibilityTimer = 0;
     public static int playerXPLevel = 0;
     public static int playerXPPoints = 0;
-
+    public static int deathCounter = 0;
     protected String currentProjectile = "peaProjectile";
 
     public static int dash = 0;
@@ -195,8 +199,18 @@ public abstract class Player extends GameObject {
         }
     }
 
-    protected void killPlayer(){
-        System.out.println("we did it reddit");
+    public void killPlayer(){
+        playerState = PlayerState.DYING;
+        
+        if(deathCounter <= 300){
+            deathCounter += 1;
+        }
+        if(deathCounter > 300){
+            playerHealth = maxHealth;
+            playerState = PlayerState.STANDING;
+            System.out.println("did it once");
+            deathCounter = 0;
+        }
     }
 
     protected void playerFiring(){
@@ -250,6 +264,9 @@ public abstract class Player extends GameObject {
     }
     // player STANDING state logic
     protected void playerStanding() {
+        if(playerHealth == 0){
+            playerState = PlayerState.DYING;
+        }
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
@@ -275,6 +292,9 @@ public abstract class Player extends GameObject {
 
     // player WALKING state logic
     protected void playerWalking() {
+        if(playerHealth == 0){
+            playerState = PlayerState.DYING;
+        }
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
@@ -371,7 +391,10 @@ public abstract class Player extends GameObject {
     }
     // anything extra the player should do based on interactions can be handled here
     protected void handlePlayerAnimation() {
-        if (playerState == PlayerState.STANDING) {
+        if(playerState == PlayerState.DYING){
+            this.currentAnimationName = "DEATH";
+        }
+        else if (playerState == PlayerState.STANDING) {
             if(invincibilityTimer == 0){
                 this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
                 :facingDirection == Direction.LEFT ? "STAND_LEFT"
@@ -410,9 +433,6 @@ public abstract class Player extends GameObject {
             // player can be told to stand or walk during Script by using the "stand" and "walk" methods
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
         }
-        else if(playerState == PlayerState.DYING){
-            this.currentAnimationName = "DYING";
-        }
     }
 
     @Override
@@ -422,9 +442,6 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
-                    if(Player.getPlayerHealth() <= 0){
-                        playerState = PlayerState.DYING;
-                    }
                     invincibilityTimer = 180;
                 }
             }
@@ -442,9 +459,6 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
-                    if(Player.getPlayerHealth() <= 0){
-                        playerState = PlayerState.DYING;
-                    }
                     invincibilityTimer = 180;
                 }
             }
@@ -772,5 +786,8 @@ public abstract class Player extends GameObject {
       }
       public static void handleDeath(){
         //code for dyinggg! :3
+      }
+      public static int getDeathCounter(){
+        return deathCounter;
       }
     }

@@ -62,11 +62,16 @@ public abstract class Map {
     
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
+    protected ArrayList<Player> players;
     protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
+<<<<<<< HEAD
     protected ArrayList<Boss> bosses;
 
+=======
+>>>>>>> 3eddab0d4445584a141451ec72442b3b30f3afc1
     public ArrayList<Projectile> projectiles;
+    public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
     public ArrayList<Pickup> pickups;
 
@@ -267,6 +272,10 @@ public abstract class Map {
         projectile.setMap(this);
         this.projectiles.add(projectile);
     }
+    public void addEnemyProjectile(EnemyProjectile projectile) {
+        projectile.setMap(this);
+        this.enemyprojectiles.add(projectile);
+    }
     public void addItem(Item item) {
         item.setMap(this);
         this.items.add(item);
@@ -463,7 +472,6 @@ public abstract class Map {
         npc.setMap(this);
         this.npcs.add(npc);
     }
-
     // add an enemy to the map's list of enemies
     public void addEnemy(Enemy enemy) {
         enemy.setMap(this);
