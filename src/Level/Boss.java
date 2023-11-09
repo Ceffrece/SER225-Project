@@ -9,7 +9,7 @@ import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Point;
 
-public class Boss extends MapEntity{
+public class Boss extends Enemy{
     public int health;
     public int attackCounter = 0;
     public SecureRandom random;
@@ -18,8 +18,6 @@ public class Boss extends MapEntity{
     public Boss(Point location, SpriteSheet ss, String startingAnimation){
         super(location.x, location.y, ss, startingAnimation);
         random = new SecureRandom();
-        isUncollidable = false;
-        this.identity = "enemy";
         initialize();
     }
 
@@ -53,12 +51,6 @@ public class Boss extends MapEntity{
         System.out.println("Attack 5");
     }
 
-    public void hurtEnemy(int damage){
-        this.health -= damage;
-        if(this.health <= 0){
-            this.setMapEntityStatus(MapEntityStatus.REMOVED);
-        }
-    }
     public void update(Player player){
         super.update();
         this.attackCounter++;
@@ -82,7 +74,7 @@ public class Boss extends MapEntity{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(0, 0, 50, 50)
+                                .withBounds(0, 0, 100, 100)
                                 .build()
                 });
             }};
