@@ -2,6 +2,8 @@ package Level;
 import java.util.HashMap;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
+import Engine.Keyboard;
+import Engine.Music;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Direction;
@@ -10,6 +12,8 @@ public class Enemy extends MapEntity
 {
     protected int id = 0;
     protected int health;
+    protected EnemyState enemyState;
+    protected EnemyState previousEnemyState;
     
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
@@ -133,6 +137,11 @@ public class Enemy extends MapEntity
             Player.invincibilityTimer = 180;
         }
         super.update();
+    }
+
+    protected void enemyFiring(){
+        
+        
     }
 
     @Override
