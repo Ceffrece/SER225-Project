@@ -11,6 +11,14 @@ import Maps.MarcusMap;
 import Maps.TestMap;
 import Maps.Floor1.DungeonRoom1;
 import Maps.Floor1.DungeonRoom2;
+import Maps.Floor1.DungeonRoom3;
+import Maps.Floor1.DungeonRoom4;
+import Maps.Floor1.DungeonRoom5;
+import Maps.Floor1.DungeonRoom6;
+import Maps.Floor1.DungeonRoom7;
+import Maps.Floor1.DungeonRoom8;
+import Maps.Floor1.DungeonRoom9;
+import Maps.Floor1.DungeonRoom10;
 import Maps.Floor1.Floor1Boss;
 import Players.Cat;
 import Utils.Direction;
@@ -160,6 +168,38 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 2:
                 newMap = new DungeonRoom2();
+                inBossFight = false;
+                return newMap;
+            case 3:
+                newMap = new DungeonRoom3();
+                inBossFight = false;
+                return newMap;
+            case 4:
+                newMap = new DungeonRoom4();
+                inBossFight = false;
+                return newMap;
+            case 5:
+                newMap = new DungeonRoom5();
+                inBossFight = false;
+                return newMap;
+            case 6:
+                newMap = new DungeonRoom6();
+                inBossFight = false;
+                return newMap;
+            case 7:
+                newMap = new DungeonRoom7();
+                inBossFight = false;
+                return newMap;
+            case 8:
+                newMap = new DungeonRoom8();
+                inBossFight = false;
+                return newMap;
+            case 9:
+                newMap = new DungeonRoom9();
+                inBossFight = false;
+                return newMap;
+            case 10:
+                newMap = new DungeonRoom10();
                 inBossFight = false;
                 return newMap;
             case 100:

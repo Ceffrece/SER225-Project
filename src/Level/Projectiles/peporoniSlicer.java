@@ -93,20 +93,20 @@ public class peporoniSlicer extends Projectile {
                 put("DEFAULT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(0, 0),5)
                             .withScale(2)
-                            .withBounds(2, 2, 12, 12)
+                            .withBounds(4, 4, 8, 8)
                             .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 1),5)
                             .withScale(2)
-                            .withBounds(2, 2, 12, 12)
+                            .withBounds(4, 4, 8, 8)
                             .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0),5)
                             .withScale(2)
-                            .withBounds(2, 2, 12, 12)
+                            .withBounds(4, 4, 8, 8)
                             .withImageEffect(ImageEffect.FLIP_H_AND_V)
                             .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 1),5)
                             .withScale(2)
-                            .withBounds(2, 2, 12, 12)
+                            .withBounds(4, 4, 8, 8)
                             .withImageEffect(ImageEffect.FLIP_H_AND_V)
                             .build()
                 

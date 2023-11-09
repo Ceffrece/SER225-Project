@@ -21,7 +21,7 @@ public class DungeonRoom9 extends Map {
         super("DungeonMap9.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 9;
-        this.idSwitch = 9;                //TODO Auto-generated constructor stub
+        this.idSwitch = 9;                //Aka "Scrambled Breads"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -47,7 +47,7 @@ public class DungeonRoom9 extends Map {
     @Override
     public void loadScripts() {
 
-        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        getMapTile(12,15).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }

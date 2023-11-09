@@ -28,6 +28,14 @@ public class RandomChangeMapScript extends Script {
         if(!floor1Loaded){
             floor1.add(1);
             floor1.add(2);
+            floor1.add(3);
+            floor1.add(4);
+            floor1.add(5);
+            floor1.add(6);
+            floor1.add(7);
+            floor1.add(8);
+            floor1.add(9);
+            floor1.add(10);
         }
         floor1Loaded = true;
         this.floor = floor;
