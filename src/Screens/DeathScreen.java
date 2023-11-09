@@ -31,10 +31,10 @@ public class DeathScreen extends Screen {
     }
 
     public void initialize(){
-        playAgain = new SpriteFont("Try Again", 100, 300, "Comic Sans", 30, new Color(255, 0, 0));
+        playAgain = new SpriteFont("Try Again", 250, 400, "Comic Sans", 30, new Color(255, 0, 0));
         playAgain.setOutlineColor(Color.black);
         playAgain.setOutlineThickness(3);
-        giveUp = new SpriteFont("Give Up", 300, 300, "Comic Sans", 30, new Color(110, 0, 0));
+        giveUp = new SpriteFont("Give Up", 450, 400, "Comic Sans", 30, new Color(110, 0, 0));
         giveUp.setOutlineColor(Color.black);
         giveUp.setOutlineThickness(3);
         background = new TitleScreenMap();
@@ -66,12 +66,21 @@ public class DeathScreen extends Screen {
             currentMenuItemHovered = 1;
         }
 
+        if(currentMenuItemHovered == 0){
+            playAgain.setColor(new Color(255, 0, 0));
+            giveUp.setColor(new Color(110, 0, 0));
+        }else if(currentMenuItemHovered == 1){
+            playAgain.setColor(new Color(110, 0, 0));
+            giveUp.setColor(new Color(255, 0, 0));
+        }
+
         if (Keyboard.isKeyUp(Key.SPACE)) {
             keyLocker.unlockKey(Key.SPACE);
         }
         if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
             menuItemSelected = currentMenuItemHovered;
             if (menuItemSelected == 0) {
+                MenuScreen.setGameStarted(true);
                 screenCoordinator.setGameState(GameState.LEVEL);
             } else if (menuItemSelected == 1) {
                 screenCoordinator.setGameState(GameState.MENU);
