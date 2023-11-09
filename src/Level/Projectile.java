@@ -79,6 +79,10 @@ public class Projectile extends MapEntity{
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                    if(map.bosses.contains(entityCollidedWith)){
+                        System.out.println("touched BOSS");
+                        touchedEnemy(entityCollidedWith);
+                    }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
