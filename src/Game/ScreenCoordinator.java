@@ -57,6 +57,9 @@ public class ScreenCoordinator extends Screen {
 					case SETTINGS:
 						currentScreen = new SettingsScreen(this);
 						break;
+					case DYING:
+						currentScreen = new DeathScreen(this);
+						break;
 				}
 				currentScreen.initialize();
 			}

@@ -93,6 +93,10 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void update() {
+        if(player.getPlayerHealth() == 0 && player.deathCounter == 299){
+            MenuScreen.setGameStarted(false);
+            screenCoordinator.setGameState(GameState.DYING);
+        }
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the rpg level going
