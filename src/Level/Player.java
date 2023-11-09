@@ -200,8 +200,8 @@ public abstract class Player extends GameObject {
         }
     }
 
-    protected void killPlayer(){
-        System.out.println("we did it reddit");
+    public void killPlayer(){
+        playerState = PlayerState.DYING;
     }
 
     protected void playerFiring(){
@@ -255,6 +255,9 @@ public abstract class Player extends GameObject {
     }
     // player STANDING state logic
     protected void playerStanding() {
+        if(playerHealth == 0){
+            playerState = PlayerState.DYING;
+        }
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
@@ -280,6 +283,9 @@ public abstract class Player extends GameObject {
 
     // player WALKING state logic
     protected void playerWalking() {
+        if(playerHealth == 0){
+            playerState = PlayerState.DYING;
+        }
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
@@ -376,7 +382,10 @@ public abstract class Player extends GameObject {
     }
     // anything extra the player should do based on interactions can be handled here
     protected void handlePlayerAnimation() {
-        if (playerState == PlayerState.STANDING) {
+        if(playerState == PlayerState.DYING){
+            this.currentAnimationName = "DEATH";
+        }
+        else if (playerState == PlayerState.STANDING) {
             if(invincibilityTimer == 0){
                 this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" 
                 :facingDirection == Direction.LEFT ? "STAND_LEFT"
@@ -415,9 +424,6 @@ public abstract class Player extends GameObject {
             // player can be told to stand or walk during Script by using the "stand" and "walk" methods
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
         }
-        else if(playerState == PlayerState.DYING){
-            this.currentAnimationName = "DYING";
-        }
     }
 
     @Override
@@ -427,8 +433,8 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
-                    if(Player.getPlayerHealth() <= 0){
-                        playerState = PlayerState.DYING;
+                    if(playerHealth == 0){
+                        killPlayer();
                     }
                     invincibilityTimer = 180;
                 }
@@ -447,8 +453,8 @@ public abstract class Player extends GameObject {
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
                     System.out.println("player hit; hp: " + playerHealth);
-                    if(Player.getPlayerHealth() <= 0){
-                        playerState = PlayerState.DYING;
+                    if(playerHealth == 0){
+                        killPlayer();
                     }
                     invincibilityTimer = 180;
                 }

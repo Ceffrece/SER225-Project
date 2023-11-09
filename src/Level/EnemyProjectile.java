@@ -3,7 +3,6 @@ package Level;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
-import Level.Projectiles.cheeseWheelSpike;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
@@ -20,13 +19,13 @@ import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 
-public class Projectile extends MapEntity{
+public class EnemyProjectile extends MapEntity{
         //this will help see what projectile is being fired
         private String curentProjectile;
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
-        protected int existenceFrames = (Player.attackRange)*25+25;
+        protected int existenceFrames = (Enemy.attackRange)*25+50;
         int turn = existenceFrames/2;
 
         protected int damage;
@@ -38,28 +37,28 @@ public class Projectile extends MapEntity{
 
         private String projectileDescription;
 
-        public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
+        public EnemyProjectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
                 this.shootTime = shootTime;                
             }
         
-            public Projectile(float x, float y, HashMap<String, Frame[]> animations, String startingAnimation) {
+            public EnemyProjectile(float x, float y, HashMap<String, Frame[]> animations, String startingAnimation) {
                 super(x, y, animations, startingAnimation);
             }
         
-            public Projectile(float x, float y, Frame[] frames) {
+            public EnemyProjectile(float x, float y, Frame[] frames) {
                 super(x, y, frames);
             }
         
-            public Projectile(float x, float y, Frame frame) {
+            public EnemyProjectile(float x, float y, Frame frame) {
                 super(x, y, frame);
             }
         
-            public Projectile(float x, float y) {
+            public EnemyProjectile(float x, float y) {
                 super(x, y);
             }
              
-            public Projectile(Utils.Point location, String currentProjectile, Player player) {
+            public EnemyProjectile(Utils.Point location, String currentProjectile, Enemy enemy) {
                 super(location.x, location.y);
                 super.setIdentity(identity);
 
@@ -76,121 +75,74 @@ public class Projectile extends MapEntity{
             
             
             
-            @Override
-            public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
+            //@Override
+            public void onEndCollisionCheckX(boolean hasCollided, Direction direction, Player playerCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                if (hasCollided && !map.players.contains(playerCollidedWith)){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                    touchedEnemy(entityCollidedWith);
+                    touchedPlayer(playerCollidedWith);
                 }
             }
             // entityCollidedWith.overlaps(this)
             // this.overlaps(entityCollidedWith)
-            public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+            public void onEndCollisionCheckY(boolean hasCollided, Direction direction, Player playerCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                if (hasCollided && !map.players.contains(playerCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                    touchedEnemy(entityCollidedWith);
+                    touchedPlayer(playerCollidedWith);
                 }
             }
-           
-            int threeProOffsetX;
-            int threeProOffsetY;
-
-            public void currentProjectile(String currentProjectile,Player player){
+            public void currentProjectile(String currentProjectile, MapEntity enemy){
                 if (projectileChosen == 0){ 
                     switch(currentProjectile){
                         case "peaProjectile":
-                             peaProjectile projectile = new peaProjectile(player.getLocation(), player);
+                             peaProjectile projectile = new peaProjectile(enemy.getLocation(), enemy);
                              map.addProjectile(projectile);
 
                              break;
                         case "riceBallProjectile":
-                             riceBallProjectile projectile2 = new riceBallProjectile(player.getLocation(), player);
+                             riceBallProjectile projectile2 = new riceBallProjectile(enemy.getLocation(), enemy);
 
                              map.addProjectile(projectile2);
                              break;
                         case "bannanaProjectile":
-                             bannanaProjectile projectile3 = new bannanaProjectile(player.getLocation(), player);
+                             bannanaProjectile projectile3 = new bannanaProjectile(enemy.getLocation(), enemy);
                              map.addProjectile(projectile3);
                              break;
                         case "fruitFlyProjectile":
-                            fruitFlyProjectile projectile4 = new fruitFlyProjectile(player.getLocation(), player);
+                            fruitFlyProjectile projectile4 = new fruitFlyProjectile(enemy.getLocation(), enemy);
                              map.addProjectile(projectile4);
                              break;
                         case "carrotProjectile":
-                        carrotProjectile carrotProjectile = new carrotProjectile(player.getLocation(), player);
+                        carrotProjectile carrotProjectile = new carrotProjectile(enemy.getLocation(), enemy);
                              map.addProjectile(carrotProjectile);
                              break;
                         case "pepPro":
-                                peporoniSlicer peporoniSlicer = new peporoniSlicer(player.getLocation(), player);
+                                peporoniSlicer peporoniSlicer = new peporoniSlicer(enemy.getLocation(), enemy);
                                   map.addProjectile(peporoniSlicer);
                                   break;
-                        case "cheese":
-                                        if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
-                                           threeProOffsetX = -25;  
-                                           threeProOffsetY = -25;   
- 
-                                        }
-                                        else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
-                                            threeProOffsetX = 25;  
-                                           threeProOffsetY = -25;
-                                        }
-                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
-                                            threeProOffsetX = -25;  
-                                            threeProOffsetY = 25;
-                                        }
-                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
-                                            threeProOffsetX = -25;  
-                                            threeProOffsetY = -25;
-                                        }
-                                        else if (player.getFacingDirection() == Direction.RIGHT) {
-                                            threeProOffsetX = 0;  
-                                            threeProOffsetY = 25;
-                                        } 
-                                        else if (player.getFacingDirection() == Direction.LEFT) {
-                                            threeProOffsetX = 0;  
-                                            threeProOffsetY = 25;
-                                        }
-                                        else if (player.getFacingDirection() == Direction.UP) {
-                                            threeProOffsetX = 25;  
-                                            threeProOffsetY = 0;
-                                        }
-                                        else if (player.getFacingDirection() == Direction.DOWN) {
-                                            threeProOffsetX = 25;  
-                                            threeProOffsetY = 0;
-                                        }
-                                  cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(player.getLocation(), player);
-                                    map.addProjectile(cheeseWheelSpike);
-                                    
-                                    cheeseWheelSpike cheeseWheelSpike2 = new cheeseWheelSpike(player.getLocation().subtractY(-threeProOffsetY).subtractX(-threeProOffsetX), player);
-                                    map.addProjectile(cheeseWheelSpike2);
-
-                                    cheeseWheelSpike cheeseWheelSpike3 = new cheeseWheelSpike(player.getLocation().subtractY(threeProOffsetY).subtractX(threeProOffsetX), player);
-                                    map.addProjectile(cheeseWheelSpike3);
-                                    break;
                         default:
                             break;
                     }
                 projectileChosen++;
             }
         }
-            public void update(Player player) {
-                currentProjectile(curentProjectile, player);
+            public void update(MapEntity enemy) {
+                currentProjectile(curentProjectile, enemy);
                 super.update();
             }       
-            public void touchedEnemy(MapEntity enemy){
-                enemy.hurtEnemy(this.damage);
+            public void touchedPlayer(Player player){
+                player.hurtPlayer(this);
             }
             
             // A subclass can override this method to specify what it does when it touches the player
-            public void touchedPlayer(Player player) {
-                if (this.identity == "enemy"){
-                    player.hurtPlayer(this);
+            public void touchedEnemy(MapEntity enemy) {
+                if (this.identity == "player"){
+                    enemy.hurtEnemy(this.damage);
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
             }
