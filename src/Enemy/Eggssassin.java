@@ -10,6 +10,7 @@ import GameObject.Frame;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.Enemy;
+import Level.EnemyProjectile;
 import Level.Player;
 import Utils.Direction;
 import Utils.Point;
@@ -70,8 +71,11 @@ public class Eggssassin extends Enemy
                 });
                 }};
         }
+        int timer = 0;
         public void update()
-        {
+        {      
+                
+        
             super.update();
 
         }

@@ -8,6 +8,7 @@ import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
 import GameObject.Frame;
+import GameObject.GameObject;
 import Utils.Direction;
 
 import java.awt.Color;
@@ -25,6 +26,9 @@ public class EnemyProjectile extends MapEntity{
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
+        private float speedX;
+        private float speedY;
+
         protected int existenceFrames = (Enemy.attackRange)*25+50;
         int turn = existenceFrames/2;
 
@@ -35,13 +39,29 @@ public class EnemyProjectile extends MapEntity{
 
         public int shootTime;
 
+        private int hasDirection = 0;
+
         private String projectileDescription;
 
         public EnemyProjectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
-                this.shootTime = shootTime;                
+                this.shootTime = shootTime;
+
+                update();
+                initialize();
             }
-        
+            public EnemyProjectile(Point location,GameObject object) {
+
+                super(location, new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"), 16, 16), "DEFAULT",40);
+                
+                super.setIdentity(identity);
+
+                this.shootTime = shootTime;
+               
+
+                initialize();
+                
+        }
             public EnemyProjectile(float x, float y, HashMap<String, Frame[]> animations, String startingAnimation) {
                 super(x, y, animations, startingAnimation);
             }
@@ -78,61 +98,49 @@ public class EnemyProjectile extends MapEntity{
             //@Override
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, Player playerCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.players.contains(playerCollidedWith)){
-                    this.mapEntityStatus = MapEntityStatus.REMOVED;
-                }else if (hasCollided){
-                    this.mapEntityStatus = MapEntityStatus.REMOVED;
-                    touchedPlayer(playerCollidedWith);
-                }
+                 if (hasCollided && !map.players.contains(playerCollidedWith)){
+                     this.mapEntityStatus = MapEntityStatus.REMOVED;
+                 }else if (hasCollided){
+                     this.mapEntityStatus = MapEntityStatus.REMOVED;
+                     touchedPlayer(playerCollidedWith);
+                 }
             }
             // entityCollidedWith.overlaps(this)
             // this.overlaps(entityCollidedWith)
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, Player playerCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.players.contains(playerCollidedWith)) {
+                 if (hasCollided && !map.players.contains(playerCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                }else if (hasCollided){
-                    this.mapEntityStatus = MapEntityStatus.REMOVED;
-                    touchedPlayer(playerCollidedWith);
+                 }else if (hasCollided){
+                     this.mapEntityStatus = MapEntityStatus.REMOVED;
+                     touchedPlayer(playerCollidedWith);
+                 }
+            }
+            public void getProjectileDirection(Player player){
+                if (hasDirection ==0){ 
+                    float speedX = player.getX() - this.x;
+                    float speedY = player.getY() - this.y;  
+                    
+
                 }
-            }
-            public void currentProjectile(String currentProjectile, MapEntity enemy){
-                if (projectileChosen == 0){ 
-                    switch(currentProjectile){
-                        case "peaProjectile":
-                             peaProjectile projectile = new peaProjectile(enemy.getLocation(), enemy);
-                             map.addProjectile(projectile);
-
-                             break;
-                        case "riceBallProjectile":
-                             riceBallProjectile projectile2 = new riceBallProjectile(enemy.getLocation(), enemy);
-
-                             map.addProjectile(projectile2);
-                             break;
-                        case "bannanaProjectile":
-                             bannanaProjectile projectile3 = new bannanaProjectile(enemy.getLocation(), enemy);
-                             map.addProjectile(projectile3);
-                             break;
-                        case "fruitFlyProjectile":
-                            fruitFlyProjectile projectile4 = new fruitFlyProjectile(enemy.getLocation(), enemy);
-                             map.addProjectile(projectile4);
-                             break;
-                        case "carrotProjectile":
-                        carrotProjectile carrotProjectile = new carrotProjectile(enemy.getLocation(), enemy);
-                             map.addProjectile(carrotProjectile);
-                             break;
-                        case "pepPro":
-                                peporoniSlicer peporoniSlicer = new peporoniSlicer(enemy.getLocation(), enemy);
-                                  map.addProjectile(peporoniSlicer);
-                                  break;
-                        default:
-                            break;
-                    }
-                projectileChosen++;
-            }
+                hasDirection++;
+               
         }
-            public void update(MapEntity enemy) {
-                currentProjectile(curentProjectile, enemy);
+            public void update(Player player) {
+                // currentProjectile(curentProjectile, enemy);
+
+                System.out.println("ACTIVE");
+                getProjectileDirection(player);
+
+                moveXHandleCollision(1);
+                moveYHandleCollision(1);
+
+                
+                if (this.existenceFrames <= 0) {
+                         this.mapEntityStatus = MapEntityStatus.REMOVED;
+                     } 
+               
+                // existenceFrames --;
                 super.update();
             }       
             public void touchedPlayer(Player player){

@@ -29,6 +29,7 @@ public class Camera extends Rectangle {
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
     private ArrayList<Projectile> activeProjectiles = new ArrayList<>();
+    public ArrayList<EnemyProjectile> activeEnemyprojectiles= new ArrayList<>();
     private ArrayList<Item> activeItems = new ArrayList<>();
     private ArrayList<Enemy> activeEnemies = new ArrayList<>();
     private ArrayList<Boss> activeBosses = new ArrayList<>();
@@ -75,6 +76,8 @@ public class Camera extends Rectangle {
         activeEnemies = loadActiveEnemies();
         activeBosses = loadActiveBosses();
         activeProjectiles = loadActiveProjectiles();
+        activeEnemyprojectiles = loadActiveEnemyProjectiles();
+
         activeItems = loadActiveItems();
         activePickups = loadActivePickups();
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
@@ -82,6 +85,9 @@ public class Camera extends Rectangle {
         }
         for (Projectile projectile : activeProjectiles) {
             projectile.update(player);
+        }
+        for (EnemyProjectile enemyProjectile : activeEnemyprojectiles) {
+            enemyProjectile.update(player);
         }
         for (NPC npc : activeNPCs) {
             npc.update(player);
@@ -214,6 +220,25 @@ public class Camera extends Rectangle {
         }
         return activeProjectiles;
     }
+    private ArrayList<EnemyProjectile> loadActiveEnemyProjectiles() {
+        ArrayList<EnemyProjectile> activeEnemyProjectiles = new ArrayList<>();
+        for (int i = map.getEnemyProjectiles().size() - 1; i >= 0; i--) {
+            EnemyProjectile enemyProjectile = map.getEnemyProjectiles().get(i);
+
+            if (isMapEntityActive(enemyProjectile)) {
+                activeEnemyProjectiles.add(enemyProjectile);
+                if (enemyProjectile.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    enemyProjectile.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (enemyProjectile.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                enemyProjectile.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (enemyProjectile.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getEnemyProjectiles().remove(i);
+            }
+        }
+        return activeEnemyProjectiles;
+    }
+    
     //determine which items are active (exist and are within range of the camera)
     private ArrayList<Item> loadActiveItems() {
         ArrayList<Item> activeItems = new ArrayList<>();
@@ -378,6 +403,11 @@ public class Camera extends Rectangle {
                 projectile.draw(graphicsHandler);
             }
         }
+        for (EnemyProjectile enemyProjectile : activeEnemyprojectiles) {
+            if (containsDraw(enemyProjectile)) {
+                enemyProjectile.draw(graphicsHandler);
+            }
+        }
         for(Item item : activeItems) {
             if(containsDraw(item)) {
                 item.draw(graphicsHandler);
@@ -448,6 +478,9 @@ public class Camera extends Rectangle {
 
     public ArrayList<Trigger> getActiveTriggers() {
         return activeTriggers;
+    }
+    public ArrayList<EnemyProjectile> getActiveEnemyProjectiles() {
+        return activeEnemyprojectiles;
     }
     public ArrayList<Projectile> getActiveProjectiles() {
         return activeProjectiles;

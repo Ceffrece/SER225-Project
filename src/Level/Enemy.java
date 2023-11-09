@@ -168,12 +168,20 @@ public class Enemy extends MapEntity
                 break;
         }
     }
-    
+    int timer = 0;
     public void update(Player player)
     {   
         facePlayer(player);
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+
+        if(timer >= 100){
+                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 50);
+                map.addEnemyProjectile(pro);
+                timer = 0;
+        }
+
+        timer ++;
         if(!enemyCurrentProjectiles.isEmpty()){
             EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
             
