@@ -75,9 +75,7 @@ public class HubMap extends Map {
 
        
 
-        Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(13, 15).getLocation());
-        eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
-        enemies.add(eggssassin1);
+        
 
        
 
