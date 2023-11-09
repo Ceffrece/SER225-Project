@@ -4,6 +4,7 @@ import GameObject.Frame;
 import GameObject.GameObject;
 import GameObject.SpriteSheet;
 
+import java.awt.Point;
 import java.util.HashMap;
 
 // This class represents a map entity, which is any "entity" on a map besides the player
@@ -48,6 +49,11 @@ public class MapEntity extends GameObject {
 
     public MapEntity(float x, float y) {
         super(x, y);
+    }
+
+    public MapEntity(Point location, SpriteSheet spriteSheet, String startingAnimation, int i) {
+        super(spriteSheet, location.x, location.y, startingAnimation);
+
     }
 
     public MapEntityStatus getMapEntityStatus() {

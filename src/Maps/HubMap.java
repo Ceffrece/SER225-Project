@@ -2,8 +2,10 @@ package Maps;
 
 import java.util.ArrayList;
 
+import Enemy.Eggssassin;
 import Engine.ImageLoader;
 import GameObject.SpriteSheet;
+import Level.Enemy;
 import Level.Item;
 import Level.Map;
 import Level.NPC;
@@ -67,6 +69,20 @@ public class HubMap extends Map {
         
 
         return items;
+    }
+    public ArrayList<Enemy> loadEnemies() {
+        ArrayList<Enemy> enemies = new ArrayList<>();
+
+       
+
+        Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(13, 15).getLocation());
+        eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
+        enemies.add(eggssassin1);
+
+       
+
+        
+        return enemies;
     }
     @Override
     public void loadScripts() {

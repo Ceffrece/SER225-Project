@@ -128,6 +128,11 @@ public abstract class Map {
         for (Projectile projectile: this.projectiles) {
             projectile.setMap(this);
         }
+        
+        this.enemyprojectiles = loadEnemyProjectiles();
+        for (EnemyProjectile enemyprojectile: this.enemyprojectiles) {
+            enemyprojectile.setMap(this);
+        }
         this.items = loadItems();
         for(Item item: this.items){
             item.setMap(this);
@@ -262,6 +267,7 @@ public abstract class Map {
         projectile.setMap(this);
         this.projectiles.add(projectile);
     }
+    
     public void addEnemyProjectile(EnemyProjectile projectile) {
         projectile.setMap(this);
         this.enemyprojectiles.add(projectile);
@@ -342,6 +348,9 @@ public abstract class Map {
     protected ArrayList<Projectile> loadProjectiles() {
         return new ArrayList<>();
     }
+    protected ArrayList<EnemyProjectile> loadEnemyProjectiles() {
+        return new ArrayList<>();
+    }
     protected ArrayList<Item> loadItems() {
         return new ArrayList<>();
     }
@@ -365,6 +374,9 @@ public abstract class Map {
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
+    }
+    public ArrayList<EnemyProjectile> getEnemyProjectiles() {
+        return enemyprojectiles;
     }
     public ArrayList<Item> getItems() {
         return items;
@@ -436,6 +448,10 @@ public abstract class Map {
     public ArrayList<Projectile> getActiveProjectiles() {
         return camera.getActiveProjectiles();
     }
+
+    public ArrayList<Projectile> getActiveEnemyProjectiles() {
+        return camera.getActiveProjectiles();
+    }
     public ArrayList<Item> getActiveItems() {
         return camera.getActiveItems();
     }
@@ -490,6 +506,8 @@ public abstract class Map {
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
         surroundingMapEntities.addAll(getActiveItems());
         surroundingMapEntities.addAll(getActivePickups());
+        surroundingMapEntities.addAll(getActiveEnemyProjectiles());
+
         return surroundingMapEntities;
     }
 
