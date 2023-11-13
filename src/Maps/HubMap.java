@@ -51,7 +51,7 @@ public class HubMap extends Map {
         ArrayList<Item> items = new ArrayList<>();
 
         Item peaPickup = new Item(getMapTile(20,13).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/peaProjectile.png"),16,16),"DEFAULT","peaProjectile");
-        peaPickup.setInteractScript(new ProjectilePickup());
+        peaPickup.setInteractScript(new ProjectilePickup()); 
         items.add(peaPickup);
 
         Item riceballPickup = new Item(getMapTile(20,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"),16,16),"DEFAULT","riceBallProjectile");
@@ -61,10 +61,13 @@ public class HubMap extends Map {
         Item bannaPickup = new Item(getMapTile(22,15).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"),16,16),"DEFAULT","bannanaProjectile");
         bannaPickup.setInteractScript(new ProjectilePickup());
         items.add(bannaPickup);
+//    public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd){
 
         Item pepPickup = new Item(getMapTile(22,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","peporoniSlicer");
         pepPickup.setInteractScript(new ProjectilePickup());
         items.add(pepPickup);
+
+        
 
         
 
