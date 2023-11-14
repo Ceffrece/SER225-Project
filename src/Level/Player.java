@@ -13,6 +13,7 @@ import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
+import Level.Projectiles.cheeseWheelSpike;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
@@ -111,13 +112,17 @@ public abstract class Player extends GameObject {
         // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
         // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
 
-        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+        // carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
 
-        playerCurrentProjectiles.add(carrotProjectile);
+        // playerCurrentProjectiles.add(carrotProjectile);
 
-        peporoniSlicer peporoniSlicer = new peporoniSlicer(getLocation(), null);
+        // cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(getLocation(), null);
 
-        playerCurrentProjectiles.add(peporoniSlicer);
+        // playerCurrentProjectiles.add(cheeseWheelSpike);
+
+        // peporoniSlicer peporoniSlicer = new peporoniSlicer(getLocation(), null);
+
+        // playerCurrentProjectiles.add(peporoniSlicer);
         // playerCurrentProjectiles.add(fruitFlyProjectile);
         // playerCurrentProjectiles.add(peaProjectile);
         // playerCurrentProjectiles.add(riceBallProjectile);
@@ -610,10 +615,16 @@ public abstract class Player extends GameObject {
                 carrotProjectile carrotProjectile = new carrotProjectile(new Point(maxHealth, invincibilityTimer), null);
                  playerCurrentProjectiles.add(carrotProjectile);
                   break;
-            case "pepPro":
+            case "peporoniSlicer":
                   peporoniSlicer peporoniSlicer = new peporoniSlicer(new Point(maxHealth, invincibilityTimer), null);
                    playerCurrentProjectiles.add(peporoniSlicer);
                     break;
+            case "cheese":
+                    cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(new Point(maxHealth, invincibilityTimer), null);
+                     playerCurrentProjectiles.add(cheeseWheelSpike);
+                      break;
+
+            
             // case "fruitFlyProjectile":
             //         fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(new Point(0, 0), null);
             //         playerCurrentProjectiles.add(fruitFlyProjectile);

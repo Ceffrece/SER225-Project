@@ -65,7 +65,9 @@ public abstract class Map {
     protected ArrayList<Player> players;
     protected ArrayList<Enemy> enemies;
     protected ArrayList<Trigger> triggers;
+    protected ArrayList<Boss> bosses;
     public ArrayList<Projectile> projectiles;
+    public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
     public ArrayList<Pickup> pickups;
 
@@ -119,6 +121,11 @@ public abstract class Map {
             enemy.setMap(this);
         }
 
+        this.bosses = loadBosses();
+        for (Boss boss: this.bosses) {
+            boss.setMap(this);
+        }
+
         this.triggers = loadTriggers();
         for (Trigger trigger: this.triggers) {
             trigger.setMap(this);
@@ -126,6 +133,11 @@ public abstract class Map {
         this.projectiles = loadProjectiles();
         for (Projectile projectile: this.projectiles) {
             projectile.setMap(this);
+        }
+        
+        this.enemyprojectiles = loadEnemyProjectiles();
+        for (EnemyProjectile enemyprojectile: this.enemyprojectiles) {
+            enemyprojectile.setMap(this);
         }
         this.items = loadItems();
         for(Item item: this.items){
@@ -261,6 +273,11 @@ public abstract class Map {
         projectile.setMap(this);
         this.projectiles.add(projectile);
     }
+    
+    public void addEnemyProjectile(EnemyProjectile projectile) {
+        projectile.setMap(this);
+        this.enemyprojectiles.add(projectile);
+    }
     public void addItem(Item item) {
         item.setMap(this);
         this.items.add(item);
@@ -330,11 +347,16 @@ public abstract class Map {
     protected ArrayList<Enemy> loadEnemies() {
         return new ArrayList<>();
     }
-
+    protected ArrayList<Boss> loadBosses() {
+        return new ArrayList<>();
+    }
     protected ArrayList<Trigger> loadTriggers() {
         return new ArrayList<>();
     }
     protected ArrayList<Projectile> loadProjectiles() {
+        return new ArrayList<>();
+    }
+    protected ArrayList<EnemyProjectile> loadEnemyProjectiles() {
         return new ArrayList<>();
     }
     protected ArrayList<Item> loadItems() {
@@ -358,8 +380,14 @@ public abstract class Map {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
+    public ArrayList<Boss> getBosses() {
+        return bosses;
+    }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
+    }
+    public ArrayList<EnemyProjectile> getEnemyProjectiles() {
+        return enemyprojectiles;
     }
     public ArrayList<Item> getItems() {
         return items;
@@ -424,11 +452,19 @@ public abstract class Map {
         return camera.getActiveEnemies();
     }
 
+    public ArrayList<Boss> getActiveBosses() {
+        return camera.getActiveBosses();
+    }
+
     public ArrayList<Trigger> getActiveTriggers() {
         return camera.getActiveTriggers();
     }
 
     public ArrayList<Projectile> getActiveProjectiles() {
+        return camera.getActiveProjectiles();
+    }
+
+    public ArrayList<Projectile> getActiveEnemyProjectiles() {
         return camera.getActiveProjectiles();
     }
     public ArrayList<Item> getActiveItems() {
@@ -454,6 +490,11 @@ public abstract class Map {
         this.enemies.add(enemy);
     }
 
+    // add a boss to the map's list of enemies
+    public void addBoss(Boss boss) {
+        boss.setMap(this);
+        this.bosses.add(boss);
+    }
     // add a trigger to the map's list of triggers
     public void addTrigger(Trigger trigger) {
         trigger.setMap(this);
@@ -485,6 +526,8 @@ public abstract class Map {
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
         surroundingMapEntities.addAll(getActiveItems());
         surroundingMapEntities.addAll(getActivePickups());
+        surroundingMapEntities.addAll(getActiveEnemyProjectiles());
+
         return surroundingMapEntities;
     }
 

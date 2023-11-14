@@ -18,8 +18,8 @@ import Utils.Point;
 public class Enemy extends MapEntity
 {
     protected int id = 0;
-    protected int health = 5;
-    //public static int health = 5;
+    // protected int health = 5;
+    public static int health = 5;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
 
@@ -44,6 +44,13 @@ public class Enemy extends MapEntity
         carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
 
         enemyCurrentProjectiles.add(carrotProjectile);
+    }
+    //Constructor for the boss
+    public Enemy(float x, float y, SpriteSheet spriteSheet, String startingAnimation)
+    {
+        super(x, y, spriteSheet, startingAnimation);
+        isUncollidable = true;
+        super.setIdentity("enemy");
     }
     public Enemy(int id, float x, float y, HashMap<String, Frame[]> animations, String startingAnimation)
     {
@@ -146,27 +153,35 @@ public class Enemy extends MapEntity
             moveX(speed);
         }
     }
-    // public static void addProjectile(String projectileType){
-    //     switch(projectileType){
-    //         case "peaProjectile":
-    //         // health should not be static, this makes the enemies share health
-    //             peaProjectile peaProjectile = new peaProjectile(new Point(health, invincibilityTimer), null);
-    //             enemyCurrentProjectiles.add(peaProjectile);
-    //              break;
-    //         case "carrotProjectile":
-    //             carrotProjectile carrotProjectile = new carrotProjectile(new Point(health, invincibilityTimer), null);
-    //              enemyCurrentProjectiles.add(carrotProjectile);
-    //               break;
-    //         default:
-    //             break;
-    //     }
-    // }
-    
+    public static void addProjectile(String projectileType){
+        switch(projectileType){
+            case "peaProjectile":
+            // health should not be static, this makes the enemies share health
+                peaProjectile peaProjectile = new peaProjectile(new Point(health, invincibilityTimer), null);
+                enemyCurrentProjectiles.add(peaProjectile);
+                 break;
+            case "carrotProjectile":
+                carrotProjectile carrotProjectile = new carrotProjectile(new Point(health, invincibilityTimer), null);
+                 enemyCurrentProjectiles.add(carrotProjectile);
+                  break;
+            default:
+                break;
+        }
+    }
+    int timer = 0;
     public void update(Player player)
     {   
         facePlayer(player);
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
+
+        if(timer >= 100){
+                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 50);
+                map.addEnemyProjectile(pro);
+                timer = 0;
+        }
+
+        timer ++;
         if(!enemyCurrentProjectiles.isEmpty()){
             EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
             

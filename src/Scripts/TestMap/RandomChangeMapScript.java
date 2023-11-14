@@ -57,7 +57,7 @@ public class RandomChangeMapScript extends Script {
     protected ScriptState execute() {
         switch(floor){
             case 1:
-                if(floor1.size() > 0){
+                if(floor1.size() > 5){
                     int mapToGoTo =(int) ((Math.random() * floor1.size()) + 1);
                     System.out.println(floor1.get(mapToGoTo-1));
                     floorsVisited.add(floor1.get(mapToGoTo-1));
