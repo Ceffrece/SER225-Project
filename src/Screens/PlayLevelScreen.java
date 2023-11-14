@@ -8,6 +8,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.HubMap;
 import Maps.MarcusMap;
+import Maps.Shop;
 import Maps.TestMap;
 import Maps.Floor1.DungeonRoom1;
 import Maps.Floor1.DungeonRoom2;
@@ -211,6 +212,12 @@ public class PlayLevelScreen extends Screen {
                 Game.gameMusic.pause();
                 Game.bossMusic1.play();
                 inBossFight = true;
+                return newMap;
+            case 111:
+                newMap = new Shop();
+                Game.gameMusic.pause();
+                Game.bossMusic1.play();
+                inBossFight = false;
                 return newMap;
             case 101:
                 newMap = new TestMap();

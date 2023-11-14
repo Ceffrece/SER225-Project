@@ -622,7 +622,8 @@ public abstract class Player extends GameObject {
                     cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(new Point(maxHealth, invincibilityTimer), null);
                      playerCurrentProjectiles.add(cheeseWheelSpike);
                       break;
-
+            
+  
             
             // case "fruitFlyProjectile":
             //         fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(new Point(0, 0), null);

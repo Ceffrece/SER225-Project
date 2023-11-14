@@ -18,6 +18,9 @@ public class Pickup extends Item{
     }
 
     public void update(Player player){
+        if(this.overlaps(player)){
+            this.setMapEntityStatus(MapEntityStatus.REMOVED);
+        }
         if(this.mapEntityStatus == MapEntityStatus.REMOVED) {
             Player.playerXPLevel += this.xpValue;
         }

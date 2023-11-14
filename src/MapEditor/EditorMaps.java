@@ -15,6 +15,7 @@ import Maps.Floor1.DungeonRoom9;
 import Maps.Floor1.DungeonRoom10;
 import Maps.Floor1.Floor1Boss;
 import Maps.MarcusMap;
+import Maps.Shop;
 import Maps.HubMap;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class EditorMaps {
             add("DungeonRoom8");
             add("DungeonRoom9");
             add("DungeonRoom10");
+            add("Shop");
             add("Floor1Boss");
 
         }};
@@ -45,6 +47,8 @@ public class EditorMaps {
         switch(mapName) {
             case "TestMap":
                 return new TestMap();
+            case "Shop":
+                return new Shop();
             case "TitleScreen":
                 return new TitleScreenMap();
             case "MarcusMap":
