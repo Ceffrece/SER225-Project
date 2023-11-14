@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
+import Engine.ImageLoader;
+import GameObject.SpriteSheet;
+import Level.Boss;
 import Level.Enemy;
 import Level.Map;
 import Level.Tileset;
@@ -25,9 +28,6 @@ public class Floor1Boss extends Map {
 
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
-    
-           
-    
             
     
            
@@ -35,6 +35,14 @@ public class Floor1Boss extends Map {
             
             return enemies;
         }
+
+        public ArrayList<Boss> loadBosses() {
+            ArrayList<Boss> bosses = new ArrayList<>();
+            Boss broc = new Boss(getMapTile(12,10).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 20, 20), "DEFAULT");
+            bosses.add(broc);
+            return bosses;
+        }
+
     @Override
     public void loadScripts() {
         

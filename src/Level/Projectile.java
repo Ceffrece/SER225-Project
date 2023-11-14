@@ -3,6 +3,7 @@ package Level;
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
+import Level.Projectiles.cheeseWheelSpike;
 import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
@@ -25,7 +26,7 @@ public class Projectile extends MapEntity{
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
-        protected int existenceFrames = (Player.attackRange)*25+50;
+        protected int existenceFrames = (Player.attackRange)*25+25;
         int turn = existenceFrames/2;
 
         protected int damage;
@@ -79,6 +80,9 @@ public class Projectile extends MapEntity{
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                    if(map.bosses.contains(entityCollidedWith)){
+                        touchedEnemy(entityCollidedWith);
+                    }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
@@ -90,12 +94,19 @@ public class Projectile extends MapEntity{
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
                 if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
+                    if(map.bosses.contains(entityCollidedWith)){
+                        touchedEnemy(entityCollidedWith);
+                    }
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                     touchedEnemy(entityCollidedWith);
                 }
             }
+           
+            int threeProOffsetX;
+            int threeProOffsetY;
+
             public void currentProjectile(String currentProjectile,Player player){
                 if (projectileChosen == 0){ 
                     switch(currentProjectile){
@@ -125,6 +136,49 @@ public class Projectile extends MapEntity{
                                 peporoniSlicer peporoniSlicer = new peporoniSlicer(player.getLocation(), player);
                                   map.addProjectile(peporoniSlicer);
                                   break;
+                        case "cheese":
+                                        if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                           threeProOffsetX = -25;  
+                                           threeProOffsetY = -25;   
+ 
+                                        }
+                                        else if (player.getFacingDirection() == Direction.DOWN && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = 25;  
+                                           threeProOffsetY = -25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.LEFT) {
+                                            threeProOffsetX = -25;  
+                                            threeProOffsetY = 25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP && player.getLastWalkingXDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = -25;  
+                                            threeProOffsetY = -25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.RIGHT) {
+                                            threeProOffsetX = 0;  
+                                            threeProOffsetY = 25;
+                                        } 
+                                        else if (player.getFacingDirection() == Direction.LEFT) {
+                                            threeProOffsetX = 0;  
+                                            threeProOffsetY = 25;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.UP) {
+                                            threeProOffsetX = 25;  
+                                            threeProOffsetY = 0;
+                                        }
+                                        else if (player.getFacingDirection() == Direction.DOWN) {
+                                            threeProOffsetX = 25;  
+                                            threeProOffsetY = 0;
+                                        }
+                                  cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(player.getLocation(), player);
+                                    map.addProjectile(cheeseWheelSpike);
+                                    
+                                    cheeseWheelSpike cheeseWheelSpike2 = new cheeseWheelSpike(player.getLocation().subtractY(-threeProOffsetY).subtractX(-threeProOffsetX), player);
+                                    map.addProjectile(cheeseWheelSpike2);
+
+                                    cheeseWheelSpike cheeseWheelSpike3 = new cheeseWheelSpike(player.getLocation().subtractY(threeProOffsetY).subtractX(threeProOffsetX), player);
+                                    map.addProjectile(cheeseWheelSpike3);
+                                    break;
                         default:
                             break;
                     }
@@ -138,7 +192,7 @@ public class Projectile extends MapEntity{
             public void touchedEnemy(MapEntity enemy){
                 enemy.hurtEnemy(this.damage);
             }
-            
+
             // A subclass can override this method to specify what it does when it touches the player
             public void touchedPlayer(Player player) {
                 if (this.identity == "enemy"){
