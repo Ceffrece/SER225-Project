@@ -64,12 +64,13 @@ public class HubMap extends Map {
         items.add(bannaPickup);
 //    public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd){
 
-        Item pepPickup = new Item(getMapTile(22,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","peporoniSlicer");
+        Item pepPickup = new Item(getMapTile(22,18).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","peporoniSlicer");
         pepPickup.setInteractScript(new ProjectilePickup());
         items.add(pepPickup);
 
-        
-
+        Item cheesePickup = new Item(getMapTile(22,12).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("GUISprites/cheeseIcon.png"),16,16),"DEFAULT","cheese");
+        cheesePickup.setInteractScript(new ProjectilePickup());
+        items.add(cheesePickup);
         
 
         return items;

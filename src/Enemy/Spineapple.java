@@ -23,7 +23,7 @@ public class Spineapple extends Enemy
       
         public Spineapple(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/Spineapple.png"), 14, 16), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/Spineapple.png"), 21, 20), "STAND_LEFT");
                 super.setIdentity("enemy");
                 super.setHealth(100);
                 
