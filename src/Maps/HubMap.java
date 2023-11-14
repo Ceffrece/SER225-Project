@@ -43,31 +43,13 @@ public class HubMap extends Map {
     }
     public ArrayList<Trigger> loadTriggers() {
                 ArrayList<Trigger> triggers = new ArrayList<>();
-                triggers.add(new Trigger(790, 1030, 100, 10, new RandomChangeMapScript(1), "teleport"));
                
                 return triggers;
            }
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
 
-        Item peaPickup = new Item(getMapTile(20,13).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/peaProjectile.png"),16,16),"DEFAULT","peaProjectile");
-        peaPickup.setInteractScript(new ProjectilePickup()); 
-        items.add(peaPickup);
 
-        Item riceballPickup = new Item(getMapTile(20,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"),16,16),"DEFAULT","riceBallProjectile");
-        riceballPickup.setInteractScript(new ProjectilePickup());
-        items.add(riceballPickup);
-
-        Item bannaPickup = new Item(getMapTile(22,15).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/bannanaProjectile.png"),16,16),"DEFAULT","bannanaProjectile");
-        bannaPickup.setInteractScript(new ProjectilePickup());
-        items.add(bannaPickup);
-//    public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd){
-
-        Item pepPickup = new Item(getMapTile(22,17).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load("Projectiles/pepPro.png"),16,16),"DEFAULT","peporoniSlicer");
-        pepPickup.setInteractScript(new ProjectilePickup());
-        items.add(pepPickup);
-
-        
 
         
 
@@ -96,6 +78,9 @@ public class HubMap extends Map {
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
 
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+
+        getMapTile(2,14).setInteractScript(new ChangeMapScript(111));
+
     }
     
 }

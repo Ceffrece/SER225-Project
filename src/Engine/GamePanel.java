@@ -227,6 +227,8 @@ public class GamePanel extends JPanel {
 	public void setCurrentFPS(int currentFPS) {
 		this.currentFPS = currentFPS;
 	}
+
+	
 	int levelCount = 0;
 	public void update() {
 		
