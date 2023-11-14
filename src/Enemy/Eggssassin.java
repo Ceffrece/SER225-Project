@@ -23,7 +23,7 @@ public class Eggssassin extends Enemy
       
         public Eggssassin(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/Eggssassin.png"), 20, 22), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/Eggssassin.png"), 32, 32), "STAND_LEFT");
                 super.setIdentity("enemy");
                 super.setHealth(100);
                 
@@ -34,13 +34,13 @@ public class Eggssassin extends Enemy
                 return new HashMap<String, Frame[]>() {{
                 put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
-                                .withScale(3)
+                                .withScale(2)
                                 .withBounds(4, 5, 14, 16)
                                 .build()
                 });
                 put("STAND_RIGHT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
-                                .withScale(3)
+                                .withScale(2)
                                 .withBounds(4, 5, 14, 16)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build()
@@ -48,23 +48,23 @@ public class Eggssassin extends Enemy
 
                 put("WALK_LEFT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
-                                .withScale(3)
+                                .withScale(2)
                                 .withBounds(3, 5, 17, 17)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
-                                .withScale(3)
+                                .withScale(2)
                                 .withBounds(3, 5, 17, 17)
                                 .build()
                 });
 
                 put("WALK_RIGHT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
-                                .withScale(3)
+                                .withScale(2)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .withBounds(0, 5, 17, 17)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
-                                .withScale(3)
+                                .withScale(2)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .withBounds(0, 5, 17, 17)
                                 .build()

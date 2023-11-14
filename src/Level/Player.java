@@ -637,6 +637,10 @@ public abstract class Player extends GameObject {
         
         return playerCurrentProjectiles.get(projectileInHand).projectileID;
     }
+
+    public ArrayList<Projectile> getProjectiles(){
+        return playerCurrentProjectiles;
+    }
    //----setters and getters and helper functions :D for player varaibles----
     //walk speed setter
     public static void setWalkSpeed(Float walkSpeeed) {
