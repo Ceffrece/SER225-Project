@@ -119,6 +119,9 @@ public class Shop extends Map {
     public void loadScripts() {
 
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+
+        getMapTile(12,6).setInteractScript(new ChangeMapScript(100));
+
     }
     
 }
