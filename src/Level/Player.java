@@ -210,7 +210,6 @@ public abstract class Player extends GameObject {
         if(deathCounter > 300){
             playerHealth = maxHealth;
             playerState = PlayerState.STANDING;
-            System.out.println("did it once");
             deathCounter = 0;
         }
     }
