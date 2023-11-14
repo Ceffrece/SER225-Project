@@ -101,54 +101,54 @@ public class cheeseWheelSpike extends Projectile {
                         put("UP", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                                         .withScale(3)
-                                        .withBounds(4, 1, 8, 14)
+                                        .withBounds(4, 4, 7, 10)
                                         .build()
                         });
                         put("DOWN", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                                         .withScale(3)
-                                        .withBounds(4, 1, 8, 14)
+                                        .withBounds(5, 2, 7, 10)
                                         .withImageEffect(ImageEffect. FLIP_H_AND_V)
                                         .build()
                         });
                         put("LEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 1))
                                         .withScale(3)
-                                        .withBounds(1, 4, 14, 8)
+                                        .withBounds(3, 4, 10, 7)
                                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
                                         .build()
                         });
                         put("RIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 1))
                                         .withScale(3)
-                                        .withBounds(1, 4, 14, 8)
+                                        .withBounds(3, 4, 10, 7)
                                         .build()
                         });
                         put("DIAGONALUPRIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
-                                        .withBounds(2, 2, 12, 12)
+                                        .withBounds(4, 3, 8, 8)
                                         .build()
                         });
                         put("DIAGONALUPLEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)                                
-                                        .withBounds(2, 2, 12, 12)
+                                        .withBounds(4, 3, 8, 8)
                                         .build()
                         });
                         put("DIAGONALDOWNLEFT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_H_AND_V)                                
-                                        .withBounds(2, 2, 12, 12)
+                                        .withBounds(4, 5, 8, 8)
                                         .build()
                         });
                         put("DIAGONALDOWNRIGHT", new Frame[] {
                                 new FrameBuilder(spriteSheet.getSprite(0, 2))
                                         .withScale(3)
                                         .withImageEffect(ImageEffect.FLIP_VERTICAL)                                
-                                        .withBounds(2, 2, 12, 12)
+                                        .withBounds(4, 5, 8, 8)
                                         .build()
                         });
                 }

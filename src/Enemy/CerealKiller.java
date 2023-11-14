@@ -20,7 +20,7 @@ public class CerealKiller extends Enemy
       
         public CerealKiller(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/CerealKiller.png"), 14, 16), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/CerealKiller.png"), 16, 16), "STAND_LEFT");
                 super.setIdentity("enemy");
                 super.setHealth(100);
                 
@@ -44,23 +44,41 @@ public class CerealKiller extends Enemy
                 });
 
                 put("WALK_LEFT", new Frame[]{
-                        new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 12)
                                 .withScale(3)
                                 .withBounds(1, 3, 12, 13)
                                 .build(),
-                        new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
+                        new FrameBuilder(spriteSheet.getSprite(1, 1), 12)
+                                .withScale(3)
+                                .withBounds(1, 3, 12, 13)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 2), 12)
+                                .withScale(3)
+                                .withBounds(1, 3, 12, 13)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 3), 12)
                                 .withScale(3)
                                 .withBounds(1, 3, 12, 13)
                                 .build()
                 });
 
                 put("WALK_RIGHT", new Frame[]{
-                        new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 12)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .withBounds(1, 3, 12, 13)
                                 .build(),
-                        new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
+                        new FrameBuilder(spriteSheet.getSprite(1, 1), 12)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(1, 3, 12, 13)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 2), 12)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(1, 3, 12, 13)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 3), 12)
                                 .withScale(3)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .withBounds(1, 3, 12, 13)
