@@ -79,32 +79,22 @@ public class Projectile extends MapEntity{
             @Override
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
-                    if(map.bosses.contains(entityCollidedWith)){
-                        touchedEnemy(entityCollidedWith);
-                        System.out.println("COLLIDING NO");
-                    }
+                if (hasCollided && !map.enemies.contains(entityCollidedWith) && !map.bosses.contains(entityCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                     touchedEnemy(entityCollidedWith);
-                    System.out.println("COLLIDING YES");
                 }
             }
             // entityCollidedWith.overlaps(this)
             // this.overlaps(entityCollidedWith)
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                if (hasCollided && !map.enemies.contains(entityCollidedWith)) {
-                    if(map.bosses.contains(entityCollidedWith)){
-                        touchedEnemy(entityCollidedWith);
-                        System.out.println("COLLIDING NO");
-                    }
+                if (hasCollided && !map.enemies.contains(entityCollidedWith) && !map.bosses.contains(entityCollidedWith)) {
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }else if (hasCollided){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                     touchedEnemy(entityCollidedWith);
-                    System.out.println("COLLIDING YES");
                 }
             }
            
@@ -194,6 +184,7 @@ public class Projectile extends MapEntity{
                 super.update();
             }       
             public void touchedEnemy(MapEntity enemy){
+                System.out.println("Hurting enemy");
                 enemy.hurtEnemy(this.damage);
             }
 
