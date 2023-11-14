@@ -18,7 +18,7 @@ import Utils.Point;
 public class Enemy extends MapEntity
 {
     protected int id = 0;
-    // protected int health = 5;
+    // protected int health = 5; no longer needed
     public int health = 5;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;

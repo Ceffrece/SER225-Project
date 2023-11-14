@@ -37,6 +37,7 @@ public class Walrus extends NPC {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(3)
                            .withBounds(7, 13, 11, 7)
+                           .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                            .build()
            });
         }};
