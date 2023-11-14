@@ -24,7 +24,7 @@ public class ProjectilePickup extends Script<Item>{
     public ScriptState execute() {
         start();       
         entity.heldByPlayer = true;
-
+        System.out.println("BOO");
             switch (entity.projectileToAdd) {
                 case "peaProjectile":  
                     Player.addProjectile("peaProjectile");
