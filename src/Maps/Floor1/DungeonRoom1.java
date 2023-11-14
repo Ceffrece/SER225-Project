@@ -62,10 +62,10 @@ public class DungeonRoom1 extends Map {
         }
     @Override
     public void loadScripts() {
-        // if statement based on the enemy count array
-        if (loadEnemies().size() == 0) {
-            getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
-        }
+        // if (loadEnemies().size() == 0) {
+        //     getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        // }
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
 }
