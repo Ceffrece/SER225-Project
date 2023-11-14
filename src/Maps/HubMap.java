@@ -3,6 +3,7 @@ package Maps;
 import java.util.ArrayList;
 
 import Enemy.Eggssassin;
+import Enemy.Spineapple;
 import Engine.ImageLoader;
 import GameObject.SpriteSheet;
 import Level.Enemy;
@@ -78,7 +79,13 @@ public class HubMap extends Map {
         ArrayList<Enemy> enemies = new ArrayList<>();
 
        
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 12).getLocation());
+            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple1);
 
+            Spineapple spineapple2 = new Spineapple(0, getMapTile(10, 13).getLocation());
+            spineapple2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple2);
         
 
        

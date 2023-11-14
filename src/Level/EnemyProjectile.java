@@ -129,7 +129,6 @@ public class EnemyProjectile extends MapEntity{
             public void update(Player player) {
                 // currentProjectile(curentProjectile, enemy);
 
-                // System.out.println("ACTIVE");
                 getProjectileDirection(player);
 
                 moveXHandleCollision(1);

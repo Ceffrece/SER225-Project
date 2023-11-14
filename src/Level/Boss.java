@@ -1,5 +1,6 @@
 package Level;
 
+import java.awt.Color;
 import java.security.SecureRandom;
 import java.util.HashMap;
 
@@ -18,6 +19,8 @@ public class Boss extends Enemy{
     public Boss(Point location, SpriteSheet ss, String startingAnimation){
         super(location.x, location.y, ss, startingAnimation);
         random = new SecureRandom();
+        isUncollidable = false;
+        identity = "boss";
         initialize();
     }
 
@@ -58,16 +61,40 @@ public class Boss extends Enemy{
             attack(random.nextInt(1,6));
             attackCounter = 0;
         }
-        if(map.projectiles.contains())
     }
 
+    @Override
+    public void hurtEnemy(int damage){
+        this.health -= damage;
+        if(this.health <= 0){
+            this.setMapEntityStatus(MapEntityStatus.REMOVED);
+        }
+        System.out.println("Boss Health = " + this.health);
+    }
     public void initialize(){
         super.initialize();
     }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        super.draw(graphicsHandler);
+        if (map != null) {
+            graphicsHandler.drawImage(
+                            currentFrame.getImage(),
+                            Math.round(getCalibratedXLocation()),
+                            Math.round(getCalibratedYLocation()),
+                            currentFrame.getWidth(),
+                            currentFrame.getHeight(),
+                            currentFrame.getImageEffect());
+
+            // Uncomment this to draw player's bounds to screen -- useful for debugging
+            
+            if (this instanceof Boss) {
+                    drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+            }
+            
+    } else {
+            super.draw(graphicsHandler);
+    }
     }
     @Override
             public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
