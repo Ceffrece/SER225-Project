@@ -49,24 +49,24 @@ public class Spineapple extends Enemy
                 put("WALK_LEFT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 5, 10, 13)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withBounds(4, 5, 5, 10)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 5, 10, 13)
                                 .build()
                 });
 
                 put("WALK_RIGHT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(5, 5, 10, 13)
                                 .build(),
                         new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                                 .withScale(3)
-                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .withBounds(4, 5, 5, 10)
+                                .withBounds(5, 5, 10, 13)
                                 .build()
                 });
                 }};
