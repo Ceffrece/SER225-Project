@@ -108,7 +108,7 @@ public abstract class Player extends GameObject {
         this.affectedByTriggers = true;
 
         // peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
-        // riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
+         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
         // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
 
@@ -125,7 +125,7 @@ public abstract class Player extends GameObject {
         // playerCurrentProjectiles.add(peporoniSlicer);
         // playerCurrentProjectiles.add(fruitFlyProjectile);
         // playerCurrentProjectiles.add(peaProjectile);
-        // playerCurrentProjectiles.add(riceBallProjectile);
+         playerCurrentProjectiles.add(riceBallProjectile);
         // playerCurrentProjectiles.add(bannanaProjectile);
 
 

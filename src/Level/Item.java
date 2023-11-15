@@ -18,6 +18,7 @@ public class Item extends MapEntity{
 	private GraphicsHandler graphicsHandler;
     public Boolean showDescription;
     public int cost;
+    public boolean dontShowDesc;
 
     public boolean heldByPlayer = false;
     public boolean hasImpartedStat = false;
@@ -45,16 +46,17 @@ public class Item extends MapEntity{
         this.projectileToAdd = projectileToAdd;
         this.cost = cost;
         this.description = description;
-
+        dontShowDesc = false;
         isUncollidable = true;
 
         initialize();
+
     }
     public Item(Point location, SpriteSheet ss, String startingAnimation) {
         super(location.x,location.y,ss,startingAnimation);
         this.projectileToAdd = projectileToAdd;
         isUncollidable = true;
-
+        dontShowDesc = true;
         initialize();
 }
 public Item(float x, float y) {
@@ -91,9 +93,9 @@ public void update(Player player) {
         descrptionTextSprite = new SpriteFont(description, (int)this.getCalibratedXLocation(), (int)this.getCalibratedYLocation()-30,"Chalkduster", 20, Color. BLACK);
         super.draw(graphicsHandler);
         if(showDescription){
-        graphicsHandler.drawFilledRectangle((int)this.getCalibratedXLocation(), (int)this.getCalibratedYLocation()-30, 160,30, new Color(200, 200, 200, 255));
-        descrptionTextSprite.draw(graphicsHandler);
-        CostText.draw(graphicsHandler);
+            graphicsHandler.drawFilledRectangle((int)this.getCalibratedXLocation(), (int)this.getCalibratedYLocation()-30, 160,30, new Color(200, 200, 200, 255));
+            descrptionTextSprite.draw(graphicsHandler);
+            CostText.draw(graphicsHandler);
         }
 
 

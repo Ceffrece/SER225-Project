@@ -10,20 +10,25 @@ import Utils.Point;
 
 public class Pickup extends Item{
     private int xpValue;
-
+    
     public Pickup (Point location, SpriteSheet ss, String startingAnimation, int xpValue){
         super(location, ss, startingAnimation);
         this.xpValue = xpValue;
+        showDescription = false;
         initialize();
     }
 
     public void update(Player player){
         if(this.overlaps(player)){
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
+
         }
         if(this.mapEntityStatus == MapEntityStatus.REMOVED) {
             Player.playerXPLevel += this.xpValue;
+
         }
+
+       
         super.update();
     }
 
