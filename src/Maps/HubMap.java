@@ -9,6 +9,7 @@ import GameObject.SpriteSheet;
 import Level.Enemy;
 import Level.Item;
 import Level.Map;
+import Level.MapEntityStatus;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
@@ -67,8 +68,6 @@ public class HubMap extends Map {
             Spineapple spineapple2 = new Spineapple(0, getMapTile(10, 13).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
-        
-
        
 
         
@@ -85,6 +84,7 @@ public class HubMap extends Map {
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
 
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        // enemies.size is not altered when enemies are killed
 
         getMapTile(2,14).setInteractScript(new ChangeMapScript(111));
 

@@ -62,6 +62,7 @@ public class DungeonRoom1 extends Map {
         }
     @Override
     public void loadScripts() {
+        
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     
