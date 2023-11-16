@@ -15,7 +15,9 @@ import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 import java.util.ArrayList;
 
+import Level.Map;
 import Level.Player;
+import Maps.Floor1.Floor1Boss;
 import Players.Cat;
 
 import Screens.MenuScreen;
@@ -293,12 +295,12 @@ public class GamePanel extends JPanel {
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 		}
-		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 			Game.bossMusic1.pause();
 		}
-		if(!skillTreeActivated && MenuScreen.getGameStarted() && PlayLevelScreen.inBossFight){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && PlayLevelScreen.inBossFight1){
 			Game.bossMusic1.play();
 			Game.skillTreeBackground.pause();
 			Game.gameMusic.pause();
@@ -354,6 +356,10 @@ public class GamePanel extends JPanel {
 
 			readyToFire.draw(graphicsHandler);
 
+		}
+
+		if(PlayLevelScreen.inBossFight1){
+			showBossHealth1();
 		}
 		
 		}
@@ -1283,5 +1289,12 @@ public class GamePanel extends JPanel {
 		if(Keyboard.isKeyDown(Key.ESC)){
 			select = false;
 		}
+	}
+
+	public void showBossHealth1(){
+		Floor1Boss.updateCurrentHealth();
+		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		//System.out.println((Floor1Boss.currenthealth/100.0));
 	}
 }

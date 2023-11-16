@@ -33,7 +33,7 @@ public class PlayLevelScreen extends Screen {
     protected PlayLevelScreenState playLevelScreenState;
     protected WinMarcusScreen winMarcusScreen;
     protected FlagManager flagManager;
-    public static boolean inBossFight = false;
+    public static boolean inBossFight1 = false;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -165,63 +165,63 @@ public class PlayLevelScreen extends Screen {
         switch (mapId){
             case 0:
                 newMap = new HubMap();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 1:
                 newMap = new DungeonRoom1();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 2:
                 newMap = new DungeonRoom2();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 3:
                 newMap = new DungeonRoom3();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 4:
                 newMap = new DungeonRoom4();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 5:
                 newMap = new DungeonRoom5();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 6:
                 newMap = new DungeonRoom6();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 7:
                 newMap = new DungeonRoom7();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 8:
                 newMap = new DungeonRoom8();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 9:
                 newMap = new DungeonRoom9();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 10:
                 newMap = new DungeonRoom10();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 100:
                 newMap = new Floor1Boss();
                 Game.gameMusic.pause();
                 Game.bossMusic1.play();
-                inBossFight = true;
+                inBossFight1 = true;
                 return newMap;
             case 111:
                 newMap = new Shop();
                 Game.gameMusic.pause();
                 Game.bossMusic1.play();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             case 101:
                 newMap = new TestMap();
-                inBossFight = false;
+                inBossFight1 = false;
                 return newMap;
             default:
                 return null;

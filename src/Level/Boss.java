@@ -16,11 +16,12 @@ public class Boss extends Enemy{
     public SecureRandom random;
     public String itentity;
 
-    public Boss(Point location, SpriteSheet ss, String startingAnimation){
+    public Boss(Point location, SpriteSheet ss, String startingAnimation, int health){
         super(location.x, location.y, ss, startingAnimation);
         random = new SecureRandom();
         isUncollidable = false;
         identity = "boss";
+        this.health = health;
         initialize();
     }
 
@@ -74,6 +75,10 @@ public class Boss extends Enemy{
     public void initialize(){
         super.initialize();
     }
+    @Override
+    public int getHealth(){
+        return this.health;
+    }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
@@ -101,8 +106,8 @@ public class Boss extends Enemy{
                 return new HashMap<String, Frame[]>() {{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
-                                .withScale(3)
-                                .withBounds(0, 0, 100, 100)
+                                .withScale(5)
+                                .withBounds(0, 0, 100, 40)
                                 .build()
                 });
             }};
