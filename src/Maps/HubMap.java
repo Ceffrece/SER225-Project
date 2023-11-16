@@ -84,9 +84,6 @@ public class HubMap extends Map {
 
         getMapTile(11,6).setInteractScript(new SimpleTextScript("Enter this door to enter the Food Pyramid and\nbegin your run!"));
 
-        // if (loadEnemies().size() == 0) {
-        //     getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
-        // }
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
 
         getMapTile(2,14).setInteractScript(new ChangeMapScript(111));
