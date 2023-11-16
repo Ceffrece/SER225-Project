@@ -1,4 +1,4 @@
-package Maps.Floor1;
+package Maps.Floor3;
 
 import java.util.ArrayList;
 
@@ -11,21 +11,21 @@ import Level.Boss;
 import Level.Enemy;
 import Level.Map;
 import Level.Tileset;
-import Tilesets.Floor1Tileset;
+import Tilesets.Floor3Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.RandomChangeMapScript;
 
-public class Floor1Boss extends Map {
+public class Floor3Boss extends Map {
 
-    public Floor1Boss() {
-        super("Floor1BossRoom.txt", new Floor1Tileset());
-        this.playerStartPosition = getMapTile(12, 24).getLocation();
-        this.mapInt = 100;
-        this.idSwitch = 100;
+    public Floor3Boss() {
+        super("Floor3Boss.txt", new Floor3Tileset());
+        // this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.mapInt = 104;
+        this.idSwitch = 104;
         }
 
-
+        // Where enemies will go
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
             
@@ -36,10 +36,10 @@ public class Floor1Boss extends Map {
             return enemies;
         }
 
+        // Where the boss will go
         public ArrayList<Boss> loadBosses() {
             ArrayList<Boss> bosses = new ArrayList<>();
-            Boss broc = new Boss(getMapTile(12,10).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 20, 20), "DEFAULT");
-            bosses.add(broc);
+
             return bosses;
         }
 
@@ -47,7 +47,7 @@ public class Floor1Boss extends Map {
     public void loadScripts() {
         
 
-        getMapTile(12,2).setInteractScript(new ChangeMapScript(0));
+        //getMapTile(12,2).setInteractScript(new ChangeMapScript(0));
     }
     
 }
