@@ -98,7 +98,6 @@ public class EnemyProjectile extends MapEntity{
             @Override
             public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
-                System.out.println("In OnEndCollisionX");
                 if (hasCollided && entityCollidedWith instanceof MapTile){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
@@ -107,7 +106,6 @@ public class EnemyProjectile extends MapEntity{
             // this.overlaps(entityCollidedWith)
             public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                System.out.println("In OnEndCollisionY");
                 if (hasCollided && entityCollidedWith instanceof MapTile){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
@@ -126,9 +124,20 @@ public class EnemyProjectile extends MapEntity{
                 // currentProjectile(curentProjectile, enemy);
 
                 getProjectileDirection(player);
+                if (player.facingDirection == Direction.UP) {
+                    moveYHandleCollision(1);
+                } else if (player.facingDirection == Direction.DOWN) {
+                    moveYHandleCollision(-1);
+                }
+                
+                if (player.facingDirection == Direction.RIGHT) {
+                    moveXHandleCollision(1);
+                } else if (player.facingDirection == Direction.LEFT) {
+                    moveXHandleCollision(-1);
+                }
 
-                moveXHandleCollision(1);
-                moveYHandleCollision(1);
+                //moveXHandleCollision(1);
+                //moveYHandleCollision(1);
 
                 
                 if (this.existenceFrames <= 0) {
