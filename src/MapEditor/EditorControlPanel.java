@@ -44,7 +44,8 @@ public class EditorControlPanel extends JPanel {
 
         mapNamesComboBox = new JComboBox<String>();
         mapNamesComboBox.setSize(190, 40);
-        mapNamesComboBox.setLocation(5, 30);
+        mapNamesComboBox.setLocation(5, 29);
+        mapNamesComboBox.setMaximumRowCount(26);
         mapNames.sort(String::compareToIgnoreCase);
         for (String mapName : mapNames) {
             mapNamesComboBox.addItem(mapName);
