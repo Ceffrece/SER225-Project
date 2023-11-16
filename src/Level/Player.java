@@ -112,9 +112,9 @@ public abstract class Player extends GameObject {
         // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
         // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
 
-        // carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
 
-        // playerCurrentProjectiles.add(carrotProjectile);
+        playerCurrentProjectiles.add(carrotProjectile);
 
         // cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(getLocation(), null);
 
