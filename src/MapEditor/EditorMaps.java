@@ -13,7 +13,29 @@ import Maps.Floor1.DungeonRoom7;
 import Maps.Floor1.DungeonRoom8;
 import Maps.Floor1.DungeonRoom9;
 import Maps.Floor1.DungeonRoom10;
+import Maps.Floor2.D2Room1;
+import Maps.Floor2.D2Room2;
+import Maps.Floor2.D2Room3;
+import Maps.Floor2.D2Room4;
+import Maps.Floor2.D2Room5;
+import Maps.Floor2.D2Room6;
+import Maps.Floor2.D2Room7;
+import Maps.Floor2.D2Room8;
+import Maps.Floor2.D2Room9;
+import Maps.Floor2.D2Room10;
+import Maps.Floor3.D3Room1;
+import Maps.Floor3.D3Room2;
+import Maps.Floor3.D3Room3;
+import Maps.Floor3.D3Room4;
+import Maps.Floor3.D3Room5;
+import Maps.Floor3.D3Room6;
+import Maps.Floor3.D3Room7;
+import Maps.Floor3.D3Room8;
+import Maps.Floor3.D3Room9;
+import Maps.Floor3.D3Room10;
 import Maps.Floor1.Floor1Boss;
+import Maps.Floor2.Floor2Boss;
+import Maps.Floor3.Floor3Boss;
 import Maps.MarcusMap;
 import Maps.Shop;
 import Maps.HubMap;
@@ -37,8 +59,30 @@ public class EditorMaps {
             add("DungeonRoom8");
             add("DungeonRoom9");
             add("DungeonRoom10");
-            add("Shop");
+            add("D2Room1");
+            add("D2Room2");
+            add("D2Room3");
+            add("D2Room4");
+            add("D2Room5");
+            add("D2Room6");
+            add("D2Room7");
+            add("D2Room8");
+            add("D2Room9");
+            add("D2Room10");
+            add("D3Room1");
+            add("D3Room2");
+            add("D3Room3");
+            add("D3Room4");
+            add("D3Room5");
+            add("D3Room6");
+            add("D3Room7");
+            add("D3Room8");
+            add("D3Room9");
+            add("D3Room10");
             add("Floor1Boss");
+            add("Floor2Boss");
+            add("Floor3Boss");
+            add("Shop");
 
         }};
     }
@@ -75,8 +119,52 @@ public class EditorMaps {
                 return new DungeonRoom9();
             case "DungeonRoom10":
                 return new DungeonRoom10();
+            case "D2Room1":
+                return new D2Room1();
+            case "D2Room2":
+                return new D2Room2();
+            case "D2Room3":
+                return new D2Room3();
+            case "D2Room4":
+                return new D2Room4();
+            case "D2Room5":
+                return new D2Room5();
+            case "D2Room6":
+                return new D2Room6();
+            case "D2Room7":
+                return new D2Room7();
+            case "D2Room8":
+                return new D2Room8();
+            case "D2Room9":
+                return new D2Room9();
+            case "D2Room10":
+                return new D2Room10();
+            case "D3Room1":
+                return new D3Room1();
+            case "D3Room2":
+                return new D3Room2();
+            case "D3Room3":
+                return new D3Room3();
+            case "D3Room4":
+                return new D3Room4();
+            case "D3Room5":
+                return new D3Room5();
+            case "D3Room6":
+                return new D3Room6();
+            case "D3Room7":
+                return new D3Room7();
+            case "D3Room8":
+                return new D3Room8();
+            case "D3Room9":
+                return new D3Room9();
+            case "D3Room10":
+                return new D3Room10();
             case "Floor1Boss":
                 return new Floor1Boss();
+            case "Floor2Boss":
+                return new Floor2Boss();
+            case "Floor3Boss":
+                return new Floor3Boss();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

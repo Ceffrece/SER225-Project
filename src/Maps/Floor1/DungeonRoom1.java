@@ -43,15 +43,15 @@ public class DungeonRoom1 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
     
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 12).getLocation());
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(4, 12).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
     
-            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(22, 13).getLocation());
-            cerealkiller2.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller2);
+            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(20, 12).getLocation());
+            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(cerealkiller1);
     
-            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(13, 5).getLocation());
+            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(12, 5).getLocation());
             eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
             enemies.add(eggssassin1);
     
@@ -62,10 +62,10 @@ public class DungeonRoom1 extends Map {
         }
     @Override
     public void loadScripts() {
-        // if (loadEnemies().size() == 0) {
-        //     getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
-        // }
+        // if statement based on the enemy count array
+        //if (loadEnemies().size() == 0) {
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
+        //}
     }
     
 }

@@ -18,11 +18,14 @@ import Scripts.TestMap.RandomChangeMapScript;
 
 public class Floor1Boss extends Map {
 
+    public static Boss broc;
+    public static int currenthealth;
+
     public Floor1Boss() {
         super("Floor1BossRoom.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 100;
-        this.idSwitch = 100;                //TODO Auto-generated constructor stub
+        this.idSwitch = 100;
         }
 
 
@@ -38,9 +41,17 @@ public class Floor1Boss extends Map {
 
         public ArrayList<Boss> loadBosses() {
             ArrayList<Boss> bosses = new ArrayList<>();
-            Boss broc = new Boss(getMapTile(12,10).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 20, 20), "DEFAULT");
+            broc = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 100, 40), "DEFAULT", 100);
             bosses.add(broc);
+            currenthealth = broc.getHealth();
+            System.out.println("running loadBosses()");
             return bosses;
+        }
+
+        public static void updateCurrentHealth() {
+            currenthealth = broc.getHealth();
+            System.out.println("running update");
+            System.out.println(currenthealth);
         }
 
     @Override
