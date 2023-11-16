@@ -56,6 +56,8 @@ public class PlayLevelScreen extends Screen {
     protected WinMarcusScreen winMarcusScreen;
     protected FlagManager flagManager;
     public static boolean inBossFight1 = false;
+    public static boolean inBossFight2 = false;
+    public static boolean inBossFight3 = false;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -231,83 +233,83 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 11:
                 newMap = new D2Room1();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 12:
                 newMap = new D2Room2();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 13:
                 newMap = new D2Room3();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 14:
                 newMap = new D2Room4();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 15:
                 newMap = new D2Room5();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 16:
                 newMap = new D2Room6();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 17:
                 newMap = new D2Room7();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 18:
                 newMap = new D2Room8();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 19:
                 newMap = new D2Room9();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 20:
                 newMap = new D2Room10();
-                inBossFight = false;
+                inBossFight2 = false;
                 return newMap;
             case 21:
                 newMap = new D3Room1();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 22:
                 newMap = new D3Room2();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 23:
                 newMap = new D3Room3();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 24:
                 newMap = new D3Room4();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 25:
                 newMap = new D3Room5();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 26:
                 newMap = new D3Room6();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 27:
                 newMap = new D3Room7();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 28:
                 newMap = new D3Room8();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 29:
                 newMap = new D3Room9();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 30:
                 newMap = new D3Room10();
-                inBossFight = false;
+                inBossFight3 = false;
                 return newMap;
             case 100:
                 newMap = new Floor1Boss();
@@ -319,13 +321,13 @@ public class PlayLevelScreen extends Screen {
                 newMap = new Floor2Boss();
                 Game.gameMusic.pause();
                 Game.bossMusic1.play();
-                inBossFight = true;
+                inBossFight2 = true;
                 return newMap;
             case 104:
                 newMap = new Floor3Boss();
                 Game.gameMusic.pause();
                 Game.bossMusic1.play();
-                inBossFight = true;
+                inBossFight3 = true;
                 return newMap;
             case 111:
                 newMap = new Shop();
