@@ -17,6 +17,9 @@ import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.RandomChangeMapScript;
 
 public class Floor3Boss extends Map {
+    
+    public static Boss boss3;
+    public static int currenthealth;
 
     public Floor3Boss() {
         super("Floor3Boss.txt", new Floor3Tileset());
@@ -37,11 +40,16 @@ public class Floor3Boss extends Map {
         }
 
         // Where the boss will go
-        public ArrayList<Boss> loadBosses() {
-            ArrayList<Boss> bosses = new ArrayList<>();
-
-            return bosses;
-        }
+            public ArrayList<Boss> loadBosses() {
+                ArrayList<Boss> bosses = new ArrayList<>();
+                boss3 = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 100, 40), "DEFAULT", 100);
+                bosses.add(boss3);
+                currenthealth = boss3.getHealth();
+                return bosses;
+            }
+            public static void updateCurrentHealth() {
+                currenthealth = boss3.getHealth();
+            }   
 
     @Override
     public void loadScripts() {

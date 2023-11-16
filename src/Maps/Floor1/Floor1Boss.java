@@ -44,14 +44,11 @@ public class Floor1Boss extends Map {
             broc = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 100, 40), "DEFAULT", 100);
             bosses.add(broc);
             currenthealth = broc.getHealth();
-            System.out.println("running loadBosses()");
             return bosses;
         }
 
         public static void updateCurrentHealth() {
             currenthealth = broc.getHealth();
-            System.out.println("running update");
-            System.out.println(currenthealth);
         }
 
     @Override
