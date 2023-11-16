@@ -25,7 +25,7 @@ public class Floor1Boss extends Map {
         super("Floor1BossRoom.txt", new Floor1Tileset());
         this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 100;
-        this.idSwitch = 100;                //TODO Auto-generated constructor stub
+        this.idSwitch = 100;
         }
 
 
