@@ -124,6 +124,8 @@ public class EnemyProjectile extends MapEntity{
                 // currentProjectile(curentProjectile, enemy);
 
                 getProjectileDirection(player);
+                
+                // The projectiles will now move depending on the input of the player aka the player's direction
                 if (player.facingDirection == Direction.UP) {
                     moveYHandleCollision(1);
                 } else if (player.facingDirection == Direction.DOWN) {

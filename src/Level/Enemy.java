@@ -162,7 +162,7 @@ public class Enemy extends MapEntity
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
         if(timer >= 100){
-                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 50);
+                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 150);
                 map.addEnemyProjectile(pro);
                 timer = 0;
         }
