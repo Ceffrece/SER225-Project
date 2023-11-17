@@ -1,10 +1,12 @@
 package Scripts ;
 
+import Level.Currency;
 import Level.Item;
 import Level.MapEntityStatus;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
+import Level.Currency;
 
 public class ProjectilePickup extends Script<Item>{
 
@@ -12,7 +14,6 @@ public class ProjectilePickup extends Script<Item>{
       
 @Override
     protected void setup() {
-        
     }
 
     @Override
@@ -23,7 +24,12 @@ public class ProjectilePickup extends Script<Item>{
     @Override
     public ScriptState execute() {
         start();       
+
         entity.heldByPlayer = true;
+        System.out.println(Currency.normalCurrency);
+
+        if(entity.cost <= Currency.normalCurrency){
+            Currency.purchaseItem(entity.cost, 0);
             switch (entity.projectileToAdd) {
                 case "peaProjectile":  
                     Player.addProjectile("peaProjectile");
@@ -51,8 +57,11 @@ public class ProjectilePickup extends Script<Item>{
              break;
                     
             }
-    
-        entity.setMapEntityStatus(MapEntityStatus.REMOVED);
+            entity.setMapEntityStatus(MapEntityStatus.REMOVED);
+        }
+        System.out.println(Currency.normalCurrency);
+
+        
         end();
         return ScriptState.COMPLETED;
     }
