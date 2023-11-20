@@ -45,22 +45,22 @@ public class DungeonRoom1 extends Map {
     public ArrayList<Pickup> loadPickups() {
         ArrayList<Pickup> pickups = new ArrayList<>();
 
-        Pickup coin = new Pickup(getMapTile(4,11).getLocation().subtractY(40));
+        Pickup coin = new Pickup(getMapTile(4,11).getLocation());
         pickups.add(coin);
 
-        Pickup coin1 = new Pickup(getMapTile(4,16).getLocation().subtractY(40));
+        Pickup coin1 = new Pickup(getMapTile(4,16).getLocation());
         pickups.add(coin1);
 
-        Pickup coin2 = new Pickup(getMapTile(20,11).getLocation().subtractY(40));
+        Pickup coin2 = new Pickup(getMapTile(20,11).getLocation());
         pickups.add(coin2);
 
-        Pickup coin3 = new Pickup(getMapTile(20,16).getLocation().subtractY(40));
+        Pickup coin3 = new Pickup(getMapTile(20,16).getLocation());
         pickups.add(coin3);
 
-        Pickup coin4 = new Pickup(getMapTile(9,4).getLocation().subtractY(40));
+        Pickup coin4 = new Pickup(getMapTile(9,4).getLocation());
         pickups.add(coin4);
 
-        Pickup coin5 = new Pickup(getMapTile(15,4).getLocation().subtractY(40));
+        Pickup coin5 = new Pickup(getMapTile(15,4).getLocation());
         pickups.add(coin5);
         
         return pickups;

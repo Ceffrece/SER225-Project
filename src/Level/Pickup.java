@@ -1,5 +1,6 @@
 package Level;
 
+import java.awt.Color;
 import java.util.HashMap;
 
 import Builders.FrameBuilder;
@@ -50,7 +51,24 @@ public class Pickup extends Item{
     }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        super.draw(graphicsHandler);
+        if (map != null) {
+            graphicsHandler.drawImage(
+                            currentFrame.getImage(),
+                            Math.round(getCalibratedXLocation()),
+                            Math.round(getCalibratedYLocation()),
+                            currentFrame.getWidth(),
+                            currentFrame.getHeight(),
+                            currentFrame.getImageEffect());
+
+            // Uncomment this to draw bounds to screen -- useful for debugging
+            
+            //if (this instanceof Pickup) {
+            //        drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+            //}
+            
+    } else {
+            super.draw(graphicsHandler);
+    }
     }
     @Override
             public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
