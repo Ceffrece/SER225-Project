@@ -93,7 +93,13 @@ public class DungeonRoom10 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            
+            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(20, 6).getLocation());
+            eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
+            enemies.add(eggssassin1);
+
+            Eggssassin eggssassin2 = new Eggssassin(0, getMapTile(21, 16).getLocation());
+            eggssassin2.setExistenceFlag("hasTalkedToEggssassin");
+            enemies.add(eggssassin2);
             
             return enemies;
         }

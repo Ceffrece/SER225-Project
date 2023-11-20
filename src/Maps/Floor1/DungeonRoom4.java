@@ -51,7 +51,13 @@ public class DungeonRoom4 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            
+            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(7, 14).getLocation());
+            cerealkiller2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(cerealkiller2);
+    
+            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(11, 14).getLocation());
+            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(cerealkiller1);
             
             return enemies;
         }

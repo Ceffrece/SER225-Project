@@ -19,9 +19,9 @@ public class D2Room2 extends Map {
 
     public D2Room2() {
         super("D2Room2.txt", new Floor2Tileset());
-        // this.playerStartPosition = getMapTile(4, 19).getLocation();
+        this.playerStartPosition = getMapTile(2, 26).getLocation();
         this.mapInt = 12;
-        this.idSwitch = 12;                //Aka ""
+        this.idSwitch = 12;                //Aka "I Accidentally Made the Team Fortress 2 Logo so Now It's a Map"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -29,7 +29,8 @@ public class D2Room2 extends Map {
         public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
             ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
     
-
+            Spikes spikes1 = new Spikes(getMapTile(14, 14).getLocation());
+            enhancedMapTiles.add(spikes1);
     
             return enhancedMapTiles;
         }
@@ -38,7 +39,13 @@ public class D2Room2 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 2).getLocation());
+            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple1);
+
+            Spineapple spineapple2 = new Spineapple(0, getMapTile(26, 26).getLocation());
+            spineapple2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple2);
             
             return enemies;
         }
@@ -47,7 +54,7 @@ public class D2Room2 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(19,4).setInteractScript(new RandomChangeMapScript(2));
+        getMapTile(26,2).setInteractScript(new RandomChangeMapScript(2));
     }
     
 }
