@@ -113,6 +113,12 @@ public class PlayLevelScreen extends Screen {
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
+        for (Pickup pickup : map.getPickups()) {
+            if (pickup.getInteractScript() != null) {
+                pickup.getInteractScript().setMap(map);
+                pickup.getInteractScript().setPlayer(player);
+            }
+        }
 
         // winMarcusScreen = new WinMarcusScreen(this);
     }
@@ -177,6 +183,12 @@ public class PlayLevelScreen extends Screen {
             if (item.getInteractScript() != null) {
                 item.getInteractScript().setMap(map);
                 item.getInteractScript().setPlayer(player);
+            }
+        }
+        for (Pickup pickup : map.getPickups()) {
+            if (pickup.getInteractScript() != null) {
+                pickup.getInteractScript().setMap(map);
+                pickup.getInteractScript().setPlayer(player);
             }
         }
 

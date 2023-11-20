@@ -85,58 +85,60 @@ public class RandomChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        switch(floor){
-            case 1:
-                if(floor1.size() > 5){
-                    int mapToGoTo =(int) ((Math.random() * floor1.size()) + 1);
-                    System.out.println(floor1.get(mapToGoTo-1));
-                    floorsVisited.add(floor1.get(mapToGoTo-1));
-                    map.setIdSwitch(floor1.get(mapToGoTo-1));
-                    floor1.remove(mapToGoTo-1);
-                }
-                else{
-                    //change to boss room
-                    for(int i = 0; i >= floorsVisited.size(); i++){
-                        floor1.add(floorsVisited.get(i));
+        if (this.map.getEnemies().size() == 0) {
+            switch(floor){
+                case 1:
+                    if(floor1.size() > 5){
+                        int mapToGoTo =(int) ((Math.random() * floor1.size()) + 1);
+                        System.out.println(floor1.get(mapToGoTo-1));
+                        floorsVisited.add(floor1.get(mapToGoTo-1));
+                        map.setIdSwitch(floor1.get(mapToGoTo-1));
+                        floor1.remove(mapToGoTo-1);
                     }
-                    map.setIdSwitch(100);
-                }
-                break;
-            case 2:
-                if(floor2.size() > 5){
-                    int mapToGoTo =(int) ((Math.random() * floor2.size()) + 1);
-                    System.out.println(floor2.get(mapToGoTo-1));
-                    floorsVisited.add(floor2.get(mapToGoTo-1));
-                    map.setIdSwitch(floor2.get(mapToGoTo-1));
-                    floor2.remove(mapToGoTo-1);
-                }
-                else{
-                    //change to boss room
-                    for(int i = 0; i >= floorsVisited.size(); i++){
-                        floor2.add(floorsVisited.get(i));
+                    else{
+                        //change to boss room
+                        for(int i = 0; i >= floorsVisited.size(); i++){
+                            floor1.add(floorsVisited.get(i));
+                        }
+                        map.setIdSwitch(100);
                     }
-                    map.setIdSwitch(102);
-                }
-                break;
-            case 3:
-                if(floor3.size() > 5){
-                    int mapToGoTo =(int) ((Math.random() * floor3.size()) + 1);
-                    System.out.println(floor3.get(mapToGoTo-1));
-                    floorsVisited.add(floor3.get(mapToGoTo-1));
-                    map.setIdSwitch(floor3.get(mapToGoTo-1));
-                    floor3.remove(mapToGoTo-1);
-                }
-                else{
-                    //change to boss room
-                    for(int i = 0; i >= floorsVisited.size(); i++){
-                        floor3.add(floorsVisited.get(i));
+                    break;
+                case 2:
+                    if(floor2.size() > 5){
+                        int mapToGoTo =(int) ((Math.random() * floor2.size()) + 1);
+                        System.out.println(floor2.get(mapToGoTo-1));
+                        floorsVisited.add(floor2.get(mapToGoTo-1));
+                        map.setIdSwitch(floor2.get(mapToGoTo-1));
+                        floor2.remove(mapToGoTo-1);
                     }
-                    map.setIdSwitch(104);
-                }
-                break;
-            default:
-                break;
+                    else{
+                        //change to boss room
+                        for(int i = 0; i >= floorsVisited.size(); i++){
+                            floor2.add(floorsVisited.get(i));
+                        }
+                        map.setIdSwitch(102);
+                    }
+                    break;
+                case 3:
+                    if(floor3.size() > 5){
+                        int mapToGoTo =(int) ((Math.random() * floor3.size()) + 1);
+                        System.out.println(floor3.get(mapToGoTo-1));
+                        floorsVisited.add(floor3.get(mapToGoTo-1));
+                        map.setIdSwitch(floor3.get(mapToGoTo-1));
+                        floor3.remove(mapToGoTo-1);
+                    }
+                    else{
+                        //change to boss room
+                        for(int i = 0; i >= floorsVisited.size(); i++){
+                            floor3.add(floorsVisited.get(i));
+                        }
+                        map.setIdSwitch(104);
+                    }
+                    break;
+                default:
+                    break;
 
+            }
         }
         // System.out.println(mapSwitchID + ", "+map.getMapInt());
         // map.setIdSwitch(mapSwitchID);

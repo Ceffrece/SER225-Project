@@ -9,6 +9,7 @@ import Level.Enemy;
 import Level.Item;
 import Level.Map;
 import Level.NPC;
+import Level.Pickup;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
@@ -104,11 +105,34 @@ public class Shop extends Map {
         Item projectileForSale = new Item(getMapTile(5,14).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load(filename),16,16),"DEFAULT",projectileToAdd,description,cost);
         projectileForSale.setInteractScript(new ProjectilePickup());
         items.add(projectileForSale);
+
         
 
 
 
         return items;
+    }
+    public ArrayList<Pickup> loadPickups() {
+        ArrayList<Pickup> pickups = new ArrayList<>();
+
+        Pickup coin = new Pickup(getMapTile(14,14).getLocation().subtractY(40));
+        pickups.add(coin);
+
+        Pickup coin1 = new Pickup(getMapTile(14,15).getLocation().subtractY(40));
+        pickups.add(coin1);
+
+        Pickup coin2 = new Pickup(getMapTile(15,14).getLocation().subtractY(40));
+        pickups.add(coin2);
+
+        Pickup coin3 = new Pickup(getMapTile(15,15).getLocation().subtractY(40));
+        pickups.add(coin3);
+
+        Pickup coin4 = new Pickup(getMapTile(16,14).getLocation().subtractY(40));
+        pickups.add(coin4);
+
+        
+        return pickups;
+
     }
     public ArrayList<Enemy> loadEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<>();

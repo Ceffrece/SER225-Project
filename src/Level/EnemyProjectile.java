@@ -95,26 +95,20 @@ public class EnemyProjectile extends MapEntity{
             
             
             
-            //@Override
-            public void onEndCollisionCheckX(boolean hasCollided, Direction direction, Player playerCollidedWith) {                
+            @Override
+            public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {                
                 // if projectile collides with anything solid on the x axis, it is removed
-                 if (hasCollided && !map.players.contains(playerCollidedWith)){
-                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                 }else if (hasCollided){
-                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                     touchedPlayer(playerCollidedWith);
-                 }
+                if (hasCollided && entityCollidedWith instanceof MapTile){
+                    this.mapEntityStatus = MapEntityStatus.REMOVED;
+                }
             }
             // entityCollidedWith.overlaps(this)
             // this.overlaps(entityCollidedWith)
-            public void onEndCollisionCheckY(boolean hasCollided, Direction direction, Player playerCollidedWith) {
+            public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
                 // if projectile collides with anything solid on the x axis, it is removed
-                 if (hasCollided && !map.players.contains(playerCollidedWith)) {
+                if (hasCollided && entityCollidedWith instanceof MapTile){
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                 }else if (hasCollided){
-                     this.mapEntityStatus = MapEntityStatus.REMOVED;
-                     touchedPlayer(playerCollidedWith);
-                 }
+                }
             }
             public void getProjectileDirection(Player player){
                 if (hasDirection ==0){ 
@@ -130,9 +124,22 @@ public class EnemyProjectile extends MapEntity{
                 // currentProjectile(curentProjectile, enemy);
 
                 getProjectileDirection(player);
+                
+                // The projectiles will now move depending on the input of the player aka the player's direction
+                if (player.facingDirection == Direction.UP) {
+                    moveYHandleCollision(1);
+                } else if (player.facingDirection == Direction.DOWN) {
+                    moveYHandleCollision(-1);
+                }
+                
+                if (player.facingDirection == Direction.RIGHT) {
+                    moveXHandleCollision(1);
+                } else if (player.facingDirection == Direction.LEFT) {
+                    moveXHandleCollision(-1);
+                }
 
-                moveXHandleCollision(1);
-                moveYHandleCollision(1);
+                //moveXHandleCollision(1);
+                //moveYHandleCollision(1);
 
                 
                 if (this.existenceFrames <= 0) {
@@ -140,10 +147,16 @@ public class EnemyProjectile extends MapEntity{
                      } 
                
                 // existenceFrames --;
+                if (player.overlaps(this) && Player.invincibilityTimer == 0)
+                {
+                    Player.hurtPlayer(this);
+                    Player.invincibilityTimer = 180;
+                }
                 super.update();
             }       
             public void touchedPlayer(Player player){
                 player.hurtPlayer(this);
+                System.out.println("Hit da playa");
             }
             
             // A subclass can override this method to specify what it does when it touches the player
