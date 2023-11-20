@@ -10,10 +10,12 @@ public class MenuBar extends JMenuBar {
     JCheckBoxMenuItem showEnchancedMapTiles;
     JCheckBoxMenuItem showTriggers;
     JCheckBoxMenuItem showEnemies;
+    JCheckBoxMenuItem showPickups;
 
     public MenuBar(TileBuilder tileBuilder) {
         options = new JMenu("Options");
         showNpcs = new JCheckBoxMenuItem("Show NPCs");
+        showNpcs.setSelected(true);
         showNpcs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,6 +40,7 @@ public class MenuBar extends JMenuBar {
         });
         options.add(showTriggers);
         showEnemies = new JCheckBoxMenuItem("Show Enemies");
+        showEnemies.setSelected(true);
         showEnemies.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +48,15 @@ public class MenuBar extends JMenuBar {
             }
         });
         options.add(showEnemies);
+        showPickups = new JCheckBoxMenuItem("Show Pickups");
+        showPickups.setSelected(true);
+        showPickups.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tileBuilder.setShowPickups(!tileBuilder.getShowPickups());
+            }
+        });
+        options.add(showPickups);
         add(options);
     }
 }

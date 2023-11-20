@@ -16,10 +16,11 @@ public class TileBuilder extends JPanel {
     private SelectedTileIndexHolder controlPanelHolder;
     private GraphicsHandler graphicsHandler = new GraphicsHandler();
     private JLabel hoveredTileIndexLabel;
-    private boolean showNPCs;
+    private boolean showNPCs = true;
     private boolean showEnhancedMapTiles;
     private boolean showTriggers;
-    private boolean showEnemies;
+    private boolean showEnemies = true;
+    private boolean showPickups = true;
 
     public TileBuilder(SelectedTileIndexHolder controlPanelHolder, JLabel hoveredTileIndexLabel) {
         setBackground(Colors.MAGENTA);
@@ -96,6 +97,12 @@ public class TileBuilder extends JPanel {
         if (showEnemies) {
             for (Enemy enemy : map.getEnemies()) {
                 enemy.draw(graphicsHandler);
+            }
+        }
+
+        if (showPickups) {
+            for (Pickup pickup : map.getPickups()) {
+                pickup.draw(graphicsHandler);
             }
         }
 
@@ -197,6 +204,15 @@ public class TileBuilder extends JPanel {
 
     public void setShowEnemies(boolean showEnemies) {
         this.showEnemies = showEnemies;
+        repaint();
+    }
+
+    public boolean getShowPickups() {
+        return showPickups;
+    }
+
+    public void setShowPickups(boolean showPickups) {
+        this.showPickups = showPickups;
         repaint();
     }
 }
