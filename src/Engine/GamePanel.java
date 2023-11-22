@@ -243,7 +243,7 @@ public class GamePanel extends JPanel {
 		updateInventoryState();
 		levelCount++;
 		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
-			Player.playerXPLevel += 1;
+			Player.playerXPLevel += 10;
 			levelCount = 0;
 			System.out.println("Level is " + Player.playerXPLevel);
 		}
@@ -1190,7 +1190,11 @@ public class GamePanel extends JPanel {
 			}
 			//Left branch
 			if(fruitSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
+				if(Keyboard.isKeyDown(Key.D) && fruitSelection.getId() == 5 && fruitTimer > 20){
+					fruitSelection = fruitSelection.getParent();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getLeftSkill();
 					fruitTimer = 0;
 				}
@@ -1202,10 +1206,19 @@ public class GamePanel extends JPanel {
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}
+				else if(Keyboard.isKeyDown(Key.D) && fruitTimer > 20 && fruitSelection.getId() == 1){
+					fruit.goToUltimate();
+					fruitSelection = fruit.getCurrentNode();
+					fruitTimer = 0;
+				}
 			}
 			//Right Branch
-			if(fruitSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
+			if(fruitSelection.getId() > 6 && fruitSelection.getId() < 12){
+				if(Keyboard.isKeyDown(Key.A) && fruitSelection.getId() == 7 && fruitTimer > 20){
+					fruitSelection = fruitSelection.getParent();
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && fruitTimer > 20){
 					fruitSelection = fruitSelection.getRightSkill();
 					fruitTimer = 0;
 				}
@@ -1214,6 +1227,25 @@ public class GamePanel extends JPanel {
 					fruitTimer = 0;
 				}
 				else if(Keyboard.isKeyDown(Key.SPACE) && fruitTimer > 20){
+					fruit.unlockNode(fruitSelection);
+					fruitTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.A) && fruitTimer > 20 && fruitSelection.getId() == 11){
+					fruitSelection = fruitSelection.getRightSkill();
+					fruitTimer = 0;
+				}
+			}
+			//Ultimate Navigation
+			if(fruitSelection.getId() == 12){
+				if(fruitTimer > 20 && Keyboard.isKeyDown(Key.A)){
+					fruitSelection = fruit.array[5];
+					fruitTimer = 0;
+				}
+				else if(fruitTimer > 20 && Keyboard.isKeyDown(Key.D)){
+					fruitSelection = fruit.array[10];
+					fruitTimer = 0;
+				}
+				else if(fruitTimer > 20 && Keyboard.isKeyDown(Key.SPACE)){
 					fruit.unlockNode(fruitSelection);
 					fruitTimer = 0;
 				}

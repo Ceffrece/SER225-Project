@@ -75,6 +75,11 @@ public class FruitSkillTree {
     public void resetCurrentNode(){
         this.currentNode = centerSkill;
     }
+
+    public void goToUltimate(){
+        this.currentNode = ultimateFruitSkill;
+    }
+    
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
     }
