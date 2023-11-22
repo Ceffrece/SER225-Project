@@ -995,9 +995,9 @@ public class GamePanel extends JPanel {
 				}
 				yLoc+= 100;
 			}
+			//line drawing
 			int xLoc1 = xLoc + 20;
 			int yLoc1 = 60;
-
 			for(SkillTreeNode skill : grain.array){
 				if(skill.getId() == 1){
 					//do nothing
@@ -1098,6 +1098,28 @@ public class GamePanel extends JPanel {
 				}
 				lYloc += 100;
 			}
+			//Line drawing
+			int lYloc1 = 50;
+			int lXloc1 = 50;
+			for(int i = 1; i < 6; i++){
+				if(i == 1){
+					if(fruit.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(lXloc1 + 50, lYloc1 + 20, 295, 10, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(lXloc1 + 50, lYloc1 + 20, 295, 10, Color.BLACK);
+					}
+				}
+				else{
+					if(fruit.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(lXloc1 + 20, lYloc1 + 50, 10, 50, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(lXloc1 + 20, lYloc1 + 50, 10, 50, Color.BLACK);
+					}
+					lYloc1 += 100;
+				}
+			}
 			//Right Branch
 			int rXloc = screenManager.getScreenWidth()-100;
 			int rYloc = 50;
@@ -1113,15 +1135,41 @@ public class GamePanel extends JPanel {
 				}
 				rYloc += 100;
 			}
-			//Ultimate Skill
-			if(fruitSelection.getId() == 12){
-				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
-			}
-			else if(fruit.array[11].getUnlockedStatus()){
-				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
+			//Drawing lines
+			int rXloc1 = screenManager.getScreenWidth() - 100;
+			int rYloc1 = 50;
+			if(fruit.array[6].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangle(445, 70, 240, 10, Color.GREEN);
 			}
 			else{
-				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.BLACK, 2);
+				graphicsHandler.drawFilledRectangle(445, 70, 240, 10, Color.BLACK);
+			}
+			for(int i = 6; i < 10; i++){
+				if(fruit.array[i+1].getUnlockedStatus()){
+					graphicsHandler.drawFilledRectangle(rXloc1 + 20, rYloc1 + 50, 10, 50, Color.GREEN);
+				}
+				else{
+					graphicsHandler.drawFilledRectangle(rXloc1 + 20, rYloc1 + 50, 10, 50, Color.BLACK);
+				}
+				rYloc1 += 100;
+			}
+			//Ultimate Skill & drawing lines
+			if(fruitSelection.getId() == 12){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-120, 50, 50, Color.RED, Color.YELLOW, 2);
+			}
+			else if(fruit.array[11].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-120, 50, 50, Color.RED, Color.GREEN, 2);
+			}
+			else{
+				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-120, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			if(fruit.array[11].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangle(100, screenManager.getScreenHeight()-100, 295, 10, Color.GREEN);
+				graphicsHandler.drawFilledRectangle(445, screenManager.getScreenHeight()-100, 240, 10, Color.GREEN);
+			}
+			else{
+				graphicsHandler.drawFilledRectangle(100, screenManager.getScreenHeight()-100, 295, 10, Color.BLACK);
+				graphicsHandler.drawFilledRectangle(445, screenManager.getScreenHeight()-100, 240, 10, Color.BLACK);
 			}
 			//Navigation
 			//Center to branch
