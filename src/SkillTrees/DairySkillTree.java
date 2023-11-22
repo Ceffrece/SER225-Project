@@ -17,7 +17,7 @@ public class DairySkillTree {
     private SkillTreeNode ultimateDairySkill;
 
     public SkillTreeNode currentNode;
-    public static SkillTreeNode[] array1 = new SkillTreeNode[8];
+    public SkillTreeNode[] array1 = new SkillTreeNode[8];
 
     public DairySkillTree(){
         centerSkill = new SkillTreeNode("Mars' Milk Jug", null, null, "+1AtkRange",1);

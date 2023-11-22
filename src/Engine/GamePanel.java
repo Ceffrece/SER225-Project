@@ -1331,6 +1331,31 @@ public class GamePanel extends JPanel {
 					graphicsHandler.drawFilledRectangleWithBorder(xLoc, yLoc, 50, 50, Color.RED, Color.BLACK, 2);
 				}
 				yLoc += 100;
+				if(yLoc > screenManager.getScreenHeight()){
+					yLoc = 10;
+					xLoc += 100;
+				}
+			}
+			//Drawing Lines
+			int xLoc1 = screenManager.getScreenWidth()/2 -10;
+			int yLoc1 = 10;
+			for(SkillTreeNode skill : dairy.array1){
+				if(skill.getId() == 1 || skill.getId() == 7){
+					//do nothing
+				}
+				else{
+					if(skill.getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(xLoc1 + 20, yLoc1 + 50, 10, 50, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(xLoc1 + 20, yLoc1 + 50, 10, 50, Color.BLACK);
+					}
+					yLoc1 += 100;
+					if(yLoc1 > screenManager.getScreenHeight()- 100){
+						yLoc1 = 10;
+						xLoc1 += 100;
+					}
+				}
 			}
 			dairyTimer++;
 			//Navigation
