@@ -995,6 +995,23 @@ public class GamePanel extends JPanel {
 				}
 				yLoc+= 100;
 			}
+			int xLoc1 = xLoc + 20;
+			int yLoc1 = 60;
+
+			for(SkillTreeNode skill : grain.array){
+				if(skill.getId() == 1){
+					//do nothing
+				}
+				else{
+					if(skill.getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(xLoc1, yLoc1, 10, 50, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(xLoc1, yLoc1, 10, 50, Color.BLACK);
+					}
+					yLoc1 += 100;
+				}
+			}
 			grainTimer++;
 			if(Keyboard.isKeyDown(Key.S) && grainTimer > 20){
 				grainTimer = 0;
@@ -1005,6 +1022,7 @@ public class GamePanel extends JPanel {
 				grainSelection = grainSelection.getParent();
 			}
 			else if(Keyboard.isKeyDown(Key.SPACE) && grainTimer > 20){
+				grainTimer = 0;
 				grain.unlockNode(grainSelection);
 			}
 			//Drawing box that displays the information
