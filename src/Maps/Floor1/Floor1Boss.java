@@ -41,7 +41,7 @@ public class Floor1Boss extends Map {
 
         public ArrayList<Boss> loadBosses() {
             ArrayList<Boss> bosses = new ArrayList<>();
-            broc = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 100, 40), "DEFAULT", 100);
+            broc = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/the_broc.png"), 100, 40), "DEFAULT", 100, 1);
             bosses.add(broc);
             currenthealth = broc.getHealth();
             return bosses;

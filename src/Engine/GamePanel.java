@@ -710,7 +710,7 @@ public class GamePanel extends JPanel {
 			if(veggieSelection.getId() == 10){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
-			else if(veggie.array[6].getUnlockedStatus()){
+			else if(veggie.array[9].getUnlockedStatus()){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
 			}
 			else{

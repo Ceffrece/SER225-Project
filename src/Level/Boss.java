@@ -15,23 +15,36 @@ public class Boss extends Enemy{
     public int attackCounter = 0;
     public SecureRandom random;
     public String itentity;
+    public int floorLevel;
 
-    public Boss(Point location, SpriteSheet ss, String startingAnimation, int health){
+    public Boss(Point location, SpriteSheet ss, String startingAnimation, int health, int floorLevel){
         super(location.x, location.y, ss, startingAnimation);
         random = new SecureRandom();
         isUncollidable = false;
         identity = "boss";
         this.health = health;
+        this.floorLevel = floorLevel;
         initialize();
     }
 
     public void attack(int num){
-        switch(num){
+        int value = (num*this.floorLevel);
+        switch(value){
             case 1 : attack1(); break;
             case 2 : attack2(); break;
             case 3 : attack3(); break;
             case 4 : attack4(); break;
             case 5 : attack5(); break;
+            case 6 : attack6(); break;
+            case 7 : attack7(); break;
+            case 8 : attack8(); break;
+            case 9 : attack9(); break;
+            case 10 : attack10(); break;
+            case 11 : attack11(); break;
+            case 12 : attack12(); break;
+            case 13 : attack13(); break;
+            case 14 : attack14(); break;
+            case 15 : attack15(); break;
         }
     }
 
@@ -55,6 +68,46 @@ public class Boss extends Enemy{
         System.out.println("Attack 5");
     }
 
+    private void attack6() {
+        System.out.println("Attack 6");
+    }
+
+    private void attack7() {
+        System.out.println("Attack 7");
+    }
+
+    private void attack8() {
+        System.out.println("Attack 8");
+    }
+
+    private void attack9() {
+        System.out.println("Attack 9");
+    }
+
+    private void attack10() {
+        System.out.println("Attack 10");
+    }
+
+    private void attack11() {
+        System.out.println("Attack 11");
+    }
+
+    private void attack12() {
+        System.out.println("Attack 12");
+    }
+
+    private void attack13() {
+        System.out.println("Attack 13");
+    }
+
+    private void attack14() {
+        System.out.println("Attack 14");
+    }
+
+    private void attack15() {
+        System.out.println("Attack 15");
+    }
+    
     public void update(Player player){
         super.update();
         this.attackCounter++;

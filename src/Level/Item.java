@@ -4,18 +4,15 @@ import java.util.HashMap;
 
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
-import Engine.ScreenManager;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import SpriteFont.SpriteFont;
 import Utils.Point;
-import Engine.GamePanel;
 
 import java.awt.*;
 
 
 public class Item extends MapEntity{
-	private GraphicsHandler graphicsHandler;
     public Boolean showDescription;
     public int cost;
     public boolean dontShowDesc;
@@ -54,7 +51,6 @@ public class Item extends MapEntity{
     }
     public Item(Point location, SpriteSheet ss, String startingAnimation) {
         super(location.x,location.y,ss,startingAnimation);
-        this.projectileToAdd = projectileToAdd;
         isUncollidable = true;
         dontShowDesc = true;
         initialize();
@@ -62,7 +58,6 @@ public class Item extends MapEntity{
 public Item(float x, float y) {
     super(x, y);
     }
-	private SpriteFont itemDescriptionText;
 
 public void update(Player player) {
     if(this.overlaps(player)){
