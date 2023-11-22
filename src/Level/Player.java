@@ -106,7 +106,7 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-
+        Currency currency = new Currency(0,10);
         // peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
          riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
@@ -135,6 +135,7 @@ public abstract class Player extends GameObject {
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
+    
 
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
         if(!playerCurrentProjectiles.isEmpty()){

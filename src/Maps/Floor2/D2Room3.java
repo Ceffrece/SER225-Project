@@ -19,9 +19,9 @@ public class D2Room3 extends Map {
 
     public D2Room3() {
         super("D2Room3.txt", new Floor2Tileset());
-        // this.playerStartPosition = getMapTile(4, 19).getLocation();
+        this.playerStartPosition = getMapTile(8, 8).getLocation();
         this.mapInt = 13;
-        this.idSwitch = 13;                //Aka ""
+        this.idSwitch = 13;                //Aka "Minecraft Apple"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -38,7 +38,17 @@ public class D2Room3 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(4, 16).getLocation());
+            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple1);
+
+            Spineapple spineapple2 = new Spineapple(0, getMapTile(12, 18).getLocation());
+            spineapple2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple2);
+
+            Spineapple spineapple3 = new Spineapple(0, getMapTile(19, 14).getLocation());
+            spineapple3.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple3);
             
             return enemies;
         }
@@ -47,7 +57,7 @@ public class D2Room3 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(19,4).setInteractScript(new RandomChangeMapScript(2));
+        getMapTile(15,25).setInteractScript(new RandomChangeMapScript(2));
     }
     
 }

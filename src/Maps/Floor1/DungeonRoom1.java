@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.Enemy;
 import Level.EnhancedMapTile;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -40,12 +41,38 @@ public class DungeonRoom1 extends Map {
         return enhancedMapTiles;
     }
 
+    // Where coins go
+    public ArrayList<Pickup> loadPickups() {
+        ArrayList<Pickup> pickups = new ArrayList<>();
+
+        Pickup coin = new Pickup(getMapTile(4,11).getLocation());
+        pickups.add(coin);
+
+        Pickup coin1 = new Pickup(getMapTile(4,16).getLocation());
+        pickups.add(coin1);
+
+        Pickup coin2 = new Pickup(getMapTile(20,11).getLocation());
+        pickups.add(coin2);
+
+        Pickup coin3 = new Pickup(getMapTile(20,16).getLocation());
+        pickups.add(coin3);
+
+        Pickup coin4 = new Pickup(getMapTile(9,4).getLocation());
+        pickups.add(coin4);
+
+        Pickup coin5 = new Pickup(getMapTile(15,4).getLocation());
+        pickups.add(coin5);
+        
+        return pickups;
+
+    }
+
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
     
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(4, 12).getLocation());
-            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(spineapple1);
+            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(4, 12).getLocation());
+            cerealkiller2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(cerealkiller2);
     
             CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(20, 12).getLocation());
             cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
@@ -62,6 +89,7 @@ public class DungeonRoom1 extends Map {
         }
     @Override
     public void loadScripts() {
+        
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
     }
     

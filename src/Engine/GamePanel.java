@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 import java.util.ArrayList;
 
+import Level.Currency;
 import Level.Map;
 import Level.Player;
 import Maps.Floor1.Floor1Boss;
@@ -340,13 +341,20 @@ public class GamePanel extends JPanel {
 		for(int i = Player.playerHealth; i < Player.getMaxHealth() ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
+		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
 			graphicsHandler.drawImage(ImageLoader.load(Player.playerCurrentProjectiles.get(Player.projectileInHand).getCurentProjectilePNG()), 700, 475,75,75);
 			graphicsHandler.drawFilledRectangle(700, 455,(Player.playerCurrentProjectiles.get(Player.projectileInHand).shootTime)/2,10, new Color(50, 50, 50, 255));
-
 		}
-		
+		//shows coins
+		graphicsHandler.drawImage(ImageLoader.load("GUISprites/Coin.png"), 700, 0,75,75);
+		String curencyString = Currency.normalCurrency + "";
+		SpriteFont curencyStringLable = new SpriteFont(curencyString, 650, -10, "Chalkduster", 70, Color.white);
+		curencyStringLable.setOutlineColor(Color.white);
+		curencyStringLable.setOutlineThickness(2.0f);
+		curencyStringLable.draw(graphicsHandler);
+
 		
 		reload = Player.cooldown;
 
@@ -510,7 +518,6 @@ public class GamePanel extends JPanel {
                 for (int i = 0; i < Player.itemArray.size(); i++) {
 			graphicsHandler.drawImage(ImageLoader.load(Player.itemArray.get(i).getCurentItemPNG()), inventoryX, inventoryY, 100, 100);
 			itemsIndex ++;
-
 			
 			inventoryX+=100; 
 		}
