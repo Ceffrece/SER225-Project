@@ -24,6 +24,9 @@ public class WalrusScript extends Script<NPC> {
             addTextToTextboxQueue("THE LEGENDARY FOOD PYRAMID!!!");
             addTextToTextboxQueue("But now, its guardians inside has been corrupted \nby the power and have become monsters!");
             addTextToTextboxQueue("They now seek to destroy the world \nand remove all flavor!");
+            addTextToTextboxQueue("Be warned: they have merged with \nthe pyramid itself");
+            addTextToTextboxQueue("This means thye are able to move \nthrough the walls!");
+            addTextToTextboxQueue("You, however are not, so they will \ncertainly mess you up! Be CAREFUL!");
             addTextToTextboxQueue("It is now up to you.");
             addTextToTextboxQueue("You must enter the food pyramid and recover \nthe chalice from the destructive guardians!");
         }
