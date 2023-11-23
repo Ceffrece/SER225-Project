@@ -59,6 +59,11 @@ public class ProteinSkillTree {
     public void resetCurrentNode(){
         this.currentNode = centerSkill;
     }
+
+    public void goToUltimate(){
+        this.currentNode = ultimateProteinSkill;
+    }
+    
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
     }

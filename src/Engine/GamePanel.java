@@ -952,6 +952,30 @@ public class GamePanel extends JPanel {
 				}
 				lYloc += 100;
 			}
+			//Drawing Lines
+			int lxloc1 = 50;
+			int lyloc1 = 100;
+			for(int i = 1; i < 4; i++){
+				if(i == 1){
+					if(protein.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1- 30, 325, 10, Color.GREEN);
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 - 30, 10, 30, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 - 30, 325, 10, Color.BLACK);
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 - 30, 10, 30, Color.BLACK);
+					}
+				}
+				else{
+					if(protein.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 50, 10, 50, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 50, 10, 50, Color.BLACK);
+					}
+					lyloc1 += 100;
+				}
+			}
 			//Right Branch
 			int rXloc = screenManager.getScreenWidth()-100;
 			int rYloc = 100;
@@ -967,15 +991,52 @@ public class GamePanel extends JPanel {
 				}
 				rYloc += 100;
 			}
+			//Drawing Lines
+			int rxloc1 = screenManager.getScreenWidth()-100;
+			int ryloc1 = 100;
+			for(int i = 4; i < 7; i++){
+				if(i == 4){
+					if(protein.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(445, 70, 270, 10, Color.GREEN);
+						graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 - 30, 10, 30, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(445, 70, 270, 10, Color.BLACK);
+						graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 - 30, 10, 30, Color.BLACK);
+					}
+				}
+				else{
+					if(protein.array[i].getUnlockedStatus()){
+						graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 50, Color.GREEN);
+					}
+					else{
+						graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 50, Color.BLACK);
+					}
+					ryloc1 += 100;
+				}
+			}
 			//Ultimate Skill
 			if(proteinSelection.getId() == 8){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.YELLOW, 2);
 			}
-			else if(protein.array[6].getUnlockedStatus()){
+			else if(protein.array[7].getUnlockedStatus()){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.GREEN, 2);
 			}
 			else{
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, screenManager.getScreenHeight()-100, 50, 50, Color.RED, Color.BLACK, 2);
+			}
+			//Drawing Lines
+			if(protein.array[7].getUnlockedStatus()){
+				graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 150, Color.GREEN);
+				graphicsHandler.drawFilledRectangle((screenManager.getScreenWidth()/2) + 50, screenManager.getScreenHeight() - 75, 275, 10, Color.GREEN);
+				graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 50, 10, 135, Color.GREEN);
+				graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 185, 325, 10, Color.GREEN);
+			}
+			else{
+				graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 150, Color.BLACK);
+				graphicsHandler.drawFilledRectangle((screenManager.getScreenWidth()/2) + 50, screenManager.getScreenHeight() - 75, 275, 10, Color.BLACK);
+				graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 50, 10, 135, Color.BLACK);
+				graphicsHandler.drawFilledRectangle(lxloc1 + 20, lyloc1 + 185, 325, 10, Color.BLACK);
 			}
 			//Navigation
 			//Center to branch
@@ -996,7 +1057,11 @@ public class GamePanel extends JPanel {
 			}
 			//Left branch
 			if(proteinSelection.getId() < 4){
-				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
+				if(Keyboard.isKeyDown(Key.D) && proteinSelection.getId() == 3 && proteinTimer > 20){
+					proteinSelection = proteinSelection.getParent();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getLeftSkill();
 					proteinTimer = 0;
 				}
@@ -1008,10 +1073,18 @@ public class GamePanel extends JPanel {
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
 				}
+				else if(Keyboard.isKeyDown(Key.D) && proteinTimer > 20 && proteinSelection.getId() == 1){
+					protein.goToUltimate();
+					proteinSelection = protein.getCurrentNode();
+				}
 			}
 			//Right Branch
-			if(proteinSelection.getId() > 4){
-				if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
+			if(proteinSelection.getId() > 4 && proteinSelection.getId() < 8){
+				if(proteinSelection.getId() == 5 && proteinTimer > 20 && Keyboard.isKeyDown(Key.A)){
+					proteinSelection = proteinSelection.getParent();
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
 					proteinSelection = proteinSelection.getRightSkill();
 					proteinTimer = 0;
 				}
@@ -1022,6 +1095,10 @@ public class GamePanel extends JPanel {
 				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
 					protein.unlockNode(proteinSelection);
 					proteinTimer = 0;
+				}
+				else if(proteinSelection.getId() == 7 && proteinTimer > 20 && Keyboard.isKeyDown(Key.A)){
+					protein.goToUltimate();
+					proteinSelection = protein.getCurrentNode();
 				}
 			}
 			//Drawing box that displays the information
