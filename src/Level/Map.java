@@ -70,6 +70,7 @@ public abstract class Map {
     public ArrayList<EnemyProjectile> enemyprojectiles;
     public ArrayList<Item> items;
     public ArrayList<Pickup> pickups;
+    public ArrayList<BossAttack> attacks;
 
 
     protected Script activeInteractScript;
@@ -146,6 +147,10 @@ public abstract class Map {
         this.pickups = loadPickups();
         for(Pickup pickup : this.pickups){
             pickup.setMap(this);
+        }
+        this.attacks = loadAttacks();
+        for(BossAttack attack : this.attacks){
+            attack.setMap(this);
         }
 
         this.loadScripts();
@@ -287,6 +292,11 @@ public abstract class Map {
         this.pickups.add(pickup);
     }
 
+    public void addAttack(BossAttack attack) {
+        attack.setMap(this);
+        this.attacks.add(attack);
+    }
+
     // set specific map tile from tile map to a new map tile
     public void setMapTile(int x, int y, MapTile tile) {
         if (isInBounds(x, y)) {
@@ -365,6 +375,9 @@ public abstract class Map {
     protected ArrayList<Pickup> loadPickups() {
         return new ArrayList<>();
     }
+    protected ArrayList<BossAttack> loadAttacks() {
+        return new ArrayList<>();
+    }
     public Camera getCamera() {
         return camera;
     }
@@ -394,6 +407,9 @@ public abstract class Map {
     }
     public ArrayList<Pickup> getPickups() {
         return pickups;
+    }
+    public ArrayList<BossAttack> getAttacks() {
+        return attacks;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
@@ -473,6 +489,9 @@ public abstract class Map {
     public ArrayList<Pickup> getActivePickups() {
         return camera.getActivePickups();
     }
+    public ArrayList<BossAttack> getActiveAttacks() {
+        return camera.getActiveAttacks();
+    }
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
         enhancedMapTile.setMap(this);
@@ -490,7 +509,7 @@ public abstract class Map {
         this.enemies.add(enemy);
     }
 
-    // add a boss to the map's list of enemies
+    // add a boss and their attacks to the map's list of bosses
     public void addBoss(Boss boss) {
         boss.setMap(this);
         this.bosses.add(boss);
@@ -527,6 +546,7 @@ public abstract class Map {
         surroundingMapEntities.addAll(getActiveItems());
         surroundingMapEntities.addAll(getActivePickups());
         surroundingMapEntities.addAll(getActiveEnemyProjectiles());
+        surroundingMapEntities.addAll(getActiveAttacks());
 
         return surroundingMapEntities;
     }

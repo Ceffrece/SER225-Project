@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Utils.Point;
@@ -50,22 +51,70 @@ public class Boss extends Enemy{
 
     private void attack1(){
         System.out.println("Attack 1");
+        BossAttack a1 = new BossAttack(getLocation().addY(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a2 = new BossAttack(getLocation().addY(300).addX(200), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a3 = new BossAttack(getLocation().addY(300).addX(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        map.addAttack(a1);
+        map.addAttack(a2);
+        map.addAttack(a3);
     }
 
     private void attack2(){
         System.out.println("Attack 2");
+        BossAttack a1 = new BossAttack(getLocation().addY(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a4 = new BossAttack(getLocation().addY(300).addX(100), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a5 = new BossAttack(getLocation().addY(300).addX(-100), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a6 = new BossAttack(getLocation().addY(300).addX(200), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);       
+        BossAttack a7 = new BossAttack(getLocation().addY(300).addX(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);                
+        map.addAttack(a1);
+        map.addAttack(a4);
+        map.addAttack(a5);
+        map.addAttack(a6);
+        map.addAttack(a7);
     }
 
     private void attack3(){
         System.out.println("Attack 3");
+        BossAttack a8 = new BossAttack(getLocation().addY(200), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a9 = new BossAttack(getLocation().addY(200).addX(100), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a10 = new BossAttack(getLocation().addY(300).addX(20), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a11 = new BossAttack(getLocation().addY(300).addX(250), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a12 = new BossAttack(getLocation().addY(200).addX(400), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a13 = new BossAttack(getLocation().addY(230).addX(-20), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        map.addAttack(a8);
+        map.addAttack(a9);
+        map.addAttack(a10);
+        map.addAttack(a11);
+        map.addAttack(a12);
+        map.addAttack(a13);
     }
 
     private void attack4(){
         System.out.println("Attack 4");
+        BossAttack a1 = new BossAttack(getLocation().addY(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a2 = new BossAttack(getLocation().addY(300).addX(200), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a5 = new BossAttack(getLocation().addY(300).addX(-100), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a7 = new BossAttack(getLocation().addY(300).addX(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);                
+        BossAttack a13 = new BossAttack(getLocation().addY(230).addX(-20), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        map.addAttack(a1);
+        map.addAttack(a2);
+        map.addAttack(a5);
+        map.addAttack(a7);
+        map.addAttack(a13);
     }
 
     private void attack5(){
         System.out.println("Attack 5");
+        BossAttack a3 = new BossAttack(getLocation().addY(300).addX(300), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a4 = new BossAttack(getLocation().addY(300).addX(100), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a6 = new BossAttack(getLocation().addY(300).addX(200), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);       
+        BossAttack a10 = new BossAttack(getLocation().addY(300).addX(20), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        BossAttack a12 = new BossAttack(getLocation().addY(200).addX(400), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"),30,30), "DEFAULT", 30, 30);
+        map.addAttack(a3);
+        map.addAttack(a4);
+        map.addAttack(a6);
+        map.addAttack(a10);
+        map.addAttack(a12);
     }
 
     private void attack6() {

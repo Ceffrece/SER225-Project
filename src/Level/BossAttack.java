@@ -43,9 +43,13 @@ public class BossAttack extends MapEntity{
 
         if(this.overlaps(player) && hurtFrames > 50){
             if(this.identity.equals("enemy")){
-                player.hurtPlayer(this);
+                Player.hurtPlayer(this);
+                Player.invincibilityTimer = 180;
                 this.setMapEntityStatus(MapEntityStatus.REMOVED);
             }
+        }
+        else if(hurtFrames > 60){
+            this.setMapEntityStatus(MapEntityStatus.REMOVED);
         }
     }
 
@@ -59,7 +63,7 @@ public class BossAttack extends MapEntity{
                     put("DEFAULT", new Frame[]{
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(0, 0, 50, 50)
+                                .withBounds(0, 0, 30, 30)
                                 .build()
                 });
             }};

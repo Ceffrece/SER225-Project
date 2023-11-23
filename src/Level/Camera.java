@@ -34,6 +34,7 @@ public class Camera extends Rectangle {
     private ArrayList<Enemy> activeEnemies = new ArrayList<>();
     private ArrayList<Boss> activeBosses = new ArrayList<>();
     private ArrayList<Pickup> activePickups = new ArrayList<>();
+    private ArrayList<BossAttack> activeAttacks = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -77,6 +78,7 @@ public class Camera extends Rectangle {
         activeBosses = loadActiveBosses();
         activeProjectiles = loadActiveProjectiles();
         activeEnemyprojectiles = loadActiveEnemyProjectiles();
+        activeAttacks = loadActiveAttacks();
 
         activeItems = loadActiveItems();
         activePickups = loadActivePickups();
@@ -104,7 +106,9 @@ public class Camera extends Rectangle {
         for(Boss boss : activeBosses) {
             boss.update(player);
         }
-        
+        for(BossAttack attack : activeAttacks) {
+            attack.update(player);
+        }
     }
 
     // updates any currently running script
@@ -277,6 +281,24 @@ public class Camera extends Rectangle {
         }
         return activePickups;
     }
+    private ArrayList<BossAttack> loadActiveAttacks() {
+        ArrayList<BossAttack> activeAttacks = new ArrayList<>();
+        for(int i = map.getAttacks().size()-1; i>= 0; i--){
+            BossAttack attack = map.getAttacks().get(i);
+
+            if(isMapEntityActive(attack)) {
+                activeAttacks.add(attack);
+                if(attack.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    attack.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if(attack.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                attack.setMapEntityStatus(MapEntityStatus.ACTIVE);
+            } else if(attack.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getAttacks().remove(i);
+            }
+        }
+        return activeAttacks;
+    }
     // determine which trigger map tiles are active (exist and are within range of the camera)
     private ArrayList<Trigger> loadActiveTriggers() {
         ArrayList<Trigger> activeTriggers = new ArrayList<>();
@@ -398,6 +420,11 @@ public class Camera extends Rectangle {
                 boss.draw(graphicsHandler);
             }
         }
+        for(BossAttack attack : activeAttacks) {
+            if(containsDraw(attack)) {
+                attack.draw(graphicsHandler);
+            }
+        }
         for (Projectile projectile : activeProjectiles) {
             if (containsDraw(projectile)) {
                 projectile.draw(graphicsHandler);
@@ -490,6 +517,9 @@ public class Camera extends Rectangle {
     }
     public ArrayList<Pickup> getActivePickups() {
         return activePickups;
+    }
+    public ArrayList<BossAttack> getActiveAttacks() {
+        return activeAttacks;
     }
 
     // gets end bound X position of the camera (start position is always 0)

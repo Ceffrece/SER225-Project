@@ -1621,8 +1621,8 @@ public class GamePanel extends JPanel {
 
 	public void showBossHealth1(){
 		Floor1Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, 30, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, 30, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
 		//System.out.println((Floor1Boss.currenthealth/100.0));
 	}
 
