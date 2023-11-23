@@ -1062,7 +1062,13 @@ public class GamePanel extends JPanel {
 					proteinTimer = 0;
 				}
 				else if(Keyboard.isKeyDown(Key.S) && proteinTimer > 20){
-					proteinSelection = proteinSelection.getLeftSkill();
+					if(proteinSelection.getId() == 1){
+						protein.goToUltimate();
+						proteinSelection = protein.getCurrentNode();
+					}
+					else{
+						proteinSelection = proteinSelection.getLeftSkill();
+					}
 					proteinTimer = 0;
 				}
 				else if(Keyboard.isKeyDown(Key.W) && proteinTimer > 20){
@@ -1076,6 +1082,7 @@ public class GamePanel extends JPanel {
 				else if(Keyboard.isKeyDown(Key.D) && proteinTimer > 20 && proteinSelection.getId() == 1){
 					protein.goToUltimate();
 					proteinSelection = protein.getCurrentNode();
+					proteinTimer = 0;
 				}
 			}
 			//Right Branch
@@ -1099,6 +1106,22 @@ public class GamePanel extends JPanel {
 				else if(proteinSelection.getId() == 7 && proteinTimer > 20 && Keyboard.isKeyDown(Key.A)){
 					protein.goToUltimate();
 					proteinSelection = protein.getCurrentNode();
+					proteinTimer = 0;
+				}
+			}
+			//Ultimate navigation
+			if(proteinSelection.getId() == 8){
+				if(Keyboard.isKeyDown(Key.A) && proteinTimer > 20){
+					proteinSelection = protein.array[3];
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.D) && proteinTimer > 20){
+					proteinSelection = protein.array[6];
+					proteinTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.SPACE) && proteinTimer > 20){
+					protein.unlockNode(proteinSelection);
+					proteinTimer = 0;
 				}
 			}
 			//Drawing box that displays the information
