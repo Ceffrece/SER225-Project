@@ -67,6 +67,11 @@ public class VeggieSkillTree {
     public void resetCurrentNode(){
         this.currentNode = centerSkill;
     }
+
+    public void goToUltimate(){
+        this.currentNode = ultimateVeggieSkill;
+    }
+    
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
     }

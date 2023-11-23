@@ -774,10 +774,17 @@ public class GamePanel extends JPanel {
 			//Drawing Lines
 			if(veggie.array[9].getUnlockedStatus()){
 				//Left
-				graphicsHandler.drawFilledRectangle(75, screenManager.getScreenHeight()-75, 300, 10, Color.GREEN);
+				graphicsHandler.drawFilledRectangle(100, screenManager.getScreenHeight()-50, 295, 10, Color.GREEN);
+				//Right
+				graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 180, Color.GREEN);
+				graphicsHandler.drawFilledRectangle(440, screenManager.getScreenHeight()-50, 275, 10, Color.GREEN);
 			}
 			else{
-				graphicsHandler.drawFilledRectangle(75, screenManager.gerScreenHeight()-75, 300, 10, Color.BLACK);
+				//Left
+				graphicsHandler.drawFilledRectangle(100, screenManager.getScreenHeight()-50, 295, 10, Color.BLACK);
+				//Right
+				graphicsHandler.drawFilledRectangle(rxloc1 + 20, ryloc1 + 50, 10, 180, Color.BLACK);
+				graphicsHandler.drawFilledRectangle(440, screenManager.getScreenHeight()-50, 275, 10, Color.BLACK);
 			}
 			//Navigation
 			//Center to branch
@@ -798,7 +805,11 @@ public class GamePanel extends JPanel {
 			}
 			//Left branch
 			if(veggieSelection.getId() < 6){
-				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
+				if(veggieSelection.getId() == 5 && veggieTimer > 20 && Keyboard.isKeyDown(Key.D)){
+					veggieSelection = veggieSelection.getParent();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getLeftSkill();
 					veggieTimer = 0;
 				}
@@ -810,10 +821,19 @@ public class GamePanel extends JPanel {
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
+				else if(Keyboard.isKeyDown(Key.D) && veggieTimer > 20 && veggieSelection.getId() == 1){
+					veggie.goToUltimate();
+					veggieSelection = veggie.getCurrentNode();
+					veggieTimer = 0;
+				}
 			}
 			//Right Branch
-			if(veggieSelection.getId() > 6){
-				if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
+			if(veggieSelection.getId() > 6 && veggieSelection.getId() < 10){
+				if(veggieSelection.getId() == 7 && veggieTimer > 20 && Keyboard.isKeyDown(Key.A)){
+					veggieSelection = veggieSelection.getParent();
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.S) && veggieTimer > 20){
 					veggieSelection = veggieSelection.getRightSkill();
 					veggieTimer = 0;
 				}
@@ -822,6 +842,26 @@ public class GamePanel extends JPanel {
 					veggieTimer = 0;
 				}
 				else if(Keyboard.isKeyDown(Key.SPACE) && veggieTimer > 20){
+					veggie.unlockNode(veggieSelection);
+					veggieTimer = 0;
+				}
+				else if(Keyboard.isKeyDown(Key.A) && veggieTimer > 20 && veggieSelection.getId() == 9){
+					veggie.goToUltimate();
+					veggieSelection = veggie.getCurrentNode();
+					veggieTimer = 0;
+				}
+			}
+			//Ultimate Navigation
+			if(veggieSelection.getId() == 10){
+				if(Keyboard.isKeyDown(Key.A) && veggieTimer > 20){
+					veggieSelection = veggie.array[5];
+					veggieTimer = 0;
+				}
+				else if(veggieTimer > 20 && Keyboard.isKeyDown(Key.D)){
+					veggieSelection = veggie.array[8];
+					veggieTimer = 0;
+				}
+				else if(veggieTimer > 20 && Keyboard.isKeyDown(Key.SPACE)){
 					veggie.unlockNode(veggieSelection);
 					veggieTimer = 0;
 				}
