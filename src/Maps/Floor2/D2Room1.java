@@ -9,9 +9,13 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.NPC;
 import Level.Tileset;
+import NPCs.Walrus;
 import Tilesets.Floor2Tileset;
+import Scripts.Floor2Script;
 import Scripts.SimpleTextScript;
+import Scripts.MarcusMap.WalrusScript;
 import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.RandomChangeMapScript;
 
@@ -24,6 +28,16 @@ public class D2Room1 extends Map {
         this.idSwitch = 11;                //Aka "Four Corner Compound"
         }
 
+        //Temporary NPC
+        public ArrayList<NPC> loadNPCs() {
+            ArrayList<NPC> npcs = new ArrayList<>();
+
+            Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
+            walrus.setInteractScript(new Floor2Script());
+            npcs.add(walrus);
+
+            return npcs;
+        }
         // Where enhanced map tiles go (aka spikes)
         @Override
         public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {

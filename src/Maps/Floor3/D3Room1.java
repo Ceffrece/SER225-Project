@@ -9,8 +9,12 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.NPC;
 import Level.Tileset;
+import NPCs.Walrus;
 import Tilesets.Floor3Tileset;
+import Scripts.Floor2Script;
+import Scripts.Floor3Script;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.RandomChangeMapScript;
@@ -24,6 +28,16 @@ public class D3Room1 extends Map {
         this.idSwitch = 21;                //Aka ""
         }
 
+        //Temporary NPC
+        public ArrayList<NPC> loadNPCs() {
+            ArrayList<NPC> npcs = new ArrayList<>();
+
+            Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
+            walrus.setInteractScript(new Floor3Script());
+            npcs.add(walrus);
+
+            return npcs;
+        }
         // Where enhanced map tiles go (aka spikes)
         @Override
         public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
