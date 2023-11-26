@@ -18,6 +18,7 @@ import Scripts.ItemPickup;
 import Scripts.ProjectilePickup;
 import Scripts.SimpleTextScript;
 import Scripts.MarcusMap.WalrusScript;
+import Scripts.MarcusMap.shopKeeperScript;
 import Scripts.TestMap.ChangeMapScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
@@ -28,7 +29,7 @@ public class Shop extends Map {
 
     public Shop() {
         super("Shop.txt", new Floor1Tileset());
-        this.playerStartPosition = getMapTile(10, 10).getLocation();
+        this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 111;
         this.idSwitch = 111;
 
@@ -36,8 +37,8 @@ public class Shop extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
-        walrus.setInteractScript(new WalrusScript());
+        Walrus walrus = new Walrus(1, getMapTile(12, 13).getLocation().subtractY(40));
+        walrus.setInteractScript(new shopKeeperScript());
         npcs.add(walrus);
         
 
@@ -105,12 +106,12 @@ public class Shop extends Map {
             StatAdd = 1;
         }
         else if ((itemRareity <= 85)){
-            cost = 15;
+            cost = 10;
             StatAdd = 2;
         }
         else{
             StatAdd = 4;
-            cost = 30;
+            cost = 22;
         }
         
         String statString = "";
@@ -146,21 +147,6 @@ public class Shop extends Map {
     }
     public ArrayList<Pickup> loadPickups() {
         ArrayList<Pickup> pickups = new ArrayList<>();
-
-        Pickup coin = new Pickup(getMapTile(14,14).getLocation().subtractY(40));
-        pickups.add(coin);
-
-        Pickup coin1 = new Pickup(getMapTile(14,15).getLocation().subtractY(40));
-        pickups.add(coin1);
-
-        Pickup coin2 = new Pickup(getMapTile(15,14).getLocation().subtractY(40));
-        pickups.add(coin2);
-
-        Pickup coin3 = new Pickup(getMapTile(15,15).getLocation().subtractY(40));
-        pickups.add(coin3);
-
-        Pickup coin4 = new Pickup(getMapTile(16,14).getLocation().subtractY(40));
-        pickups.add(coin4);
 
         
         return pickups;

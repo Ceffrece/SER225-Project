@@ -107,26 +107,11 @@ public abstract class Player extends GameObject {
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
         Currency currency = new Currency(0,10);
-        // peaProjectile peaProjectile = new peaProjectile(getLocation(), null);
-         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
-        // bannanaProjectile bannanaProjectile = new bannanaProjectile(getLocation(), null);
-        // fruitFlyProjectile fruitFlyProjectile = new fruitFlyProjectile(getLocation(), null);
 
-        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+        riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
+        
+        playerCurrentProjectiles.add(riceBallProjectile);
 
-        playerCurrentProjectiles.add(carrotProjectile);
-
-        // cheeseWheelSpike cheeseWheelSpike = new cheeseWheelSpike(getLocation(), null);
-
-        // playerCurrentProjectiles.add(cheeseWheelSpike);
-
-        // peporoniSlicer peporoniSlicer = new peporoniSlicer(getLocation(), null);
-
-        // playerCurrentProjectiles.add(peporoniSlicer);
-        // playerCurrentProjectiles.add(fruitFlyProjectile);
-        // playerCurrentProjectiles.add(peaProjectile);
-         playerCurrentProjectiles.add(riceBallProjectile);
-        // playerCurrentProjectiles.add(bannanaProjectile);
 
 
 
