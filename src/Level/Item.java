@@ -37,6 +37,21 @@ public class Item extends MapEntity{
 
         initialize();
     }
+    //for shop item
+    public Item(Point location, SpriteSheet ss, String startingAnimation, String stat, int statIncrease,String inventoryIcon,int cost,String description){
+        super(location.x,location.y,ss,startingAnimation);
+        this.projectileToAdd = projectileToAdd;
+        this.cost = cost;
+        this.stat = stat;
+        setCurentItemPNG(inventoryIcon);
+        this.statIncrease = statIncrease;
+        this.description = description;
+        dontShowDesc = false;
+        isUncollidable = true;
+
+
+        initialize();
+    }
     //Constructor for Pickup projectiles
     public Item(Point location, SpriteSheet ss, String startingAnimation,String projectileToAdd, String description, int cost){
         super(location.x,location.y,ss,startingAnimation);

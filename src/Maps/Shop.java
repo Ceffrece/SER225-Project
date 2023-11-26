@@ -14,6 +14,7 @@ import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Tilesets.Floor1Tileset;
+import Scripts.ItemPickup;
 import Scripts.ProjectilePickup;
 import Scripts.SimpleTextScript;
 import Scripts.MarcusMap.WalrusScript;
@@ -54,10 +55,8 @@ public class Shop extends Map {
     public int cost;
     public ArrayList<Item> loadItems() {
         ArrayList<Item> items = new ArrayList<>();
-
-
-      
-        int randomProjectile =(int) ((Math.random() * 6) + 1);
+        //randomizes the projectile
+        int randomProjectile =(int) ((Math.random() * 5) + 1);
         switch(randomProjectile){
             case 1:
             filename = "Projectiles/peaProjectile.png";
@@ -66,10 +65,10 @@ public class Shop extends Map {
             cost = 5;
                 break;
             case 2:
-            filename = "Projectiles/riceBallProjectile.png";
-            projectileToAdd ="riceBallProjectile" ;
-            description = "Rice Ball Projectile";
-            cost = 5;
+            filename = "GUISprites/cheeseIcon.png";
+            projectileToAdd = "cheese";
+            description = "Three Cheese Maneige";
+            cost = 15;
                 break;
             case 3:
             filename ="Projectiles/bannanaProjectile.png" ;
@@ -77,7 +76,6 @@ public class Shop extends Map {
             description = "bannana Boomerang";
 
             cost = 8;
-
                 break;
             case 4:
             filename = "Projectiles/pepPro.png";
@@ -93,19 +91,53 @@ public class Shop extends Map {
             description = "Carrot Shot";
             cost = 7;
                  break;
-            case 6:
-            filename = "GUISprites/cheeseIcon.png";
-            projectileToAdd = "cheese";
-            description = "Three Cheese Maneige";
-            cost = 15;
-            default:
-                break;
         }
 
         Item projectileForSale = new Item(getMapTile(5,14).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load(filename),16,16),"DEFAULT",projectileToAdd,description,cost);
         projectileForSale.setInteractScript(new ProjectilePickup());
         items.add(projectileForSale);
 
+        int itemRareity =(int) ((Math.random() * 3) + 1);
+        int StatAdd = 0;
+        switch(itemRareity){
+            case(1):
+                cost = 5;
+                StatAdd = 1;
+                break;
+            case(2):
+                cost = 15;
+                StatAdd = 2;
+
+                break;
+            case(3):
+                StatAdd = 4;
+                cost = 30;
+        }
+        String statString = "";
+        int randomItem =(int) ((Math.random() * 3) + 1);
+        switch(randomItem){
+            case 1:
+            filename = "Misc/sCube.png";
+            description = "sugar cube(WLK SPD+)";
+            statString = "walkSpeed";
+                break;
+            case 2:
+            filename = "Misc/cherryBomb.png";
+            description = "Cherry Bomb(ATK+)";
+            statString = "attackDamage";
+
+                break;
+            case 3:
+            filename = "Misc/healthItem.png";
+            description = "Health Soda(MX HEAL+)";
+            statString = "maxHealth";
+
+                break;
+        }
+
+        Item itemForSale = new Item(getMapTile(19,14).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load(filename),16,16),"DEFAULT", statString, StatAdd,filename,cost,description);
+        itemForSale.setInteractScript(new ItemPickup());
+        items.add(itemForSale);
         
 
 
