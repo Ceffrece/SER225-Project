@@ -97,22 +97,22 @@ public class Shop extends Map {
         projectileForSale.setInteractScript(new ProjectilePickup());
         items.add(projectileForSale);
 
-        int itemRareity =(int) ((Math.random() * 3) + 1);
+        int itemRareity = (int) ((Math.random() * 100) + 1);
         int StatAdd = 0;
-        switch(itemRareity){
-            case(1):
-                cost = 5;
-                StatAdd = 1;
-                break;
-            case(2):
-                cost = 15;
-                StatAdd = 2;
-
-                break;
-            case(3):
-                StatAdd = 4;
-                cost = 30;
+        System.out.println(itemRareity);
+        if (itemRareity <= 60){
+            cost = 5;
+            StatAdd = 1;
         }
+        else if ((itemRareity <= 85)){
+            cost = 15;
+            StatAdd = 2;
+        }
+        else{
+            StatAdd = 4;
+            cost = 30;
+        }
+        
         String statString = "";
         int randomItem =(int) ((Math.random() * 3) + 1);
         switch(randomItem){

@@ -41,9 +41,10 @@ public class ItemPickup extends Script<Item>{
                     float y = entity.statIncrease; 
                     Player.addWalkSpeed(y);
                     break;
-                case "playerHealth":  Player.addAttackDamage(entity.statIncrease);
+                case "playerHealth":  Player.addPlayerHealth(entity.statIncrease);
                     break;
                 case "maxHealth":  Player.addPlayerMaxHealth(entity.statIncrease);
+                    Player.addPlayerHealth(entity.statIncrease);
                     break;
                 case "invincibilityTimer":  player.addIncibilityTimer(entity.statIncrease);
                     break;
