@@ -26,8 +26,8 @@ public class EnemyProjectile extends MapEntity{
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
 
-        private float speedX;
-        private float speedY;
+        private float speedX = 1;
+        private float speedY = 1;
 
         protected int existenceFrames = (Enemy.attackRange)*25+50;
         int turn = existenceFrames/2;
@@ -110,41 +110,42 @@ public class EnemyProjectile extends MapEntity{
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 }
             }
-            public void getProjectileDirection(Player player){
-                if (hasDirection ==0){ 
-                    float speedX = player.getX() - this.x;
-                    float speedY = player.getY() - this.y;  
-                    
-
-                }
-                hasDirection++;
-               
-        }
+           
             public void update(Player player) {
                 // currentProjectile(curentProjectile, enemy);
 
-                getProjectileDirection(player);
-                
-                // The projectiles will now move depending on the input of the player aka the player's direction
-                if (player.facingDirection == Direction.UP) {
-                    moveYHandleCollision(1);
-                } else if (player.facingDirection == Direction.DOWN) {
-                    moveYHandleCollision(-1);
+                if (hasDirection > 1){ 
+                    if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
+                    {
+                         speedX = 3f;
+                    }
+                    if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
+                    {
+                         speedX = -3f;
+                    }
+                    if (Math.round(getBoundsY2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsY2()))
+                    {
+                         speedY = 3f;
+                    }
+                    if (Math.round(getBoundsY1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsY1()))
+                    {
+                         speedY = -3f;
+                    }  
                 }
-                
-                if (player.facingDirection == Direction.RIGHT) {
-                    moveXHandleCollision(1);
-                } else if (player.facingDirection == Direction.LEFT) {
-                    moveXHandleCollision(-1);
-                }
+                hasDirection++;
 
-                //moveXHandleCollision(1);
-                //moveYHandleCollision(1);
+                
+
+                moveXHandleCollision(speedX);
+                moveYHandleCollision(speedY);
+
+
+               
 
                 
                 if (this.existenceFrames <= 0) {
-                         this.mapEntityStatus = MapEntityStatus.REMOVED;
-                     } 
+                    this.mapEntityStatus = MapEntityStatus.REMOVED;
+                } 
                
                 // existenceFrames --;
                 if (player.overlaps(this) && Player.invincibilityTimer == 0)
@@ -184,6 +185,7 @@ public class EnemyProjectile extends MapEntity{
         public String getCurentProjectile(){
             return curentProjectile;
         }
+        
         @Override
         public void draw(GraphicsHandler graphicsHandler) {
             if (map != null) {

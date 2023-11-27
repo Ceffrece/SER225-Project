@@ -6,6 +6,8 @@ import Engine.ImageLoader;
 import Engine.Keyboard;
 import Engine.Music;
 import GameObject.Frame;
+import java.security.SecureRandom;
+
 import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
@@ -22,6 +24,7 @@ public class Enemy extends MapEntity
     public int health = 5;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
+    public SecureRandom random;
 
     public static int cooldown = 0;
     public static boolean readyToFire = false;
@@ -38,6 +41,8 @@ public class Enemy extends MapEntity
     {
         super(x, y, spriteSheet, startingAnimation);
         isUncollidable = true;
+        random = new SecureRandom();
+
         super.setIdentity("enemy");
         this.id = id;
         
@@ -161,32 +166,14 @@ public class Enemy extends MapEntity
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
-        if(timer >= 100){
+        if(timer >= 5000){
                 EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 150);
                 map.addEnemyProjectile(pro);
                 timer = 0;
         }
 
-        timer ++;
-        if(!enemyCurrentProjectiles.isEmpty()){
-            EnemyProjectile projectileShooting = new EnemyProjectile(this.getLocation(),this.getCurentProjectile(), this);
-            
-            if(cooldown >= enemyCurrentProjectiles.get(projectileInHand).shootTime ){
-                readyToFire = true;
-            }else{
-                readyToFire = false;
-    
-            }
-            
-            if (readyToFire && !enemyCurrentProjectiles.isEmpty()){
-            //map.addEnemyProjectile(projectileShooting);
-            }else if(readyToFire || enemyCurrentProjectiles.isEmpty()){
-
-            }
-            else{
-                cooldown += attackSpeed;
-            }
-        }
+        timer += random.nextInt(5,30);
+        
         //if(Player.invincibilityTimer > 0){
         //    Player.invincibilityTimer -= 1;
         //}
