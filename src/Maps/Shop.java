@@ -115,7 +115,7 @@ public class Shop extends Map {
         }
         
         String statString = "";
-        int randomItem =(int) ((Math.random() * 3) + 1);
+        int randomItem =(int) ((Math.random() * 5) + 1);
         switch(randomItem){
             case 1:
             filename = "Misc/sCube.png";
@@ -134,8 +134,20 @@ public class Shop extends Map {
             statString = "maxHealth";
 
                 break;
+            case 4:
+                filename = "Misc/attackSpeedCandy.png";
+                description = "Sugar Rush Candy(ATK SPD+)";
+                statString = "attackSpeed";
+    
+                    break;
+            case 5:
+                    filename = "Misc/eyeClare.png";
+                    description = "Eagle Eye Eclair(ATTK RNG+)";
+                    statString = "attackRange";
+        
+                        break;
         }
-
+        
         Item itemForSale = new Item(getMapTile(19,14).getLocation().subtractY(40),new SpriteSheet(ImageLoader.load(filename),16,16),"DEFAULT", statString, StatAdd,filename,cost,description);
         itemForSale.setInteractScript(new ItemPickup());
         items.add(itemForSale);
