@@ -23,7 +23,7 @@ public class Floor2Boss extends Map {
 
     public Floor2Boss() {
         super("Floor2Boss.txt", new Floor2Tileset());
-        // this.playerStartPosition = getMapTile(12, 24).getLocation();
+        this.playerStartPosition = getMapTile(12, 24).getLocation();
         this.mapInt = 102;
         this.idSwitch = 102;
         }
@@ -55,7 +55,7 @@ public class Floor2Boss extends Map {
     public void loadScripts() {
         
 
-        //getMapTile(12,2).setInteractScript(new ChangeMapScript(0));
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(3));
     }
     
 }

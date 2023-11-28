@@ -29,7 +29,7 @@ public class EnemyProjectile extends MapEntity{
         private float speedX = 1;
         private float speedY = 1;
 
-        protected int existenceFrames = (Enemy.attackRange)*25+50;
+        protected int existenceFrames = (Enemy.attackRange)*25+100;
         int turn = existenceFrames/2;
 
         protected int damage;
@@ -147,7 +147,7 @@ public class EnemyProjectile extends MapEntity{
                     this.mapEntityStatus = MapEntityStatus.REMOVED;
                 } 
                
-                // existenceFrames --;
+                existenceFrames --;
                 if (player.overlaps(this) && Player.invincibilityTimer == 0)
                 {
                     Player.hurtPlayer(this);

@@ -41,7 +41,7 @@ public abstract class Player extends GameObject {
     public static boolean readyToFire = false;
     
 
-    public static float walkSpeed = 8.3f;
+    public static float walkSpeed = 5.2f;
     public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int playerHealth = 5;
@@ -93,7 +93,7 @@ public abstract class Player extends GameObject {
     protected static Key MOVE_UP_KEY = Key.W;
     protected static Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
-    protected Key FIRE_KEY = Key.F;
+    protected Key FIRE_KEY = Key.J;
 
     protected Key CHANGE_PROJECT = Key.SHIFT;
 
