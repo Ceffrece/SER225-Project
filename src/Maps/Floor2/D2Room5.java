@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor2Tileset;
 import Scripts.SimpleTextScript;
@@ -19,9 +20,9 @@ public class D2Room5 extends Map {
 
     public D2Room5() {
         super("D2Room5.txt", new Floor2Tileset());
-        // this.playerStartPosition = getMapTile(4, 19).getLocation();
+        this.playerStartPosition = getMapTile(1, 1).getLocation();
         this.mapInt = 15;
-        this.idSwitch = 15;                //Aka ""
+        this.idSwitch = 15;                //Aka "Woven Threads"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -32,6 +33,38 @@ public class D2Room5 extends Map {
 
     
             return enhancedMapTiles;
+        }
+
+        // Where coins go
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(1,18).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(5,14).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(9,10).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(13,6).getLocation());
+            pickups.add(coin3);
+    
+            Pickup coin4 = new Pickup(getMapTile(17,2).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(13,22).getLocation());
+            pickups.add(coin5);
+
+            Pickup coin6 = new Pickup(getMapTile(17,18).getLocation());
+            pickups.add(coin6);
+    
+            Pickup coin7 = new Pickup(getMapTile(21,14).getLocation());
+            pickups.add(coin7);
+            
+            return pickups;
+    
         }
 
         // Where enemies will go
@@ -47,7 +80,7 @@ public class D2Room5 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(19,4).setInteractScript(new RandomChangeMapScript(2));
+        getMapTile(22,22).setInteractScript(new RandomChangeMapScript(2));
     }
     
 }

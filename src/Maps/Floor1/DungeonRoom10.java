@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -89,6 +90,7 @@ public class DungeonRoom10 extends Map {
             return enhancedMapTiles;
         }
 
+
         // Where enemies will go
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
@@ -103,7 +105,38 @@ public class DungeonRoom10 extends Map {
             
             return enemies;
         }
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(11,9).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(12,9).getLocation());
+            pickups.add(coin1);
 
+            Pickup coina = new Pickup(getMapTile(11,12).getLocation());
+            pickups.add(coina);
+    
+            Pickup coin1b = new Pickup(getMapTile(12,12).getLocation());
+            pickups.add(coin1b);
+    
+            Pickup coin2 = new Pickup(getMapTile(17,13).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(20,13).getLocation());
+            pickups.add(coin3);
+    
+            Pickup coin4 = new Pickup(getMapTile(3,7).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(3,5).getLocation());
+            pickups.add(coin5);
+            Pickup coin6 = new Pickup(getMapTile(2,6).getLocation());
+            pickups.add(coin6);
+            
+            return pickups;
+    
+        }
         // Where the end of level door/sign is
     @Override
     public void loadScripts() {

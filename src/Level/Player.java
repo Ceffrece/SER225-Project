@@ -106,7 +106,7 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        Currency currency = new Currency(0,10);
+        Currency currency = new Currency(40,10);
 
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         

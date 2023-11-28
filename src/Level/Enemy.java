@@ -166,8 +166,8 @@ public class Enemy extends MapEntity
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
-        if(timer >= 5000){
-                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 150);
+        if(timer >= 5500){
+                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"), 8, 8), "DEFAULT", 150);
                 map.addEnemyProjectile(pro);
                 timer = 0;
         }

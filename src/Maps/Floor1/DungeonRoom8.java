@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.HickoryHamHurler;
+import Enemy.PastaPoltergeist;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -109,13 +112,40 @@ public class DungeonRoom8 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(18, 10).getLocation());
-            eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
-            enemies.add(eggssassin1);
+            HickoryHamHurler hickoryhamhurler1 = new HickoryHamHurler(0, getMapTile(18, 10).getLocation());
+            hickoryhamhurler1.setExistenceFlag("hasTalkedToHickoryHamHurler");
+            enemies.add(hickoryhamhurler1);
+
+            PastaPoltergeist pastapoltergeist1 = new PastaPoltergeist(0, getMapTile(15, 8).getLocation());
+            pastapoltergeist1.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(pastapoltergeist1);
             
             return enemies;
         }
-
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(33,9).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(25,14).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(23,10).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(20,8).getLocation());
+            pickups.add(coin3);
+    
+            Pickup coin4 = new Pickup(getMapTile(9,9).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(16,10).getLocation());
+            pickups.add(coin5);
+            
+            return pickups;
+    
+        }
         // Where the end of level door/sign is
     @Override
     public void loadScripts() {
