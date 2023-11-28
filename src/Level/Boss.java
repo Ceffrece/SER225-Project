@@ -161,7 +161,7 @@ public class Boss extends Enemy{
         super.update();
         this.attackCounter++;
         if(attackCounter >= 250){
-            attack(random.nextInt(1,6));
+            attack(random.nextInt(6));
             attackCounter = 0;
         }
     }
