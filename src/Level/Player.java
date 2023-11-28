@@ -93,7 +93,7 @@ public abstract class Player extends GameObject {
     protected static Key MOVE_UP_KEY = Key.W;
     protected static Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
-    protected Key FIRE_KEY = Key.F;
+    protected Key FIRE_KEY = Key.J;
 
     protected Key CHANGE_PROJECT = Key.SHIFT;
 
