@@ -15,15 +15,15 @@ import Level.Player;
 import Utils.Direction;
 import Utils.Point;
 
-// This class is for the Kiwi Kamikaze Enemy
-public class KiwiKamikaze extends Enemy
+// This class is for the Pasta Poltergeist Enemy
+public class PastaPoltergeist extends Enemy
 {
         protected int health;
 
       
-        public KiwiKamikaze(int id, Point location) 
+        public PastaPoltergeist(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/KiwiKamikaze.png"), 16, 16), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/PastaPoltergeist.png"), 32, 32), "STAND_LEFT");
                 super.setIdentity("enemy");
                 super.setHealth(100);
                 
@@ -91,19 +91,19 @@ public class KiwiKamikaze extends Enemy
         {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
-            walk(Direction.RIGHT, 1f);
+            walk(Direction.RIGHT, 0.65f);
         }
         if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
         {
-            walk(Direction.LEFT, 1f);
+            walk(Direction.LEFT, 0.65f);
         }
         if (Math.round(getBoundsY2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsY2()))
         {
-            walk(Direction.DOWN, 1f);
+            walk(Direction.DOWN, 0.65f);
         }
         if (Math.round(getBoundsY1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsY1()))
         {
-            walk(Direction.UP,1f);
+            walk(Direction.UP,0.65f);
         }
         }
 
