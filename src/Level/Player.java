@@ -433,7 +433,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -450,7 +449,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -521,7 +519,6 @@ public abstract class Player extends GameObject {
                 this.currentAnimationName = "STAND_RIGHT";
             }else{
                 this.currentAnimationName = "STAND_RIGHT_DAMAGED";
-                System.out.println("TRYING DAMAGED SPRITE");
             }
         }
         else if (direction == Direction.LEFT) {
