@@ -245,13 +245,6 @@ public class GamePanel extends JPanel {
 		updateShowFPSState();
 		updateSkillTreeState();
 		updateInventoryState();
-		levelCount++;
-		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
-			Player.playerXPLevel += 10;
-			levelCount = 0;
-			System.out.println("Level is " + Player.playerXPLevel);
-		}
-
 		if(isGamePaused || skillTreeActivated|| isInventoryActivated){
 
 		}
