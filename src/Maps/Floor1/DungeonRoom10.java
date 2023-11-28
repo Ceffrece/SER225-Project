@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -87,6 +88,17 @@ public class DungeonRoom10 extends Map {
         enhancedMapTiles.add(spikes28);
 
             return enhancedMapTiles;
+        }
+        
+        // Where coins go
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            //Pickup coin = new Pickup(getMapTile(4,11).getLocation());
+            //pickups.add(coin);
+            
+            return pickups;
+    
         }
 
         // Where enemies will go

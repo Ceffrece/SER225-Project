@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -114,6 +115,17 @@ public class DungeonRoom8 extends Map {
             enemies.add(eggssassin1);
             
             return enemies;
+        }
+        
+        // Where coins go
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            //Pickup coin = new Pickup(getMapTile(4,11).getLocation());
+            //pickups.add(coin);
+            
+            return pickups;
+    
         }
 
         // Where the end of level door/sign is
