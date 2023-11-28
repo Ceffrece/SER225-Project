@@ -34,13 +34,33 @@ public class DungeonRoom9 extends Map {
     
             return enhancedMapTiles;
         }
-        
-        // Where coins go
         public ArrayList<Pickup> loadPickups() {
             ArrayList<Pickup> pickups = new ArrayList<>();
     
-            //Pickup coin = new Pickup(getMapTile(4,11).getLocation());
-            //pickups.add(coin);
+            Pickup coin = new Pickup(getMapTile(8,16).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(16,16).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(20,2).getLocation());
+            pickups.add(coin2);
+            Pickup coin2a = new Pickup(getMapTile(19,2).getLocation());
+            pickups.add(coin2a);
+            Pickup coin2b = new Pickup(getMapTile(21,2).getLocation());
+            pickups.add(coin2b);
+            Pickup coin2c = new Pickup(getMapTile(20,1).getLocation());
+            pickups.add(coin2c);
+            Pickup coin2d = new Pickup(getMapTile(20,3).getLocation());
+            pickups.add(coin2d);
+    
+            Pickup coin3 = new Pickup(getMapTile(12,16).getLocation());
+            pickups.add(coin3);
+    
+            
+    
+            Pickup coin5 = new Pickup(getMapTile(16,4).getLocation());
+            pickups.add(coin5);
             
             return pickups;
     

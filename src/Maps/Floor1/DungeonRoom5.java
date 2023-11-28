@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.HickoryHamHurler;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -34,6 +35,30 @@ public class DungeonRoom5 extends Map {
     
             return enhancedMapTiles;
         }
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(15,9).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(22,9).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(15,15).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(22,15).getLocation());
+            pickups.add(coin3);
+    
+            Pickup coin4 = new Pickup(getMapTile(9,9).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(9,2).getLocation());
+            pickups.add(coin5);
+            
+            return pickups;
+    
+        }
 
         // Where coins go
         public ArrayList<Pickup> loadPickups() {
@@ -50,13 +75,13 @@ public class DungeonRoom5 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(19, 5).getLocation());
-            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller1);
+            HickoryHamHurler hickoryhamhurler1 = new HickoryHamHurler(0, getMapTile(19, 5).getLocation());
+            hickoryhamhurler1.setExistenceFlag("hasTalkedToHickoryHamHurler");
+            enemies.add(hickoryhamhurler1);
 
-            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(5, 19).getLocation());
-            cerealkiller2.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(cerealkiller2);
+            HickoryHamHurler hickoryhamhurler2 = new HickoryHamHurler(0, getMapTile(5, 19).getLocation());
+            hickoryhamhurler2.setExistenceFlag("hasTalkedToHickoryHamHurler");
+            enemies.add(hickoryhamhurler2);
     
             Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(19, 19).getLocation());
             eggssassin1.setExistenceFlag("hasTalkedToEggssassin");

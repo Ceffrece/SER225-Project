@@ -100,7 +100,7 @@ public class RandomChangeMapScript extends Script {
                         for(int i = 0; i >= floorsVisited.size(); i++){
                             floor1.add(floorsVisited.get(i));
                         }
-                        map.setIdSwitch(100);
+                        map.setIdSwitch(111);
                     }
                     break;
                 case 2:
@@ -128,7 +128,7 @@ public class RandomChangeMapScript extends Script {
                         floor3.remove(mapToGoTo-1);
                     }
                     else{
-                        //change to boss room
+                        //change to shop room
                         for(int i = 0; i >= floorsVisited.size(); i++){
                             floor3.add(floorsVisited.get(i));
                         }

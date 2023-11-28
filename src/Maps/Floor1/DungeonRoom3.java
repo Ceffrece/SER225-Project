@@ -68,6 +68,26 @@ public class DungeonRoom3 extends Map {
             
             return enemies;
         }
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(9,14).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(14,14).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(9,9).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(14,9).getLocation());
+            pickups.add(coin3);
+    
+            
+            
+            return pickups;
+    
+        }
 
         // Where the end of level door/sign is
     @Override

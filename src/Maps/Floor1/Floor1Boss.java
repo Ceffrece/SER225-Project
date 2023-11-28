@@ -55,7 +55,7 @@ public class Floor1Boss extends Map {
     public void loadScripts() {
         
 
-        getMapTile(12,2).setInteractScript(new ChangeMapScript(0));
+        getMapTile(12,2).setInteractScript(new RandomChangeMapScript(2));
     }
     
 }
