@@ -69,6 +69,7 @@ public class GamePanel extends JPanel {
 
 	private SpriteFont drawPlayerStat;
 	private SpriteFont drawPlayerStatString;
+	private SpriteFont expBar;
 
 
 
@@ -204,7 +205,9 @@ public class GamePanel extends JPanel {
 		healthBar.setOutlineColor(Color.black);
 		healthBar.setOutlineThickness(2.0f);
 		
-
+		expBar = new SpriteFont("Skill Points: " + Player.playerXPLevel, 20, 40, "Comic Sans", 30, Colors.CORNFLOWER_BLUE);
+		expBar.setOutlineColor(Color.black);
+		expBar.setOutlineThickness(3);
 		currentFPS = Config.TARGET_FPS;
 
 		// this game loop code will run in a separate thread from the rest of the program
@@ -341,6 +344,9 @@ public class GamePanel extends JPanel {
 		for(int i = Player.playerHealth; i < Player.getMaxHealth() ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
+		//Draws experience bar
+		expBar.draw(graphicsHandler);
+		expBar.setText("Skill Points: " + Player.playerXPLevel);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){

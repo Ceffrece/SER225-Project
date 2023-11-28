@@ -172,7 +172,7 @@ public class Enemy extends MapEntity
                 timer = 0;
         }
 
-        timer += random.nextInt(5,30);
+        timer += random.nextInt(25) + 5;
         
         //if(Player.invincibilityTimer > 0){
         //    Player.invincibilityTimer -= 1;
