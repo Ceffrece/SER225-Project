@@ -25,6 +25,7 @@ public class Enemy extends MapEntity
     protected int id = 0;
     // protected int health = 5; no longer needed
     public int health = 5;
+    public boolean canShoot = true;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
     public SecureRandom random;
@@ -48,6 +49,20 @@ public class Enemy extends MapEntity
         graphicsHandler = new GraphicsHandler();
         random = new SecureRandom();
 
+        super.setIdentity("enemy");
+        this.id = id;
+        
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+
+        enemyCurrentProjectiles.add(carrotProjectile);
+    }
+    //class for kiwi
+    public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation,boolean canShoot)
+    {
+        super(x, y, spriteSheet, startingAnimation);
+        isUncollidable = true;
+        random = new SecureRandom();
+        this.canShoot = canShoot;
         super.setIdentity("enemy");
         this.id = id;
         
@@ -170,7 +185,7 @@ public class Enemy extends MapEntity
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
-        if(timer >= 5500){
+        if(timer >= 5500 && canShoot){
                 EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"), 8, 8), "DEFAULT", 150);
                 map.addEnemyProjectile(pro);
                 timer = 0;
