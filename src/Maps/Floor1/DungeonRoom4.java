@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.KiwiKamikaze;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -51,13 +52,13 @@ public class DungeonRoom4 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(7, 14).getLocation());
-            cerealkiller2.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(cerealkiller2);
-    
-            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(11, 14).getLocation());
-            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller1);
+            KiwiKamikaze kiwikamikaze1 = new KiwiKamikaze(0, getMapTile(11, 14).getLocation());
+            kiwikamikaze1.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            enemies.add(kiwikamikaze1);
+
+            KiwiKamikaze kiwikamikaze2 = new KiwiKamikaze(0, getMapTile(5, 18).getLocation());
+            kiwikamikaze2.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            enemies.add(kiwikamikaze2);
             
             return enemies;
         }

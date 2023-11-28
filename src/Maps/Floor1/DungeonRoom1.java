@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.KiwiKamikaze;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.Enemy;
@@ -81,6 +82,10 @@ public class DungeonRoom1 extends Map {
             Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(12, 5).getLocation());
             eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
             enemies.add(eggssassin1);
+
+            KiwiKamikaze kiwikamikaze1 = new KiwiKamikaze(0, getMapTile(11, 14).getLocation());
+            kiwikamikaze1.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            enemies.add(kiwikamikaze1);
     
            
     
