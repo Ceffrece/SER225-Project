@@ -49,16 +49,7 @@ public class DungeonRoom4 extends Map {
             return enhancedMapTiles;
         }
 
-        // Where coins go
-        public ArrayList<Pickup> loadPickups() {
-            ArrayList<Pickup> pickups = new ArrayList<>();
-    
-            //Pickup coin = new Pickup(getMapTile(4,11).getLocation());
-            //pickups.add(coin);
-            
-            return pickups;
-    
-        }
+
         
         // Where enemies will go
         public ArrayList<Enemy> loadEnemies() {
