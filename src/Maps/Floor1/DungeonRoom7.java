@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.HickoryHamHurler;
+import Enemy.PastaPoltergeist;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -38,17 +40,17 @@ public class DungeonRoom7 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            CerealKiller cerealkiller2 = new CerealKiller(0, getMapTile(11, 15).getLocation());
-            cerealkiller2.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(cerealkiller2);
+            HickoryHamHurler hickoryhamhurler1 = new HickoryHamHurler(0, getMapTile(11, 15).getLocation());
+            hickoryhamhurler1.setExistenceFlag("hasTalkedToHickoryHamHurler");
+            enemies.add(hickoryhamhurler1);
     
-            CerealKiller cerealkiller1 = new CerealKiller(0, getMapTile(18, 8).getLocation());
-            cerealkiller1.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller1);
+            PastaPoltergeist pastapoltergeist1 = new PastaPoltergeist(0, getMapTile(18, 8).getLocation());
+            pastapoltergeist1.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(pastapoltergeist1);
 
-            CerealKiller cerealkiller3 = new CerealKiller(0, getMapTile(19, 18).getLocation());
-            cerealkiller3.setExistenceFlag("hasTalkedToCerealKiller");
-            enemies.add(cerealkiller3);
+            PastaPoltergeist pastapoltergeist2 = new PastaPoltergeist(0, getMapTile(19, 18).getLocation());
+            pastapoltergeist2.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(pastapoltergeist2);
             
             return enemies;
         }

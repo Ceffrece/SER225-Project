@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.HickoryHamHurler;
+import Enemy.PastaPoltergeist;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -109,9 +111,13 @@ public class DungeonRoom8 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(18, 10).getLocation());
-            eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
-            enemies.add(eggssassin1);
+            HickoryHamHurler hickoryhamhurler1 = new HickoryHamHurler(0, getMapTile(18, 10).getLocation());
+            hickoryhamhurler1.setExistenceFlag("hasTalkedToHickoryHamHurler");
+            enemies.add(hickoryhamhurler1);
+
+            PastaPoltergeist pastapoltergeist1 = new PastaPoltergeist(0, getMapTile(15, 8).getLocation());
+            pastapoltergeist1.setExistenceFlag("hasTalkedToCerealKiller");
+            enemies.add(pastapoltergeist1);
             
             return enemies;
         }
