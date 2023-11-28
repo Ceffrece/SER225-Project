@@ -16,6 +16,9 @@ import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
 import Utils.Direction;
 import Utils.Point;
+import SpriteFont.SpriteFont;
+import Utils.Colors;
+import java.awt.*;
 // This class is a base class for all Enemies in the game - all enemies should extend from it
 public class Enemy extends MapEntity
 {
@@ -26,7 +29,7 @@ public class Enemy extends MapEntity
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
     public SecureRandom random;
-
+    public GraphicsHandler graphicsHandler;
     public static int cooldown = 0;
     public static boolean readyToFire = false;
     public static int attackSpeed = 2;
@@ -37,11 +40,13 @@ public class Enemy extends MapEntity
     protected String currentProjectile = "peaProjectile";
     public static ArrayList<Projectile> enemyCurrentProjectiles = new ArrayList<>();
     public static int projectileInHand = 0;
-    
+    public static SpriteFont damageText = new SpriteFont("-", -100, -100 + 10,"Comic Sans", 25, Color.red);
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
     {
+        
         super(x, y, spriteSheet, startingAnimation);
         isUncollidable = true;
+        graphicsHandler = new GraphicsHandler();
         random = new SecureRandom();
 
         super.setIdentity("enemy");
@@ -211,7 +216,7 @@ public class Enemy extends MapEntity
         super.draw(graphicsHandler);
     }
     public int getID(){
-        return id;
+        return id; 
     }
     // 
     public int getHealth() {
@@ -223,12 +228,17 @@ public class Enemy extends MapEntity
     public void hurtEnemy(int damage) {
         
         this.health -= damage;
-        System.out.println("Hit for "+ damage + " left "+ health);
+        damageText = new SpriteFont("DAMAGE PER SHOT: -" + damage, 480,520,"Comic Sans", 18, Color.red);
+        damageText.setOutlineColor(Color.black);
+        damageText.setOutlineThickness(3);
         if (health <= 0){
             Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
             testXPOrb.setIdentity("xpOrb");
             map.addPickup(testXPOrb);
             this.mapEntityStatus = MapEntityStatus.REMOVED;
         }
+    }
+    public static SpriteFont getEnemyText(){
+        return damageText;
     }
 }
