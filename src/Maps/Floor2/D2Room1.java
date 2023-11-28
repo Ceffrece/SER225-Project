@@ -9,6 +9,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.NPC;
 import Level.Tileset;
 import NPCs.Walrus;
@@ -61,6 +62,26 @@ public class D2Room1 extends Map {
         enhancedMapTiles.add(spikes8);
     
             return enhancedMapTiles;
+        }
+
+        // Where coins go
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(5,5).getLocation());
+            pickups.add(coin);
+
+            Pickup coin2 = new Pickup(getMapTile(5,10).getLocation());
+            pickups.add(coin2);
+
+            Pickup coin3 = new Pickup(getMapTile(15,5).getLocation());
+            pickups.add(coin3);
+
+            Pickup coin4 = new Pickup(getMapTile(15,10).getLocation());
+            pickups.add(coin4);
+            
+            return pickups;
+    
         }
 
         // Where enemies will go

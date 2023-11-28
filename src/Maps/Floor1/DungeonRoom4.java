@@ -10,6 +10,7 @@ import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
 import Level.Enemy;
 import Level.Map;
+import Level.Pickup;
 import Level.Tileset;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
@@ -48,6 +49,8 @@ public class DungeonRoom4 extends Map {
             return enhancedMapTiles;
         }
 
+
+        
         // Where enemies will go
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
@@ -62,7 +65,30 @@ public class DungeonRoom4 extends Map {
             
             return enemies;
         }
-
+        public ArrayList<Pickup> loadPickups() {
+            ArrayList<Pickup> pickups = new ArrayList<>();
+    
+            Pickup coin = new Pickup(getMapTile(7,14).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(11,14).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(9,36).getLocation());
+            pickups.add(coin2);
+    
+            Pickup coin3 = new Pickup(getMapTile(8,33).getLocation());
+            pickups.add(coin3);
+    
+            Pickup coin4 = new Pickup(getMapTile(10,33).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(9,40).getLocation());
+            pickups.add(coin5);
+            
+            return pickups;
+    
+        }
         // Where the end of level door/sign is
     @Override
     public void loadScripts() {
