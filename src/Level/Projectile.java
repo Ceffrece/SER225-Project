@@ -8,6 +8,7 @@ import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
+import SpriteFont.SpriteFont;
 import GameObject.Frame;
 import Utils.Direction;
 
@@ -25,7 +26,7 @@ public class Projectile extends MapEntity{
         private String curentProjectile;
         //index for what projectile is going to be shot
         private int projectileChosen = 0;
-
+        private SpriteFont damageText;
         protected int existenceFrames = (Player.attackRange)*25+25;
         int turn = existenceFrames/2;
 
@@ -40,7 +41,7 @@ public class Projectile extends MapEntity{
 
         public Projectile(Utils.Point location, SpriteSheet spriteSheet, String startingAnimation, int shootTime) {
                 super(location.x, location.y, spriteSheet, startingAnimation);
-                this.shootTime = shootTime;                
+                this.shootTime = shootTime;             
             }
         
             public Projectile(float x, float y, HashMap<String, Frame[]> animations, String startingAnimation) {
@@ -185,6 +186,8 @@ public class Projectile extends MapEntity{
             }       
             public void touchedEnemy(MapEntity enemy){
                 System.out.println("Hurting enemy");
+                damageText = new SpriteFont("-" + damage, enemy.getX(),enemy.getY() + 10,"Comic Sans", 25, Color.red);
+                System.out.println(enemy.getX());
                 enemy.hurtEnemy(this.damage);
             }
 

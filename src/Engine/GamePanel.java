@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import Level.Currency;
 import Level.Map;
 import Level.Player;
+import Level.Enemy;
 import Maps.Floor1.Floor1Boss;
 import Maps.Floor2.Floor2Boss;
 import Maps.Floor3.Floor3Boss;
@@ -346,6 +347,7 @@ public class GamePanel extends JPanel {
 		}
 		//Draws experience bar
 		expBar.draw(graphicsHandler);
+		Enemy.getEnemyText().draw(graphicsHandler);
 		expBar.setText("Skill Points: " + Player.playerXPLevel);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
