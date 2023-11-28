@@ -350,7 +350,7 @@ public class GamePanel extends JPanel {
 		//shows coins
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/Coin.png"), 700, 0,75,75);
 		String curencyString = Currency.normalCurrency + "";
-		SpriteFont curencyStringLable = new SpriteFont(curencyString, 650, -10, "Chalkduster", 70, Color.white);
+		SpriteFont curencyStringLable = new SpriteFont(curencyString, 600, -10, "Chalkduster", 70, Color.white);
 		curencyStringLable.setOutlineColor(Color.white);
 		curencyStringLable.setOutlineThickness(2.0f);
 		curencyStringLable.draw(graphicsHandler);
