@@ -20,9 +20,9 @@ public class D3Room7 extends Map {
 
     public D3Room7() {
         super("D3Room7.txt", new Floor3Tileset());
-        // this.playerStartPosition = getMapTile(4, 19).getLocation();
+        this.playerStartPosition = getMapTile(1, 28).getLocation();
         this.mapInt = 27;
-        this.idSwitch = 27;                //Aka ""
+        this.idSwitch = 27;                //Aka "Spyglass Clash"
         }
 
         // Where enhanced map tiles go (aka spikes)
@@ -39,8 +39,23 @@ public class D3Room7 extends Map {
         public ArrayList<Pickup> loadPickups() {
             ArrayList<Pickup> pickups = new ArrayList<>();
     
-            //Pickup coin = new Pickup(getMapTile(4,11).getLocation());
-            //pickups.add(coin);
+            Pickup coin = new Pickup(getMapTile(2,28).getLocation());
+            pickups.add(coin);
+    
+            Pickup coin1 = new Pickup(getMapTile(3,25).getLocation());
+            pickups.add(coin1);
+    
+            Pickup coin2 = new Pickup(getMapTile(7,23).getLocation());
+            pickups.add(coin2);
+
+            Pickup coin3 = new Pickup(getMapTile(10,18).getLocation());
+            pickups.add(coin3);
+
+            Pickup coin4 = new Pickup(getMapTile(16,14).getLocation());
+            pickups.add(coin4);
+    
+            Pickup coin5 = new Pickup(getMapTile(21,7).getLocation());
+            pickups.add(coin5);
             
             return pickups;
     
@@ -50,7 +65,13 @@ public class D3Room7 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(23, 2).getLocation());
+            spineapple1.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple1);
+
+            Spineapple spineapple2 = new Spineapple(0, getMapTile(27, 6).getLocation());
+            spineapple2.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple2);
             
             return enemies;
         }
@@ -59,7 +80,7 @@ public class D3Room7 extends Map {
     @Override
     public void loadScripts() {
 
-        //getMapTile(19,4).setInteractScript(new RandomChangeMapScript(3));
+        getMapTile(27,2).setInteractScript(new RandomChangeMapScript(3));
     }
     
 }
