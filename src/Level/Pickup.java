@@ -13,6 +13,8 @@ import Utils.Point;
 public class Pickup extends Item{
     private int xpValue;
     private boolean xp;
+    private boolean heart;
+
     private boolean coinPick;
     public Pickup (Point location, SpriteSheet ss, String startingAnimation, int xpValue){
         super(location, ss, startingAnimation);
@@ -27,6 +29,12 @@ public class Pickup extends Item{
         coinPick = true;
         initialize();
     }
+    public Pickup (Point location, String wow){
+        super(location, new SpriteSheet(ImageLoader.load("GUISprites/HeartFull.png"),8,8),"DEFAULT");
+        showDescription = false;
+        heart = true;
+        initialize();
+    }
     public void update(Player player){
         if(this.overlaps(player)){
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
@@ -38,6 +46,11 @@ public class Pickup extends Item{
             }
             else if (coinPick){
                 Currency.normalCurrency ++;
+            }
+            else if (heart){
+                if (Player.maxHealth > Player.playerHealth){
+                    Player.playerHealth ++;
+                }
             }
 
         }

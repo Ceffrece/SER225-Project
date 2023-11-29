@@ -232,10 +232,19 @@ public class Enemy extends MapEntity
         damageText.setOutlineColor(Color.black);
         damageText.setOutlineThickness(3);
         if (health <= 0){
-            Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
+            Pickup testXPOrb = new Pickup(this.getLocation().addX(-10), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
             testXPOrb.setIdentity("xpOrb");
             map.addPickup(testXPOrb);
+             
+            if( random.nextInt(0,6) == 1){
+                Pickup healthPickup= new Pickup(this.getLocation().addX(10), "wow");
+                map.addPickup(healthPickup);
+             }
+            
+
+            
             this.mapEntityStatus = MapEntityStatus.REMOVED;
+
         }
     }
     public static SpriteFont getEnemyText(){
