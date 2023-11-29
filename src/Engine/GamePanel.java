@@ -295,7 +295,7 @@ public class GamePanel extends JPanel {
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 		}
-		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){ 
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 			Game.bossMusic1.pause();
