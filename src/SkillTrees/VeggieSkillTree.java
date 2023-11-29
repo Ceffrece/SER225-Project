@@ -224,7 +224,6 @@ public class VeggieSkillTree {
     public void unlockAll(){
         for(SkillTreeNode node : array){
             node.setUnlockedStatus(true);
-            Player.addPlayerHealth(5);
         }
     }
 }

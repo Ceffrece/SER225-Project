@@ -257,7 +257,6 @@ public class FruitSkillTree {
     public void unlockAll() {
         for(SkillTreeNode node : array){
             node.setUnlockedStatus(true);
-            Player.addWalkSpeed(6f);
         }
     } 
 }

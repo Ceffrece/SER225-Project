@@ -384,7 +384,7 @@ public class GamePanel extends JPanel {
 		for(int i = 0; i <= Player.playerHealth-1; i++){
 			fullHearts[i].draw(graphicsHandler);
 		}
-		for(int i = Player.playerHealth; i < Player.getMaxHealth() ; i++){
+		for(int i = Player.playerHealth; i < Player.getMaxHealth(); i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
 		//Draws experience bar
