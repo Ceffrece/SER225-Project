@@ -92,19 +92,19 @@ public class KiwiKamikaze extends Enemy
         {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
-            walk(Direction.RIGHT, 4f);
+            walk(Direction.RIGHT, 3f);
         }
         if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
         {
-            walk(Direction.LEFT, 4f);
+            walk(Direction.LEFT, 3f);
         }
         if (Math.round(getBoundsY2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsY2()))
         {
-            walk(Direction.DOWN, 4f);
+            walk(Direction.DOWN, 3f);
         }
         if (Math.round(getBoundsY1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsY1()))
         {
-            walk(Direction.UP,4f);
+            walk(Direction.UP,3f);
         }
         }
 
