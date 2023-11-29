@@ -41,7 +41,7 @@ public abstract class Player extends GameObject {
     public static boolean readyToFire = false;
     
 
-    public static float walkSpeed = 8.3f;
+    public static float walkSpeed = 5.2f;
     public static int attackSpeed = 2;
     public static int attackRange = 1;
     public static int playerHealth = 5;
@@ -93,7 +93,7 @@ public abstract class Player extends GameObject {
     protected static Key MOVE_UP_KEY = Key.W;
     protected static Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
-    protected Key FIRE_KEY = Key.F;
+    protected Key FIRE_KEY = Key.J;
 
     protected Key CHANGE_PROJECT = Key.SHIFT;
 
@@ -106,7 +106,7 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        Currency currency = new Currency(0,10);
+        Currency currency = new Currency(40,10);
 
         riceBallProjectile riceBallProjectile = new riceBallProjectile(getLocation(), null);
         
@@ -433,7 +433,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -450,7 +449,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -521,7 +519,6 @@ public abstract class Player extends GameObject {
                 this.currentAnimationName = "STAND_RIGHT";
             }else{
                 this.currentAnimationName = "STAND_RIGHT_DAMAGED";
-                System.out.println("TRYING DAMAGED SPRITE");
             }
         }
         else if (direction == Direction.LEFT) {

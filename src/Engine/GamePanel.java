@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import Level.Currency;
 import Level.Map;
 import Level.Player;
+import Level.Enemy;
 import Maps.Floor1.Floor1Boss;
 import Maps.Floor2.Floor2Boss;
 import Maps.Floor3.Floor3Boss;
@@ -69,6 +70,7 @@ public class GamePanel extends JPanel {
 
 	private SpriteFont drawPlayerStat;
 	private SpriteFont drawPlayerStatString;
+	private SpriteFont expBar;
 
 
 
@@ -204,7 +206,9 @@ public class GamePanel extends JPanel {
 		healthBar.setOutlineColor(Color.black);
 		healthBar.setOutlineThickness(2.0f);
 		
-
+		expBar = new SpriteFont("Skill Points: " + Player.playerXPLevel, 20, 40, "Comic Sans", 30, Colors.CORNFLOWER_BLUE);
+		expBar.setOutlineColor(Color.black);
+		expBar.setOutlineThickness(3);
 		currentFPS = Config.TARGET_FPS;
 
 		// this game loop code will run in a separate thread from the rest of the program
@@ -241,13 +245,6 @@ public class GamePanel extends JPanel {
 		updateShowFPSState();
 		updateSkillTreeState();
 		updateInventoryState();
-		levelCount++;
-		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
-			Player.playerXPLevel += 10;
-			levelCount = 0;
-			System.out.println("Level is " + Player.playerXPLevel);
-		}
-
 		if(isGamePaused || skillTreeActivated|| isInventoryActivated){
 
 		}
@@ -341,6 +338,10 @@ public class GamePanel extends JPanel {
 		for(int i = Player.playerHealth; i < Player.getMaxHealth() ; i++){
 			emptyHearts[i].draw(graphicsHandler);
 		}
+		//Draws experience bar
+		expBar.draw(graphicsHandler);
+		Enemy.getEnemyText().draw(graphicsHandler);
+		expBar.setText("Skill Points: " + Player.playerXPLevel);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
@@ -350,7 +351,7 @@ public class GamePanel extends JPanel {
 		//shows coins
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/Coin.png"), 700, 0,75,75);
 		String curencyString = Currency.normalCurrency + "";
-		SpriteFont curencyStringLable = new SpriteFont(curencyString, 650, -10, "Chalkduster", 70, Color.white);
+		SpriteFont curencyStringLable = new SpriteFont(curencyString, 600, -10, "Chalkduster", 70, Color.white);
 		curencyStringLable.setOutlineColor(Color.white);
 		curencyStringLable.setOutlineThickness(2.0f);
 		curencyStringLable.draw(graphicsHandler);

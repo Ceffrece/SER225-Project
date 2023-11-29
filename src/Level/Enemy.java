@@ -16,16 +16,20 @@ import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
 import Utils.Direction;
 import Utils.Point;
+import SpriteFont.SpriteFont;
+import Utils.Colors;
+import java.awt.*;
 // This class is a base class for all Enemies in the game - all enemies should extend from it
 public class Enemy extends MapEntity
 {
     protected int id = 0;
     // protected int health = 5; no longer needed
     public int health = 5;
+    public boolean canShoot = true;
     protected EnemyState enemyState;
     protected EnemyState previousEnemyState;
     public SecureRandom random;
-
+    public GraphicsHandler graphicsHandler;
     public static int cooldown = 0;
     public static boolean readyToFire = false;
     public static int attackSpeed = 2;
@@ -36,13 +40,29 @@ public class Enemy extends MapEntity
     protected String currentProjectile = "peaProjectile";
     public static ArrayList<Projectile> enemyCurrentProjectiles = new ArrayList<>();
     public static int projectileInHand = 0;
-    
+    public static SpriteFont damageText = new SpriteFont("-", -100, -100 + 10,"Comic Sans", 25, Color.red);
     public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation)
+    {
+        
+        super(x, y, spriteSheet, startingAnimation);
+        isUncollidable = true;
+        graphicsHandler = new GraphicsHandler();
+        random = new SecureRandom();
+
+        super.setIdentity("enemy");
+        this.id = id;
+        
+        carrotProjectile carrotProjectile = new carrotProjectile(getLocation(), null);
+
+        enemyCurrentProjectiles.add(carrotProjectile);
+    }
+    //class for kiwi
+    public Enemy(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation,boolean canShoot)
     {
         super(x, y, spriteSheet, startingAnimation);
         isUncollidable = true;
         random = new SecureRandom();
-
+        this.canShoot = canShoot;
         super.setIdentity("enemy");
         this.id = id;
         
@@ -143,7 +163,6 @@ public class Enemy extends MapEntity
         if (direction == Direction.UP)
         {
             moveY(-speed);
-            //moveYHandleCollision(speed) suggestion from Alex, look for this in the player.java, this is how players don't run into trees
         }
         else if (direction == Direction.DOWN)
         {
@@ -166,13 +185,13 @@ public class Enemy extends MapEntity
         walkTowardPlayer(player);
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
 
-        if(timer >= 5000){
-                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("Projectiles/riceBallProjectile.png"), 16, 16), "DEFAULT", 150);
+        if(timer >= 5500 && canShoot){
+                EnemyProjectile pro = new EnemyProjectile(this.getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/red.png"), 8, 8), "DEFAULT", 150);
                 map.addEnemyProjectile(pro);
                 timer = 0;
         }
 
-        timer += random.nextInt(5,30);
+        timer += random.nextInt(25) + 5;
         
         //if(Player.invincibilityTimer > 0){
         //    Player.invincibilityTimer -= 1;
@@ -197,7 +216,7 @@ public class Enemy extends MapEntity
         super.draw(graphicsHandler);
     }
     public int getID(){
-        return id;
+        return id; 
     }
     // 
     public int getHealth() {
@@ -209,12 +228,17 @@ public class Enemy extends MapEntity
     public void hurtEnemy(int damage) {
         
         this.health -= damage;
-        System.out.println("Hit for "+ damage + " left "+ health);
+        damageText = new SpriteFont("DAMAGE PER SHOT: -" + damage, 480,520,"Comic Sans", 18, Color.red);
+        damageText.setOutlineColor(Color.black);
+        damageText.setOutlineThickness(3);
         if (health <= 0){
             Pickup testXPOrb = new Pickup(this.getLocation(), new SpriteSheet(ImageLoader.load("Pickups/xpOrb.png"),7,7),"DEFAULT",1);
             testXPOrb.setIdentity("xpOrb");
             map.addPickup(testXPOrb);
             this.mapEntityStatus = MapEntityStatus.REMOVED;
         }
+    }
+    public static SpriteFont getEnemyText(){
+        return damageText;
     }
 }

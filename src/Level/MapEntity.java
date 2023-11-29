@@ -131,5 +131,11 @@ public class MapEntity extends GameObject {
 
     public void hurtEnemy(int damage) {
     }
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
 }
 

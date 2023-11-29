@@ -63,34 +63,34 @@ public class Shop extends Map {
             filename = "Projectiles/peaProjectile.png";
             projectileToAdd = "peaProjectile" ;
             description = "Pea Projectile";
-            cost = 5;
+            cost = 10;
                 break;
             case 2:
             filename = "GUISprites/cheeseIcon.png";
             projectileToAdd = "cheese";
             description = "Three Cheese Maneige";
-            cost = 15;
+            cost = 35;
                 break;
             case 3:
             filename ="Projectiles/bannanaProjectile.png" ;
             projectileToAdd = "bannanaProjectile";
             description = "bannana Boomerang";
 
-            cost = 8;
+            cost = 18;
                 break;
             case 4:
             filename = "Projectiles/pepPro.png";
             projectileToAdd = "peporoniSlicer";
             description = "Peporoni Slicer";
 
-            cost = 10;
+            cost = 25;
 
                  break;
             case 5:
             filename = "GUISprites/carrotIcon.png";
             projectileToAdd = "carrotProjectile";
             description = "Carrot Shot";
-            cost = 7;
+            cost = 20;
                  break;
         }
 
@@ -111,7 +111,7 @@ public class Shop extends Map {
         }
         else{
             StatAdd = 4;
-            cost = 22;
+            cost = 32;
         }
         
         String statString = "";
