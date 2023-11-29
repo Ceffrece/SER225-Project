@@ -115,7 +115,7 @@ public class FruitSkillTree {
                 }
                 if(node == rightSkill1){
                     if(!rightSkill1.getUnlockedStatus()){
-                        Player.addWalkSpeed(10f);
+                        Player.addWalkSpeed(1f);
                         rightSkill1.setUnlockedStatus(true);
                         unlock = true;
                     }
