@@ -159,8 +159,20 @@ public class GamePanel extends JPanel {
 	private boolean gameStart;
 	private final Key skillTreeKey = Key.T;
 	private boolean skillTreeActivated = false;
-	private final Key levelKey = Key.L;
 	private final Key inventoryKey = Key.I;
+
+	private final Key ultSwitchKey = Key.M;
+	private boolean ultActivated = false;
+	private SpriteFont ultText1; 
+	private SpriteFont ultText2; 
+	private SpriteFont ultText3; 
+	private SpriteFont ultText4; 
+	private SpriteFont ultText5; 
+
+	
+	//Dev tools
+	private final Key levelKey = Key.K;
+	private final Key unlockKey = Key.U;
 
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
@@ -197,6 +209,11 @@ public class GamePanel extends JPanel {
 		currentItems = new SpriteFont("Current Items", 50,150,"Sans Serif", 50, Color. WHITE);
 		playerStats = new SpriteFont("Current Player Stats", 50,250,"Sans Serif", 50, Color. WHITE);
 
+		ultText1 = new SpriteFont(FruitSkillTree.ultimateFruitSkill.getName(), 100, 50, "Sans Serif", 50, Color.BLACK);
+		ultText2 = new SpriteFont(GrainSkillTree.ultimateGrainSkill.getName(), 100, 150, "Sans Serif", 50, Color.BLACK);
+		ultText3 = new SpriteFont(VeggieSkillTree.ultimateVeggieSkill.getName(), 100, 250, "Sans Serif", 50, Color.BLACK);
+		ultText4 = new SpriteFont(ProteinSkillTree.ultimateProteinSkill.getName(), 100, 350, "Sans Serif", 50, Color.BLACK);
+		ultText5 = new SpriteFont(DairySkillTree.ultimateDairySkill.getName(),100, 450, "Sans Serif", 50, Color.BLACK);
 
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
@@ -245,14 +262,27 @@ public class GamePanel extends JPanel {
 		updateShowFPSState();
 		updateSkillTreeState();
 		updateInventoryState();
-		levelCount++;
-		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
+		updateUltSwitchState();
+
+		//Dev Tools
+		if(Keyboard.isKeyDown(levelKey)){
 			Player.playerXPLevel += 10;
-			levelCount = 0;
-			System.out.println("Level is " + Player.playerXPLevel);
+		}
+		if(Keyboard.isKeyDown(unlockKey)){
+			fruit.unlockAll();
+			grain.unlockAll();
+			protein.unlockAll();
+			veggie.unlockAll();
+			dairy.unlockAll();
+			Player.playerUltimates.add(FruitSkillTree.ultimateFruitSkill);
+			Player.playerUltimates.add(GrainSkillTree.ultimateGrainSkill);
+			Player.playerUltimates.add(ProteinSkillTree.ultimateProteinSkill);
+			Player.playerUltimates.add(VeggieSkillTree.ultimateVeggieSkill);
+			Player.playerUltimates.add(DairySkillTree.ultimateDairySkill);
 		}
 
-		if(isGamePaused || skillTreeActivated|| isInventoryActivated){
+		//Pause logic
+		if(isGamePaused || skillTreeActivated|| isInventoryActivated || ultActivated){
 
 		}
 		else{
@@ -302,7 +332,7 @@ public class GamePanel extends JPanel {
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 		}
-		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){ 
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 			Game.bossMusic1.pause();
@@ -316,6 +346,18 @@ public class GamePanel extends JPanel {
 
 		if (Keyboard.isKeyUp(skillTreeKey)) {
 			keyLocker.unlockKey(skillTreeKey);
+		}
+	}
+	private void updateUltSwitchState() {
+		if(Keyboard.isKeyDown(ultSwitchKey) && !keyLocker.isKeyLocked(ultSwitchKey)) {
+			ultActivated = !ultActivated;
+			keyLocker.lockKey(ultSwitchKey);
+		}
+		if(Keyboard.isKeyUp(ultSwitchKey)) {
+			keyLocker.unlockKey(ultSwitchKey);
+		}
+		if(ultActivated && Keyboard.isKeyDown(Key.ESC)){
+			ultActivated = !ultActivated;
 		}
 	}
 
@@ -349,6 +391,9 @@ public class GamePanel extends JPanel {
 		expBar.draw(graphicsHandler);
 		Enemy.getEnemyText().draw(graphicsHandler);
 		expBar.setText("Skill Points: " + Player.playerXPLevel);
+		//Draws Ult Bar
+		graphicsHandler.drawFilledRectangle(10, 150, 100, 20, Color.GRAY);
+		graphicsHandler.drawFilledRectangle(10, 150, (int) ((Player.ultMeter/1000.0)*100), 20, Color.BLUE);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
@@ -379,6 +424,12 @@ public class GamePanel extends JPanel {
 		if(PlayLevelScreen.inBossFight1){
 			showBossHealth1();
 		}
+		if(PlayLevelScreen.inBossFight2){
+			showBossHealth2();
+		}
+		if(PlayLevelScreen.inBossFight3){
+			showBossHealth3();
+		}
 		
 		}
 
@@ -398,6 +449,10 @@ public class GamePanel extends JPanel {
 			//graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(100,100,100,255));
 			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
 			displaySkillTree();
+		}
+
+		if(ultActivated){
+			displayUltSelector();
 		}
 
 		if (showFPS) {
@@ -590,8 +645,89 @@ public class GamePanel extends JPanel {
 		return select == true;
 	}
 
-
-
+	int ultTimer = 0;
+	int ultSelector = 0;
+	private void displayUltSelector(){
+		ultTimer++;
+		graphicsHandler.drawImage(skilltreeImg, 0,0,ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
+		if(Player.playerUltimates.contains(FruitSkillTree.ultimateFruitSkill)){
+			if(ultSelector == 0){
+				ultText1.setColor(Color.YELLOW);
+			}
+			else{
+				ultText1.setColor(Color.BLACK);
+			}
+			ultText1.draw(graphicsHandler);
+		}
+		if(Player.playerUltimates.contains(GrainSkillTree.ultimateGrainSkill)){
+			if(ultSelector == 1){
+				ultText2.setColor(Color.YELLOW);
+			}
+			else{
+				ultText2.setColor(Color.BLACK);
+			}
+			ultText2.draw(graphicsHandler);
+		}
+		if(Player.playerUltimates.contains(ProteinSkillTree.ultimateProteinSkill)){
+			if(ultSelector == 3){
+				ultText4.setColor(Color.YELLOW);
+			}
+			else{
+				ultText4.setColor(Color.BLACK);
+			}
+			ultText4.draw(graphicsHandler);
+		}
+		if(Player.playerUltimates.contains(VeggieSkillTree.ultimateVeggieSkill)){
+			if(ultSelector == 2){
+				ultText3.setColor(Color.YELLOW);
+			}
+			else{
+				ultText3.setColor(Color.BLACK);
+			}
+			ultText3.draw(graphicsHandler);
+		}
+		if(Player.playerUltimates.contains(DairySkillTree.ultimateDairySkill)){
+			if(ultSelector == 4){
+				ultText5.setColor(Color.YELLOW);
+			}
+			else{
+				ultText5.setColor(Color.BLACK);
+			}
+			ultText5.draw(graphicsHandler);
+		}
+		if(ultTimer > 20 && Keyboard.isKeyDown(Key.S)){
+			ultSelector++;
+			if(ultSelector > 4){
+				ultSelector = 0;
+			}
+			ultTimer = 0;
+		}
+		else if(ultTimer > 20 && Keyboard.isKeyDown(Key.W)){
+			ultSelector--;
+			if(ultSelector < 0){
+				ultSelector = 4;
+			}
+			ultTimer = 0;
+		}
+		else if(ultTimer > 20 && Keyboard.isKeyDown(Key.SPACE)){
+			if(ultSelector == 0 && Player.playerUltimates.contains(FruitSkillTree.ultimateFruitSkill)){
+				Player.currentUltimate = FruitSkillTree.ultimateFruitSkill;
+			}
+			else if(ultSelector == 1 && Player.playerUltimates.contains(GrainSkillTree.ultimateGrainSkill)){
+				Player.currentUltimate = GrainSkillTree.ultimateGrainSkill;
+			}
+			else if(ultSelector == 2 && Player.playerUltimates.contains(VeggieSkillTree.ultimateVeggieSkill)){
+				Player.currentUltimate = VeggieSkillTree.ultimateVeggieSkill;
+			}
+			else if(ultSelector == 3 && Player.playerUltimates.contains(ProteinSkillTree.ultimateProteinSkill)){
+				Player.currentUltimate = ProteinSkillTree.ultimateProteinSkill;
+			}
+			else if(ultSelector == 4 && Player.playerUltimates.contains(DairySkillTree.ultimateDairySkill)){
+				Player.currentUltimate = DairySkillTree.ultimateDairySkill;
+			}
+			System.out.println(Player.currentUltimate.getName());
+		}
+	}
 	
 	private void displaySkillTree(){
 		if(select){
@@ -1626,25 +1762,24 @@ public class GamePanel extends JPanel {
 			select = false;
 		}
 	}
-
 	public void showBossHealth1(){
 		Floor1Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 30, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 30, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor1Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth2(){
 		Floor2Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth3(){
 		Floor3Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 }

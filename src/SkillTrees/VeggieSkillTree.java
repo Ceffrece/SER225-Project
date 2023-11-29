@@ -18,7 +18,7 @@ public class VeggieSkillTree {
     private SkillTreeNode rightSkill2;
     private SkillTreeNode rightSkill3;
 
-    private SkillTreeNode ultimateVeggieSkill;
+    public static SkillTreeNode ultimateVeggieSkill;
 
     public static SkillTreeNode[] array = new SkillTreeNode[10];
 
@@ -76,6 +76,9 @@ public class VeggieSkillTree {
         return this.currentNode;
     }
 
+    public static SkillTreeNode getUltimate() {
+        return ultimateVeggieSkill;
+    }
 
     public void unlockNode(SkillTreeNode node){
         if(Player.playerXPLevel >= 1){
@@ -197,6 +200,7 @@ public class VeggieSkillTree {
                 if(node == ultimateVeggieSkill){
                     if(!ultimateVeggieSkill.getUnlockedStatus()){
                         ultimateVeggieSkill.setUnlockedStatus(true);
+                        Player.playerUltimates.add(ultimateVeggieSkill);
                         unlock = true;
                     }
                     else{
@@ -214,6 +218,12 @@ public class VeggieSkillTree {
         }
         else{
             System.out.println("Level not high enough");
+        }
+    }
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
         }
     }
 }

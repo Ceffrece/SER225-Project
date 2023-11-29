@@ -4,9 +4,6 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Music;
-import Game.GameState;
-import Game.ScreenCoordinator;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.GameObject;
 import GameObject.Rectangle;
@@ -14,20 +11,19 @@ import GameObject.SpriteSheet;
 import Level.Projectiles.bannanaProjectile;
 import Level.Projectiles.carrotProjectile;
 import Level.Projectiles.cheeseWheelSpike;
-import Level.Projectiles.fruitFlyProjectile;
 import Level.Projectiles.peaProjectile;
 import Level.Projectiles.peporoniSlicer;
 import Level.Projectiles.riceBallProjectile;
-import NPCs.Walrus;
+import SkillTrees.DairySkillTree;
+import SkillTrees.FruitSkillTree;
+import SkillTrees.GrainSkillTree;
+import SkillTrees.ProteinSkillTree;
+import SkillTrees.SkillTreeNode;
+import SkillTrees.VeggieSkillTree;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
-import Screens.SettingsScreen;
-import Screens.DeathScreen;
-import Screens.*;
 
-import Level.Map;
-import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Player extends GameObject {
@@ -76,10 +72,25 @@ public abstract class Player extends GameObject {
     public static ArrayList<Projectile> playerCurrentProjectiles = new ArrayList<>();
     public static int projectileInHand = 0;
 
+    //Ult Stuff
+    public boolean fruitActive = false;
+    public boolean grainActive = false;
+    public boolean proteinActive = false;
+    public boolean veggieActive = false;
+
+    public int fruitTimer = 0;
+    public int grainTimer = 0;
+    public int proteinTimer = 0;
+    public int veggieTimer = 0;
+
+    public static int ultMeter;
+
     // classes that listen to player events can be added to this list
     protected ArrayList<PlayerListener> listeners = new ArrayList<>();
 
     public static ArrayList<Integer> playerStats = new ArrayList<>();
+    public static ArrayList<SkillTreeNode> playerUltimates = new ArrayList<>();
+    public static SkillTreeNode currentUltimate = null;
 
     //Things with Items
     public static Item currentItem = null;
@@ -94,6 +105,7 @@ public abstract class Player extends GameObject {
     protected static Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key FIRE_KEY = Key.J;
+    protected Key ULTIMATE_KEY = Key.L;
 
     protected Key CHANGE_PROJECT = Key.SHIFT;
 
@@ -160,8 +172,70 @@ public abstract class Player extends GameObject {
 
         updateLockedKeys();
         
-       
 
+        //Ult Stuff
+        if(ultMeter >= 1000){
+            ultMeter = 1000;
+        }
+        else{
+            ultMeter++;
+        }
+        if(ultMeter >= 1000 && currentUltimate != null && Keyboard.isKeyDown(ULTIMATE_KEY)){ //ultbar is full and ult is not null
+            if(currentUltimate == FruitSkillTree.getUltimate()){
+                walkSpeed += 20;
+                fruitActive = true;
+                ultMeter = 0;
+            }
+            if(currentUltimate == GrainSkillTree.getUltimate()){
+                attackSpeed += 10;
+                grainActive = true;
+                ultMeter = 0;
+            }
+            if(currentUltimate == ProteinSkillTree.getUltimate()){
+                attackDamage += 9999;
+                proteinActive = true;
+                ultMeter = 0;
+            }
+            if(currentUltimate == DairySkillTree.getUltimate()){
+                Map.dairyUlt();
+            }
+            if(currentUltimate == VeggieSkillTree.getUltimate()){
+                invincibilityTimer += 1000;
+                veggieActive = true;
+                ultMeter = 0;
+            }
+        }
+        else if(ultMeter >= 1000 && Keyboard.isKeyDown(ULTIMATE_KEY)){
+            System.out.println("No ult equipped");
+        }
+        else if(Keyboard.isKeyDown(ULTIMATE_KEY)){
+            System.out.println("Not enough meter");
+        }
+
+        if(fruitActive){
+            fruitTimer++;
+            if(fruitTimer > 500){
+                walkSpeed -= 20;
+                fruitTimer = 0;
+                fruitActive = false;
+            }
+        }
+        if(grainActive){
+            grainTimer++;
+            if(grainTimer > 500){
+                attackSpeed -= 10;
+                grainTimer = 0;
+                grainActive = false;
+            }
+        }
+        if(proteinActive){
+            proteinTimer++;
+            if(proteinTimer > 700){
+                attackDamage -= 9999;
+                proteinTimer = 0;
+                proteinActive = false;
+            }
+        }
 
 
         // update player's animation
@@ -433,7 +507,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -450,7 +523,6 @@ public abstract class Player extends GameObject {
             if(entityCollidedWith.getIdentity() == "enemy" ){
                 if(invincibilityTimer == 0){
                     hurtPlayer(entityCollidedWith);
-                    System.out.println("player hit; hp: " + playerHealth);
                     invincibilityTimer = 180;
                 }
             }
@@ -465,11 +537,10 @@ public abstract class Player extends GameObject {
     // other entities can call this method to hurt the player
     public static void hurtPlayer(MapEntity mapEntity) {
         if(playerHealth > 0){
-            playerHealth -= 1;
+           playerHealth -= 1;
         }else{
             playerHealth = 0;
         }
-
     }
 
     public static void hurtPlayer() {
@@ -521,7 +592,6 @@ public abstract class Player extends GameObject {
                 this.currentAnimationName = "STAND_RIGHT";
             }else{
                 this.currentAnimationName = "STAND_RIGHT_DAMAGED";
-                System.out.println("TRYING DAMAGED SPRITE");
             }
         }
         else if (direction == Direction.LEFT) {

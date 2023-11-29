@@ -624,6 +624,24 @@ public class Floor3Tileset extends Tileset {
         
         mapTiles.add(sign4Tile);
 
+        // wall u can walk thru (walkwall)
+        Frame walkwallFrame = new FrameBuilder(getSubImage(4,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder walkwallTile = new MapTileBuilder(walkwallFrame);
+        
+        mapTiles.add(walkwallTile);
+
+        // black u can walk thru (walkblack)
+        Frame walkblackFrame = new FrameBuilder(getSubImage(5,9))
+            .withScale(tileScale)
+            .build();
+
+        MapTileBuilder walkblackTile = new MapTileBuilder(walkblackFrame);
+        
+        mapTiles.add(walkblackTile);
+
         return mapTiles;
     }
 }

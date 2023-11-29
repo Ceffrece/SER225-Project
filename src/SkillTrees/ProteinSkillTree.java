@@ -16,7 +16,7 @@ public class ProteinSkillTree {
     private SkillTreeNode rightSkill2;
     private SkillTreeNode rightSkill3;
 
-    private SkillTreeNode ultimateProteinSkill;
+    public static SkillTreeNode ultimateProteinSkill;
 
     public static SkillTreeNode[] array = new SkillTreeNode[8];
 
@@ -66,6 +66,10 @@ public class ProteinSkillTree {
     
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
+    }
+    
+    public static SkillTreeNode getUltimate(){
+        return ultimateProteinSkill;
     }
 
     public void unlockNode(SkillTreeNode node){
@@ -163,6 +167,7 @@ public class ProteinSkillTree {
                 if(node == ultimateProteinSkill){
                     if(!ultimateProteinSkill.getUnlockedStatus()){
                         ultimateProteinSkill.setUnlockedStatus(true);
+                        Player.playerUltimates.add(ultimateProteinSkill);
                         unlock = true;
                     }
                     else{
@@ -182,5 +187,10 @@ public class ProteinSkillTree {
             System.out.println("Level not high enough");
         }
     }
-
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
+        }
+    }
 }

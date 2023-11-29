@@ -19,7 +19,7 @@ public class FruitSkillTree {
     private SkillTreeNode rightSkill4;
     private SkillTreeNode rightSkill5;
 
-    private SkillTreeNode ultimateFruitSkill;
+    public static SkillTreeNode ultimateFruitSkill;
 
     private SkillTreeNode currentNode;
 
@@ -84,6 +84,9 @@ public class FruitSkillTree {
         return this.currentNode;
     }
 
+    public static SkillTreeNode getUltimate(){
+        return ultimateFruitSkill;
+    }
     public void unlockNode(SkillTreeNode node){
         if(Player.playerXPLevel >= 1){
             Boolean unlock = false;
@@ -230,6 +233,7 @@ public class FruitSkillTree {
                 if(node == ultimateFruitSkill){
                     if(!ultimateFruitSkill.getUnlockedStatus()){
                         ultimateFruitSkill.setUnlockedStatus(true);
+                        Player.playerUltimates.add(ultimateFruitSkill);
                         unlock = true;
                     }
                     else{
@@ -247,6 +251,12 @@ public class FruitSkillTree {
         }
         else{
             System.out.println("Level not high enough");
+        }
+    }
+    //Dev Tool
+    public void unlockAll() {
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
         }
     } 
 }

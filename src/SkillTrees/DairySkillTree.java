@@ -14,7 +14,7 @@ public class DairySkillTree {
     private SkillTreeNode skill5;
     private SkillTreeNode skill6;
 
-    private SkillTreeNode ultimateDairySkill;
+    public static SkillTreeNode ultimateDairySkill;
 
     public SkillTreeNode currentNode;
     public SkillTreeNode[] array1 = new SkillTreeNode[8];
@@ -55,6 +55,10 @@ public class DairySkillTree {
     }
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
+    }
+
+    public static SkillTreeNode getUltimate(){
+        return ultimateDairySkill;
     }
 
     public void unlockNode(SkillTreeNode node){
@@ -153,6 +157,7 @@ public class DairySkillTree {
                 if(node == ultimateDairySkill){
                     if(!ultimateDairySkill.getUnlockedStatus()){
                         ultimateDairySkill.setUnlockedStatus(true);
+                        Player.playerUltimates.add(ultimateDairySkill);
                         unlock = true;
                     }
                     else{
@@ -170,6 +175,12 @@ public class DairySkillTree {
         }
         else{
             System.out.println("Level not high enough");
+        }
+    }
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array1){
+            node.setUnlockedStatus(true);
         }
     }
 }

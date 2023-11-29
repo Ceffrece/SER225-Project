@@ -13,7 +13,7 @@ public class GrainSkillTree {
     private SkillTreeNode skill3;
     private SkillTreeNode skill4;
 
-    private SkillTreeNode ultimateGrainSkill;
+    public static SkillTreeNode ultimateGrainSkill;
 
     private SkillTreeNode currentNode;
 
@@ -50,6 +50,10 @@ public class GrainSkillTree {
 
     public SkillTreeNode getCurrentNode(){
         return this.currentNode;
+    }
+
+    public static SkillTreeNode getUltimate() {
+        return ultimateGrainSkill;
     }
 
     public void unlockNode(SkillTreeNode node){
@@ -122,6 +126,7 @@ public class GrainSkillTree {
                 if(node == ultimateGrainSkill){
                     if(!ultimateGrainSkill.getUnlockedStatus()){
                         ultimateGrainSkill.setUnlockedStatus(true);
+                        Player.playerUltimates.add(ultimateGrainSkill);
                         unlock = true;
                     }
                     else{
@@ -139,6 +144,12 @@ public class GrainSkillTree {
         }
         else{
             System.out.println("Level not high enough");
+        }
+    }
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
         }
     }
 }

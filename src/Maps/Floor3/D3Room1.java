@@ -13,6 +13,8 @@ import Level.Pickup;
 import Level.NPC;
 import Level.Tileset;
 import NPCs.Walrus;
+import NPCs.Platino;
+import Scripts.MarcusMap.platinoScript;
 import Tilesets.Floor3Tileset;
 import Scripts.Floor2Script;
 import Scripts.Floor3Script;
@@ -24,18 +26,18 @@ public class D3Room1 extends Map {
 
     public D3Room1() {
         super("D3Room1.txt", new Floor3Tileset());
-        this.playerStartPosition = getMapTile(2, 8).getLocation();
+        this.playerStartPosition = getMapTile(3, 9).getLocation();
         this.mapInt = 21;
         this.idSwitch = 21;                //Aka "Minecraft Milk Bucket"
         }
 
-        //Temporary NPC
+        // NPC
         public ArrayList<NPC> loadNPCs() {
             ArrayList<NPC> npcs = new ArrayList<>();
 
-            //Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
-            //walrus.setInteractScript(new Floor3Script());
-            //npcs.add(walrus);
+            Platino platino = new Platino(1, getMapTile(13, 48).getLocation());
+            platino.setInteractScript(new platinoScript());
+            npcs.add(platino);
 
             return npcs;
         }
@@ -44,46 +46,46 @@ public class D3Room1 extends Map {
         public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
             ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
     
-            Spikes spikes1 = new Spikes(getMapTile(6, 12).getLocation());
-            Spikes spikes2 = new Spikes(getMapTile(6, 13).getLocation());
-            Spikes spikes3 = new Spikes(getMapTile(6, 14).getLocation());
-            Spikes spikes4 = new Spikes(getMapTile(6, 15).getLocation());
-            Spikes spikes5 = new Spikes(getMapTile(7, 12).getLocation());
-            Spikes spikes6 = new Spikes(getMapTile(7, 13).getLocation());
-            Spikes spikes7 = new Spikes(getMapTile(7, 14).getLocation());
-            Spikes spikes8 = new Spikes(getMapTile(7, 15).getLocation());
-            Spikes spikes9 = new Spikes(getMapTile(8, 12).getLocation());
-            Spikes spikes10 = new Spikes(getMapTile(8, 13).getLocation());
-            Spikes spikes11 = new Spikes(getMapTile(8, 16).getLocation());
-            Spikes spikes12 = new Spikes(getMapTile(8, 17).getLocation());
-            Spikes spikes13 = new Spikes(getMapTile(8, 18).getLocation());
-            Spikes spikes14 = new Spikes(getMapTile(8, 19).getLocation());
-            Spikes spikes15 = new Spikes(getMapTile(9, 12).getLocation());
-            Spikes spikes16 = new Spikes(getMapTile(9, 13).getLocation());
-            Spikes spikes17 = new Spikes(getMapTile(9, 16).getLocation());
-            Spikes spikes18 = new Spikes(getMapTile(9, 17).getLocation());
-            Spikes spikes19 = new Spikes(getMapTile(9, 18).getLocation());
-            Spikes spikes20 = new Spikes(getMapTile(9, 19).getLocation());
-            Spikes spikes21 = new Spikes(getMapTile(16, 10).getLocation());
-            Spikes spikes22 = new Spikes(getMapTile(16, 11).getLocation());
-            Spikes spikes23 = new Spikes(getMapTile(16, 12).getLocation());
-            Spikes spikes24 = new Spikes(getMapTile(16, 13).getLocation());
-            Spikes spikes25 = new Spikes(getMapTile(16, 14).getLocation());
-            Spikes spikes26 = new Spikes(getMapTile(16, 15).getLocation());
-            Spikes spikes27 = new Spikes(getMapTile(16, 18).getLocation());
-            Spikes spikes28 = new Spikes(getMapTile(16, 19).getLocation());
-            Spikes spikes29 = new Spikes(getMapTile(17, 10).getLocation());
-            Spikes spikes30 = new Spikes(getMapTile(17, 11).getLocation());
-            Spikes spikes31 = new Spikes(getMapTile(17, 12).getLocation());
-            Spikes spikes32 = new Spikes(getMapTile(17, 13).getLocation());
-            Spikes spikes33 = new Spikes(getMapTile(17, 14).getLocation());
-            Spikes spikes34 = new Spikes(getMapTile(17, 15).getLocation());
-            Spikes spikes35 = new Spikes(getMapTile(17, 18).getLocation());
-            Spikes spikes36 = new Spikes(getMapTile(17, 19).getLocation());
-            Spikes spikes37 = new Spikes(getMapTile(18, 10).getLocation());
-            Spikes spikes38 = new Spikes(getMapTile(18, 11).getLocation());
-            Spikes spikes39 = new Spikes(getMapTile(19, 10).getLocation());
-            Spikes spikes40 = new Spikes(getMapTile(19, 11).getLocation());
+            Spikes spikes1 = new Spikes(getMapTile(7, 13).getLocation());
+            Spikes spikes2 = new Spikes(getMapTile(7, 14).getLocation());
+            Spikes spikes3 = new Spikes(getMapTile(7, 15).getLocation());
+            Spikes spikes4 = new Spikes(getMapTile(7, 16).getLocation());
+            Spikes spikes5 = new Spikes(getMapTile(8, 13).getLocation());
+            Spikes spikes6 = new Spikes(getMapTile(8, 14).getLocation());
+            Spikes spikes7 = new Spikes(getMapTile(8, 15).getLocation());
+            Spikes spikes8 = new Spikes(getMapTile(8, 16).getLocation());
+            Spikes spikes9 = new Spikes(getMapTile(9, 13).getLocation());
+            Spikes spikes10 = new Spikes(getMapTile(9, 14).getLocation());
+            Spikes spikes11 = new Spikes(getMapTile(9, 17).getLocation());
+            Spikes spikes12 = new Spikes(getMapTile(9, 18).getLocation());
+            Spikes spikes13 = new Spikes(getMapTile(9, 19).getLocation());
+            Spikes spikes14 = new Spikes(getMapTile(9, 20).getLocation());
+            Spikes spikes15 = new Spikes(getMapTile(10, 13).getLocation());
+            Spikes spikes16 = new Spikes(getMapTile(10, 14).getLocation());
+            Spikes spikes17 = new Spikes(getMapTile(10, 17).getLocation());
+            Spikes spikes18 = new Spikes(getMapTile(10, 18).getLocation());
+            Spikes spikes19 = new Spikes(getMapTile(10, 19).getLocation());
+            Spikes spikes20 = new Spikes(getMapTile(10, 20).getLocation());
+            Spikes spikes21 = new Spikes(getMapTile(17, 11).getLocation());
+            Spikes spikes22 = new Spikes(getMapTile(17, 12).getLocation());
+            Spikes spikes23 = new Spikes(getMapTile(17, 13).getLocation());
+            Spikes spikes24 = new Spikes(getMapTile(17, 14).getLocation());
+            Spikes spikes25 = new Spikes(getMapTile(17, 15).getLocation());
+            Spikes spikes26 = new Spikes(getMapTile(17, 16).getLocation());
+            Spikes spikes27 = new Spikes(getMapTile(17, 19).getLocation());
+            Spikes spikes28 = new Spikes(getMapTile(17, 20).getLocation());
+            Spikes spikes29 = new Spikes(getMapTile(18, 11).getLocation());
+            Spikes spikes30 = new Spikes(getMapTile(18, 12).getLocation());
+            Spikes spikes31 = new Spikes(getMapTile(18, 13).getLocation());
+            Spikes spikes32 = new Spikes(getMapTile(18, 14).getLocation());
+            Spikes spikes33 = new Spikes(getMapTile(18, 15).getLocation());
+            Spikes spikes34 = new Spikes(getMapTile(18, 16).getLocation());
+            Spikes spikes35 = new Spikes(getMapTile(18, 19).getLocation());
+            Spikes spikes36 = new Spikes(getMapTile(18, 20).getLocation());
+            Spikes spikes37 = new Spikes(getMapTile(19, 11).getLocation());
+            Spikes spikes38 = new Spikes(getMapTile(19, 12).getLocation());
+            Spikes spikes39 = new Spikes(getMapTile(20, 11).getLocation());
+            Spikes spikes40 = new Spikes(getMapTile(20, 12).getLocation());
             enhancedMapTiles.add(spikes1);
             enhancedMapTiles.add(spikes2);
             enhancedMapTiles.add(spikes3);
@@ -132,16 +134,16 @@ public class D3Room1 extends Map {
         public ArrayList<Pickup> loadPickups() {
             ArrayList<Pickup> pickups = new ArrayList<>();
     
-            Pickup coin = new Pickup(getMapTile(8,14).getLocation());
+            Pickup coin = new Pickup(getMapTile(9,15).getLocation());
             pickups.add(coin);
     
-            Pickup coin1 = new Pickup(getMapTile(8,15).getLocation());
+            Pickup coin1 = new Pickup(getMapTile(9,16).getLocation());
             pickups.add(coin1);
     
-            Pickup coin2 = new Pickup(getMapTile(9,14).getLocation());
+            Pickup coin2 = new Pickup(getMapTile(10,15).getLocation());
             pickups.add(coin2);
 
-            Pickup coin3 = new Pickup(getMapTile(9,15).getLocation());
+            Pickup coin3 = new Pickup(getMapTile(10,16).getLocation());
             pickups.add(coin3);
             
             return pickups;
@@ -152,11 +154,11 @@ public class D3Room1 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(7, 22).getLocation());
+            Spineapple spineapple1 = new Spineapple(0, getMapTile(8, 23).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(16, 22).getLocation());
+            Spineapple spineapple2 = new Spineapple(0, getMapTile(17, 23).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
             
@@ -167,7 +169,7 @@ public class D3Room1 extends Map {
     @Override
     public void loadScripts() {
 
-        getMapTile(21,8).setInteractScript(new RandomChangeMapScript(3));
+        getMapTile(22,9).setInteractScript(new RandomChangeMapScript(3));
     }
     
 }
