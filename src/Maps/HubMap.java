@@ -13,17 +13,13 @@ import Level.Map;
 import Level.MapEntityStatus;
 import Level.NPC;
 import Level.Trigger;
-import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Tilesets.Floor1Tileset;
 import Scripts.ProjectilePickup;
 import Scripts.SimpleTextScript;
 import Scripts.MarcusMap.WalrusScript;
 import Scripts.TestMap.ChangeMapScript;
-import Scripts.TestMap.DinoScript;
-import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.RandomChangeMapScript;
-import Scripts.TestMap.SwordScript;
 
 public class HubMap extends Map {
 
@@ -40,7 +36,6 @@ public class HubMap extends Map {
         Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
-        
 
         return npcs;
     }
@@ -78,7 +73,7 @@ public class HubMap extends Map {
     }
     @Override
     public void loadScripts() {
-        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate\nability (once unlocked)")); 
+        getMapTile(7, 12).setInteractScript(new SimpleTextScript("Press 'M' to choose your ultimate\nability (once unlocked)")); 
 
         getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting\nweapon (once unlocked)"));
 
