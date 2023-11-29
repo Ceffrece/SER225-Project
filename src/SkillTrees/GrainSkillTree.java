@@ -146,4 +146,11 @@ public class GrainSkillTree {
             System.out.println("Level not high enough");
         }
     }
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
+            Player.addAttackSpeed(5);
+        }
+    }
 }

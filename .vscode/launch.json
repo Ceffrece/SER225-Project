@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MapEditor",
+            "request": "launch",
+            "mainClass": "MapEditor.MapEditor",
+            "projectName": "SER225-Project_c7cdaa53"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Game",
+            "request": "launch",
+            "mainClass": "Game.Game",
+            "projectName": "SER-225-Game-RPG_6968b4e6"
+        },
+        {
+            "type": "java",
+            "name": "MapEditor",
+            "request": "launch",
+            "mainClass": "MapEditor.MapEditor",
+            "projectName": "SER-225-Game-RPG_6968b4e6"
+        }
+    ]
+}

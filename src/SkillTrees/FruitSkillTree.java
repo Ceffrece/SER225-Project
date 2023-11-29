@@ -92,7 +92,7 @@ public class FruitSkillTree {
             Boolean unlock = false;
             if(node == centerSkill){
                 if(!centerSkill.getUnlockedStatus()){
-                    Player.addWalkSpeed(10f);
+                    Player.addWalkSpeed(1f);
                     centerSkill.setUnlockedStatus(true);
                     unlock = true;
                 }
@@ -180,7 +180,7 @@ public class FruitSkillTree {
             if(rightSkill1.getUnlockedStatus()){
                 if(node == rightSkill2){
                     if(!leftSkill2.getUnlockedStatus()){
-                        Player.addWalkSpeed(10f);
+                        Player.addWalkSpeed(1f);
                         rightSkill2.setUnlockedStatus(true);
                         unlock = true;
                     }
@@ -193,7 +193,7 @@ public class FruitSkillTree {
             if(rightSkill2.getUnlockedStatus()){
                 if(node == rightSkill3){
                     if(!rightSkill3.getUnlockedStatus()){
-                        Player.addWalkSpeed(10f);
+                        Player.addWalkSpeed(1f);
                         rightSkill3.setUnlockedStatus(true);
                         unlock = true;
                     }
@@ -206,7 +206,7 @@ public class FruitSkillTree {
             if(rightSkill3.getUnlockedStatus()){
                 if(node == rightSkill4){
                     if(!rightSkill4.getUnlockedStatus()){
-                        Player.addWalkSpeed(10f);
+                        Player.addWalkSpeed(1f);
                         rightSkill4.setUnlockedStatus(true);
                         unlock = true;
                     }
@@ -219,7 +219,7 @@ public class FruitSkillTree {
             if(rightSkill4.getUnlockedStatus()){
                 if(node == rightSkill5){
                     if(!rightSkill5.getUnlockedStatus()){
-                        Player.addWalkSpeed(10f);
+                        Player.addWalkSpeed(1f);
                         rightSkill5.setUnlockedStatus(true);
                         unlock = true;
                     }
@@ -251,6 +251,13 @@ public class FruitSkillTree {
         }
         else{
             System.out.println("Level not high enough");
+        }
+    }
+    //Dev Tool
+    public void unlockAll() {
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
+            Player.addWalkSpeed(6f);
         }
     } 
 }

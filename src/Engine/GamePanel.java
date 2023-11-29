@@ -170,8 +170,9 @@ public class GamePanel extends JPanel {
 	private SpriteFont ultText5; 
 
 	
-
+	//Dev tools
 	private final Key levelKey = Key.K;
+	private final Key unlockKey = Key.U;
 
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
@@ -262,9 +263,25 @@ public class GamePanel extends JPanel {
 		updateSkillTreeState();
 		updateInventoryState();
 		updateUltSwitchState();
+
+		//Dev Tools
 		if(Keyboard.isKeyDown(levelKey)){
 			Player.playerXPLevel += 10;
 		}
+		if(Keyboard.isKeyDown(unlockKey)){
+			fruit.unlockAll();
+			grain.unlockAll();
+			protein.unlockAll();
+			veggie.unlockAll();
+			dairy.unlockAll();
+			Player.playerUltimates.add(FruitSkillTree.ultimateFruitSkill);
+			Player.playerUltimates.add(GrainSkillTree.ultimateGrainSkill);
+			Player.playerUltimates.add(ProteinSkillTree.ultimateProteinSkill);
+			Player.playerUltimates.add(VeggieSkillTree.ultimateVeggieSkill);
+			Player.playerUltimates.add(DairySkillTree.ultimateDairySkill);
+		}
+
+		//Pause logic
 		if(isGamePaused || skillTreeActivated|| isInventoryActivated || ultActivated){
 
 		}
@@ -338,6 +355,9 @@ public class GamePanel extends JPanel {
 		}
 		if(Keyboard.isKeyUp(ultSwitchKey)) {
 			keyLocker.unlockKey(ultSwitchKey);
+		}
+		if(ultActivated && Keyboard.isKeyDown(Key.ESC)){
+			ultActivated = !ultActivated;
 		}
 	}
 
@@ -676,7 +696,6 @@ public class GamePanel extends JPanel {
 			ultText5.draw(graphicsHandler);
 		}
 		if(ultTimer > 20 && Keyboard.isKeyDown(Key.S)){
-			System.out.println(ultSelector);
 			ultSelector++;
 			if(ultSelector > 4){
 				ultSelector = 0;
@@ -684,7 +703,6 @@ public class GamePanel extends JPanel {
 			ultTimer = 0;
 		}
 		else if(ultTimer > 20 && Keyboard.isKeyDown(Key.W)){
-			System.out.println(ultSelector);
 			ultSelector--;
 			if(ultSelector < 0){
 				ultSelector = 4;

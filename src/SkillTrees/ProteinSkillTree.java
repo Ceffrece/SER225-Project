@@ -187,5 +187,11 @@ public class ProteinSkillTree {
             System.out.println("Level not high enough");
         }
     }
-
+    //Dev tool
+    public void unlockAll(){
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
+            Player.addAttackDamage(4);
+        }
+    }
 }
