@@ -9,6 +9,13 @@
             "name": "MapEditor",
             "request": "launch",
             "mainClass": "MapEditor.MapEditor",
+            "projectName": "SER225-Project_e47e23b8"
+        },
+        {
+            "type": "java",
+            "name": "MapEditor",
+            "request": "launch",
+            "mainClass": "MapEditor.MapEditor",
             "projectName": "SER225-Project_c7cdaa53"
         },
         {

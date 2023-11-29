@@ -42,7 +42,7 @@ public class Floor3Boss extends Map {
         // Where the boss will go
             public ArrayList<Boss> loadBosses() {
                 ArrayList<Boss> bosses = new ArrayList<>();
-                boss3 = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/CookieMonsterPunk2.png"), 100, 40), "DEFAULT", 100, 3);
+                boss3 = new Boss(getMapTile(7,6).getLocation(), new SpriteSheet(ImageLoader.load("EnemySprites/CookieMonsterPunk2.png"), 32, 32), "DEFAULT", 100, 3);
                 bosses.add(boss3);
                 currenthealth = boss3.getHealth();
                 return bosses;
