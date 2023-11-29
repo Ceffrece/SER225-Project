@@ -744,6 +744,8 @@ public class GamePanel extends JPanel {
 			}
 		}
 		else{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
 			graphicsHandler.drawImage(skilltreeImg, 0,0, ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight());
 			graphicsHandler.drawFilledRectangleWithBorder( 90,90, 190, 50, Color.GRAY, Color.BLACK, 2);
 			graphicsHandler.drawFilledRectangleWithBorder( 190,190, 170, 50, Color.GRAY, Color.BLACK, 2);
@@ -815,6 +817,9 @@ public class GamePanel extends JPanel {
 	int veggieTimer = 0;
 	private void displayVeggieTree() {
 		try{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
+			expBar.setY(20f);
 			//Center Skill
 			if(veggieSelection.getId() == 6){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -1069,6 +1074,8 @@ public class GamePanel extends JPanel {
 	int proteinTimer = 0;
 	private void displayProteinTree(){  //CHANGE TO PROTEIN
 		try{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
 			//Center Skill
 			if(proteinSelection.getId() == 4){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -1321,6 +1328,9 @@ public class GamePanel extends JPanel {
 	int grainTimer = 0;
 	private void displayGrainTree(){
 		try{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
+			expBar.setX(ScreenManager.getScreenWidth() - 230);
 			int yLoc = 10;
 			int xLoc = screenManager.getScreenWidth()/2 - 10;
 			for(SkillTreeNode skill : grain.array){
@@ -1411,6 +1421,8 @@ public class GamePanel extends JPanel {
 	int fruitTimer = 0;
 	private void displayFruitTree(){
 		try{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
 			//Center Skill
 			if(fruitSelection.getId() == 6){
 				graphicsHandler.drawFilledRectangleWithBorder(screenManager.getScreenWidth()/2, 50, 50, 50, Color.RED, Color.YELLOW, 2);
@@ -1657,6 +1669,9 @@ public class GamePanel extends JPanel {
 	int dairyTimer = 0;
 	private void displayDairyTree(){
 		try{
+			expBar.draw(graphicsHandler);
+			expBar.setText("Skill Points: " + Player.playerXPLevel);
+			expBar.setX(ScreenManager.getScreenWidth() - 230);
 			//Drawing all of the Skills
 			int xLoc = screenManager.getScreenWidth()/2 - 10;
 			int yLoc = 10;
