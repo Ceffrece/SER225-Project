@@ -78,7 +78,7 @@ public class HubMap extends Map {
     }
     @Override
     public void loadScripts() {
-        getMapTile(7, 12).setInteractScript(new SimpleTextScript("This is where you can choose your ultimate\nability (once unlocked)")); 
+        getMapTile(7, 12).setInteractScript(new SimpleTextScript("Press 'M' to choose your ultimate\nability (once unlocked)")); 
 
         getMapTile(17,12).setInteractScript(new SimpleTextScript("This is where you can choose your starting\nweapon (once unlocked)"));
 
