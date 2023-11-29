@@ -132,7 +132,10 @@ public abstract class Player extends GameObject {
     public void update() {
         moveAmountX = 0;
         moveAmountY = 0;
-    
+        
+        if(maxHealth > 9){
+            maxHealth = 9;
+        }
 
         //adds the attack speed to cooldown, when cooldown hits a range you can shoot
         if(!playerCurrentProjectiles.isEmpty()){
