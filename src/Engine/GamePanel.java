@@ -245,13 +245,6 @@ public class GamePanel extends JPanel {
 		updateShowFPSState();
 		updateSkillTreeState();
 		updateInventoryState();
-		levelCount++;
-		if(Keyboard.isKeyDown(levelKey) && levelCount > 50){
-			Player.playerXPLevel += 10;
-			levelCount = 0;
-			System.out.println("Level is " + Player.playerXPLevel);
-		}
-
 		if(isGamePaused || skillTreeActivated|| isInventoryActivated){
 
 		}
@@ -302,7 +295,7 @@ public class GamePanel extends JPanel {
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 		}
-		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){
+		if(!skillTreeActivated && MenuScreen.getGameStarted() && !PlayLevelScreen.inBossFight1){ 
 			Game.gameMusic.play();
 			Game.skillTreeBackground.pause();
 			Game.bossMusic1.pause();
@@ -349,6 +342,9 @@ public class GamePanel extends JPanel {
 		expBar.draw(graphicsHandler);
 		Enemy.getEnemyText().draw(graphicsHandler);
 		expBar.setText("Skill Points: " + Player.playerXPLevel);
+		//Draws Ult Bar
+		graphicsHandler.drawFilledRectangle(10, 150, 100, 20, Color.GRAY);
+		graphicsHandler.drawFilledRectangle(10, 150, (int) ((Player.ultMeter/1000.0)*100), 20, Color.BLUE);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
@@ -378,6 +374,12 @@ public class GamePanel extends JPanel {
 
 		if(PlayLevelScreen.inBossFight1){
 			showBossHealth1();
+		}
+		if(PlayLevelScreen.inBossFight2){
+			showBossHealth2();
+		}
+		if(PlayLevelScreen.inBossFight3){
+			showBossHealth3();
 		}
 		
 		}
@@ -1626,25 +1628,24 @@ public class GamePanel extends JPanel {
 			select = false;
 		}
 	}
-
 	public void showBossHealth1(){
 		Floor1Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 30, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 30, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor1Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth2(){
 		Floor2Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth3(){
 		Floor3Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 }

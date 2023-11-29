@@ -185,9 +185,7 @@ public class Projectile extends MapEntity{
                 super.update();
             }       
             public void touchedEnemy(MapEntity enemy){
-                System.out.println("Hurting enemy");
                 damageText = new SpriteFont("-" + damage, enemy.getX(),enemy.getY() + 10,"Comic Sans", 25, Color.red);
-                System.out.println(enemy.getX());
                 enemy.hurtEnemy(this.damage);
             }
 
