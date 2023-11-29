@@ -2,8 +2,10 @@ package Maps;
 
 import java.util.ArrayList;
 
+import Enemy.ColdStone;
 import Enemy.Eggssassin;
 import Enemy.KiwiKamikaze;
+import Enemy.MachoMandarin;
 import Enemy.Spineapple;
 import Engine.ImageLoader;
 import GameObject.SpriteSheet;
@@ -60,8 +62,10 @@ public class HubMap extends Map {
             // Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 12).getLocation());
             // spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             // enemies.add(spineapple1);
-            //KiwiKamikaze wow = new KiwiKamikaze(0, getMapTile(2, 12).getLocation());
-            //enemies.add(wow);
+            //MachoMandarin wow1 = new MachoMandarin(0, getMapTile(2, 12).getLocation());
+            //enemies.add(wow1);
+            //ColdStone wow2 = new ColdStone(0, getMapTile(20, 12).getLocation());
+            //enemies.add(wow2);
 
             // Spineapple spineapple2 = new Spineapple(0, getMapTile(10, 13).getLocation());
             // spineapple2.setExistenceFlag("hasTalkedToSpineapple");

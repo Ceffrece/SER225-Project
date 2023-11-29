@@ -23,9 +23,9 @@ public class MachoMandarin extends Enemy
       
         public MachoMandarin(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/MachoMandarin.png"), 32, 32), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/MachoMandarinLG.png"), 64, 64), "STAND_LEFT");
                 super.setIdentity("enemy");
-                super.setHealth(250);
+                super.setHealth(200);
                 
         }
 

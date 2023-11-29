@@ -23,9 +23,9 @@ public class ColdStone extends Enemy
       
         public ColdStone(int id, Point location) 
         {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/ColdStone.png"), 32, 32), "STAND_LEFT");
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EnemySprites/ColdStoneLG.png"), 58, 60), "STAND_LEFT");
                 super.setIdentity("enemy");
-                super.setHealth(250);
+                super.setHealth(200);
                 
         }
 
@@ -91,19 +91,19 @@ public class ColdStone extends Enemy
         {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2()))
         {
-            walk(Direction.RIGHT, 1f);
+            walk(Direction.RIGHT, 0.75f);
         }
         if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1()))
         {
-            walk(Direction.LEFT, 1f);
+            walk(Direction.LEFT, 0.75f);
         }
         if (Math.round(getBoundsY2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsY2()))
         {
-            walk(Direction.DOWN, 1f);
+            walk(Direction.DOWN, 0.75f);
         }
         if (Math.round(getBoundsY1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsY1()))
         {
-            walk(Direction.UP,1f);
+            walk(Direction.UP,0.75f);
         }
         }
 
