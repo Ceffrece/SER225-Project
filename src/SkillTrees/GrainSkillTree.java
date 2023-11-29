@@ -150,6 +150,7 @@ public class GrainSkillTree {
     public void unlockAll(){
         for(SkillTreeNode node : array){
             node.setUnlockedStatus(true);
+            Player.addAttackSpeed(5);
         }
     }
 }

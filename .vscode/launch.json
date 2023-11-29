@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MapEditor",
+            "request": "launch",
+            "mainClass": "MapEditor.MapEditor",
+            "projectName": "SER225-Project_c7cdaa53"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
