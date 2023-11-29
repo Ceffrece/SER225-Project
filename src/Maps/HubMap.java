@@ -15,6 +15,7 @@ import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.Platino;
 import Tilesets.Floor1Tileset;
 import Scripts.ProjectilePickup;
 import Scripts.SimpleTextScript;
@@ -40,6 +41,10 @@ public class HubMap extends Map {
         Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
+
+        Platino platino = new Platino(2, getMapTile(12, 12).getLocation());
+        platino.setInteractScript(new WalrusScript());
+        npcs.add(platino);
         
 
         return npcs;
