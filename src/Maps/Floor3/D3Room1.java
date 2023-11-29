@@ -13,6 +13,8 @@ import Level.Pickup;
 import Level.NPC;
 import Level.Tileset;
 import NPCs.Walrus;
+import NPCs.Platino;
+import Scripts.MarcusMap.platinoScript;
 import Tilesets.Floor3Tileset;
 import Scripts.Floor2Script;
 import Scripts.Floor3Script;
@@ -29,13 +31,13 @@ public class D3Room1 extends Map {
         this.idSwitch = 21;                //Aka "Minecraft Milk Bucket"
         }
 
-        //Temporary NPC
+        // NPC
         public ArrayList<NPC> loadNPCs() {
             ArrayList<NPC> npcs = new ArrayList<>();
 
-            //Walrus walrus = new Walrus(1, getMapTile(10, 5).getLocation().subtractY(40));
-            //walrus.setInteractScript(new Floor3Script());
-            //npcs.add(walrus);
+            Platino platino = new Platino(1, getMapTile(13, 48).getLocation());
+            platino.setInteractScript(new platinoScript());
+            npcs.add(platino);
 
             return npcs;
         }
