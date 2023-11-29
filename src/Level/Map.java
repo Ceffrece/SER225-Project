@@ -72,6 +72,9 @@ public abstract class Map {
     public ArrayList<Pickup> pickups;
     public ArrayList<BossAttack> attacks;
 
+    //Ult stuff
+    public static ArrayList<Enemy> dairyEnemies;
+
 
     protected Script activeInteractScript;
 
@@ -465,6 +468,7 @@ public abstract class Map {
 
     // returns all active enemies (enemies that are a part of the current update cycle) -- this changes every frame by the Camera class
     public ArrayList<Enemy> getActiveEnemies() {
+        dairyEnemies = camera.getActiveEnemies();
         return camera.getActiveEnemies();
     }
 
@@ -748,4 +752,11 @@ public abstract class Map {
 
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }
+
+    //Ult for Dairy
+    public static void dairyUlt(){
+        for(Enemy enemy : dairyEnemies){
+            enemy.hurtEnemy(9999);;
+        }
+    }
 }

@@ -342,6 +342,9 @@ public class GamePanel extends JPanel {
 		expBar.draw(graphicsHandler);
 		Enemy.getEnemyText().draw(graphicsHandler);
 		expBar.setText("Skill Points: " + Player.playerXPLevel);
+		//Draws Ult Bar
+		graphicsHandler.drawFilledRectangle(10, 150, 100, 20, Color.GRAY);
+		graphicsHandler.drawFilledRectangle(10, 150, (int) ((Player.ultMeter/1000.0)*100), 20, Color.BLUE);
 		//shows player projectile
 		graphicsHandler.drawImage(ImageLoader.load("GUISprites/itemBox.png"), 700, 475,75,75);
 		if(!Player.playerCurrentProjectiles.isEmpty()){
@@ -371,6 +374,12 @@ public class GamePanel extends JPanel {
 
 		if(PlayLevelScreen.inBossFight1){
 			showBossHealth1();
+		}
+		if(PlayLevelScreen.inBossFight2){
+			showBossHealth2();
+		}
+		if(PlayLevelScreen.inBossFight3){
+			showBossHealth3();
 		}
 		
 		}
