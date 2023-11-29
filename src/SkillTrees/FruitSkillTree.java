@@ -252,5 +252,11 @@ public class FruitSkillTree {
         else{
             System.out.println("Level not high enough");
         }
+    }
+    //Dev Tool
+    public void unlockAll() {
+        for(SkillTreeNode node : array){
+            node.setUnlockedStatus(true);
+        }
     } 
 }
