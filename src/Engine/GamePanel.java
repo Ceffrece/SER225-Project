@@ -1618,25 +1618,24 @@ public class GamePanel extends JPanel {
 			select = false;
 		}
 	}
-
 	public void showBossHealth1(){
 		Floor1Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 30, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 30, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor1Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor1Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth2(){
 		Floor2Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor2Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 
 	public void showBossHealth3(){
 		Floor3Boss.updateCurrentHealth();
-		graphicsHandler.drawRectangle(10, 10, screenManager.getScreenWidth() - 20, 30, Color.BLACK,5);
-		graphicsHandler.drawFilledRectangle(10, 10, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-20)), 30 , Color.GREEN);
+		graphicsHandler.drawRectangle(10, screenManager.getScreenHeight()-40, screenManager.getScreenWidth() - 150, 30, Color.BLACK,5);
+		graphicsHandler.drawFilledRectangle(10, screenManager.getScreenHeight()-40, (int) ((Floor3Boss.currenthealth/100.0) * (screenManager.getScreenWidth()-150)), 30 , Color.GREEN);
 		//System.out.println((Floor2Boss.currenthealth/100.0));
 	}
 }
