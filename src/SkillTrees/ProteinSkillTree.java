@@ -191,6 +191,7 @@ public class ProteinSkillTree {
     public void unlockAll(){
         for(SkillTreeNode node : array){
             node.setUnlockedStatus(true);
+            Player.addAttackDamage(4);
         }
     }
 }

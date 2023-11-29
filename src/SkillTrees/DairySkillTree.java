@@ -181,6 +181,7 @@ public class DairySkillTree {
     public void unlockAll(){
         for(SkillTreeNode node : array1){
             node.setUnlockedStatus(true);
+            Player.addAttackRange(7);
         }
     }
 }
