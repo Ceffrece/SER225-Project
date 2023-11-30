@@ -3,6 +3,7 @@ package Maps.Floor3;
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
+import Enemy.ColdStone;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
@@ -66,23 +67,23 @@ public class D3Room5 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(4, 8).getLocation());
+            CerealKiller spineapple1 = new CerealKiller(0, getMapTile(4, 8).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(7, 5).getLocation());
+            CerealKiller spineapple2 = new CerealKiller(0, getMapTile(7, 5).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
 
-            Spineapple spineapple3 = new Spineapple(0, getMapTile(10, 2).getLocation());
+            CerealKiller spineapple3 = new CerealKiller(0, getMapTile(10, 2).getLocation());
             spineapple3.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple3);
 
-            Spineapple spineapple4 = new Spineapple(0, getMapTile(13, 5).getLocation());
+            CerealKiller spineapple4 = new CerealKiller(0, getMapTile(13, 5).getLocation());
             spineapple4.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple4);
 
-            Spineapple spineapple5 = new Spineapple(0, getMapTile(16, 8).getLocation());
+            ColdStone spineapple5 = new ColdStone(0, getMapTile(16, 8).getLocation());
             spineapple5.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple5);
             

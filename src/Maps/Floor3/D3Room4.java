@@ -115,7 +115,7 @@ public class D3Room4 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(24, 2).getLocation());
+            CerealKiller spineapple1 = new CerealKiller(0, getMapTile(24, 2).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
             

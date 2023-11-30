@@ -3,7 +3,9 @@ package Maps.Floor3;
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
+import Enemy.EggplantArtillery;
 import Enemy.Eggssassin;
+import Enemy.ParmesanProwler;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -70,19 +72,19 @@ public class D3Room9 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(8, 5).getLocation());
+            ParmesanProwler spineapple1 = new ParmesanProwler(0, getMapTile(8, 5).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(8, 8).getLocation());
+            EggplantArtillery spineapple2 = new EggplantArtillery(0, getMapTile(8, 8).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
 
-            Spineapple spineapple3 = new Spineapple(0, getMapTile(8, 11).getLocation());
+            EggplantArtillery spineapple3 = new EggplantArtillery(0, getMapTile(8, 11).getLocation());
             spineapple3.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple3);
 
-            Spineapple spineapple4 = new Spineapple(0, getMapTile(8, 14).getLocation());
+            ParmesanProwler spineapple4 = new ParmesanProwler(0, getMapTile(8, 14).getLocation());
             spineapple4.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple4);
             

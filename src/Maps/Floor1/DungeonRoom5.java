@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.HickoryHamHurler;
+import Enemy.MapleBaconMarauder;
+import Enemy.PastaPoltergeist;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -69,11 +71,11 @@ public class DungeonRoom5 extends Map {
             hickoryhamhurler1.setExistenceFlag("hasTalkedToHickoryHamHurler");
             enemies.add(hickoryhamhurler1);
 
-            HickoryHamHurler hickoryhamhurler2 = new HickoryHamHurler(0, getMapTile(5, 19).getLocation());
+            PastaPoltergeist hickoryhamhurler2 = new PastaPoltergeist(0, getMapTile(5, 19).getLocation());
             hickoryhamhurler2.setExistenceFlag("hasTalkedToHickoryHamHurler");
             enemies.add(hickoryhamhurler2);
     
-            Eggssassin eggssassin1 = new Eggssassin(0, getMapTile(19, 19).getLocation());
+            MapleBaconMarauder eggssassin1 = new MapleBaconMarauder(0, getMapTile(19, 19).getLocation());
             eggssassin1.setExistenceFlag("hasTalkedToEggssassin");
             enemies.add(eggssassin1);
             
