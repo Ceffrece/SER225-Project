@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.KiwiKamikaze;
+import Enemy.MachoMandarin;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -166,13 +168,17 @@ public class D2Room10 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(18, 18).getLocation());
+            KiwiKamikaze spineapple1 = new KiwiKamikaze(0, getMapTile(18, 18).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(23, 18).getLocation());
+            KiwiKamikaze spineapple2 = new KiwiKamikaze(0, getMapTile(23, 18).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
+
+            MachoMandarin spineapple3 = new MachoMandarin(0, getMapTile(20, 9).getLocation());
+            spineapple3.setExistenceFlag("hasTalkedToSpineapple");
+            enemies.add(spineapple3);
             
             return enemies;
         }

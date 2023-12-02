@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.KiwiKamikaze;
+import Enemy.MapleBaconMarauder;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.Enemy;
@@ -12,6 +13,7 @@ import Level.EnhancedMapTile;
 import Level.Map;
 import Level.Pickup;
 import Level.Tileset;
+import MapEditor.MapEditor;
 import Tilesets.Floor1Tileset;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.ChangeMapScript;
@@ -71,24 +73,17 @@ public class DungeonRoom1 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
     
-            KiwiKamikaze kiwikamikaze1 = new KiwiKamikaze(0, getMapTile(4, 12).getLocation());
-            kiwikamikaze1.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            MapleBaconMarauder kiwikamikaze1 = new MapleBaconMarauder(0, getMapTile(4, 12).getLocation());
+            kiwikamikaze1.setExistenceFlag("hasTalkedToMapleBaconMarauder");
             enemies.add(kiwikamikaze1);
     
-            KiwiKamikaze kiwikamikaze2 = new KiwiKamikaze(0, getMapTile(20, 12).getLocation());
-            kiwikamikaze2.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            MapleBaconMarauder kiwikamikaze2 = new MapleBaconMarauder(0, getMapTile(20, 12).getLocation());
+            kiwikamikaze2.setExistenceFlag("hasTalkedToMapleBaconMarauder");
             enemies.add(kiwikamikaze2);
     
-            KiwiKamikaze kiwikamikaze3 = new KiwiKamikaze(0, getMapTile(12, 5).getLocation());
-            kiwikamikaze3.setExistenceFlag("hasTalkedToKiwiKamikaze");
+            MapleBaconMarauder kiwikamikaze3 = new MapleBaconMarauder(0, getMapTile(12, 5).getLocation());
+            kiwikamikaze3.setExistenceFlag("hasTalkedToMapleBaconMarauder");
             enemies.add(kiwikamikaze3);
-
-            KiwiKamikaze kiwikamikaze4 = new KiwiKamikaze(0, getMapTile(11, 14).getLocation());
-            kiwikamikaze4.setExistenceFlag("hasTalkedToKiwiKamikaze");
-            enemies.add(kiwikamikaze4);
-    
-           
-    
             
             return enemies;
         }

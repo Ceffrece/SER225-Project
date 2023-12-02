@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.ParmesanProwler;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -66,15 +67,15 @@ public class D3Room6 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 17).getLocation());
+            ParmesanProwler spineapple1 = new ParmesanProwler(0, getMapTile(2, 17).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(25, 2).getLocation());
+            ParmesanProwler spineapple2 = new ParmesanProwler(0, getMapTile(25, 2).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
 
-            Spineapple spineapple3 = new Spineapple(0, getMapTile(24, 17).getLocation());
+            ParmesanProwler spineapple3 = new ParmesanProwler(0, getMapTile(24, 17).getLocation());
             spineapple3.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple3);
             

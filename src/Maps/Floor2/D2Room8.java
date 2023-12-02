@@ -2,8 +2,10 @@ package Maps.Floor2;
 
 import java.util.ArrayList;
 
+import Enemy.CauliflowerCreeper;
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
+import Enemy.KiwiKamikaze;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
 import Level.EnhancedMapTile;
@@ -79,11 +81,11 @@ public class D2Room8 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 2).getLocation());
+            KiwiKamikaze spineapple1 = new KiwiKamikaze(0, getMapTile(2, 2).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(2, 14).getLocation());
+            CauliflowerCreeper spineapple2 = new CauliflowerCreeper(0, getMapTile(2, 14).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
             

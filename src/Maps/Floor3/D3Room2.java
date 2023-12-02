@@ -3,6 +3,7 @@ package Maps.Floor3;
 import java.util.ArrayList;
 
 import Enemy.CerealKiller;
+import Enemy.EggplantArtillery;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
 import EnhancedMapTiles.Spikes;
@@ -102,15 +103,15 @@ public class D3Room2 extends Map {
         public ArrayList<Enemy> loadEnemies() {
             ArrayList<Enemy> enemies = new ArrayList<>();
 
-            Spineapple spineapple1 = new Spineapple(0, getMapTile(2, 2).getLocation());
+            EggplantArtillery spineapple1 = new EggplantArtillery(0, getMapTile(2, 2).getLocation());
             spineapple1.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple1);
 
-            Spineapple spineapple2 = new Spineapple(0, getMapTile(2, 19).getLocation());
+            EggplantArtillery spineapple2 = new EggplantArtillery(0, getMapTile(2, 19).getLocation());
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
 
-            Spineapple spineapple3 = new Spineapple(0, getMapTile(17, 19).getLocation());
+            EggplantArtillery spineapple3 = new EggplantArtillery(0, getMapTile(17, 19).getLocation());
             spineapple3.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple3);
             

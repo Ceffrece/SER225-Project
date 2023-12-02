@@ -2,6 +2,7 @@ package Maps.Floor2;
 
 import java.util.ArrayList;
 
+import Enemy.CauliflowerCreeper;
 import Enemy.CerealKiller;
 import Enemy.Eggssassin;
 import Enemy.Spineapple;
@@ -116,17 +117,13 @@ public class D2Room9 extends Map {
             spineapple2.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple2);
 
-            Spineapple spineapple3 = new Spineapple(0, getMapTile(12, 22).getLocation());
+            CauliflowerCreeper spineapple3 = new CauliflowerCreeper(0, getMapTile(12, 22).getLocation());
             spineapple3.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple3);
 
-            Spineapple spineapple4 = new Spineapple(0, getMapTile(21, 12).getLocation());
+            CauliflowerCreeper spineapple4 = new CauliflowerCreeper(0, getMapTile(21, 12).getLocation());
             spineapple4.setExistenceFlag("hasTalkedToSpineapple");
             enemies.add(spineapple4);
-
-            Spineapple spineapple5 = new Spineapple(0, getMapTile(1, 1).getLocation());
-            spineapple5.setExistenceFlag("hasTalkedToSpineapple");
-            enemies.add(spineapple5);
             
             return enemies;
         }
