@@ -169,11 +169,6 @@ public class GamePanel extends JPanel {
 	private SpriteFont ultText4; 
 	private SpriteFont ultText5; 
 
-	
-	//Dev tools
-	private final Key levelKey = Key.K;
-	private final Key unlockKey = Key.U;
-
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
@@ -263,23 +258,6 @@ public class GamePanel extends JPanel {
 		updateSkillTreeState();
 		updateInventoryState();
 		updateUltSwitchState();
-
-		//Dev Tools
-		if(Keyboard.isKeyDown(levelKey)){
-			Player.playerXPLevel += 10;
-		}
-		if(Keyboard.isKeyDown(unlockKey)){
-			fruit.unlockAll();
-			grain.unlockAll();
-			protein.unlockAll();
-			veggie.unlockAll();
-			dairy.unlockAll();
-			Player.playerUltimates.add(FruitSkillTree.ultimateFruitSkill);
-			Player.playerUltimates.add(GrainSkillTree.ultimateGrainSkill);
-			Player.playerUltimates.add(ProteinSkillTree.ultimateProteinSkill);
-			Player.playerUltimates.add(VeggieSkillTree.ultimateVeggieSkill);
-			Player.playerUltimates.add(DairySkillTree.ultimateDairySkill);
-		}
 
 		//Pause logic
 		if(isGamePaused || skillTreeActivated|| isInventoryActivated || ultActivated){
