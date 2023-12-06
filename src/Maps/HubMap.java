@@ -88,7 +88,7 @@ public class HubMap extends Map {
         getMapTile(12,2).setInteractScript(new RandomChangeMapScript(1));
         // enemies.size is not altered when enemies are killed
 
-        getMapTile(2,14).setInteractScript(new ChangeMapScript(111));
+        getMapTile(2,14).setInteractScript(new ChangeMapScript(104));
 
     }
     

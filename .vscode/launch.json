@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Game",
+            "request": "launch",
+            "mainClass": "Game.Game",
+            "projectName": "SER225-Project_f65d712d"
+        },
+        {
+            "type": "java",
             "name": "MapEditor",
             "request": "launch",
             "mainClass": "MapEditor.MapEditor",
