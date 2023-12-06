@@ -19,4 +19,9 @@ It can be accessed at [https://a-r-t.github.io/SER-225-Game-RPG/](https://a-r-t.
 Changes to content in the `docs` folder will not show up on the website unless they are pushed to the `master` branch.
 
 ## Credits
-**Alex Thimineur**: Programmed the game, made the art.
+**Alex Thimineur**: Programmed the base game, made the art.
+**Caden Effrece**: Made the Skill Tree, Bosses, Storyline, EXP system, and Items.
+**Marcus Ferreria**: Made the map layout, helped make sprites.
+**Bill Regan**: Made the enemies, enemy projectiles, enemy sprites, and enemy movement. Themed the bosses
+**Kyle MacDonald**: Helped make sprites for player, enemies, and bosses. Made the in-game GUI.
+**Riley Damasco**: Helped make sprites for player and enemies, created Shop, multiple items, inventory, and the randomization of maps.
