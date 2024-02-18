@@ -21,7 +21,7 @@ Changes to content in the `docs` folder will not show up on the website unless t
 ## Credits
 **Alex Thimineur**: Programmed the base game, made the art.
 **Caden Effrece**: Made the Skill Tree, Bosses, Storyline, EXP system, and Items.
-**Marcus Ferreria**: Made the map layout, helped make sprites.
+**Marcus Ferreira**: Made the map layouts and tilesets, refined hitboxes.
 **Bill Regan**: Made the enemies, enemy projectiles, enemy sprites, and enemy movement. Themed the bosses
 **Kyle MacDonald**: Helped make sprites for player, enemies, and bosses. Made the in-game GUI.
 **Riley Damasco**: Helped make sprites for player and enemies, created Shop, multiple items, inventory, and the randomization of maps.
